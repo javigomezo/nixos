@@ -69,6 +69,10 @@
       name = "Bibata-Modern-Classic";
       size = 24;
     };
+    programs.git = {
+      enable = true;
+      userName = "javigomezo";
+    };
   };
 
   hardware.bluetooth.enable = true;
@@ -143,10 +147,6 @@
     };
   };
 
-  programs.git = {
-    enable = true;
-    userName = "javigomezo";
-  };
   programs.hyprland = {
     enable = true;
     xwayland = {
