@@ -24,6 +24,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  fileSystems."/mnt/Downloads" = 
+    {
+      device = "/dev/disk/by-partuuid/ca8d8d5f-01";
+      fsType = "ntfs3";
+      options = [ "rw" "uid=1000"];
+    };
+
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
 
@@ -69,6 +76,7 @@
       name = "Bibata-Modern-Classic";
       size = 24;
     };
+    programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
     programs.git = {
       enable = true;
       userName = "javigomezo";
@@ -76,10 +84,13 @@
   };
 
   hardware.bluetooth.enable = true;
+  hardware.pulseaudio.enable = false;
+
   hardware.nvidia = {
     modesetting.enable = true;
     #open = true; # If true breaks hyprland so...
-    nvidiaSettings = false;
+    nvidiaSettings = true;
+    nvidiaPersistenced = true;
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
@@ -94,13 +105,22 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; # Fixes workspaces
-      });
-    })
-  ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXinerama
+        xorg.libXScrnSaver
+        libpng
+        libpulseaudio
+        libvorbis
+        stdenv.cc.cc.lib
+        libkrb5
+        keyutils
+      ];
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -110,42 +130,30 @@
     duf
     exa
     ffmpeg
-    firefox-wayland
     hyprpaper
+    gamescope
     grim
     killall
     lutris
     htop
     nitch
     mako
+    mangohud
     pavucontrol
+    polkit-kde-agent
     (python3.withPackages(ps: with ps; [ requests]))
     libreoffice-qt
+    rofi-wayland-unwrapped
     slurp
     stow
     swaylock-effects
     tmux
     vim
-    waybar
+    vulkan-tools
+    wl-clipboard
     wlogout
-    wofi
     xfce.thunar
   ];
-
-  environment.etc = let
-    json = pkgs.formats.json {};
-  in {
-    "pipewire/pipewire.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-      context.properties = {
-        default.clock.allowed-rates = [ 44100 48000 96000 ];
-        log.level = 4;
-        default.clock.rate = 96000;
-        default.clock.quantum = 256;
-        default.clock.min-quantum = 256;
-        default.clock.max-quantum = 4092;
-      };
-    };
-  };
 
   programs.hyprland = {
     enable = true;
@@ -156,12 +164,25 @@
     nvidiaPatches = true;
   };
 
+  programs.waybar = {
+    enable = true;
+    package = pkgs.waybar.overrideAttrs (oldAttrs: {
+       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    });
+  };
+
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman
   ];
 
   programs.zsh.enable = true;
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+  };
   
   fonts = {
     fonts = with pkgs; [
@@ -211,14 +232,14 @@
   services.dbus.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = false;
+    alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = false;
     wireplumber.enable = true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
-
 
   security.rtkit.enable = true;
   security.polkit.enable = true;
