@@ -129,6 +129,7 @@
     bibata-cursors
     duf
     exa
+    firefox-wayland
     ffmpeg
     hyprpaper
     gamescope
@@ -187,6 +188,7 @@
   fonts = {
     fonts = with pkgs; [
       noto-fonts-emoji
+      font-awesome
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ];})
     ];
     fontDir.enable = true;
