@@ -68,6 +68,13 @@
   };
 
   home-manager.users.javier = { pkgs, ... }: {
+    gtk = {
+      enable = true;
+      theme = {
+        name = "Nordic-bluish-accent";
+        #package = pkgs.nordic;
+      };
+    };
     home.stateVersion = "23.05";
     home.packages = [  ];
     home.pointerCursor = {
@@ -138,6 +145,7 @@
     lutris
     htop
     nitch
+    nordic
     mako
     mangohud
     pavucontrol
@@ -150,7 +158,8 @@
     swaylock-effects
     tmux
     vim
-    vulkan-tools
+    #vulkan-tools
+    waynergy
     wl-clipboard
     wlogout
     xfce.thunar
