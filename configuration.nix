@@ -6,7 +6,9 @@
       <home-manager/nixos>
       ./hardware-configuration.nix
     ];
+
   nix.settings.auto-optimise-store = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -29,6 +31,13 @@
       device = "/dev/disk/by-partuuid/ca8d8d5f-01";
       fsType = "ntfs3";
       options = [ "rw" "uid=1000"];
+    };
+
+  fileSystems."/mnt/Qbittorrent" = 
+    {
+      device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
+      fsType = "nfs";
+      options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60" ];
     };
 
   # Set your time zone.
@@ -138,9 +147,10 @@
     exa
     firefox-wayland
     ffmpeg
-    hyprpaper
     gamescope
+    git
     grim
+    hyprpaper
     killall
     lutris
     htop
@@ -148,8 +158,10 @@
     nordic
     mako
     mangohud
+    mpv
     pavucontrol
     polkit-kde-agent
+    protonup-qt
     (python3.withPackages(ps: with ps; [ requests]))
     libreoffice-qt
     rofi-wayland-unwrapped
