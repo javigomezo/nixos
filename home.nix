@@ -19,6 +19,15 @@
     size = 24;
   };
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
+  programs.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+      hidpi = false;
+    };
+    nvidiaPatches = true;
+  };
+
   programs.git = {
     enable = true;
     userName = "javigomezo";
