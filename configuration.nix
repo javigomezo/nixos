@@ -158,7 +158,7 @@
   ];
 
   programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
     xwayland = {
       enable = true;

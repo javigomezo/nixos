@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland = {
+      enable = true;
+      hidpi = false;
+    };
+    systemdIntegration = true;
+    nvidiaPatches = true;
+  };
+
   home.username = "javier";
   home.homeDirectory = "/home/javier";
   gtk = {
@@ -10,7 +20,6 @@
       #package = pkgs.nordic;
     };
   };
-  home.stateVersion = "23.05";
   home.packages = [  ];
   home.pointerCursor = {
     gtk.enable = true;
@@ -19,17 +28,14 @@
     size = 24;
   };
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
-  programs.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = false;
-    };
-    nvidiaPatches = true;
-  };
-
   programs.git = {
     enable = true;
     userName = "javigomezo";
   };
+
+  # You can update home Manager without changing this value. See
+  # the home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "23.05";
+  programs.home-manager.enable = true;
 }
