@@ -22,8 +22,8 @@
 
         modules = [
           ./configuration.nix
+          #hyprland.homeManagerModules.default
           home-manager.nixosModules.home-manager
-          hyprland.homeManagerModules.default
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -31,6 +31,24 @@
           }
         ];
       };
+    };
+    homeConfigurations."javier@nixos" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        hyprland.homeManagerModules.default
+        {
+          wayland.windowManager.hyprland = 
+          {
+            enable = true;
+            xwayland = {
+              enable = true;
+              hidpi = false;
+            };
+            systemdIntegration = true;
+            nvidiaPatches = true;
+          };
+        }
+      ];
     };
   };
 }
