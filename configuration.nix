@@ -157,15 +157,16 @@
     xfce.thunar
   ];
 
-  programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = false;
-    };
-    nvidiaPatches = true;
-  };
+  programs.hyprland.package = null;
+  #programs.hyprland = {
+  #  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  #  enable = true;
+  #  xwayland = {
+  #    enable = true;
+  #    hidpi = false;
+  #  };
+  #  nvidiaPatches = true;
+  #};
 
   programs.waybar = {
     enable = true;

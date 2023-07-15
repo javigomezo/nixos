@@ -10,7 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # build with your own instance of nixpkgs
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprpaper.url = "github:hyprwm/hyprpaper";
   };
 
@@ -22,33 +26,32 @@
 
         modules = [
           ./configuration.nix
-          #hyprland.homeManagerModules.default
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
             home-manager.users.javier = import ./home.nix;
           }
         ];
       };
     };
-    homeConfigurations."javier@nixos" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [
-        hyprland.homeManagerModules.default
-        {
-          wayland.windowManager.hyprland = 
-          {
-            enable = true;
-            xwayland = {
-              enable = true;
-              hidpi = false;
-            };
-            systemdIntegration = true;
-            nvidiaPatches = true;
-          };
-        }
-      ];
-    };
+    #homeConfigurations."javier@nixos" = home-manager.lib.homeManagerConfiguration {
+    #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    #  modules = [
+    #    hyprland.homeManagerModules.default
+    #    {
+    #      wayland.windowManager.hyprland = 
+    #      {
+    #        enable = true;
+    #        xwayland = {
+    #          enable = true;
+    #          hidpi = false;
+    #        };
+    #        systemdIntegration = true;
+    #        nvidiaPatches = true;
+    #      };
+    #    }
+    #  ];
+    #};
   };
 }
