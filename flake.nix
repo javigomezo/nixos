@@ -15,28 +15,30 @@
       # build with your own instance of nixpkgs
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprpaper.url = "github:hyprwm/hyprpaper";
+    #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
-
-  outputs = { self, nixpkgs }@inputs:
-  let
-    system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
-  in
-  {
+  outputs = { nixpkgs, home-manager, hyprland, ... }@inputs: {
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      myNixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
-        modules = [
-          ./configuration.nix
-        ];
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        modules = [ ./configuration.nix ];
       };
     };
+
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
+    #homeConfigurations = {
+    #  "javier@nixos" = home-manager.lib.homeManagerConfiguration {
+    #    pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+    #    extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+    #    # > Our main home-manager configuration file <
+    #    modules = [
+    #      hyprland.homeManagerModules.default
+    #      ./home.nix
+    #    ];
+    #  };
+    #};
   };
 }

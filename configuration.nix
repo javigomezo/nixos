@@ -4,15 +4,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
-  
+
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
+      # Import your home-manager configuration
       javier = import ./home.nix;
-    }; 
+    };
   };
-
+  
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings = {
