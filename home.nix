@@ -1,20 +1,15 @@
 { config, pkgs, inputs, ... }:
 
 {
-
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-  ];
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      hidpi = false;
-    };
-    systemdIntegration = true;
-    nvidiaPatches = true;
-  };
+  #wayland.windowManager.hyprland = {
+  #  enable = true;
+  #  xwayland = {
+  #    enable = true;
+  #    hidpi = false;
+  #  };
+  #  systemdIntegration = true;
+  #  nvidiaPatches = true;
+  #};
 
   home.username = "javier";
   home.homeDirectory = "/home/javier";

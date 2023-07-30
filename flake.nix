@@ -18,40 +18,25 @@
     hyprpaper.url = "github:hyprwm/hyprpaper";
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, hyprland, ... }: {
-    nixosConfigurations = {
-      "nixos" = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
+  outputs = { self, nixpkgs }@inputs:
+  let
+    system = "x86_64-linux";
 
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+  in
+  {
+    nixosConfigurations = {
+      myNixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs system; };
         modules = [
           ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = false;
-            home-manager.useUserPackages = true;
-            home-manager.users.javier = import ./home.nix;
-          }
         ];
       };
     };
-    #homeConfigurations."javier@nixos" = home-manager.lib.homeManagerConfiguration {
-    #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #  modules = [
-    #    hyprland.homeManagerModules.default
-    #    {
-    #      wayland.windowManager.hyprland = 
-    #      {
-    #        enable = true;
-    #        xwayland = {
-    #          enable = true;
-    #          hidpi = false;
-    #        };
-    #        systemdIntegration = true;
-    #        nvidiaPatches = true;
-    #      };
-    #    }
-    #  ];
-    #};
   };
 }

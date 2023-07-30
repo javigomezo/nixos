@@ -1,10 +1,17 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      javier = import ./home.nix;
+    }; 
+  };
 
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
