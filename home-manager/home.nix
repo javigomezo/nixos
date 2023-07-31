@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 {
   imports = [
@@ -25,38 +25,30 @@
     };
   };
 
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  package = inputs.hyprland.packages.${pkgs.system}.default;
-  #  extraConfig = builtins.readFile ./Hyprland/hyprland.conf;
-  #  xwayland = {
-  #    enable = true;
-  #    hidpi = false;
-  #  };
-  #  systemdIntegration = true;
-  #  nvidiaPatches = true;
-  #};
+  home = {
+    username = "javier";
+    homeDirectory = "/home/javier";
+    pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 24;
+    };
+    packages = with pkgs; [
+      pavucontrol
+      polkit-kde-agent
+      xwayland
+    ];
+  };
 
-  home.username = "javier";
-  home.homeDirectory = "/home/javier";
   qt.enable = true;
   gtk = {
     enable = true;
     theme = {
       name = "Nordic-bluish-accent";
-      #package = pkgs.nordic;
     };
   };
-  home.packages = with pkgs; [
-    polkit-kde-agent
-    xwayland
-  ];
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-  };
+
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
   programs.git = {
@@ -64,9 +56,9 @@
     userName = "javigomezo";
   };
 
+  #xsession.enable = true;
 
-  xsession.enable = true;
-
+  # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # You can update home Manager without changing this value. See

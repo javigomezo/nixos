@@ -1,16 +1,36 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./common/pipewire.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
-  nix.settings.auto-optimise-store = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      # Import your home-manager configuration
+      javier = import ./home-manager/home.nix;
+    };
+  };
+
+  nix = {
+    # This will add each flake input as a registry
+    # To make nix3 commands consistent with your flake
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+
+    # This will additionally add your inputs to the system's legacy channels
+    # Making legacy nix commands consistent as well, awesome!
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+
+    settings = {
+      experimental-features = "nix-command flakes";
+      auto-optimise-store = true;
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
   };
 
   # Bootloader.
@@ -70,17 +90,15 @@
   # Configure console keymap
   console.keyMap = "es";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  ## Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.javier = {
     isNormalUser = true;
     description = "javier";
     shell = pkgs.zsh;
     extraGroups = [ "disk" "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = false;
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -139,7 +157,7 @@
     mako
     mangohud
     mpv
-    pavucontrol
+    #pavucontrol
     polkit-kde-agent
     protonup-qt
     (python3.withPackages(ps: with ps; [ requests]))
@@ -150,14 +168,13 @@
     swaylock-effects
     tmux
     vim
-    #vulkan-tools
     waynergy
     wl-clipboard
     wlogout
     xfce.thunar
   ];
 
-  #programs.hyprland.package = null;
+  programs.hyprland.package = null;
 
   programs.waybar = {
     enable = true;
@@ -227,18 +244,18 @@
   services.gvfs.enable = true; # Thunar Mount, trash etc
   services.tumbler.enable = true; # Thumbnail support for images
   services.dbus.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = false;
-    wireplumber.enable = true;
-  };
+  #security.rtkit.enable = true;
+  #services.pipewire = {
+  #  enable = true;
+  #  alsa.enable = true;
+  #  alsa.support32Bit = true;
+  #  pulse.enable = true;
+  #  jack.enable = false;
+  #  wireplumber.enable = true;
+  #};
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  security.rtkit.enable = true;
   security.polkit.enable = true;
   security.pam.services.swaylock = {
     text = ''
