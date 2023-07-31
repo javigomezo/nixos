@@ -4,17 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
     ];
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      # Import your home-manager configuration
-      javier = import ./home.nix;
-    };
-  };
-  
   nix.settings.auto-optimise-store = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings = {
@@ -166,16 +157,7 @@
     xfce.thunar
   ];
 
-  programs.hyprland.package = null;
-  #programs.hyprland = {
-  #  package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #  enable = true;
-  #  xwayland = {
-  #    enable = true;
-  #    hidpi = false;
-  #  };
-  #  nvidiaPatches = true;
-  #};
+  #programs.hyprland.package = null;
 
   programs.waybar = {
     enable = true;
@@ -198,14 +180,14 @@
   };
   
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts-emoji
       font-awesome
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ];})
     ];
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       enable = true;
         antialias = true;
@@ -221,7 +203,7 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      #pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 

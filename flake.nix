@@ -10,35 +10,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # build with your own instance of nixpkgs
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
-  outputs = { nixpkgs, home-manager, hyprland, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        specialArgs = { inherit inputs; };
         modules = [ ./configuration.nix ];
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    #homeConfigurations = {
-    #  "javier@nixos" = home-manager.lib.homeManagerConfiguration {
-    #    pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-    #    extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-    #    # > Our main home-manager configuration file <
-    #    modules = [
-    #      hyprland.homeManagerModules.default
-    #      ./home.nix
-    #    ];
-    #  };
-    #};
+    homeConfigurations = {
+      "javier@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [ ./home-manager/home.nix ];
+      };
+    };
   };
 }
