@@ -11,10 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #hyprland = {
-    #  url = "github:hyprwm/hyprpaper";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    #hyprland.url = "github:hyprwm/hyprpaper";
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
   outputs = { nixpkgs, home-manager, ... }@inputs: {
@@ -29,12 +26,15 @@
       };
     };
 
-    #homeConfigurations = {
-    #  "javier@nixos" = home-manager.lib.homeManagerConfiguration {
-    #    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    #    extraSpecialArgs = { inherit inputs; };
-    #    modules = [ ./home-manager/home.nix ];
-    #  };
-    #};
+    homeConfigurations = {
+      "javier@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          #hyprland.homeManagerModules.default
+          ./home-manager/home.nix
+        ];
+      };
+    };
   };
 }

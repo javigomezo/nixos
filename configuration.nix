@@ -5,16 +5,16 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./common/pipewire.nix
-      inputs.home-manager.nixosModules.home-manager
+      #inputs.home-manager.nixosModules.home-manager
     ];
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      # Import your home-manager configuration
-      javier = import ./home-manager/home.nix;
-    };
-  };
+  #home-manager = {
+  #  extraSpecialArgs = { inherit inputs; };
+  #  users = {
+  #    # Import your home-manager configuration
+  #    javier = import ./home-manager/home.nix;
+  #  };
+  #};
 
   nix = {
     # This will add each flake input as a registry
@@ -148,6 +148,7 @@
     gamescope
     git
     grim
+    home-manager
     hyprpaper
     killall
     lutris
