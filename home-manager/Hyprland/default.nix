@@ -6,7 +6,7 @@
     extraConfig = builtins.readFile ./hyprland.conf;
     xwayland = {
       enable = true;
-      hidpi = false;
+      hidpi = true;
     };
     systemdIntegration = true;
     enableNvidiaPatches = true;

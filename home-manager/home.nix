@@ -3,6 +3,7 @@
 {
   imports = [
     ./Hyprland
+    ./waybar
     ./zsh
   ];
 
@@ -39,6 +40,8 @@
     packages = with pkgs; [
       pavucontrol
       polkit-kde-agent
+      (python3.withPackages(ps: with ps; [ requests ]))
+      #xorg.xorgserver
       xwayland
     ];
   };
@@ -51,10 +54,6 @@
     };
   };
 
-  #programs.zsh = {
-  #  enable = true;
-  #  dotDir = "/home/javier/.config/zsh";
-  #};
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
   programs.git = {
@@ -62,7 +61,7 @@
     userName = "javigomezo";
   };
 
-  #xsession.enable = true;
+  xsession.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

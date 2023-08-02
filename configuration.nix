@@ -161,7 +161,7 @@
     #pavucontrol
     polkit-kde-agent
     protonup-qt
-    (python3.withPackages(ps: with ps; [ requests]))
+    #(python3.withPackages(ps: with ps; [ requests]))
     libreoffice-qt
     rofi-wayland-unwrapped
     slurp
@@ -175,14 +175,15 @@
     xfce.thunar
   ];
 
-  programs.hyprland.package = null;
+  #programs.hyprland.package = null;
+  programs.xwayland.package = true;
 
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });
-  };
+  #programs.waybar = {
+  #  enable = true;
+  #  package = pkgs.waybar.overrideAttrs (oldAttrs: {
+  #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+  #  });
+  #};
 
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
@@ -239,8 +240,8 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "javier";
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "javier";
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Thunar Mount, trash etc
   services.tumbler.enable = true; # Thumbnail support for images
