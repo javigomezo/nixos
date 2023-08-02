@@ -3,6 +3,7 @@
 {
   imports = [
     ./Hyprland
+    ./zsh
   ];
 
   nixpkgs = {
@@ -50,6 +51,10 @@
     };
   };
 
+  #programs.zsh = {
+  #  enable = true;
+  #  dotDir = "/home/javier/.config/zsh";
+  #};
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
   programs.git = {
