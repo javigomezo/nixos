@@ -139,51 +139,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    alacritty
-    bibata-cursors
-    duf
-    exa
-    firefox-wayland
-    ffmpeg
-    gamescope
-    git
-    grim
-    home-manager
-    hyprpaper
-    killall
-    lutris
-    htop
-    nitch
-    nordic
-    mako
-    mangohud
-    mpv
-    #pavucontrol
-    polkit-kde-agent
-    protonup-qt
-    #(python3.withPackages(ps: with ps; [ requests]))
-    libreoffice-qt
-    rofi-wayland-unwrapped
-    slurp
-    stow
-    swaylock-effects
-    tmux
-    vim
-    waynergy
-    wl-clipboard
-    wlogout
-    xfce.thunar
+    #home-manager
+    #libreoffice-qt
+    #waynergy
   ];
 
-  #programs.hyprland.package = null;
-  programs.xwayland.package = true;
-
-  #programs.waybar = {
-  #  enable = true;
-  #  package = pkgs.waybar.overrideAttrs (oldAttrs: {
-  #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-  #  });
-  #};
+  #programs.xwayland.package = true;
 
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin

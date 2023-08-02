@@ -38,9 +38,34 @@
       size = 24;
     };
     packages = with pkgs; [
+      alacritty
+      bibata-cursors
+      duf
+      exa
+      firefox-wayland
+      ffmpeg
+      gamescope
+      git
+      grim
+      hyprpaper
+      killall
+      nitch
+      htop
+      mako
+      mpv
       pavucontrol
       polkit-kde-agent
+      protonup-qt
       (python3.withPackages(ps: with ps; [ requests ]))
+      rofi-wayland-unwrapped
+      slurp
+      stow
+      swaylock-effects
+      tmux
+      vim
+      wl-clipboard
+      wlogout
+      xfce.thunar
       #xorg.xorgserver
       xwayland
     ];
@@ -54,12 +79,26 @@
     };
   };
 
+  #programs.thunar.plugins = with pkgs.xfce; [
+  #  thunar-archive-plugin
+  #  thunar-volman
+  #];
   programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
     userName = "javigomezo";
   };
+
+  xdg.enable = true;
+  fonts.fontconfig.enable = true;
+  #xdg.portal = {
+  #  enable = true;
+  #  extraPortals = [
+  #    pkgs.xdg-desktop-portal-hyprland
+  #    pkgs.xdg-desktop-portal-gtk
+  #  ];
+  #};
 
   xsession.enable = true;
 
