@@ -5,16 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./common/pipewire.nix
-      #inputs.home-manager.nixosModules.home-manager
     ];
-
-  #home-manager = {
-  #  extraSpecialArgs = { inherit inputs; };
-  #  users = {
-  #    # Import your home-manager configuration
-  #    javier = import ./home-manager/home.nix;
-  #  };
-  #};
 
   nix = {
     # This will add each flake input as a registry
@@ -82,10 +73,10 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "es";
-    xkbVariant = "";
-  };
+  #services.xserver = {
+  #  layout = "es";
+  #  xkbVariant = "";
+  #};
 
   # Configure console keymap
   console.keyMap = "es";
@@ -138,11 +129,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #home-manager
-    #libreoffice-qt
-    #waynergy
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  #home-manager
+  #  #libreoffice-qt
+  #  #waynergy
+  #];
 
   #programs.xwayland.package = true;
 
@@ -207,15 +198,6 @@
   services.gvfs.enable = true; # Thunar Mount, trash etc
   services.tumbler.enable = true; # Thumbnail support for images
   services.dbus.enable = true;
-  #security.rtkit.enable = true;
-  #services.pipewire = {
-  #  enable = true;
-  #  alsa.enable = true;
-  #  alsa.support32Bit = true;
-  #  pulse.enable = true;
-  #  jack.enable = false;
-  #  wireplumber.enable = true;
-  #};
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
