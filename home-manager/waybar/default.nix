@@ -1,5 +1,9 @@
 { outputs, config, lib, pkgs, ... }:
 
+let
+  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+in
+
 {
   programs.waybar = {
     enable = true;
@@ -68,7 +72,7 @@
               car = "";
               default = [ "" "" "" ];
             };
-            on-click = "pavucontrol";
+            on-click = pavucontrol;
           };
           network = {
             format-wifi = " {essid} ({signalStrength}%)";

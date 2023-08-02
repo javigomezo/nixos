@@ -83,7 +83,7 @@
   #  thunar-archive-plugin
   #  thunar-volman
   #];
-  programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
+  #programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
   programs.git = {
     enable = true;
