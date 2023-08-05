@@ -3,6 +3,7 @@
 {
   services.mako = {
     enable = true;
+    defaultTimeout = 5000;
     maxVisible = 5;
     sort = "-time";
     layer = "overlay"; # Above fullscreen
