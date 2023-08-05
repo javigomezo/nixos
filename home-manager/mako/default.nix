@@ -19,8 +19,8 @@
     borderColor = "#a3be8c";
     extraConfig = ''
       [urgency=high]
-        border-color=#bf616a
-        ignore-timeout=1
+      border-color=#bf616a
+      ignore-timeout=1
     '';
   };
 }

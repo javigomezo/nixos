@@ -23,7 +23,7 @@
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
-
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -31,10 +31,11 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.enableIPv6 = false;
-  networking.interfaces.wlo1.ipv4.addresses = [{
-    address = "10.0.0.10";
-    prefixLength = 24;
-  }];
+  #networking.interfaces.wlo1.ipv4.addresses = [{
+  #  address = "10.0.0.10";
+  #  prefixLength = 24;
+  #}];
+  networking.interfaces.wlo1.useDHCP = false;
   networking.nameservers = ["10.0.0.200" "10.0.0.2"];
 
   # Enable networking
