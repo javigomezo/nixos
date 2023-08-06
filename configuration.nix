@@ -155,7 +155,7 @@
     packages = with pkgs; [
       noto-fonts-emoji
       font-awesome
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ];})
+      (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ];})
     ];
     fontDir.enable = true;
     enableGhostscriptFonts = true;

@@ -2,9 +2,10 @@
 
 {
   imports = [
-    ./Hyprland
+    ./hyprland
     ./mako
     ./waybar
+    ./wezterm
     ./zsh
   ];
 
