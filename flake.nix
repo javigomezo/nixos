@@ -11,9 +11,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, lanzaboote, ... }@inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -21,6 +26,18 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
+          lanzaboote.nixosModules.lanzaboote
+          ({ pkgs, lib, ... }: {
+            environment.systemPackages = [
+              # For debugging and troubleshooting Secure Boot.
+              pkgs.sbctl
+            ];
+            boot.loader.systemd-boot.enable = lib.mkForce false;
+            boot.lanzaboote = {
+              enable = true;
+              pkiBundle = "/etc/secureboot";
+            };
+          })
         ];
       };
     };
