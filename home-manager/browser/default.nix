@@ -63,18 +63,18 @@
 
       settings = {
         "browser.aboutConfig.showWarning" = false;
-        "browser.warnOnQuit" = false;
+        "browser.cache.disk.enable" = false;
         "browser.contentblocking.category" = "strict";
         "browser.download.panel.shown" = true;
+        "browser.eme.ui.enabled" = false;
         "browser.search.suggest.enabled" = false;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.shell.didSkipDefaultBrowserCheckOnFirstRun" = true;
         "browser.theme.content-theme" = 0;
         "browser.theme.toolbar-theme" = 0;
         "browser.toolbars.bookmarks.visibility" = false;
+        "browser.warnOnQuit" = false;
         "cookiebanners.ui.desktop.enabled" = true;
-        "ui.systemUsesDarkTheme" = 1;
-        "browser.cache.disk.enable" = false;
         "devtools.cache.disabled" = true;
         "devtools.theme dark" = "dark";
         "dom.security.https_only_mode" = true;
@@ -88,6 +88,7 @@
         "privacy.donottrackheader.enabled" = true;
         "svg.context-properties.content.enabled" = true;
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "ui.systemUsesDarkTheme" = 1;
       };
 
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
