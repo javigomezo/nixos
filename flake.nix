@@ -16,6 +16,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-cascade-theme = { url = "github:andreasgrafen/cascade"; flake = false; };
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
   outputs = { nixpkgs, home-manager, lanzaboote, ... }@inputs: {
