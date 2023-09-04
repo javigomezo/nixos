@@ -81,6 +81,7 @@
         "general.autoScroll" = true;
         "general.smoothhScroll" = true;
         "gfx.webrender.all" = true;
+        "intl.accept_languages" = "es-ES, es, en-US, en";
         "layers.acceleration.force-enabled" = true;
         "layout.css.color-mix.enabled" = true;
         "media.ffmpeg.vaapi.enabled" = true;
