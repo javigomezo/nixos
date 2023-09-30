@@ -8,7 +8,7 @@
     "height": "auto",
     "width": "auto",
 
-    "modules-left": ["clock", "custom/weather", "custom/updates", "wlr/workspaces"],
+    "modules-left": ["clock", "custom/weather", "custom/updates", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["pulseaudio", "network", "backlight", "temperature", "battery", "tray"],
 
@@ -38,7 +38,7 @@
         "tooltip": true
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
 	"disable-scroll": true,
         "on-click": "activate",
 	"all-outputs": true,

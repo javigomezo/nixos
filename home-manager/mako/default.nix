@@ -3,6 +3,7 @@
 {
   services.mako = {
     enable = true;
+    icons= true;
     defaultTimeout = 5000;
     maxVisible = 5;
     sort = "-time";

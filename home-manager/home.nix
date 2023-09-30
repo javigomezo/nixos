@@ -42,6 +42,7 @@
     };
     packages = with pkgs; [
       alacritty
+      android-tools
       bibata-cursors
       duf
       exa
