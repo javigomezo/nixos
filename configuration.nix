@@ -195,10 +195,10 @@
   # Tell Xorg to use the nvidia driver
   services.xserver.videoDrivers = ["nvidia"];
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "javier";
+  services.xserver.displayManager.sddm.enable = true;
+  #services.xserver.displayManager.sddm.wayland = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "javier";
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Thunar Mount, trash etc
   services.tumbler.enable = true; # Thumbnail support for images
