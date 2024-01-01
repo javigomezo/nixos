@@ -22,7 +22,7 @@ in
           gtk-layer-shell = true;
           #height = "auto";
           #width = "auto";
-          modules-left = [ "clock" "custom/weather" "wlr/workspaces" ];
+          modules-left = [ "clock" "custom/weather" "hyprland/workspaces" ];
           modules-center = ["hyprland/window"];
           modules-right = [ "pulseaudio" "network" "temperature" "tray" ];
           clock = {
@@ -40,7 +40,7 @@ in
             exec = "~/.config/waybar/scripts/waybar-wttr.py";
             return-type = "json";
           };
-          "wlr/workspaces" = {
+          "hyprland/workspaces" = {
       	    disable-scroll = true;
             on-click = "activate";
       	    all-outputs = true;
@@ -51,7 +51,14 @@ in
               "3" = [];
               "4" = [];
       	    };
+            format = "{icon}";
+            format-icons = {
+              default = "";
+              focused = "";
+              urgent = "";
+            };
           };
+
           "hyprland/window" = {
             format = " {}";
             separate-outputs = true;
