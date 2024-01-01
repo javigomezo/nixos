@@ -44,6 +44,7 @@
       alacritty
       android-tools
       bibata-cursors
+      bun
       duf
       eza
       ffmpeg
