@@ -45,7 +45,7 @@
       android-tools
       bibata-cursors
       duf
-      exa
+      eza
       ffmpeg
       gamescope
       git

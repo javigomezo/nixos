@@ -14,7 +14,7 @@
         config = wezterm.config_builder()
       end
       -- Enable Wayland
-      config.enable_wayland = true
+      config.enable_wayland = false
       -- Set Nord color scheme
       config.color_scheme = 'nord'   
       -- Disable Tab Bar

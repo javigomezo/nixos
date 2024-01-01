@@ -31,10 +31,10 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.enableIPv6 = false;
-  #networking.interfaces.wlo1.ipv4.addresses = [{
-  #  address = "10.0.0.10";
-  #  prefixLength = 24;
-  #}];
+  networking.interfaces.wlo1.ipv4.addresses = [{
+    address = "10.0.0.10";
+    prefixLength = 24;
+  }];
   networking.interfaces.wlo1.useDHCP = false;
   networking.nameservers = ["10.0.0.200" "10.0.0.2"];
 
@@ -173,9 +173,13 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+    configPackages = [
       pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 
