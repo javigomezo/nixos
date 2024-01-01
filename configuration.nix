@@ -196,6 +196,8 @@
   services.xserver.videoDrivers = ["nvidia"];
   services.xserver.enable = true;
   services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+  #services.xserver.displayManager.defaultSession = "hyprland";
   #services.xserver.displayManager.sddm.wayland = true;
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "javier";
