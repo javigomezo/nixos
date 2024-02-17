@@ -31,7 +31,7 @@
       workstation = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./machines/workstation
           lanzaboote.nixosModules.lanzaboote
           ({ pkgs, lib, ... }: {
             environment.systemPackages = [

@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./common/pipewire.nix
+      ../../common/pipewire.nix
     ];
 
   nix = {
