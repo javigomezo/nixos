@@ -29,7 +29,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "workstation"; # Define your hostname.
   networking.enableIPv6 = false;
   networking.interfaces.wlo1.ipv4.addresses = [{
     address = "10.0.0.10";
@@ -195,12 +195,11 @@
   # Tell Xorg to use the nvidia driver
   services.xserver.videoDrivers = ["nvidia"];
   services.xserver.enable = true;
+  services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ]; 
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.wayland.enable = true;
-  #services.xserver.displayManager.defaultSession = "hyprland";
-  #services.xserver.displayManager.sddm.wayland = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "javier";
+  #services.xserver.displayManager.autoLogin.enable = true;
+  #services.xserver.displayManager.autoLogin.user = "javier";
   services.flatpak.enable = true;
   services.gvfs.enable = true; # Thunar Mount, trash etc
   services.tumbler.enable = true; # Thumbnail support for images
