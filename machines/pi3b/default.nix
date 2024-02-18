@@ -5,6 +5,7 @@
     [ 
       ./hardware-configuration.nix
       ../../users/javier
+      ../../services/keepalived/backup.nix
     ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];

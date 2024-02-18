@@ -6,4 +6,5 @@ in
 {
   "hashedUserPassword.age".publicKeys = allKeys;
   "wifi.age".publicKeys = allKeys;
+  "keepalived.age".publicKeys = allKeys;
 }
