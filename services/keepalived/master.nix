@@ -9,7 +9,6 @@
 
   services.keepalived = {
     enable = true;
-    openFirewall = true;
     secretFile = config.age.secrets.keepalived.path;
     vrrpInstances.VI_BACKUP = {
       state = "MASTER";

@@ -4,6 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
+      ./firewall.nix
       ../../users/javier
       ../../services/keepalived/backup.nix
     ];
