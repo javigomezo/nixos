@@ -7,6 +7,7 @@
       ../../common/pipewire.nix
     ];
 
+  age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
@@ -17,6 +18,7 @@
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
+      trusted-users = [ "javier" ];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
       substituters = ["https://hyprland.cachix.org"];
@@ -133,9 +135,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   #environment.systemPackages = with pkgs; [
-  #  #home-manager
-  #  #libreoffice-qt
-  #  #waynergy
+  #  agenix.packages.x86_64-linux.default
   #];
 
   #programs.xwayland.package = true;

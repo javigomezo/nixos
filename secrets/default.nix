@@ -1,0 +1,12 @@
+{ lib, inputs, ... }: 
+
+{
+
+  age.secrets.hashedUserPassword = lib.mkDefault {
+    file = ./hashedUserPassword.age;
+  };
+  age.secrets.wifi = lib.mkDefault {
+    file = ./wifi.age;
+  };
+}
+
