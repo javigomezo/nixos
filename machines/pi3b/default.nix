@@ -4,12 +4,10 @@
   imports =
     [ 
       ./hardware-configuration.nix
+      ../../users/javier
     ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
-  age.secrets.hashedUserPassword = {
-    file = ../../secrets/hashedUserPassword.age;
-  };
   age.secrets.wifi = {
     file = ../../secrets/wifi.age;
   };
@@ -115,16 +113,16 @@
     settings.PermitRootLogin = "no";
   };
 
-  users.users.javier = {
-    isNormalUser = true;
-    description = "Javier";
-    hashedPasswordFile = config.age.secrets.hashedUserPassword.path;
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" ];
-    openssh.authorizedKeys.keys = [ 
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@workstation"
-    ];
-  };
+  #users.users.javier = {
+  #  isNormalUser = true;
+  #  description = "Javier";
+  #  hashedPasswordFile = config.age.secrets.hashedUserPassword.path;
+  #  shell = pkgs.zsh;
+  #  extraGroups = [ "wheel" ];
+  #  openssh.authorizedKeys.keys = [ 
+  #    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@workstation"
+  #  ];
+  #};
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;

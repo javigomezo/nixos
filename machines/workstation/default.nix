@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../common/pipewire.nix
+      ../../users/javier
     ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
@@ -87,12 +88,12 @@
   console.keyMap = "es";
 
   ## Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.javier = {
-    isNormalUser = true;
-    description = "javier";
-    shell = pkgs.zsh;
-    extraGroups = [ "disk" "networkmanager" "wheel" ];
-  };
+  #users.users.javier = {
+  #  isNormalUser = true;
+  #  description = "javier";
+  #  shell = pkgs.zsh;
+  #  extraGroups = [ "disk", "networkManager", "wheel" ];
+  #};
 
   hardware.bluetooth.enable = true;
 
