@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, vars, ...}:
 
 {
 
@@ -12,7 +12,7 @@
     secretFile = config.age.secrets.keepalived.path;
     vrrpInstances.VI_BACKUP = {
       state = "BACKUP";
-      interface = "wlan0";
+      interface = "${vars.mainInterface}";
       virtualRouterId = 55;
       priority = 100;
       unicastSrcIp = "10.0.0.3";

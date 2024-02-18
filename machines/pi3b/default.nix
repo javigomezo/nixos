@@ -7,6 +7,7 @@
       ./firewall.nix
       ../../users/javier
       ../../services/keepalived/backup.nix
+      ../../services/adguardhome
     ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];

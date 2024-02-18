@@ -55,6 +55,10 @@
       };
       pi3b = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = {
+          inherit inputs;
+          vars = import ./machines/pi3b/vars.nix;
+        };
         modules = [
           ./machines/pi3b
           ./secrets

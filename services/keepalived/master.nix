@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:
+{ config, pkgs, lib, vars, ...}:
 
 {
 
@@ -12,7 +12,7 @@
     secretFile = config.age.secrets.keepalived.path;
     vrrpInstances.VI_BACKUP = {
       state = "MASTER";
-      interface = "eno1";
+      interface = "${vars.mainInterface}";
       virtualRouterId = 55;
       priority = 150;
       unicastSrcIp = "10.0.0.2";
