@@ -10,13 +10,13 @@
   services.keepalived = {
     enable = true;
     secretFile = config.age.secrets.keepalived.path;
-    vrrpInstances.VI_BACKUP = {
-      state = "MASTER";
+    vrrpInstances.VI = {
+      state = "${vars.keepalivedState}";
       interface = "${vars.mainInterface}";
       virtualRouterId = 55;
-      priority = 150;
-      unicastSrcIp = "10.0.0.2";
-      unicastPeers = [ "10.0.0.3" ];
+      priority = 100;
+      unicastSrcIp = "${vars.keepalivedSrcIp}";
+      unicastPeers = [ "${vars.keepalivedDstIp}" ];
       virtualIps = [ { addr = "10.0.0.200/24";} ];
       extraConfig = ''
         authentication {
