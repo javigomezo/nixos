@@ -91,6 +91,7 @@
   programs.git = {
     enable = true;
     userName = "javigomezo";
+    userEmail = "mail@javigomezo.com";
   };
 
   xdg.enable = true;
