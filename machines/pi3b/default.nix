@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./firewall.nix
       ../../users/javier
+      ../../services/openssh
       ../../services/keepalived
       ../../services/adguardhome
     ];
@@ -107,14 +108,6 @@
   environment.systemPackages = with pkgs; [
     htop
   ];
-
-  # Services - SSH
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
-    settings.PermitRootLogin = "no";
-  };
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
