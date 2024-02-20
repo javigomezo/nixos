@@ -3,12 +3,15 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      inputs.nixos-hardware.nixosModules.common-cpu-amd
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./hardware-configuration.nix
       ../../common/pipewire.nix
       ../../users/javier
     ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
+
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
