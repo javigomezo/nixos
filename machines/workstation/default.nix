@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }:
+{ inputs, system, lib, config, pkgs, ... }:
 
 {
   imports =
@@ -138,12 +138,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  #environment.systemPackages = with pkgs; [
-  #  agenix.packages.x86_64-linux.default
-  #];
+  environment.systemPackages = [
+    inputs.alejandra.defaultPackage.x86_64-linux
+  ];
 
   #programs.xwayland.package = true;
 
+  programs.dconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman

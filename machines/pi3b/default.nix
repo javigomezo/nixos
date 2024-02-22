@@ -1,15 +1,18 @@
-{ lib, config, pkgs, ... }:
-
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      ./firewall.nix
-      ../../users/javier
-      ../../services/openssh
-      ../../services/keepalived
-      ../../services/adguardhome
-    ];
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./firewall.nix
+    ../../users/javier
+    ../../services/openssh
+    ../../services/keepalived
+    ../../services/adguardhome
+  ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
   age.secrets.wifi = {
@@ -24,12 +27,12 @@
       experimental-features = nix-command flakes
     '';
     settings = {
-      trusted-users = [ "javier" ];
+      trusted-users = ["javier"];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
     };
   };
-  
+
   # NixOS wants to enable GRUB by default
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
@@ -39,14 +42,14 @@
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
-      options = [ "noatime" ];
+      options = ["noatime"];
     };
   };
 
   # Add wireless
   hardware = {
     enableRedistributableFirmware = true;
-    firmware = [ pkgs.wireless-regdb ];
+    firmware = [pkgs.wireless-regdb];
   };
 
   # set up wireless static IP address
@@ -61,10 +64,12 @@
     interfaces = {
       wlan0 = {
         useDHCP = false;
-        ipv4.addresses = [{
-          address = "10.0.0.3";
-          prefixLength = 24;
-        }];
+        ipv4.addresses = [
+          {
+            address = "10.0.0.3";
+            prefixLength = 24;
+          }
+        ];
       };
     };
     defaultGateway = {
@@ -75,12 +80,12 @@
       "9.9.9.9"
       "149.112.112.112"
     ];
-    
+
     firewall = {
       enable = true;
       allowPing = true;
-      allowedTCPPorts = [ 22 ];
-      allowedUDPPorts = [  ];
+      allowedTCPPorts = [22];
+      allowedUDPPorts = [];
     };
   };
 
@@ -101,12 +106,12 @@
   };
   console.keyMap = "es";
 
-
   hardware.bluetooth.enable = false;
-  
+
   programs.zsh.enable = true;
-  environment.systemPackages = with pkgs; [
-    htop
+  environment.systemPackages = [
+    inputs.agenix.packages.aarch64-linux.default
+    pkgs.htop
   ];
 
   system.autoUpgrade.enable = true;

@@ -30,21 +30,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-cascade-theme = { url = "github:andreasgrafen/cascade"; flake = false; };
+    firefox-cascade-theme = {
+      url = "github:andreasgrafen/cascade";
+      flake = false;
+    };
+
+    alejandra = {
+      url = "github:kamadorueda/alejandra/3.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
-  outputs = { nixpkgs, home-manager, lanzaboote, agenix, ... }@inputs: {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    lanzaboote,
+    agenix,
+    ...
+  } @ inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       workstation = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./machines/workstation
           ./secrets
           agenix.nixosModules.default
           lanzaboote.nixosModules.lanzaboote
-          ({ pkgs, lib, ... }: {
+          ({
+            pkgs,
+            lib,
+            ...
+          }: {
             environment.systemPackages = [
               # For debugging and troubleshooting Secure Boot.
               pkgs.sbctl
@@ -67,8 +85,11 @@
         modules = [
           ./machines/pi3b
           ./secrets
-          agenix.nixosModules.default
-          ({ pkgs, lib, ... }: {
+          ({
+            pkgs,
+            lib,
+            ...
+          }: {
             environment.systemPackages = [
               agenix.packages.aarch64-linux.default
             ];
@@ -80,7 +101,7 @@
     homeConfigurations = {
       "javier@workstation" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {inherit inputs;};
         modules = [
           ./home-manager/home.nix
         ];

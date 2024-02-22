@@ -1,6 +1,6 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 # Load locale
 export LANG=en_US.UTF-8
@@ -54,7 +54,7 @@ source $ZSH/aliases/aliases.zsh
 source $ZSH/functions/firefox.zsh
 
 # Theme
-source $ZSH/themes/powerlevel10k/powerlevel10k.zsh-theme
+#source $ZSH/themes/powerlevel10k/powerlevel10k.zsh-theme
 
 # Set nord colors
 test -r "~/.config/zsh/colors/nord_colors.zsh" && eval $(dircolors -b ~/.config/zsh/colors/nord_colors.zsh)
@@ -84,6 +84,8 @@ if [[ $- == *i* ]] && command -v nitch > /dev/null; then
   nitch
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-unset prompt_cr
+## To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+#[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+#unset prompt_cr
+
+eval "$(starship init zsh)"

@@ -5,6 +5,7 @@
     ./browser
     ./hyprland
     ./mako
+    ./starship
     ./waybar
     ./wezterm
     ./zsh
@@ -54,6 +55,7 @@
       hyprpaper
       killall
       nitch
+      nixd
       htop
       mpv
       pavucontrol
@@ -88,6 +90,10 @@
   #];
   #programs.firefox.package = (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped { };
   programs.home-manager.enable = true;
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+  };
   programs.git = {
     enable = true;
     userName = "javigomezo";
