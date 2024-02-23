@@ -1,67 +1,71 @@
-{ inputs, system, lib, config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      inputs.nixos-hardware.nixosModules.common-cpu-amd
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
-      ./hardware-configuration.nix
-      ../../common/pipewire.nix
-      ../../users/javier
-    ];
+  inputs,
+  system,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    ./hardware-configuration.nix
+    ../../common/pipewire.nix
+    ../../users/javier
+  ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
 
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
 
     # This will additionally add your inputs to the system's legacy channels
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     settings = {
-      trusted-users = [ "javier" ];
+      trusted-users = ["javier"];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
       substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
-  
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ]; # Emulate aarch64 for rpi
-
+  boot.supportedFilesystems = ["ntfs"];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
 
   networking.hostName = "workstation"; # Define your hostname.
   networking.enableIPv6 = false;
-  networking.interfaces.wlo1.ipv4.addresses = [{
-    address = "10.0.0.10";
-    prefixLength = 24;
-  }];
+  networking.interfaces.wlo1.ipv4.addresses = [
+    {
+      address = "10.0.0.10";
+      prefixLength = 24;
+    }
+  ];
   networking.interfaces.wlo1.useDHCP = false;
   networking.nameservers = ["10.0.0.200" "10.0.0.2"];
 
   # Enable networking
   networking.networkmanager.enable = true;
 
-  fileSystems."/mnt/Downloads" = 
-    {
-      device = "/dev/disk/by-partuuid/ca8d8d5f-01";
-      fsType = "ntfs3";
-      options = [ "rw" "uid=1000"];
-    };
+  fileSystems."/mnt/Downloads" = {
+    device = "/dev/disk/by-partuuid/ca8d8d5f-01";
+    fsType = "ntfs3";
+    options = ["rw" "uid=1000"];
+  };
 
-  fileSystems."/mnt/Qbittorrent" = 
-    {
-      device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
-      fsType = "nfs";
-      options = [ "nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60" ];
-    };
+  fileSystems."/mnt/Qbittorrent" = {
+    device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
+    fsType = "nfs";
+    options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
@@ -118,21 +122,22 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        libpng
-        libpulseaudio
-        libvorbis
-        stdenv.cc.cc.lib
-        libkrb5
-        keyutils
-      ];
+      extraPkgs = pkgs:
+        with pkgs; [
+          xorg.libXcursor
+          xorg.libXi
+          xorg.libXinerama
+          xorg.libXScrnSaver
+          libpng
+          libpulseaudio
+          libvorbis
+          stdenv.cc.cc.lib
+          libkrb5
+          keyutils
+        ];
     };
   };
 
@@ -140,6 +145,7 @@
   # $ nix search wget
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
+    pkgs.logiops
   ];
 
   #programs.xwayland.package = true;
@@ -157,24 +163,24 @@
     remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
   };
-  
+
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
       font-awesome
-      (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ];})
+      (nerdfonts.override {fonts = ["FiraCode" "NerdFontsSymbolsOnly"];})
     ];
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     enableDefaultPackages = true;
     fontconfig = {
       enable = true;
-        antialias = true;
-        hinting.enable = true;
-        defaultFonts = {
-          monospace = [ "NerdFontsSymbolsOnly" "Noto Mono" ];
-          emoji = [ "Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" "Unifont" "Unifont Upper" ];
-        };
+      antialias = true;
+      hinting.enable = true;
+      defaultFonts = {
+        monospace = ["NerdFontsSymbolsOnly" "Noto Mono"];
+        emoji = ["Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" "Unifont" "Unifont Upper"];
+      };
     };
   };
 
@@ -202,7 +208,7 @@
   # Tell Xorg to use the nvidia driver
   services.xserver.videoDrivers = ["nvidia"];
   services.xserver.enable = true;
-  services.xserver.displayManager.sessionPackages = [ pkgs.hyprland ]; 
+  services.xserver.displayManager.sessionPackages = [pkgs.hyprland];
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.wayland.enable = true;
   services.xserver.displayManager.autoLogin.enable = true;
@@ -236,8 +242,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.autoUpgrade.enable = true;  
-  system.autoUpgrade.allowReboot = true; 
+  system.autoUpgrade.enable = true;
+  system.autoUpgrade.allowReboot = true;
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }

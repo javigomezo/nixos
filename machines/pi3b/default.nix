@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    inputs.agenix.nixosModules.age
     ./hardware-configuration.nix
     ./firewall.nix
     ../../users/javier
@@ -109,9 +110,8 @@
   hardware.bluetooth.enable = false;
 
   programs.zsh.enable = true;
-  environment.systemPackages = [
-    inputs.agenix.packages.aarch64-linux.default
-    pkgs.htop
+  environment.systemPackages = with pkgs; [
+    htop
   ];
 
   system.autoUpgrade.enable = true;

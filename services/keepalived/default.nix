@@ -1,7 +1,10 @@
-{ config, pkgs, lib, vars, ...}:
-
 {
-
+  config,
+  pkgs,
+  lib,
+  vars,
+  ...
+}: {
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
   age.secrets.keepalived = {
     file = ../../secrets/keepalived.age;
@@ -16,8 +19,8 @@
       virtualRouterId = 55;
       priority = 100;
       unicastSrcIp = "${vars.keepalivedSrcIp}";
-      unicastPeers = [ "${vars.keepalivedDstIp}" ];
-      virtualIps = [ { addr = "10.0.0.200/24";} ];
+      unicastPeers = ["${vars.keepalivedDstIp}"];
+      virtualIps = [{addr = "10.0.0.200/24";}];
       extraConfig = ''
         authentication {
           auth_type PASS

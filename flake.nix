@@ -85,15 +85,6 @@
         modules = [
           ./machines/pi3b
           ./secrets
-          ({
-            pkgs,
-            lib,
-            ...
-          }: {
-            environment.systemPackages = [
-              agenix.packages.aarch64-linux.default
-            ];
-          })
         ];
       };
     };
@@ -104,6 +95,13 @@
         extraSpecialArgs = {inherit inputs;};
         modules = [
           ./home-manager/home.nix
+        ];
+      };
+      "javier@pi3b" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+        extraSpecialArgs = {inherit inputs;};
+        modules = [
+          ./home-manager/pi3b.nix
         ];
       };
     };

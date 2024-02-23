@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.wezterm = {
     enable = true;
     extraConfig = ''
@@ -14,9 +17,9 @@
         config = wezterm.config_builder()
       end
       -- Enable Wayland
-      config.enable_wayland = true
+      config.enable_wayland = false
       -- Set Nord color scheme
-      config.color_scheme = 'nord'   
+      config.color_scheme = 'nord'
       -- Disable Tab Bar
       config.enable_tab_bar = false
       -- Fonts
