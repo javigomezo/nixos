@@ -41,13 +41,7 @@
     };
     #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
-  outputs = {
-    nixpkgs,
-    home-manager,
-    lanzaboote,
-    agenix,
-    ...
-  } @ inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -56,24 +50,6 @@
         modules = [
           ./machines/workstation
           ./secrets
-          agenix.nixosModules.default
-          lanzaboote.nixosModules.lanzaboote
-          ({
-            pkgs,
-            lib,
-            ...
-          }: {
-            environment.systemPackages = [
-              # For debugging and troubleshooting Secure Boot.
-              pkgs.sbctl
-              agenix.packages.x86_64-linux.default
-            ];
-            boot.loader.systemd-boot.enable = lib.mkForce false;
-            boot.lanzaboote = {
-              enable = true;
-              pkiBundle = "/etc/secureboot";
-            };
-          })
         ];
       };
       pi3b = nixpkgs.lib.nixosSystem {
@@ -89,15 +65,17 @@
       };
     };
 
+    # home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "javier@workstation" = home-manager.lib.homeManagerConfiguration {
+      "javier@workstation" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs;};
         modules = [
           ./home-manager/home.nix
         ];
       };
-      "javier@pi3b" = home-manager.lib.homeManagerConfiguration {
+      "javier@pi3b" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
         extraSpecialArgs = {inherit inputs;};
         modules = [

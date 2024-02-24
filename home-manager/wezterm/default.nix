@@ -17,7 +17,8 @@
         config = wezterm.config_builder()
       end
       -- Enable Wayland
-      config.enable_wayland = false
+      config.enable_wayland = true
+      config.front_end = 'WebGpu'
       -- Set Nord color scheme
       config.color_scheme = 'nord'
       -- Disable Tab Bar
@@ -26,7 +27,7 @@
       config.font = wezterm.font_with_fallback {
         'Comic Code Ligatures',
         'Noto Color Emoji',
-        'FiraCode Nerd Font'
+        'Symbols Nerd Font'
       }
       -- Opacity
       config.window_background_opacity = 0.82

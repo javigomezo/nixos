@@ -1,9 +1,13 @@
-{ lib, config, pkgs, ... }:
-
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./browser
     ./hyprland
+    ./kitty
     ./mako
     ./starship
     ./waybar
@@ -28,7 +32,7 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 
@@ -61,7 +65,7 @@
       pavucontrol
       polkit-kde-agent
       protonup-qt
-      (python3.withPackages(ps: with ps; [ requests ]))
+      (python3.withPackages (ps: with ps; [requests]))
       rofi-wayland-unwrapped
       slurp
       stow

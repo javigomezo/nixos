@@ -33,7 +33,8 @@
       git_branch = {
         truncation_length = 14;
         style = "yellow";
-        symbol = " ";
+        symbol = " ";
+        # symbol = " ";
       };
       kubernetes = {
         symbol = "☸  ";

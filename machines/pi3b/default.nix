@@ -112,6 +112,7 @@
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
     htop
+    tmux
   ];
 
   system.autoUpgrade.enable = true;

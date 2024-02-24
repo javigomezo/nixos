@@ -8,8 +8,10 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
+    inputs.agenix.nixosModules.default
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ../../common/pipewire.nix
     ../../users/javier
@@ -36,35 +38,45 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = ["ntfs"];
-  boot.binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
-
-  networking.hostName = "workstation"; # Define your hostname.
-  networking.enableIPv6 = false;
-  networking.interfaces.wlo1.ipv4.addresses = [
-    {
-      address = "10.0.0.10";
-      prefixLength = 24;
-    }
-  ];
-  networking.interfaces.wlo1.useDHCP = false;
-  networking.nameservers = ["10.0.0.200" "10.0.0.2"];
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  fileSystems."/mnt/Downloads" = {
-    device = "/dev/disk/by-partuuid/ca8d8d5f-01";
-    fsType = "ntfs3";
-    options = ["rw" "uid=1000"];
+  boot = {
+    loader.systemd-boot.enable = lib.mkForce false;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+    loader.efi.canTouchEfiVariables = true;
+    supportedFilesystems = ["ntfs"];
+    binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
 
-  fileSystems."/mnt/Qbittorrent" = {
-    device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
-    fsType = "nfs";
-    options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
+  networking = {
+    hostName = "workstation"; # Define your hostname.
+    enableIPv6 = true;
+    interfaces.wlo1.ipv4.addresses = [
+      {
+        address = "10.0.0.10";
+        prefixLength = 24;
+      }
+    ];
+    interfaces.wlo1.useDHCP = false;
+    nameservers = ["10.0.0.200" "10.0.0.2"];
+
+    # Enable networking
+    networkmanager.enable = true;
+  };
+
+  fileSystems = {
+    "/mnt/Downloads" = {
+      device = "/dev/disk/by-partuuid/ca8d8d5f-01";
+      fsType = "ntfs3";
+      options = ["rw" "uid=1000"];
+    };
+
+    "/mnt/Qbittorrent" = {
+      device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
+      fsType = "nfs";
+      options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
+    };
   };
 
   # Set your time zone.
@@ -85,59 +97,45 @@
     LC_TIME = "es_ES.UTF-8";
   };
 
-  # Configure keymap in X11
-  #services.xserver = {
-  #  layout = "es";
-  #  xkbVariant = "";
-  #};
-
   # Configure console keymap
   console.keyMap = "es";
 
-  ## Define a user account. Don't forget to set a password with ‘passwd’.
-  #users.users.javier = {
-  #  isNormalUser = true;
-  #  description = "javier";
-  #  shell = pkgs.zsh;
-  #  extraGroups = [ "disk", "networkManager", "wheel" ];
-  #};
-
-  hardware.bluetooth.enable = true;
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    #open = true; # If true breaks hyprland so...
-    nvidiaSettings = true;
-    nvidiaPersistenced = true;
-    powerManagement.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  hardware = {
+    bluetooth.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      #open = true; # If true breaks hyprland so...
+      nvidiaSettings = true;
+      nvidiaPersistenced = true;
+      powerManagement.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+    #Make sure opengl is enabled
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
   };
 
-  #Make sure opengl is enabled
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    steam = pkgs.steam.override {
-      extraPkgs = pkgs:
-        with pkgs; [
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          libkrb5
-          keyutils
-        ];
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.packageOverrides = pkgs: {
+      steam = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+          ];
+      };
     };
   };
 
@@ -145,30 +143,32 @@
   # $ nix search wget
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
+    inputs.agenix.packages.x86_64-linux.default
     pkgs.logiops
+    pkgs.sbctl
   ];
 
   #programs.xwayland.package = true;
 
-  programs.dconf.enable = true;
-  programs.thunar.plugins = with pkgs.xfce; [
-    thunar-archive-plugin
-    thunar-volman
-  ];
-
-  programs.zsh.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+  programs = {
+    zsh.enable = true;
+    dconf.enable = true;
+    thunar.plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+    };
   };
 
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
       font-awesome
-      (nerdfonts.override {fonts = ["FiraCode" "NerdFontsSymbolsOnly"];})
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
     fontDir.enable = true;
     enableGhostscriptFonts = true;
@@ -196,45 +196,32 @@
     ];
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
-  services.xserver.videoDrivers = ["nvidia"];
-  services.xserver.enable = true;
-  services.xserver.displayManager.sessionPackages = [pkgs.hyprland];
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "javier";
-  services.flatpak.enable = true;
-  services.gvfs.enable = true; # Thunar Mount, trash etc
-  services.tumbler.enable = true; # Thumbnail support for images
-  services.dbus.enable = true;
+  services = {
+    xserver.videoDrivers = ["nvidia"];
+    xserver.enable = true;
+    xserver.displayManager.sessionPackages = [pkgs.hyprland];
+    xserver.displayManager.sddm.enable = true;
+    xserver.displayManager.sddm.wayland.enable = true;
+    xserver.displayManager.autoLogin.enable = true;
+    xserver.displayManager.autoLogin.user = "javier";
+    flatpak.enable = true;
+    gvfs.enable = true; # Thunar Mount, trash etc
+    tumbler.enable = true; # Thumbnail support for images
+    dbus.enable = true;
+  };
 
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  security.polkit.enable = true;
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
+  security = {
+    polkit.enable = true;
+    pam.services.swaylock = {
+      text = ''
+        auth include login
+      '';
+    };
   };
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
