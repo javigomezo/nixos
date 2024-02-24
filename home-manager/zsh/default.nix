@@ -1,6 +1,17 @@
-{ lib, config, pkgs, ... }:
-
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+  packageNames = map (p: p.pname or p.name or null) config.home.packages;
+  hasPackage = name: lib.any (x: x == name) packageNames;
+  hasDuf = hasPackage "duf";
+  hasEza = hasPackage "eza";
+  hasKubectl = hasPackage "kubectl";
+  hasNitch = hasPackage "nitch";
+in {
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -10,21 +21,21 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
-      df = "duf";
-      ls = "eza --color=always --icons --group-directories-first";
+      df = mkIf hasDuf "duf";
+      ls = mkIf hasEza "eza --color=always --icons --group-directories-first";
       la = "ls -a";
       li = "ls -a | grep -i";
       ll = "ls -lh";
       lla = "ls -lah";
       l = "ls -l";
       #cat = "bat";
-      k = "kubectl";
+      k = mkIf hasKubectl "kubectl";
       kubechange = "kubectl config use-context ";
       kubecontext = "kubectl config get-contexts";
       nvidia-smi = "watch -n 1 nvidia-smi";
     };
-    initExtra = ''
-      if [[ $- == *i* ]] && command -v nitch > /dev/null; then
+    initExtra = mkIf hasNitch ''
+      if [[ $- == *i* ]]; then
         clear;nitch;
       fi
     '';

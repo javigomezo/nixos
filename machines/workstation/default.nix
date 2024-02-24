@@ -13,6 +13,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
+    ../../common/locale.nix
     ../../common/pipewire.nix
     ../../users/javier
   ];
@@ -37,14 +38,15 @@
     };
   };
 
-  # Bootloader.
   boot = {
-    loader.systemd-boot.enable = lib.mkForce false;
+    loader = {
+      systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = true;
+    };
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = ["ntfs"];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
@@ -52,15 +54,16 @@
   networking = {
     hostName = "workstation"; # Define your hostname.
     enableIPv6 = true;
-    interfaces.wlo1.ipv4.addresses = [
-      {
-        address = "10.0.0.10";
-        prefixLength = 24;
-      }
-    ];
-    interfaces.wlo1.useDHCP = false;
+    interfaces.wlo1 = {
+      ipv4.addresses = [
+        {
+          address = "10.0.0.10";
+          prefixLength = 24;
+        }
+      ];
+      useDHCP = false;
+    };
     nameservers = ["10.0.0.200" "10.0.0.2"];
-
     # Enable networking
     networkmanager.enable = true;
   };
@@ -78,27 +81,6 @@
       options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
     };
   };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Madrid";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "es_ES.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "es_ES.UTF-8";
-    LC_IDENTIFICATION = "es_ES.UTF-8";
-    LC_MEASUREMENT = "es_ES.UTF-8";
-    LC_MONETARY = "es_ES.UTF-8";
-    LC_NAME = "es_ES.UTF-8";
-    LC_NUMERIC = "es_ES.UTF-8";
-    LC_PAPER = "es_ES.UTF-8";
-    LC_TELEPHONE = "es_ES.UTF-8";
-    LC_TIME = "es_ES.UTF-8";
-  };
-
-  # Configure console keymap
-  console.keyMap = "es";
 
   hardware = {
     bluetooth.enable = true;

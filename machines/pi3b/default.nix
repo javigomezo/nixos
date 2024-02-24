@@ -9,15 +9,18 @@
     inputs.agenix.nixosModules.age
     ./hardware-configuration.nix
     ./firewall.nix
+    ../../common/locale.nix
     ../../users/javier
     ../../services/openssh
     ../../services/keepalived
     ../../services/adguardhome
   ];
 
-  age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
-  age.secrets.wifi = {
-    file = ../../secrets/wifi.age;
+  age = {
+    identityPaths = ["/home/javier/.ssh/id_ed25519"];
+    secrets.wifi = {
+      file = ../../secrets/wifi.age;
+    };
   };
 
   nix = {
@@ -31,13 +34,26 @@
       trusted-users = ["javier"];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      substituters = [
+        "https://cache.nixos.org/"
+      ];
     };
   };
 
-  # NixOS wants to enable GRUB by default
-  boot.loader.grub.enable = false;
-  # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
+  boot = {
+    loader = {
+      # NixOS wants to enable GRUB by default
+      grub.enable = false;
+      # Enables the generation of /boot/extlinux/extlinux.conf
+      generic-extlinux-compatible.enable = true;
+      # raspberryPi = {
+      #   enable = true;
+      #   version = 3;
+      # };
+    };
+    kernelModules = ["bcm2835-v4l2"];
+    kernelPackages = pkgs.linuxPackages_rpi3;
+  };
 
   fileSystems = {
     "/" = {
@@ -61,7 +77,7 @@
       "@SSID@".psk = "@PSK@";
     };
     hostName = "pi3b";
-    enableIPv6 = false;
+    enableIPv6 = true;
     interfaces = {
       wlan0 = {
         useDHCP = false;
@@ -89,23 +105,6 @@
       allowedUDPPorts = [];
     };
   };
-
-  time.timeZone = "Europe/Madrid";
-  i18n = {
-    defaultLocale = "es_ES.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "es_ES.UTF-8";
-      LC_IDENTIFICATION = "es_ES.UTF-8";
-      LC_MEASUREMENT = "es_ES.UTF-8";
-      LC_MONETARY = "es_ES.UTF-8";
-      LC_NAME = "es_ES.UTF-8";
-      LC_NUMERIC = "es_ES.UTF-8";
-      LC_PAPER = "es_ES.UTF-8";
-      LC_TELEPHONE = "es_ES.UTF-8";
-      LC_TIME = "es_ES.UTF-8";
-    };
-  };
-  console.keyMap = "es";
 
   hardware.bluetooth.enable = false;
 
