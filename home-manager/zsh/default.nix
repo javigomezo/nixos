@@ -16,6 +16,7 @@ in {
     enable = true;
     dotDir = ".config/zsh";
     enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
     enableCompletion = true;
     shellAliases = {
       ".." = "cd ..";

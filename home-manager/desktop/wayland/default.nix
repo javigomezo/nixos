@@ -20,7 +20,6 @@
     gamescope
     git
     grimblast
-    hyprpaper
     killall
     nitch
     nixd
