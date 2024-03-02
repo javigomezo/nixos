@@ -46,7 +46,10 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       workstation = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          vars = import ./hosts/workstation/vars.nix;
+        };
         modules = [
           ./hosts/workstation
           ./secrets
