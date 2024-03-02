@@ -48,7 +48,7 @@
       workstation = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./machines/workstation
+          ./hosts/workstation
           ./secrets
         ];
       };
@@ -56,10 +56,10 @@
         system = "aarch64-linux";
         specialArgs = {
           inherit inputs;
-          vars = import ./machines/pi3b/vars.nix;
+          vars = import ./hosts/pi3b/vars.nix;
         };
         modules = [
-          ./machines/pi3b
+          ./hosts/pi3b
           ./secrets
         ];
       };

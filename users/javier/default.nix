@@ -17,7 +17,7 @@ in {
     hashedPasswordFile = config.age.secrets.hashedUserPassword.path;
     shell = pkgs.zsh;
     group = "javier";
-    extraGroups = ["wheel"] ++ ifExist ["docker" "podman" "video" "audio" "git"];
+    extraGroups = ["wheel"] ++ ifExist ["networkmanager" "docker" "podman" "video" "audio" "git" "gpio" "spi"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@workstation"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJvEayrTyaS9XyCb9bo7XCdmIqZrumLrAPOH8h7UEYm javier@nuc"

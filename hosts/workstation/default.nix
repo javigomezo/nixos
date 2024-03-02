@@ -13,34 +13,21 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ../../common/locale.nix
-    ../../common/pipewire.nix
+    ../common/locale.nix
+    ../common/nix.nix
+    ../common/pipewire.nix
     ../../users/javier
   ];
 
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
 
-  nix = {
-    # This will add each flake input as a registry
-    # To make nix3 commands consistent with your flake
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-
-    # This will additionally add your inputs to the system's legacy channels
-    # Making legacy nix commands consistent as well, awesome!
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-
-    settings = {
-      trusted-users = ["javier"];
-      experimental-features = "nix-command flakes";
-      auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
-  };
-
   boot = {
+    kernelParams = ["quiet" "loglevel=3" "systemd.show_status=auto" "udev.log_level=3" "rd.udev.log_level=3" "vt.global_cursor_default=0"];
+    consoleLogLevel = 0;
+    initrd.verbose = false;
     loader = {
       systemd-boot.enable = lib.mkForce false;
+      systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
     lanzaboote = {
@@ -77,6 +64,12 @@
 
     "/mnt/Qbittorrent" = {
       device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
+      fsType = "nfs";
+      options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
+    };
+
+    "/mnt/TVShows" = {
+      device = "10.0.0.4:/mnt/main_storage/tvshows";
       fsType = "nfs";
       options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
     };
@@ -149,7 +142,7 @@
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      font-awesome
+      # font-awesome
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
     fontDir.enable = true;
@@ -159,10 +152,6 @@
       enable = true;
       antialias = true;
       hinting.enable = true;
-      defaultFonts = {
-        monospace = ["NerdFontsSymbolsOnly" "Noto Mono"];
-        emoji = ["Noto Color Emoji" "Twitter Color Emoji" "JoyPixels" "Unifont" "Unifont Upper"];
-      };
     };
   };
 

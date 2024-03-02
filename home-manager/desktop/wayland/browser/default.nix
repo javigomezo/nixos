@@ -1,8 +1,9 @@
-{ pkgs, inputs, ... }:
-
-
 {
-  home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
+  pkgs,
+  inputs,
+  ...
+}: {
+  # home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
   programs.firefox = {
     enable = true;
     package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
@@ -41,17 +42,21 @@
             description = "Brave Search: private, independent, open";
             iconUpdateURL = "https://brave.com/static-assets/images/cropped-brave_appicon_release-32x32.png";
             updateInterval = 24 * 60 * 60 * 1000;
-            urls = [{
-              template =  "https://search.brave.com/search?q={searchTerms}";
-            }];
+            urls = [
+              {
+                template = "https://search.brave.com/search?q={searchTerms}";
+              }
+            ];
           };
           "YouTube" = {
             description = "Seach videos in YouTube";
             iconUpdateURL = "https://www.youtube.com/s/desktop/fc8159e8/img/favicon_32x32.png";
             updateInterval = 24 * 60 * 60 * 1000;
-            urls = [{
-              template =  "https://www.youtube.com/results?search_query={searchTerms}&page={startPage?}&utm_source=opensearch";
-            }];
+            urls = [
+              {
+                template = "https://www.youtube.com/results?search_query={searchTerms}&page={startPage?}&utm_source=opensearch";
+              }
+            ];
           };
           "Amazon.es".metaData.hidden = true;
           "Bing".metaData.hidden = true;
@@ -95,31 +100,32 @@
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         bitwarden
         ublock-origin
+        theme-nord-polar-night
       ];
 
-      userChrome = ''                         
-        @import 'firefox-cascade-theme/chrome/includes/cascade-config.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-colours.css';
-        
-        @import 'firefox-cascade-theme/chrome/includes/cascade-layout.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-responsive.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-floating-panel.css';
-        
-        @import 'firefox-cascade-theme/chrome/includes/cascade-nav-bar.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-tabs.css';
-      '';    
+      # userChrome = ''
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-config.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-colours.css';
+      #
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-layout.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-responsive.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-floating-panel.css';
+      #
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-nav-bar.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-tabs.css';
+      # '';
 
-      userContent = ''                         
-        @import 'firefox-cascade-theme/chrome/includes/cascade-config.css';
-        @import 'firefox-cascade-theme/chrome/integrations/cascade-macchiato.css';
-        
-        @import 'firefox-cascade-theme/chrome/includes/cascade-layout.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-responsive.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-floating-panel.css';
-        
-        @import 'firefox-cascade-theme/chrome/includes/cascade-nav-bar.css';
-        @import 'firefox-cascade-theme/chrome/includes/cascade-tabs.css';
-      '';    
+      # userContent = ''
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-config.css';
+      #   @import 'firefox-cascade-theme/chrome/integrations/cascade-macchiato.css';
+      #
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-layout.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-responsive.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-floating-panel.css';
+      #
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-nav-bar.css';
+      #   @import 'firefox-cascade-theme/chrome/includes/cascade-tabs.css';
+      # '';
     };
   };
 }
