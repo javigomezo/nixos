@@ -7,6 +7,7 @@
     ./browser
     ./gtk.nix
     ./hyprland
+    ./hyprpaper
     ./mako
     ./waybar
     ./wlogout
