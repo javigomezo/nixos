@@ -12,9 +12,9 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ../common/locale.nix
-    ../common/nix.nix
-    ../common/pipewire.nix
+    ../common
+    ../optional/pipewire.nix
+    ../optional/steam.nix
     ../../users/javier
   ];
 
@@ -94,27 +94,6 @@
     };
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    config.packageOverrides = pkgs: {
-      steam = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-          ];
-      };
-    };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
@@ -130,11 +109,6 @@
       thunar-archive-plugin
       thunar-volman
     ];
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
-      dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
-    };
   };
 
   fonts = {

@@ -3,7 +3,7 @@
     ./cli
     ./git.nix
     ./neovim.nix
-    ./nixpkgs.nix
+    ../../hosts/common/nixpkgs.nix
   ];
 
   home = {
