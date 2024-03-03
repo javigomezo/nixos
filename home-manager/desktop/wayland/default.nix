@@ -8,8 +8,10 @@
     ./gtk.nix
     ./hyprland
     ./hyprpaper
+    ./kitty
     ./mako
     ./waybar
+    ./wezterm
     ./wlogout
   ];
 

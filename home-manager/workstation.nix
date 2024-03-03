@@ -6,9 +6,7 @@
 }: {
   imports = [
     ./desktop/wayland
-    ./kitty
     ./starship
-    ./wezterm
     ./zsh
   ];
 
