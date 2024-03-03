@@ -33,6 +33,7 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
+    blacklistedKernelModules = ["nouveau"];
     supportedFilesystems = ["ntfs"];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
@@ -89,6 +90,7 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
   };
 
