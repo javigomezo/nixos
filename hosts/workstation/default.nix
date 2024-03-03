@@ -7,7 +7,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     inputs.agenix.nixosModules.default
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -119,11 +118,8 @@
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.default
-    pkgs.logiops
     pkgs.sbctl
   ];
-
-  #programs.xwayland.package = true;
 
   programs = {
     zsh.enable = true;

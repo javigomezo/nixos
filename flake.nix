@@ -39,8 +39,8 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #hyprpaper.url = "github:hyprwm/hyprpaper";
   };
+
   outputs = {nixpkgs, ...} @ inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
