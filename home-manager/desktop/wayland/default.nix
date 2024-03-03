@@ -25,10 +25,12 @@
     nixd
     htop
     mpv
+    multiviewer-for-f1
     pavucontrol
     polkit-kde-agent
     protonup-qt
     (python3.withPackages (ps: with ps; [requests]))
+    qimgv
     ripgrep
     rofi-wayland-unwrapped
     stow

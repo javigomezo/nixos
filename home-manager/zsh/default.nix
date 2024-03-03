@@ -18,6 +18,11 @@ in {
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
+    completionInit = "
+      zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+      autoload -U compinit
+      autoload -Uz zcalc
+    ";
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";
