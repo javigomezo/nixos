@@ -30,10 +30,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-cascade-theme = {
-      url = "github:andreasgrafen/cascade";
-      flake = false;
-    };
+    # firefox-cascade-theme = {
+    #   url = "github:andreasgrafen/cascade";
+    #   flake = false;
+    # };
 
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";

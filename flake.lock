@@ -146,22 +146,6 @@
         "type": "gitlab"
       }
     },
-    "firefox-cascade-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1707704545,
-        "narHash": "sha256-GMXSpNaShNu/Bce6TTnlgzGHV8MhHRVICv8hJqMi70w=",
-        "owner": "andreasgrafen",
-        "repo": "cascade",
-        "rev": "8fbe98934fa58f934f7ed5253367396519b320a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "andreasgrafen",
-        "repo": "cascade",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -421,7 +405,6 @@
         "agenix": "agenix",
         "alejandra": "alejandra",
         "firefox-addons": "firefox-addons",
-        "firefox-cascade-theme": "firefox-cascade-theme",
         "home-manager": "home-manager_2",
         "lanzaboote": "lanzaboote",
         "nixos-hardware": "nixos-hardware",

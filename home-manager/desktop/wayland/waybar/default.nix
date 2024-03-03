@@ -4,14 +4,9 @@
   lib,
   pkgs,
   ...
-}: let
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-in {
+}: {
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
-    });
     systemd.enable = true;
     settings = {
       primary = {
@@ -21,8 +16,6 @@ in {
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
-        #height = "auto";
-        #width = "auto";
         modules-left = ["clock" "custom/weather" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
         modules-right = ["pulseaudio" "network" "temperature" "tray"];
@@ -46,7 +39,7 @@ in {
           on-click = "activate";
           all-outputs = true;
           sort-by-number = true;
-          persistent_workspaces = {
+          persistent-workspaces = {
             "1" = [];
             "2" = [];
             "3" = [];
@@ -80,7 +73,7 @@ in {
             car = "";
             default = ["" "" ""];
           };
-          on-click = pavucontrol;
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
         network = {
           format-wifi = " {essid} ({signalStrength}%)";
