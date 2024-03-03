@@ -1,2 +1,2 @@
 # nixos
-Initial nixos config (nothing too big, just for fun)
+Nixos config (~~nothing too big, just for fun~~). It's getting bigger.
