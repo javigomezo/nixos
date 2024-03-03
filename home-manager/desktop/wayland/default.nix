@@ -1,19 +1,22 @@
 {
   lib,
   pkgs,
+  outputs,
   ...
 }: {
-  imports = [
-    ./browser
-    ./gtk.nix
-    ./hyprland
-    ./hyprpaper
-    ./kitty
-    ./mako
-    ./waybar
-    ./wezterm
-    ./wlogout
-  ];
+  imports =
+    [
+      ./browser
+      ./gtk.nix
+      ./hyprland
+      ./hyprpaper
+      ./kitty
+      ./mako
+      ./waybar
+      ./wezterm
+      ./wlogout
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   home.packages = with pkgs; [
     ffmpeg

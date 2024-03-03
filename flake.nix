@@ -41,9 +41,16 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+  in {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
+    homeManagerModules = import ./modules/home-manager;
     nixosConfigurations = {
       workstation = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -74,7 +81,7 @@
       "javier@workstation" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
           vars = import ./hosts/workstation/vars.nix;
         };
         modules = [
