@@ -78,12 +78,15 @@
           vars = import ./hosts/workstation/vars.nix;
         };
         modules = [
-          ./home-manager/home.nix
+          ./home-manager/workstation.nix
         ];
       };
       "javier@pi3b" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
-        extraSpecialArgs = {inherit inputs;};
+        extraSpecialArgs = {
+          inherit inputs;
+          vars = import ./hosts/pi3b/vars.nix;
+        };
         modules = [
           ./home-manager/pi3b.nix
         ];
