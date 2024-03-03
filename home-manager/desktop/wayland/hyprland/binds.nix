@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     bindm = [
       # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -20,7 +24,7 @@
         "SUPER,C,killactive"
         "SUPER,F,exec,firefox"
         "SUPERSHIFT,F,exec,TZ=UTC firefox --private-window"
-        "SUPER,G,exec,~/.config/hypr/scripts/game_mode.sh"
+        "SUPER,G,exec,${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"
         "SUPER,J,togglesplit"
         "SUPER,L,exec,swaylock"
         "SUPER,M,exec,wlogout"

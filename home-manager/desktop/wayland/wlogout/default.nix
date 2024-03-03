@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -78,32 +79,32 @@
       #logout {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/logout.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/logout.png"));
       }
       #shutdown {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/shutdown.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/shutdown.png"));
       }
       #suspend {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/suspend.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/suspend.png"));
       }
       #reboot {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/reboot.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/reboot.png"));
       }
       #lock {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/lock.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/lock.png"));
       }
       #hibernate {
         margin: 10px;
         border-radius: 20px;
-        background-image: image(url("/home/javier/.config/wlogout/icons/hibernate.png"));
+        background-image: image(url("${config.home.homeDirectory}/.config/wlogout/icons/hibernate.png"));
       }
     '';
   };

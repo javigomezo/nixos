@@ -9,8 +9,8 @@
   home.file = {
     ".config/hypr/hyprpaper.conf" = {
       text = ''
-        preload = ~/.config/hypr/wallpapers/${vars.wallpaper}
-        wallpaper = DP-1,~/.config/hypr/wallpapers/${vars.wallpaper}
+        preload = ${config.home.homeDirectory}/.config/hypr/wallpapers/${vars.wallpaper}
+        wallpaper = DP-1,${config.home.homeDirectory}/.config/hypr/wallpapers/${vars.wallpaper}
       '';
     };
     ".config/hypr/wallpapers" = {
