@@ -35,6 +35,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hypridle = {
+      url = "github:hyprwm/Hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # firefox-cascade-theme = {
     #   url = "github:andreasgrafen/cascade";
     #   flake = false;

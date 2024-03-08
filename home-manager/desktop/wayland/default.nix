@@ -8,6 +8,7 @@
     [
       ./browser
       ./gtk.nix
+      ./hypridle
       ./hyprland
       ./hyprlock
       ./hyprpaper
