@@ -9,6 +9,7 @@
       ./browser
       ./gtk.nix
       ./hyprland
+      ./hyprlock
       ./hyprpaper
       ./kitty
       ./mako

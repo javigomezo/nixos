@@ -26,7 +26,7 @@
         "SUPERSHIFT,F,exec,TZ=UTC firefox --private-window"
         "SUPER,G,exec,${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"
         "SUPER,J,togglesplit"
-        "SUPER,L,exec,swaylock"
+        "SUPER,L,exec,hyprlock"
         "SUPER,M,exec,wlogout"
         "SUPERSHIFT,M,exit"
         "SUPER,P,exec,tv.plex.PlexDesktop"

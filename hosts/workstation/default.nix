@@ -160,6 +160,7 @@
 
   security = {
     polkit.enable = true;
+    pam.services.hyprlock = {};
     pam.services.swaylock = {
       text = ''
         auth include login

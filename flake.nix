@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprlock = {
+      url = "github:hyprwm/Hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # firefox-cascade-theme = {
     #   url = "github:andreasgrafen/cascade";
     #   flake = false;
