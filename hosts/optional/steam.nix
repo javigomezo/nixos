@@ -1,24 +1,27 @@
 {
-  #nixpkgs = {
-  #  config.allowUnfree = true;
-  #  config.packageOverrides = pkgs: {
-  #    steam = pkgs.steam.override {
-  #      extraPkgs = pkgs:
-  #        with pkgs; [
-  #          xorg.libXcursor
-  #          xorg.libXi
-  #          xorg.libXinerama
-  #          xorg.libXScrnSaver
-  #          libpng
-  #          libpulseaudio
-  #          libvorbis
-  #          stdenv.cc.cc.lib
-  #          libkrb5
-  #          keyutils
-  #        ];
-  #    };
-  #  };
-  #};
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.packageOverrides = pkgs: {
+      steam = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
+            gamescope
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libgdiplus
+            libkrb5
+            keyutils
+          ];
+      };
+    };
+  };
+  programs.gamescope.enable = true;
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;

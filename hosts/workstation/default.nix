@@ -59,7 +59,7 @@
     "/mnt/Downloads" = {
       device = "/dev/disk/by-partuuid/ca8d8d5f-01";
       fsType = "ntfs3";
-      options = ["rw" "uid=1000"];
+      options = ["rw" "uid=1000" "x-systemd.automount" "noauto"];
     };
 
     "/mnt/Qbittorrent" = {
@@ -105,6 +105,7 @@
   programs = {
     zsh.enable = true;
     dconf.enable = true;
+    xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-volman
