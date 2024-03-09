@@ -21,7 +21,7 @@
   age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
 
   boot = {
-    kernelParams = ["quiet" "loglevel=3" "systemd.show_status=auto" "udev.log_level=3" "rd.udev.log_level=3" "vt.global_cursor_default=0"];
+    kernelParams = ["quiet" "loglevel=3" "systemd.show_status=auto" "udev.log_level=3" "rd.udev.log_level=3" "vt.global_cursor_default=0" "mem_sleep_default=deep"];
     consoleLogLevel = 0;
     initrd.verbose = false;
     loader = {
@@ -100,6 +100,7 @@
     inputs.alejandra.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.default
     pkgs.sbctl
+    pkgs.lxqt.lxqt-policykit
   ];
 
   programs = {

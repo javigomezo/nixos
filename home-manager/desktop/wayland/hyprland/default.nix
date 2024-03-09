@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./execs.nix
     ./binds.nix
   ];
   wayland.windowManager.hyprland = {
@@ -20,6 +21,7 @@
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
       ];
+      variables = ["--all"];
     };
     settings = {
       monitor = map (
@@ -33,5 +35,11 @@
         }"
       ) (lib.filter (m: m.enabled != null) config.monitors);
     };
+  };
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+    WLR_NO_HARDWARE_CURSORS = 1;
   };
 }
