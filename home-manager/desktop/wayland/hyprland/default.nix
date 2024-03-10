@@ -7,6 +7,7 @@
   imports = [
     ./execs.nix
     ./binds.nix
+    ./game_mode.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
