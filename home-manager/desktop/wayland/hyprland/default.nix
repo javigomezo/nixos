@@ -7,6 +7,8 @@
   imports = [
     ./execs.nix
     ./binds.nix
+    ./animations.nix
+    ./decorations.nix
     ./game_mode.nix
   ];
   wayland.windowManager.hyprland = {
