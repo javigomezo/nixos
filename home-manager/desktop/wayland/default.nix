@@ -24,7 +24,9 @@
     ffmpeg
     gamescope
     grimblast
+    input-leap
     killall
+    localsend
     mpv
     multiviewer-for-f1
     pavucontrol
