@@ -9,4 +9,3 @@
     jack.enable = false;
   };
 }
-

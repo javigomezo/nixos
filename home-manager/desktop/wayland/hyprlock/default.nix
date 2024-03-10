@@ -17,7 +17,7 @@ in {
   programs.hyprlock = {
     enable = true;
     general = {
-      grace = 2;
+      grace = 0;
     };
     backgrounds = [
       {

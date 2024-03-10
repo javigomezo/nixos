@@ -72,6 +72,16 @@
           ./secrets
         ];
       };
+      y520 = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          vars = import ./hosts/y520/vars.nix;
+        };
+        modules = [
+          ./hosts/y520
+          ./secrets
+        ];
+      };
       pi3b = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
@@ -96,6 +106,16 @@
         };
         modules = [
           ./home-manager/workstation.nix
+        ];
+      };
+      "javier@y520" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          vars = import ./hosts/y520/vars.nix;
+        };
+        modules = [
+          ./home-manager/y520.nix
         ];
       };
       "javier@pi3b" = inputs.home-manager.lib.homeManagerConfiguration {
