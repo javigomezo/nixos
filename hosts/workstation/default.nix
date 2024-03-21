@@ -92,6 +92,7 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
+    keyboard.qmk.enable = true;
   };
 
   # List packages installed in system profile. To search, run:

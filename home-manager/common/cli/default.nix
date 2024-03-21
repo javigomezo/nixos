@@ -12,6 +12,7 @@
     nixd
     htop
     (python3.withPackages (ps: with ps; [requests]))
+    qmk
     ripgrep
     stow
     tmux
