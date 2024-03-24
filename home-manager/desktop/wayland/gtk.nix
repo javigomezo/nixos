@@ -29,15 +29,20 @@
       };
     };
     cursorTheme = {
-      name = "Nordzy-cursors";
-      package = pkgs.nordzy-cursor-theme;
-      size = 30;
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
     };
+    # cursorTheme = {
+    #   name = "Nordzy-cursors";
+    #   package = pkgs.nordzy-cursor-theme;
+    #   size = 30;
+    # };
   };
   home.pointerCursor = {
     gtk.enable = true;
-    package = pkgs.nordzy-cursor-theme;
-    name = "Nordzy-cursors";
-    size = 30;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
   };
 }

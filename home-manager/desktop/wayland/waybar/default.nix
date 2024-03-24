@@ -24,8 +24,8 @@
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          format = "{: %Y-%m-%d  %H:%M}";
-          format-alt = "{: %H:%M}";
+          format = " {:%Y-%m-%d  %H:%M}";
+          format-alt = " {:%H:%M}";
         };
         "custom/weather" = {
           tooltip = true;

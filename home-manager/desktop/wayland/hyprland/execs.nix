@@ -9,7 +9,7 @@
         "hyprlock"
         "lxqt-policykit-agent"
         "hyprpaper"
-        "hyprctl setcursor Nordzy-cursors 30"
+        # "hyprctl setcursor Bibata-Modern-Cursor 24"
       ];
     };
   };
