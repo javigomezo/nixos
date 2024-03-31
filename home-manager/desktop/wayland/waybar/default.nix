@@ -18,7 +18,7 @@
         gtk-layer-shell = true;
         modules-left = ["clock" "custom/weather" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["pulseaudio" "network" "temperature" "battery" "tray"];
+        modules-right = ["pulseaudio" "network" "battery" "temperature" "tray"];
         clock = {
           interval = 1;
           tooltip-format = ''

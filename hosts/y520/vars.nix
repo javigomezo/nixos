@@ -1,4 +1,4 @@
 {
   timeZone = "Europe/Madrid";
-  wallpaper = "space.png";
+  wallpaper = "astronaut.png";
 }
