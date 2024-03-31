@@ -70,7 +70,6 @@
     };
     defaultGateway = {
       address = "10.0.0.1";
-      interface = "wlp3s0";
     };
     nameservers = ["10.0.0.200" "10.0.0.3"];
     # Enable networking
@@ -192,7 +191,6 @@
     };
   };
   users.users.root.openssh.authorizedKeys.keys = [
-    # change this to your ssh key
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@nixos"
   ];
 
