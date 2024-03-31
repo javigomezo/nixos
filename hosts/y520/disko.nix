@@ -54,6 +54,10 @@
                     mountpoint = "/var/lib/machines";
                     mountOptions = ["compress-force=zstd" "noatime"];
                   };
+                  "@/portables" = {
+                    mountpoint = "/var/lib/portables";
+                    mountOptions = ["compress=zstd" "noatime"];
+                  };
                   "@/log" = {
                     mountpoint = "/var/log";
                     mountOptions = ["compress-force=zstd" "noatime"];
