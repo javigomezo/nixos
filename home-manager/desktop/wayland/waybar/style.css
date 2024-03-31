@@ -130,8 +130,8 @@ tooltip {
 #battery {
     color: #b48ead;
     /* border-radius: 0 10px 10px 0; */
-    margin-right: 10px;
     border-left: 0px;
+    border-right: 0px;
 }
 
 #tray {
