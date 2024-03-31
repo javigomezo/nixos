@@ -26,7 +26,7 @@
   ];
 
   age = {
-    identityPaths = ["/home/javier/.ssh/id_ed25519"];
+    # identityPaths = ["/home/javier/.ssh/id_ed25519"];
     secrets.wifi = {
       file = ../../secrets/wifi.age;
     };
@@ -57,7 +57,7 @@
     };
     hostName = "y520"; # Define your hostname.
     enableIPv6 = true;
-    interfaces.wlo1 = {
+    interfaces.wlp3s0 = {
       ipv4.addresses = [
         {
           address = "10.0.0.16";

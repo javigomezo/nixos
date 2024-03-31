@@ -18,7 +18,7 @@
         gtk-layer-shell = true;
         modules-left = ["clock" "custom/weather" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["pulseaudio" "network" "temperature" "tray"];
+        modules-right = ["pulseaudio" "network" "temperature" "battery" "tray"];
         clock = {
           interval = 1;
           tooltip-format = ''
@@ -82,6 +82,17 @@
           format-linked = " {ifname} (No IP)";
           format-disconnected = "⚠ Disconnected";
           format-alt = "{ifname}= {ipaddr}/{cidr}";
+        };
+        battery = {
+          states = {
+            "good" = 60;
+            "warning" = 30;
+            "critical" = 20;
+          };
+          format = "{icon} {capacity}%";
+          format-charging = "󰂄 {capacity}%";
+          format-alt = "{icon} {time}";
+          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
         tray = {
           spacing = 15;
