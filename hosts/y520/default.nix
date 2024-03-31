@@ -8,7 +8,6 @@
 }: {
   imports = [
     inputs.agenix.nixosModules.age
-    inputs.agenix.nixosModules.default
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
     inputs.nixos-hardware.nixosModules.common-cpu-intel
