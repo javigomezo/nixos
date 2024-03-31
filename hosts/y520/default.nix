@@ -17,7 +17,7 @@
     # inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ./disko.nix
-    # ./impermanence.nix
+    ./impermanence.nix
     ../common
     ../optional/pipewire.nix
     ../optional/steam.nix
@@ -160,6 +160,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
+    blueman.enable = true;
     xserver.videoDrivers = ["nvidia"];
     xserver.enable = true;
     xserver.displayManager.sessionPackages = [pkgs.hyprland];

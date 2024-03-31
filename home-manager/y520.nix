@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./common
+    ./optional/impermanence.nix
     ./desktop/wayland
   ];
 
