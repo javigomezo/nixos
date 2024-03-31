@@ -18,6 +18,7 @@
     ./hardware-configuration.nix
     ./disko.nix
     ./impermanence.nix
+    ./firewall.nix
     ../common
     ../optional/pipewire.nix
     ../optional/steam.nix
