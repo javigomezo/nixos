@@ -27,6 +27,9 @@
       variables = ["--all"];
     };
     settings = {
+      input = {
+        kb_options = "caps:super";
+      };
       monitor = map (
         m: let
           resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
