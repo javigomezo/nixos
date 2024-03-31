@@ -46,7 +46,6 @@
         group = "colord";
         mode = "u=rwx,g=rx,o=";
       }
-      "/etc/ssh"
     ];
     files = [];
   };
@@ -54,6 +53,10 @@
   # machine id - setting as a persistent file results in errors.
   # so we use this config option instead:
   environment.etc.machine-id.source = ./machine-id;
+  environment.etc."ssh/ssh_host_rsa_key".source = "/persist/etc/ssh/ssh_host_rsa_key";
+  environment.etc."ssh/ssh_host_rsa_key.pub".source = "/persist/etc/ssh/ssh_host_rsa_key.pub";
+  environment.etc."ssh/ssh_host_ed25519_key".source = "/persist/etc/ssh/ssh_host_ed25519_key";
+  environment.etc."ssh/ssh_host_ed25519_key.pub".source = "/persist/etc/ssh/ssh_host_ed25519_key.pub";
 
   # security.sudo.extraConfig = ''
   #   # rollback results in sudo lectures after each reboot
