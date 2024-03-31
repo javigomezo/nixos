@@ -5,7 +5,7 @@
   vars,
   ...
 }: {
-  age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
+  # age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
   age.secrets.keepalived = {
     file = ../../secrets/keepalived.age;
   };

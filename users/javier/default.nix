@@ -5,7 +5,7 @@
 }: let
   ifExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
-  age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
+  # age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
   age.secrets.hashedUserPassword = {
     file = ../../secrets/hashedUserPassword.age;
   };
