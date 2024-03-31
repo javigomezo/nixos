@@ -1,10 +1,12 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   ...
 }: {
   imports = [
+    inputs.impermanence.nixosModules.impermanence
     ./common
     ./optional/impermanence.nix
     ./desktop/wayland
