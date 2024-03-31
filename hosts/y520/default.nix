@@ -9,27 +9,35 @@
   imports = [
     inputs.agenix.nixosModules.default
     inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
     inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-laptop
-    inputs.nixos-hardware.nixosModules.common-laptop-ssd
-    inputs.nixos-hardware.nixosModules.common-laptop-hdd
+    inputs.nixos-hardware.nixosModules.common-pc-laptop
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     # inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ./disko.nix
+    # ./impermanence.nix
     ../common
     ../optional/pipewire.nix
     ../optional/steam.nix
+    ../../services/openssh
     ../../users/javier
   ];
 
-  age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
+  age = {
+    identityPaths = ["/home/javier/.ssh/id_ed25519"];
+    secrets.wifi = {
+      file = ../../secrets/wifi.age;
+    };
+  };
 
   boot = {
     kernelParams = ["quiet" "loglevel=3" "systemd.show_status=auto" "udev.log_level=3" "rd.udev.log_level=3" "vt.global_cursor_default=0" "mem_sleep_default=deep"];
-    consoleLogLevel = 0;
+    consoleLogLevel = lib.mkForce 0;
     initrd.verbose = false;
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.enable = lib.mkForce true;
       systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
@@ -43,6 +51,10 @@
   };
 
   networking = {
+    wireless.environmentFile = config.age.secrets.wifi.path;
+    wireless.networks = {
+      "@SSID@".psk = "@PSK@";
+    };
     hostName = "y520"; # Define your hostname.
     enableIPv6 = true;
     interfaces.wlo1 = {
@@ -172,6 +184,10 @@
       '';
     };
   };
+  users.users.root.openssh.authorizedKeys.keys = [
+    # change this to your ssh key
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@nixos"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

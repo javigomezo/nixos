@@ -1,7 +1,7 @@
 {
   disko.devices = {
     disk = {
-      vdb = {
+      vda = {
         type = "disk";
         device = "/dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0JB10293D";
         content = {
@@ -19,31 +19,44 @@
                 mountpoint = "/boot";
               };
             };
+            swap = {
+              size = "8G";
+              content = {
+                type = "swap";
+                randomEncryption = true;
+              };
+            };
             root = {
-              name = "root";
               size = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = ["-f"]; # Override existing partition
                 subvolumes = {
-                  "/root" = {
+                  "@" = {};
+                  "@/root" = {
                     mountpoint = "/";
                     mountOptions = ["compress-force=zstd" "noatime"];
                   };
-                  "/root-blank" = {
-                    mountOptions = ["compress-force=zstd" "noatime"];
-                  };
-                  "/home" = {
+                  "@/root-blank" = {};
+                  "@/home" = {
                     mountpoint = "/home";
                     mountOptions = ["compress-force=zstd"];
                   };
-                  "/nix" = {
+                  "@/nix" = {
                     mountOptions = ["compress-force=zstd" "noatime"];
                     mountpoint = "/nix";
                   };
-                  "/persist" = {
+                  "@/persist" = {
                     mountOptions = ["compress-force=zstd" "noatime"];
-                    mountpoint = "/nix";
+                    mountpoint = "/persist";
+                  };
+                  "@/machines" = {
+                    mountpoint = "/var/lib/machines";
+                    mountOptions = ["compress-force=zstd" "noatime"];
+                  };
+                  "@/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["compress-force=zstd" "noatime"];
                   };
                 };
               };

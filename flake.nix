@@ -7,7 +7,10 @@
 
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpgs.follows = "nixpkgs";
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
     };
 
     # home-manager, used for managing user configuration
