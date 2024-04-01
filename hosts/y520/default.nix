@@ -28,7 +28,7 @@
   ];
 
   age = {
-    # identityPaths = ["/home/javier/.ssh/id_ed25519"];
+    identityPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
     secrets.wifi = {
       file = ../../secrets/wifi.age;
     };
