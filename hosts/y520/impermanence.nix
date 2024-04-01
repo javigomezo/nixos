@@ -1,5 +1,6 @@
 # btrfs/impermanence.nix
 {
+  lib,
   config,
   pkgs,
   ...
@@ -14,7 +15,7 @@
 
   # reset / at each boot
   # Note `lib.mkBefore` is used instead of `lib.mkAfter` here.
-  boot.initrd.postDeviceCommands = pkgs.lib.mkBefore ''
+  boot.initrd.postDeviceCommands = lib.mkBefore ''
     mkdir -p /mnt
 
     # Mount the btrfs root to /mnt
