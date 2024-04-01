@@ -15,32 +15,26 @@
 
   # reset / at each boot
   # Note `lib.mkBefore` is used instead of `lib.mkAfter` here.
-  boot.initrd.postDeviceCommands = lib.mkBefore ''
-    mkdir -p /mnt
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    mkdir /btrfs_tmp
 
-    # Mount the btrfs root to /mnt
-    mount -o subvol="@" /dev/nvme0n1p3 /mnt
+    # Mount the btrfs root to /btrfs_tmp
+    mount -o subvol="@" /dev/nvme0n1p3 /btrfs_tmp
 
     # Delete the root subvolume
-    # echo "deleting root subvolume..." &&
-    # btrfs subvolume delete /mnt/root
-
-    # Restore new root from root-blank
-    # echo "restoring blank @root subvolume..."
-    btrfs subvolume list -o /mnt/root |
-    cut -f9 -d' ' |
+    btrfs subvolume list -o /mnt/root | cut -f9 -d' ' |
     while read subvolume; do
       echo "deleting /$subvolume subvolume..."
-      btrfs subvolume delete "/mnt/$subvolume"
+      btrfs subvolume delete "/btrfs_tmp/$subvolume"
     done &&
     echo "deleting /root subvolume..." &&
-    btrfs subvolume delete /mnt/root
+    btrfs subvolume delete /btrfs_tmp/root
 
     echo "restoring blank /root subvolume..."
-    btrfs subvolume snapshot /mnt/root-blank /mnt/root
+    btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
 
     # Unmount /mnt and continue boot process
-    umount /mnt
+    umount /btrfs_tmp
   '';
 
   # configure impermanence
