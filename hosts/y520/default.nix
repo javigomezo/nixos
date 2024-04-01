@@ -11,6 +11,7 @@
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
     inputs.nixos-hardware.nixosModules.common-cpu-intel
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
@@ -19,6 +20,7 @@
     ./disko.nix
     ./impermanence.nix
     ./firewall.nix
+    ./power-management.nix
     ./udev.nix
     ../common
     ../optional/pipewire.nix
@@ -111,6 +113,14 @@
       nvidiaSettings = true;
       nvidiaPersistenced = true;
       powerManagement.enable = true;
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
+      };
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
     #Make sure opengl is enabled
