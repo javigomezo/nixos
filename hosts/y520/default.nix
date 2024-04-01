@@ -100,7 +100,10 @@
   };
 
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     nvidia = {
       modesetting.enable = true;
       #open = true; # Only for newer cards
