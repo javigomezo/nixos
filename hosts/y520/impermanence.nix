@@ -27,7 +27,7 @@
 
     # Restore new root from root-blank
     # echo "restoring blank @root subvolume..."
-    # btrfs subvolume list -o /mnt/root |
+    btrfs subvolume list -o /mnt/root |
     cut -f9 -d' ' |
     while read subvolume; do
       echo "deleting /$subvolume subvolume..."
