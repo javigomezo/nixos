@@ -19,7 +19,7 @@
     mkdir -p /mnt
 
     # Mount the btrfs root to /mnt
-    mount -o subvol="@" /dev/vda3 /mnt
+    mount -o subvol="@" /dev/nvme0n1p3 /mnt
 
     # Delete the root subvolume
     echo "deleting root subvolume..." &&
