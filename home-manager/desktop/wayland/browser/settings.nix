@@ -58,4 +58,7 @@
   "services.sync.prefs.sync.browser.urlbar.suggest.searches" = false;
 
   "browser.search.suggest.enabled" = false;
+
+  # Disable drm warning
+  "browser.eme.ui.enabled" = false;
 }
