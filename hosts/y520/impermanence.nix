@@ -43,6 +43,7 @@
     directories = [
       "/var/lib/bluetooth"
       "/var/lib/nixos"
+      "/var/lib/flatpak"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
       {
