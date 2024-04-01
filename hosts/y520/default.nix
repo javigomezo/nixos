@@ -73,6 +73,7 @@
     };
     defaultGateway = {
       address = "10.0.0.1";
+      interface = "wlp3s0";
     };
     nameservers = ["10.0.0.200" "10.0.0.3"];
     # Enable networking
