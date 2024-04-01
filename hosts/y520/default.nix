@@ -128,6 +128,7 @@
   ];
 
   programs = {
+    light.enable = true;
     zsh.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
