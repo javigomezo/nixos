@@ -22,12 +22,12 @@
     mount -o subvol="@" /dev/nvme0n1p3 /mnt
 
     # Delete the root subvolume
-    echo "deleting root subvolume..." &&
-    btrfs subvolume delete /mnt/root
+    # echo "deleting root subvolume..." &&
+    # btrfs subvolume delete /mnt/root
 
     # Restore new root from root-blank
-    echo "restoring blank @root subvolume..."
-    btrfs subvolume list -o /mnt/root |
+    # echo "restoring blank @root subvolume..."
+    # btrfs subvolume list -o /mnt/root |
     cut -f9 -d' ' |
     while read subvolume; do
       echo "deleting /$subvolume subvolume..."
