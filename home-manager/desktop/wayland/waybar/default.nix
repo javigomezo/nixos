@@ -18,7 +18,7 @@
         gtk-layer-shell = true;
         modules-left = ["clock" "custom/weather" "hyprland/workspaces"];
         modules-center = ["hyprland/window"];
-        modules-right = ["pulseaudio" "network" "backlight" "battery" "temperature" "tray"];
+        modules-right = ["pulseaudio" "backlight" "network" "battery" "temperature" "tray"];
         clock = {
           interval = 1;
           tooltip-format = ''
@@ -104,5 +104,11 @@
       };
     };
     style = builtins.readFile ./style.css;
+  };
+  home.file = {
+    ".config/waybar/scripts" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./scripts;
+      recursive = true;
+    };
   };
 }
