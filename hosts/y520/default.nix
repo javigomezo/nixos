@@ -19,6 +19,7 @@
     ./disko.nix
     ./impermanence.nix
     ./firewall.nix
+    ./udev.nix
     ../common
     ../optional/pipewire.nix
     ../optional/steam.nix
