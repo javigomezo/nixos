@@ -19,9 +19,9 @@
     ./hardware-configuration.nix
     ./disko.nix
     ./impermanence.nix
+    ./quietboot.nix
     ./firewall.nix
     ./power-management.nix
-    ./udev.nix
     ../common
     ../optional/pipewire.nix
     ../optional/steam.nix
@@ -38,8 +38,6 @@
 
   boot = {
     supportedFilesystems = ["btrfs"];
-    kernelParams = ["quiet" "loglevel=3" "systemd.show_status=auto" "udev.log_level=3" "rd.udev.log_level=3" "vt.global_cursor_default=0" "mem_sleep_default=deep"];
-    consoleLogLevel = lib.mkForce 0;
     initrd.verbose = false;
     loader = {
       systemd-boot.enable = lib.mkForce true;
@@ -137,12 +135,12 @@
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.default
+    pkgs.brightnessctl
     pkgs.sbctl
     pkgs.lxqt.lxqt-policykit
   ];
 
   programs = {
-    light.enable = true;
     zsh.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
@@ -198,6 +196,7 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.systemd-udev-settle.enable = false;
 
   security = {
     polkit.enable = true;

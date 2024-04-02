@@ -45,6 +45,7 @@
       "/var/lib/nixos"
       "/var/lib/flatpak"
       "/var/lib/systemd/coredump"
+      "/var/lib/systemd/backlight"
       "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
