@@ -81,12 +81,6 @@
   };
 
   fileSystems = {
-    # "/mnt/Downloads" = {
-    #   device = "/dev/disk/by-partuuid/ca8d8d5f-01";
-    #   fsType = "ntfs3";
-    #   options = ["rw" "uid=1000" "x-systemd.automount" "noauto"];
-    # };
-
     "/mnt/Qbittorrent" = {
       device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
       fsType = "nfs";
