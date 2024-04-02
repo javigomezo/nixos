@@ -9,6 +9,7 @@
     ./binds.nix
     ./animations.nix
     ./decorations.nix
+    ./windowrule.nix
     ./game_mode.nix
   ];
   wayland.windowManager.hyprland = {
@@ -28,8 +29,38 @@
     };
     settings = {
       input = {
+        kb_layout = "es";
         kb_options = "caps:super";
+        follow_mouse = 1;
+        sensitivity = 0.3;
+        touchpad = {
+          scroll_factor = 0.5;
+          natural_scroll = false;
+          clickfinger_behavior = false;
+          tap-to-click = true;
+          middle_button_emulation = true;
+        };
       };
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_fingers = 4;
+        workspace_swipe_invert = false;
+      };
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+        mouse_move_enables_dpms = true;
+        enable_swallow = true;
+        swallow_regex = "^(kitty)$";
+        vfr = true;
+        vrr = 1;
+      };
+      debug.damage_tracking = 2;
+      dwindle = {
+        pseudotile = false;
+        preserve_split = true;
+      };
+      master.new_is_master = true;
       monitor = map (
         m: let
           resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
