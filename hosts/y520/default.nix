@@ -182,6 +182,8 @@
   # Tell Xorg to use the nvidia driver
   services = {
     blueman.enable = true;
+    btrfs.autoScrub.enable = true;
+    btrfs.autoScrub.interval = "weekly";
     xserver.videoDrivers = ["nvidia"];
     xserver.enable = true;
     xserver.displayManager.sessionPackages = [pkgs.hyprland];
