@@ -136,7 +136,6 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.default
