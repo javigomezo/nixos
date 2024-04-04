@@ -94,6 +94,10 @@
     };
   };
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
+  };
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -120,16 +124,24 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+      # extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+      extraPackages = with pkgs; [
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        libvdpau-va-gl
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [intel-vaapi-driver];
     };
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";}; # Force intel-media-driver
   environment.systemPackages = [
     inputs.alejandra.defaultPackage.x86_64-linux
     inputs.agenix.packages.x86_64-linux.default
     pkgs.brightnessctl
+    pkgs.intel-gpu-tools
     pkgs.sbctl
     pkgs.lxqt.lxqt-policykit
   ];
