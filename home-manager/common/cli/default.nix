@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     duf
     eza
+    gdu
     git
     nitch
     nixd
