@@ -13,14 +13,22 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
+  fileSystems = {
+  "/" =
     { device = "/dev/disk/by-uuid/6c4d947f-ae66-4365-ae7b-8f729e62c116";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
+  "/home/javier" = {
+    device = "/dev/disk/by-uuid/29793c48-c1d1-4e91-9671-8450734d6dfa";
+    fsType = "btrfs";
+    options = ["compress-force=zstd"];
+  };
+
+  "/boot" =
     { device = "/dev/disk/by-uuid/0466-A9B6";
       fsType = "vfat";
+    };
     };
 
   swapDevices = [ ];
