@@ -15,8 +15,39 @@
 
   fileSystems = {
   "/" =
-    { device = "/dev/disk/by-uuid/6c4d947f-ae66-4365-ae7b-8f729e62c116";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/root"];
+    };
+
+  "/persist" =
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/persist"];
+    };
+
+  "/nix" =
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/nix"];
+    };
+
+  "/var/lib/machines" =
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/machines"];
+    };
+
+  "/var/lib/portables" =
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/portables"];
+    };
+
+  "/var/log" =
+    { device = "/dev/disk/by-uuid/11cd85fd-8feb-4d09-96c6-a822676d1124";
+      fsType = "btrfs";
+      options = ["compress-force=zstd" "noatime" "subvol=@/log"];
     };
 
   "/home/javier" = {
@@ -35,7 +66,7 @@
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
+  # still possible to use this option  but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;

@@ -25,12 +25,12 @@
     consoleLogLevel = 0;
     initrd.verbose = false;
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot.enable = lib.mkForce true;
       systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
     lanzaboote = {
-      enable = true;
+      enable = false;
       pkiBundle = "/etc/secureboot";
     };
     blacklistedKernelModules = ["nouveau"];
@@ -148,11 +148,11 @@
     btrfs.autoScrub.enable = true;
     xserver.videoDrivers = ["nvidia"];
     xserver.enable = true;
-    xserver.displayManager.sessionPackages = [pkgs.hyprland];
-    xserver.displayManager.sddm.enable = true;
-    xserver.displayManager.sddm.wayland.enable = true;
-    xserver.displayManager.autoLogin.enable = true;
-    xserver.displayManager.autoLogin.user = "javier";
+    displayManager.sessionPackages = [pkgs.hyprland];
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "javier";
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
     tumbler.enable = true; # Thumbnail support for images
