@@ -145,6 +145,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
+    btrfs.autoScrub.enable = true;
     xserver.videoDrivers = ["nvidia"];
     xserver.enable = true;
     xserver.displayManager.sessionPackages = [pkgs.hyprland];
