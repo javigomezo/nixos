@@ -2,7 +2,7 @@
 {
   fonts = {
     packages = [
-      inputs.private-fonts
+      inputs.private-fonts.packages.x86_64-linux.ComicCodeLigatures
       pkgs.noto-fonts-emoji
       # font-awesome
       (pkgs.nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
