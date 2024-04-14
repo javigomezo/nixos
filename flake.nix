@@ -48,6 +48,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    private-fonts.url = "git+ssh://git@github.com/javigomezo/private-fonts.git?ref=main";
+
     # firefox-cascade-theme = {
     #   url = "github:andreasgrafen/cascade";
     #   flake = false;

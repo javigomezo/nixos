@@ -141,22 +141,6 @@
     ];
   };
 
-  fonts = {
-    packages = with pkgs; [
-      noto-fonts-emoji
-      # font-awesome
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    ];
-    fontDir.enable = true;
-    enableGhostscriptFonts = true;
-    enableDefaultPackages = true;
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      hinting.enable = true;
-    };
-  };
-
   xdg.portal = {
     enable = true;
     configPackages = [

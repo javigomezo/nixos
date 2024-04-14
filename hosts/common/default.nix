@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./fonts.nix
     ./locale.nix
     ./nas.nix
     ./nix.nix

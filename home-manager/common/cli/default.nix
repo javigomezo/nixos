@@ -9,6 +9,7 @@
     eza
     gdu
     git
+    gnumake
     nitch
     nixd
     htop
