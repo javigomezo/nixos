@@ -13,6 +13,7 @@
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ../common
+    ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
     ../../users/javier
@@ -60,18 +61,6 @@
       device = "/dev/disk/by-partuuid/ca8d8d5f-01";
       fsType = "ntfs3";
       options = ["rw" "uid=1000" "x-systemd.automount" "noauto"];
-    };
-
-    "/mnt/Qbittorrent" = {
-      device = "10.0.0.2:/home/javier/docker-services/qbittorrent/data/downloads";
-      fsType = "nfs";
-      options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
-    };
-
-    "/mnt/TVShows" = {
-      device = "10.0.0.4:/mnt/main_storage/tvshows";
-      fsType = "nfs";
-      options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
     };
   };
 
@@ -146,13 +135,6 @@
   # Tell Xorg to use the nvidia driver
   services = {
     btrfs.autoScrub.enable = true;
-    xserver.videoDrivers = ["nvidia"];
-    xserver.enable = true;
-    displayManager.sessionPackages = [pkgs.hyprland];
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "javier";
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
     tumbler.enable = true; # Thumbnail support for images

@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./locale.nix
+    ./nas.nix
     ./nix.nix
     ./nixpkgs.nix
   ];
