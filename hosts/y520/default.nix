@@ -159,13 +159,6 @@
     blueman.enable = true;
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
-    xserver.videoDrivers = ["nvidia"];
-    xserver.enable = true;
-    xserver.displayManager.sessionPackages = [pkgs.hyprland];
-    xserver.displayManager.sddm.enable = true;
-    xserver.displayManager.sddm.wayland.enable = true;
-    xserver.displayManager.autoLogin.enable = true;
-    xserver.displayManager.autoLogin.user = "javier";
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
     tumbler.enable = true; # Thumbnail support for images
