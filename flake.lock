@@ -576,11 +576,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1713093447,
-        "narHash": "sha256-x3EnH1GY0Au/UiEa19v3v+8TtmkPIQMUfDEHK4atkBI=",
+        "lastModified": 1713093607,
+        "narHash": "sha256-gr2e03b4ctjQ8mpj2IrQsaBtruhO1F7JvH+99/8Uz/E=",
         "ref": "main",
-        "rev": "3c5887c6145d12feb681223fcd369343bd184a1b",
-        "revCount": 4,
+        "rev": "4fb9e2ef9086d2f5bfef04837e44e978e7ff2225",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/javigomezo/private-fonts.git"
       },
