@@ -13,11 +13,14 @@
     nitch
     nixd
     htop
+    outils
     (python3.withPackages (ps: with ps; [requests]))
     qmk
     ripgrep
     stow
     tmux
+    unzip
     vim
+    zip
   ];
 }
