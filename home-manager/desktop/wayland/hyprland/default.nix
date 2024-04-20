@@ -12,6 +12,7 @@
     ./windowrule.nix
     ./game_mode.nix
   ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
