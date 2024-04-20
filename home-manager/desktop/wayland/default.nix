@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -22,6 +23,7 @@
     ++ (builtins.attrValues outputs.homeManagerModules);
 
   home.packages = with pkgs; [
+    inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
     ffmpeg
     gamescope
     grimblast

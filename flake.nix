@@ -48,6 +48,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    bibata-modern-classic-hyprcursor = {
+      url = "github:javigomezo/bibata-modern-classic-hyprcursor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     private-fonts.url = "git+ssh://git@github.com/javigomezo/private-fonts.git?ref=main";
 
     # firefox-cascade-theme = {

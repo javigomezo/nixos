@@ -73,7 +73,7 @@
     };
   };
   home.sessionVariables = {
-    HYPRCURSOR_THEME = "Bibata-Modern-Classic-hypr";
+    HYPRCURSOR_THEME = "bibata-modern-classic-hyprcursor";
     HYPRCURSOR_SIZE = 24;
     XDG_CURRENT_DESKTOP = "Hyprland";
     XDG_SESSION_TYPE = "wayland";
