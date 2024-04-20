@@ -23,6 +23,7 @@
     ./firewall.nix
     ./power-management.nix
     ../common
+    ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
     ../../services/openssh
