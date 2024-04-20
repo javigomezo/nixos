@@ -27,6 +27,7 @@ in {
       ".." = "cd ..";
       "..." = "cd ../..";
       "...." = "cd ../../..";
+      cd = "z";
       df = mkIf hasDuf "duf";
       ls = mkIf hasEza "eza --color=always --icons --group-directories-first";
       la = "ls -a";
@@ -47,8 +48,20 @@ in {
     '';
   };
 
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
+  programs = {
+    bat = {
+      enable = true;
+      config = {
+        theme = "Nord";
+      };
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }

@@ -20,6 +20,7 @@
     stow
     tmux
     unzip
+    xarchiver
     vim
     zip
   ];
