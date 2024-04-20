@@ -3,6 +3,7 @@
     ./fonts.nix
     ./locale.nix
     ./nas.nix
+    ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
   ];
