@@ -6,6 +6,7 @@
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
+    ../../services/openssh
   ];
 
   systemd = {

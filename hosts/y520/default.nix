@@ -26,12 +26,11 @@
     ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
-    ../../services/openssh
     ../../users/javier
   ];
 
   age = {
-    identityPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
+    # identityPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
     secrets.wifi = {
       file = ../../secrets/wifi.age;
     };
