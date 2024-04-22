@@ -1,0 +1,31 @@
+# Based on https://github.com/reckenrode/nixos-configs flake
+
+name: Update flake.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "59 1 * * *" # Because Nothing Good Happens After 2 A.M.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v20
+
+      - run: nix flake update
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update flake.lock
+          branch: main
+          commit_options: '--no-verify --signoff'
+          file_pattern: flake.lock
+          commit_user_name: Flake Bot # defaults to "GitHub Actions"
+          #commit_user_email: my-github-actions-bot@example.org # defaults to "actions@github.com"
+          commit_author: Flake Bot <actions@github.com> # defaults to author of the commit that triggered the run
+          skip_dirty_check: false    
+          skip_fetch: true
