@@ -18,7 +18,7 @@ jobs:
         #with:
         #  github_access_token: ${{ secrets.TOKEN }}
 
-      - run: echo ${{ secrets.SSH_KEY }} > ~/.ssh/id_ed25519 && nix flake update
+      - run: mkdir -p ~/.ssh && echo ${{ secrets.SSH_KEY }} > ~/.ssh/id_ed25519 && nix flake update
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
