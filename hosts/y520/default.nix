@@ -1,6 +1,5 @@
 {
   inputs,
-  system,
   lib,
   config,
   pkgs,
@@ -20,7 +19,6 @@
     ./disko.nix
     ./impermanence.nix
     ./quietboot.nix
-    ./firewall.nix
     ./power-management.nix
     ../common
     ../optional/display_manager.nix

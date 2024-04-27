@@ -1,11 +1,13 @@
 {pkgs, ...}: {
   imports = [
+    ./firewall.nix
     ./fonts.nix
     ./locale.nix
     ./nas.nix
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
+    ./tailscale.nix
     ../../services/openssh
   ];
 
