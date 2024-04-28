@@ -49,7 +49,10 @@
     #   enable = true;
     #   pkiBundle = "/etc/secureboot";
     # };
-    blacklistedKernelModules = ["nouveau"];
+    blacklistedKernelModules = [
+      "nouveau"
+      "ideapad_laptop"
+    ];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
 
