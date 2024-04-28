@@ -4,8 +4,14 @@
 ```bash
   $ nix run github:nix-community/nixos-anywhere -- --copy-host-key --no-reboot --flake github:javigomezo/nixos#y520 root@<target_host>
 ```
+## Before reboot
+As impermanence is active it's needed to copy the host keys to the right path. SSH again into the host and:
 
-SSH back again, mount /dev/mapper/crypted /mnt, mkdir /mnt/@/persist/etc/ssh, cp /etc/ssh/ssh_host_* /mnt/@/persist/etc/ssh/
+```bash
+  $ mount /dev/mapper/crypted /mnt
+  $ mkdir -p /mnt/@/persist/etc/ssh
+  $ cp /etc/ssh/ssh_host_* /mnt/@/persist/etc/ssh/
+```
 
 # Post Install
 
