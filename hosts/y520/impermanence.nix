@@ -15,27 +15,42 @@
 
   # reset / at each boot
   # Note `lib.mkBefore` is used instead of `lib.mkAfter` here.
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    mkdir /btrfs_tmp
+  boot.initrd.systemd.services.rollback = {
+    description = "Rollback root filesystem to a pristine state on boot";
+    wantedBy = [
+      "initrd.target"
+    ];
+    after = [
+      "systemd-cryptsetup@enc.service"
+    ];
+    before = [
+      "sysroot.mount"
+    ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      mkdir /btrfs_tmp
 
-    # Mount the btrfs root to /btrfs_tmp
-    mount -o subvol="@" /dev/nvme0n1p3 /btrfs_tmp
+      # Mount the btrfs root to /btrfs_tmp
+      mount -o subvol="@" /dev/nvme0n1p3 /btrfs_tmp
 
-    # Delete the root subvolume
-    btrfs subvolume list -o /btrfs_tmp/root | cut -f9 -d' ' | cut -c2- |
-    while read subvolume; do
-      echo "deleting /$subvolume subvolume..."
-      btrfs subvolume delete "/btrfs_tmp/$subvolume"
-    done &&
-    echo "deleting /root subvolume..." &&
-    btrfs subvolume delete /btrfs_tmp/root
+      # Delete the root subvolume
+      btrfs subvolume list -o /btrfs_tmp/root | cut -f9 -d' ' | cut -c2- |
+      while read subvolume; do
+        echo "deleting /$subvolume subvolume..."
+        btrfs subvolume delete "/btrfs_tmp/$subvolume"
+      done &&
+      echo "deleting /root subvolume..." &&
+      btrfs subvolume delete /btrfs_tmp/root
 
-    echo "restoring blank /root subvolume..."
-    btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
+      echo "restoring blank /root subvolume..."
+      btrfs subvolume snapshot /btrfs_tmp/root-blank /btrfs_tmp/root
 
-    # Unmount /btrfs_tmp and continue boot process
-    umount /btrfs_tmp
-  '';
+      # Unmount /btrfs_tmp and continue boot process
+      umount /btrfs_tmp
+
+    '';
+  };
 
   # configure impermanence
   environment.persistence."/persist" = {
