@@ -2,7 +2,7 @@
 
 # How to Install
 ```bash
-  $ nix run github:nix-community/nixos-anywhere -- --copy-host-key --flake .#y520 root@<target_host>
+  $ nix run github:nix-community/nixos-anywhere -- --copy-host-key --flake github:javigomezo/nixos#y520 root@<target_host>
 ```
 
 # Post Install
