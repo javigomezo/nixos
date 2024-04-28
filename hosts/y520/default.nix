@@ -36,7 +36,10 @@
 
   boot = {
     supportedFilesystems = ["btrfs"];
-    initrd.verbose = false;
+    initrd = {
+      verbose = false;
+      systemd.enable = true;
+    };
     loader = {
       systemd-boot.enable = lib.mkForce true;
       systemd-boot.configurationLimit = 3;
@@ -126,6 +129,7 @@
     pkgs.brightnessctl
     pkgs.intel-gpu-tools
     pkgs.sbctl
+    pkgs.tpm2-tss
     pkgs.lxqt.lxqt-policykit
   ];
 
