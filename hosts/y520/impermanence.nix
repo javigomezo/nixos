@@ -16,7 +16,7 @@
       "initrd.target"
     ];
     after = [
-      "systemd-cryptsetup@enc.service"
+      "systemd-cryptsetup@crypted.service"
     ];
     before = [
       "sysroot.mount"
@@ -27,7 +27,7 @@
       mkdir /btrfs_tmp
 
       # Mount the btrfs root to /btrfs_tmp
-      mount -o subvol="@" /dev/mapper/crypted /btrfs_tmp
+      mount -t btrfs -o subvol="@" /dev/mapper/crypted /btrfs_tmp
 
       # Delete the root subvolume
       btrfs subvolume list -o /btrfs_tmp/root | cut -f9 -d' ' | cut -c2- |
