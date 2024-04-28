@@ -35,7 +35,7 @@
   };
 
   boot = {
-    supportedFilesystems = ["btrfs"];
+    supportedFilesystems = ["btrfs" "ntfs"];
     initrd = {
       verbose = false;
       systemd.enable = true;
@@ -50,7 +50,6 @@
     #   pkiBundle = "/etc/secureboot";
     # };
     blacklistedKernelModules = ["nouveau"];
-    # supportedFilesystems = ["ntfs"];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
 

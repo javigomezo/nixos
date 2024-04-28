@@ -9,6 +9,7 @@ in {
     file = ../../secrets/hashedUserPassword.age;
   };
 
+  users.mutableUsers = false;
   users.users.javier = {
     isNormalUser = true;
     description = "Javier";
