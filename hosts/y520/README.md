@@ -9,6 +9,13 @@
 
 At the time of writing this there is no declarative way of configuring flatpaks (at least not an official one). So here are some needed steps to have everything working.
 
+## FDE + TPM2 Unlock
+
+```bash
+  $ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0 /dev/<my encrypted device> # If secure boot disabled
+  $ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/<my encrypted device> # If secure boot enabled
+```
+
 ## Add flathub repo and install Plex and Flatseal
 ```bash
   $ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
