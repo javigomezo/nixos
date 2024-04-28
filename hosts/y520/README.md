@@ -2,8 +2,10 @@
 
 # How to Install
 ```bash
-  $ nix run github:nix-community/nixos-anywhere -- --copy-host-key --flake github:javigomezo/nixos#y520 root@<target_host>
+  $ nix run github:nix-community/nixos-anywhere -- --copy-host-key --no-reboot --flake github:javigomezo/nixos#y520 root@<target_host>
 ```
+
+SSH back again, mount /dev/mapper/crypted /mnt, mkdir /mnt/@/persist/etc/ssh, cp /etc/ssh/ssh_host_* /mnt/@/persist/etc/ssh/
 
 # Post Install
 
