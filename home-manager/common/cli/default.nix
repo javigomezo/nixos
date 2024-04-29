@@ -5,6 +5,7 @@
   ];
 
   home.packages = with pkgs; [
+    dig
     duf
     eza
     gdu
