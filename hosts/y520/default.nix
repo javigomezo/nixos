@@ -45,6 +45,7 @@
       systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
+    kernelPackages = pkgs.linuxPackages_zen;
     # lanzaboote = {
     #   enable = true;
     #   pkiBundle = "/etc/secureboot";
