@@ -12,7 +12,7 @@
     0;
 in {
   imports = [
-    inputs.hyprlock.homeManagerModules.hyprlock
+    inputs.hyprlock.homeManagerModules.default
   ];
   programs.hyprlock = {
     enable = true;

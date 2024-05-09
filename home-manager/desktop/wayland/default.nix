@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  lib,
   pkgs,
   outputs,
   ...
@@ -22,26 +21,29 @@
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 
-  home.packages = with pkgs; [
-    inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
-    ffmpeg
-    gamescope
-    grimblast
-    input-leap
-    killall
-    localsend
-    mpv
-    multiviewer-for-f1
-    pavucontrol
-    polkit-kde-agent
-    protonup-qt
-    qimgv
-    rofi-wayland-unwrapped
-    swaylock-effects
-    wl-clipboard
-    xfce.thunar
-    xwayland
-  ];
+  home.packages =
+    [
+      inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
+    ]
+    ++ (with pkgs; [
+      ffmpeg
+      gamescope
+      grimblast
+      input-leap
+      killall
+      localsend
+      mpv
+      multiviewer-for-f1
+      pavucontrol
+      polkit-kde-agent
+      protonup-qt
+      qimgv
+      rofi-wayland-unwrapped
+      swaylock-effects
+      wl-clipboard
+      xfce.thunar
+      xwayland
+    ]);
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     QT_QPA_PLATFORM = "wayland";

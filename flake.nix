@@ -43,10 +43,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hypridle = {
-      url = "github:hyprwm/Hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #hypridle = {
+    #  url = "github:hyprwm/Hypridle";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     bibata-modern-classic-hyprcursor = {
       url = "github:javigomezo/bibata-modern-classic-hyprcursor";
