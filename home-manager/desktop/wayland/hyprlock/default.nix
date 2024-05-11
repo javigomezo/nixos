@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   vars,
@@ -11,42 +10,46 @@
     ) (lib.filter (m: m.primary) config.monitors))
     0;
 in {
-  imports = [
-    inputs.hyprlock.homeManagerModules.default
-  ];
   programs.hyprlock = {
     enable = true;
-    general = {
-      hide_cursor = true;
-      grace = 0;
+    settings = {
+      general = {
+        hide_cursor = true;
+        grace = 0;
+      };
+      background = [
+        {
+          monitor = mainMonitor;
+          path = "${config.home.homeDirectory}/.config/hypr/wallpapers/${vars.wallpaper}";
+          blur_passes = 2;
+          noise = 0.0117;
+          contrast = 0.8916;
+          brightness = 0.8172;
+          vibrancy = 0.1696;
+          vibrancy_darkness = 0.0;
+        }
+      ];
+      input-field = [
+        {
+          monitor = mainMonitor;
+          size = "200, 50";
+          position = "0, -20";
+          outer_color = "rgb(46, 52, 64)";
+          inner_color = "rgb(216, 222, 233)";
+          font_color = "rgb(46, 52, 64)";
+          placeholder_text = "<i>Contraseña...</i>";
+        }
+      ];
+      label = [
+        {
+          text = "$TIME";
+          font_size = 58;
+          position = "0, 80";
+          halign = "center";
+          valign = "center";
+          color = "rgb(216, 222, 233)";
+        }
+      ];
     };
-    backgrounds = [
-      {
-        monitor = mainMonitor;
-        path = "${config.home.homeDirectory}/.config/hypr/wallpapers/${vars.wallpaper}";
-        blur_passes = 2;
-        noise = 0.0117;
-        contrast = 0.8916;
-        brightness = 0.8172;
-        vibrancy = 0.1696;
-        vibrancy_darkness = 0.0;
-      }
-    ];
-    input-fields = [
-      {
-        monitor = mainMonitor;
-        outer_color = "rgb(46, 52, 64)";
-        inner_color = "rgb(216, 222, 233)";
-        font_color = "rgb(46, 52, 64)";
-        placeholder_text = "<i>Contraseña...</i>";
-      }
-    ];
-    labels = [
-      {
-        text = "$TIME";
-        font_size = 58;
-        color = "rgb(216, 222, 233)";
-      }
-    ];
   };
 }

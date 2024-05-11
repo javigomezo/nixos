@@ -1,5 +1,10 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
+    inputs.disko.nixosModules.disko
     ./disko
     ./firewall.nix
     ./fonts.nix

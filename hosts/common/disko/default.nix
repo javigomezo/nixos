@@ -6,15 +6,15 @@
   options = {
     disko.enable = lib.mkEnableOption {
       description = "Enables disko";
-      type = lib.bool;
+      type = lib.types.bool;
     };
     disko.encryption = lib.mkEnableOption {
       description = "Enables FDE";
-      type = lib.bool;
+      type = lib.types.bool;
     };
     disko.device = lib.mkOption {
       description = "/dev/disk/by-id/...";
-      type = lib.str;
+      type = lib.types.str;
     };
   };
   config = lib.mkIf config.disko.enable {

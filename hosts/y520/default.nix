@@ -7,7 +7,6 @@
 }: {
   imports = [
     inputs.agenix.nixosModules.age
-    inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
