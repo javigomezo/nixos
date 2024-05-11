@@ -120,7 +120,5 @@
     tmux
   ];
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
   system.stateVersion = "24.05"; # Don't change this
 }

@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    inputs.agenix.nixosModules.default
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
@@ -92,8 +91,6 @@
   ];
 
   programs = {
-    git.enable = true;
-    zsh.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
@@ -146,7 +143,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
   system.stateVersion = "23.05"; # Did you read the comment?
 }

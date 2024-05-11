@@ -6,8 +6,6 @@
   ...
 }: {
   imports = [
-    inputs.agenix.nixosModules.age
-    inputs.impermanence.nixosModules.impermanence
     inputs.nixos-hardware.nixosModules.common-cpu-intel
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia
     inputs.nixos-hardware.nixosModules.common-pc-laptop
@@ -141,8 +139,6 @@
   ];
 
   programs = {
-    git.enable = true;
-    zsh.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
@@ -196,7 +192,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
   system.stateVersion = "24.05"; # Did you read the comment?
 }

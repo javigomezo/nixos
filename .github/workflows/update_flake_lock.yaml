@@ -5,7 +5,7 @@ name: Update flake.lock
 on:
   workflow_dispatch:
   schedule:
-    - cron: "59 1 * * *" # Because Nothing Good Happens After 2 A.M.
+    - cron: "50 1 * * *" # Because Nothing Good Happens After 2 A.M.
 
 jobs:
   build:
