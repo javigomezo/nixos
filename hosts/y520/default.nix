@@ -16,7 +16,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     # inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ./disko.nix
     ./impermanence.nix
     ./quietboot.nix
     ./power-management.nix
@@ -32,6 +31,12 @@
     secrets.wifi = {
       file = ../../secrets/wifi.age;
     };
+  };
+
+  disko = {
+    enable = true;
+    encryption = true;
+    device = "/dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0JB10293D";
   };
 
   boot = {

@@ -15,7 +15,7 @@
         }
         {
           timeout = 300;
-          on-timeout = "pidof ${pkgs.hyprlock} || ${pkgs.hyprlock}";
+          on-timeout = "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         }
         {
           timeout = 380;

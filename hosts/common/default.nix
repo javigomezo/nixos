@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./disko
     ./firewall.nix
     ./fonts.nix
     ./locale.nix
