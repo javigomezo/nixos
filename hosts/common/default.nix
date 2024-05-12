@@ -6,9 +6,11 @@
   imports = [
     inputs.agenix.nixosModules.age
     inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
     ./disko
     ./firewall.nix
     ./fonts.nix
+    ./impermanence
     ./locale.nix
     ./nas.nix
     ./nh.nix
@@ -27,7 +29,12 @@
     enable = true;
     flake = "github:javigomezo/nixos";
     allowReboot = true;
+    rebootWindow = {
+      lower = "05:00";
+      upper = "07:00";
+    };
     dates = "01:59"; # Because Nothing Good Happens After 2 A.M.
+    persistent = true;
   };
 
   systemd = {

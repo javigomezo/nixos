@@ -3,26 +3,26 @@
   config,
   ...
 }: {
-  options = {
-    disko.enable = lib.mkEnableOption {
+  options.my.disko = {
+    enable = lib.mkEnableOption {
       description = "Enables disko";
       type = lib.types.bool;
     };
-    disko.encryption = lib.mkEnableOption {
+    encryption = lib.mkEnableOption {
       description = "Enables FDE";
       type = lib.types.bool;
     };
-    disko.device = lib.mkOption {
+    device = lib.mkOption {
       description = "/dev/disk/by-id/...";
       type = lib.types.str;
     };
   };
-  config = lib.mkIf config.disko.enable {
+  config = lib.mkIf config.my.disko.enable {
     disko.devices = {
       disk = {
         vda = {
           type = "disk";
-          device = config.disko.device;
+          device = config.my.disko.device;
           content = {
             type = "gpt";
             partitions = {
@@ -46,7 +46,7 @@
                 };
               };
               luks =
-                if config.disko.encryption
+                if config.my.disko.encryption
                 then ./fde.nix
                 else ./unencrypted.nix;
             };

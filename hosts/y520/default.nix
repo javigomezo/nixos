@@ -13,7 +13,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     # inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ./impermanence.nix
     ./quietboot.nix
     ./power-management.nix
     ../common
@@ -30,10 +29,17 @@
     };
   };
 
-  disko = {
-    enable = true;
-    encryption = true;
-    device = "/dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0JB10293D";
+  my = {
+    disko = {
+      enable = true;
+      encryption = true;
+      device = "/dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0JB10293D";
+    };
+
+    impermanence = {
+      enable = true;
+      machine-id = "0838f4c362294859ab2a451784b12b61\n";
+    };
   };
 
   boot = {
