@@ -17,6 +17,7 @@
     ./nix.nix
     ./nixpkgs.nix
     ./tailscale.nix
+    ../../users/javier
     ../../services/openssh
   ];
 
