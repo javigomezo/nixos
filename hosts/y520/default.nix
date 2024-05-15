@@ -42,6 +42,7 @@
   };
 
   boot = {
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     supportedFilesystems = ["btrfs" "ntfs"];
     initrd = {
       verbose = false;
@@ -52,7 +53,6 @@
       systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
-    kernelPackages = pkgs.linuxPackages_zen;
     # lanzaboote = {
     #   enable = true;
     #   pkiBundle = "/etc/secureboot";
