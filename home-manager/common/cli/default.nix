@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./starship
+    ./tmux
     ./zsh
   ];
 
