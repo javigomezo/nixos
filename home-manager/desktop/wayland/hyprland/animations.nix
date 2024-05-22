@@ -1,12 +1,11 @@
-{
+{lib, ...}: {
   wayland.windowManager.hyprland.settings = {
     general = {
       gaps_in = 3;
       gaps_out = 5;
       border_size = 2;
       no_border_on_floating = true;
-      "col.active_border" = "rgb(81a1c1)";
-      "col.inactive_border" = "rgb(3b4252)";
+      "col.active_border" = lib.mkForce "rgb(81a1c1)";
       layout = "dwindle";
     };
     settings.animations = {

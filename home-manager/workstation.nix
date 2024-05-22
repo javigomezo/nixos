@@ -1,9 +1,4 @@
 {
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   imports = [
     ./common
     ./desktop/wayland
@@ -29,6 +24,7 @@
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
+
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
