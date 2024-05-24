@@ -5,7 +5,7 @@
   ...
 }: {
   programs.wezterm = {
-    enable = true;
+    enable = false;
     extraConfig = ''
       -- Pull in the wezterm API
       local wezterm = require 'wezterm'

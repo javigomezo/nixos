@@ -23,7 +23,11 @@
         name = "Noto Color Emoji";
         package = pkgs.noto-fonts-emoji;
       };
-      sizes.terminal = 12;
+      sizes = {
+        terminal = 12;
+        desktop = 10;
+        popups = 10;
+      };
     };
     opacity = {
       terminal = 0.82;
