@@ -29,6 +29,7 @@
       terminal = 0.82;
     };
     targets.vim.enable = false;
+    targets.waybar.enable = false;
     image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
     polarity = "dark";
   };
