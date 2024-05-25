@@ -88,6 +88,12 @@
         };
       };
     });
+    devShells = forAllSystems (system: {
+      default = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+      };
+    });
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     homeManagerModules = import ./modules/home-manager;
