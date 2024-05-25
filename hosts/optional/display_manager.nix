@@ -1,6 +1,4 @@
-{pkgs, ...}:
-
-{
+{pkgs, ...}: {
   services = {
     xserver = {
       enable = true;
@@ -10,11 +8,11 @@
       sessionPackages = [pkgs.hyprland];
       sddm = {
         enable = true;
-	wayland.enable = true;
+        wayland.enable = true;
       };
       autoLogin = {
         enable = true;
-	user = "javier";
+        user = "javier";
       };
     };
   };

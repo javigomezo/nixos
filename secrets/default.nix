@@ -1,7 +1,4 @@
-{ lib, inputs, ... }: 
-
-{
-
+{lib, ...}: {
   age.secrets.hashedUserPassword = lib.mkDefault {
     file = ./hashedUserPassword.age;
   };
@@ -12,4 +9,3 @@
     file = ./keepalived.age;
   };
 }
-

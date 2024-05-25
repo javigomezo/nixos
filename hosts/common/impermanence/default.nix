@@ -22,7 +22,7 @@
     # reset / at each boot
     boot.initrd.systemd.services.rollback = lib.mkIf (config.my.disko.encryption) (import ./systemdRollback.nix);
 
-    boot.initrd.postDeviceCommands = lib.mkIf (! config.my.disko.encryption) (lib.mkAfter import ./initrdRollback.nix);
+    boot.initrd.postDeviceCommands = lib.mkIf (! config.my.disko.encryption) (lib.mkAfter import ./initrdRollback.txt);
 
     # configure impermanence
     environment.persistence."/persist" = {
