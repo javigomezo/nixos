@@ -1,10 +1,4 @@
-{
-  inputs,
-  config,
-  pkgs,
-  vars,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [pkgs.hyprpaper];
   home.file = {
     ".config/hypr/scripts/game_mode.sh" = {

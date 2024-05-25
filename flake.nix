@@ -63,6 +63,11 @@
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -71,7 +76,18 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
+    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
   in {
+    checks = forAllSystems (system: {
+      pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          deadnix.enable = true;
+        };
+      };
+    });
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     homeManagerModules = import ./modules/home-manager;

@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   imports = [
     ./icons.nix
   ];

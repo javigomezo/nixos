@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  vars,
-  ...
-}: let
+{vars, ...}: let
   directories = [
     "${vars.dockerVolumes}/tvheadend/data/config"
     # "${vars.dockerVolumes}/tvheadend/lists"
