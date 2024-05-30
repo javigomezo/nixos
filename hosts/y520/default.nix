@@ -11,7 +11,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
-    # inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ./quietboot.nix
     ./power-management.nix
@@ -49,17 +49,22 @@
       systemd.enable = true;
     };
     loader = {
-      systemd-boot.enable = lib.mkForce true;
+      systemd-boot.enable = lib.mkForce false;
       systemd-boot.configurationLimit = 3;
       efi.canTouchEfiVariables = true;
     };
-    # lanzaboote = {
-    #   enable = true;
-    #   pkiBundle = "/etc/secureboot";
-    # };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
+
     blacklistedKernelModules = [
       "nouveau"
       "ideapad_laptop"
+    ];
+    initrd.availableKernelModules = [
+      "aesni_intel"
+      "cryptd"
     ];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
