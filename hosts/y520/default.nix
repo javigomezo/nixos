@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ./quietboot.nix
     ./power-management.nix
+    ./usbguard.nix
     ../common
     ../optional/display_manager.nix
     ../optional/pipewire.nix

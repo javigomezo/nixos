@@ -1,0 +1,5 @@
+{
+  services.usbguard = {
+    enable = true;
+  };
+}
