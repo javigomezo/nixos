@@ -34,6 +34,7 @@
     };
     targets.vim.enable = false;
     targets.waybar.enable = false;
+    targets.rofi.enable = true;
     image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
     polarity = "dark";
   };

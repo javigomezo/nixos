@@ -8,6 +8,7 @@
   imports =
     [
       ./browser
+      ./cliphist.nix
       ./gtk.nix
       ./hypridle
       ./hyprland
@@ -17,6 +18,7 @@
       ./mako
       ./waybar
       ./wezterm
+      ./wofi.nix
       ./wlogout
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
@@ -38,7 +40,8 @@
       polkit-kde-agent
       protonup-qt
       qimgv
-      rofi-wayland-unwrapped
+      #rofi-wayland
+      #rofi-wayland-unwrapped
       swaylock-effects
       wl-clipboard
       xfce.thunar
