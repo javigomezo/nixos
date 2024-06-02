@@ -25,7 +25,7 @@
     style = ''
 
       * {
-        transition: 0.2s;
+        transition: 0.1s;
       }
 
       window {
@@ -36,7 +36,7 @@
       window {
           margin: 0px;
           border: 2px solid #81a1c1;
-          background-color: #3B4252;
+          background-color: rgba(59, 66, 82, 0.82);
           border-radius: 16px;
       }
 
@@ -45,9 +45,9 @@
           margin: 20px;
           padding-left: 20px;
           border: none;
-          color: #4c566a;
+          color: rgba(76, 86, 106, 0.82);
           font-weight: bold;
-          background: #eceff4;
+          background: rgba(236, 239, 244, 0.82);
          	outline: none;
           border-radius: 16px;
       }
@@ -65,7 +65,7 @@
           margin: 20px;
           margin-top: 0px;
           border: none;
-          color: #b48ead;
+          color: rgba(180, 142, 173, 0.82);
           border-radius: 16px;
       }
 
@@ -118,7 +118,7 @@
           margin: 0px;
           border: none;
           border-radius: 16px;
-          background: #5e81ac;
+          background: rgba(94, 129, 172, 0.82);
       }
     '';
   };
