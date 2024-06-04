@@ -18,12 +18,10 @@
     htop
     outils
     (python3.withPackages (ps: with ps; [requests]))
-    qmk
     ripgrep
     stow
     tmux
     unzip
-    xarchiver
     vim
     zip
   ];

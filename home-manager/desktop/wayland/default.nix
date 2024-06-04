@@ -40,10 +40,12 @@
       polkit-kde-agent
       protonup-qt
       qimgv
+      qmk
       #rofi-wayland
       #rofi-wayland-unwrapped
       swaylock-effects
-      wl-clipboard
+      wl-clipboar
+      xarchiver
       xfce.thunar
       xwayland
     ]);
