@@ -5,8 +5,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "javigomezo";
       repo = "nord-tmux";
-      rev = "255814eebd2bbc1ddbb7a22367b1e4c20477e286";
-      sha256 = "sha256-diZbPWq0/eGdR6f7i5qDLtJC/4ePSDsoPstEtI12GOo=";
+      rev = "4b08d82f504ce057b83b218a44983f48ded614fd";
+      sha256 = "sha256-LDeBTUywBu81Uant+E++yDymjIqGeM8zvPnNkN4kq2Q=";
     };
   };
 in {
@@ -45,6 +45,7 @@ in {
     ];
     extraConfig = ''
       set -g status-position top
+      set-option -sa terminal-overrides ",xterm-256color:Tc"
 
       # Shortcuts to Switch panes with vim keys
       bind -n M-j select-pane -D
