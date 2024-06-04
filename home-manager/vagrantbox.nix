@@ -20,6 +20,15 @@
     kubectl
   ];
 
+  programs.git = {
+    enable = true;
+    userName = lib.mkForce "Javier Gomez Ortiz";
+    userEmail = lib.mkForce "javier.gomez@eviden.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+  };
+
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
