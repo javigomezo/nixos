@@ -154,6 +154,15 @@
           ./home-manager/y520.nix
         ];
       };
+      "vagrant@vagrantbox" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+        modules = [
+          ./home-manager/vagrantbox.nix
+        ];
+      };
       "javier@pi3b" = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux;
         extraSpecialArgs = {
