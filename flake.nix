@@ -158,6 +158,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
+          vars = import ./hosts/y520/vars.nix;
         };
         modules = [
           ./home-manager/vagrantbox.nix
