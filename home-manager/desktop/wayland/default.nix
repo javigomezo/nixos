@@ -44,7 +44,7 @@
       #rofi-wayland
       #rofi-wayland-unwrapped
       swaylock-effects
-      wl-clipboar
+      wl-clipboard
       xarchiver
       xfce.thunar
       xwayland
