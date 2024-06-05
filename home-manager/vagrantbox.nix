@@ -17,10 +17,14 @@
   };
 
   home.packages = with pkgs; [
+    alejandra
     kubectl
     k9s
+    sshuttle
   ];
 
+  programs.zsh.history.path = lib.mkForce "/vagrant/projects/.zsh_history";
+  programs.zsh.history.size = 50000;
   programs.git = {
     enable = true;
     userName = lib.mkForce "Javier Gomez Ortiz";
@@ -28,6 +32,10 @@
     extraConfig = {
       init.defaultBranch = "main";
     };
+  };
+
+  home.sessionVariables = {
+    KUBECONFIG = "$(\ls -d ~/.kube/* | grep config- | tr '\n' ':')";
   };
 
   # You can update home Manager without changing this value. See
