@@ -7,9 +7,7 @@
     ./common
   ];
 
-  fonts.fontconfig.enable = true;
-  xdg.enable = false;
-  xsession.enable = false;
+  fonts.fontconfig.enable = lib.mkForce false;
 
   home = {
     username = lib.mkForce "vagrant";
@@ -24,7 +22,7 @@
   ];
 
   programs.zsh.history.path = lib.mkForce "/vagrant/projects/.zsh_history";
-  programs.zsh.history.size = 50000;
+
   programs.git = {
     enable = true;
     userName = lib.mkForce "Javier Gomez Ortiz";
@@ -35,7 +33,7 @@
   };
 
   home.sessionVariables = {
-    KUBECONFIG = "$(\ls -d ~/.kube/* | grep config- | tr '\n' ':')";
+    KUBECONFIG = "$(\ls -d /vagrant/projects/.kube/* | grep config- | tr '\n' ':')";
   };
 
   # You can update home Manager without changing this value. See

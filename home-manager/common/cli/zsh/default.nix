@@ -2,6 +2,12 @@
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
+    history = {
+      size = 50000;
+      extended = true;
+      expireDuplicatesFirst = true;
+      ignoreAllDups = true;
+    };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;

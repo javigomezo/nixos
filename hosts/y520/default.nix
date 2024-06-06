@@ -40,6 +40,9 @@
       enable = true;
       machine-id = "0838f4c362294859ab2a451784b12b61\n";
     };
+    stylix = {
+      desktop = true;
+    };
   };
 
   boot = {

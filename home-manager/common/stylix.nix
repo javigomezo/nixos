@@ -1,41 +1,57 @@
 {
+  lib,
+  config,
   inputs,
   pkgs,
   vars,
   ...
 }: {
-  imports = [
-    inputs.stylix.homeManagerModules.stylix
-  ];
-  stylix = {
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-    cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
-      size = 24;
+  options.my.stylix = {
+    enable = lib.mkOption {
+      description = "Enables stylix";
+      type = lib.types.bool;
+      default = true;
     };
-    fonts = {
-      monospace = {
-        name = "Comic Code Ligatures";
-        package = inputs.private-fonts.packages.x86_64-linux.ComicCodeLigatures;
-      };
-      emoji = {
-        name = "Noto Color Emoji";
-        package = pkgs.noto-fonts-emoji;
-      };
-      sizes = {
-        terminal = 12;
-        desktop = 10;
-        popups = 10;
-      };
+    desktop = lib.mkOption {
+      description = "Enables desktop configuration";
+      type = lib.types.bool;
+      default = false;
     };
-    opacity = {
-      terminal = 0.82;
+  };
+  config = lib.mkIf config.my.stylix.enable {
+    stylix = {
+      image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+      cursor = lib.mkIf config.my.stylix.desktop {
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Classic";
+        size = 24;
+      };
+      fonts = lib.mkIf config.my.stylix.desktop {
+        monospace = {
+          name = "Comic Code Ligatures";
+          package = inputs.private-fonts.packages.x86_64-linux.ComicCodeLigatures;
+        };
+        emoji = {
+          name = "Noto Color Emoji";
+          package = pkgs.noto-fonts-emoji;
+        };
+        sizes = {
+          terminal = 12;
+          desktop = 10;
+          popups = 10;
+        };
+      };
+      opacity = lib.mkIf config.my.stylix.desktop {
+        terminal = 0.82;
+      };
+
+      targets = {
+        vim.enable = false;
+        waybar.enable = false;
+        rofi.enable = true;
+      };
+      polarity = "dark";
     };
-    targets.vim.enable = false;
-    targets.waybar.enable = false;
-    targets.rofi.enable = true;
-    image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
-    polarity = "dark";
   };
 }

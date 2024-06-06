@@ -1,5 +1,6 @@
-{
+{inputs, ...}: {
   imports = [
+    inputs.stylix.homeManagerModules.stylix
     ./cli
     ./git.nix
     ./neovim.nix
