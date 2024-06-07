@@ -10,6 +10,7 @@
     dig
     duf
     eza
+    gcc
     gdu
     git
     gnumake
@@ -18,6 +19,7 @@
     htop
     outils
     (python3.withPackages (ps: with ps; [requests]))
+    pyright
     ripgrep
     stow
     tmux
