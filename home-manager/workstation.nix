@@ -8,6 +8,12 @@
   xdg.enable = true;
   xsession.enable = true;
 
+  my = {
+    stylix = {
+      desktop = true;
+    };
+  };
+
   monitors = [
     {
       enabled = true;
