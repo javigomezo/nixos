@@ -47,7 +47,7 @@
       };
 
       targets = {
-        vim.enable = false;
+        vim.enable = true;
         waybar.enable = false;
         rofi.enable = true;
       };

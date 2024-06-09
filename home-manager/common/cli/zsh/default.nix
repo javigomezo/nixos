@@ -45,6 +45,10 @@
     bat = {
       enable = true;
     };
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     fzf = {
       enable = true;
       enableZshIntegration = true;

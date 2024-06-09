@@ -15,7 +15,6 @@
   };
 
   home.packages = with pkgs; [
-    alejandra
     kubectl
     k9s
     sshuttle
