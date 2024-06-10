@@ -10,22 +10,22 @@
         enabled = true;
         show_start = true;
       };
-    };
-    exclude = {
-      buftypes = ["terminal" "nofile"];
-      filetypes = [
-        "help"
-        "alpha"
-        "dashboard"
-        "neo-tree"
-        "Trouble"
-        "trouble"
-        "lazy"
-        "mason"
-        "notify"
-        "toggleterm"
-        "lazyterm"
-      ];
+      exclude = {
+        buftypes = ["terminal" "nofile"];
+        filetypes = [
+          "help"
+          "alpha"
+          "dashboard"
+          "neo-tree"
+          "Trouble"
+          "trouble"
+          "lazy"
+          "mason"
+          "notify"
+          "toggleterm"
+          "lazyterm"
+        ];
+      };
     };
   };
 }

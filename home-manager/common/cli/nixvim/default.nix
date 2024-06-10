@@ -8,7 +8,7 @@
     enable = true;
     vimAlias = true;
     colorschemes.nord.enable = true;
-    options = {
+    opts = {
       number = true;
       relativenumber = true;
       shiftwidth = 2;
