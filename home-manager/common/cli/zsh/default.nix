@@ -14,7 +14,7 @@
     completionInit = "
       zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
       autoload -U compinit
-      autoload -Uz zcalc
+      compinit
     ";
     shellAliases = {
       ".." = "cd ..";
@@ -44,10 +44,6 @@
   programs = {
     bat = {
       enable = true;
-    };
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
