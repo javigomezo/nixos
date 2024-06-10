@@ -4,6 +4,8 @@
     ./desktop/wayland
   ];
 
+  my.stylix.desktop = true;
+
   fonts.fontconfig.enable = true;
   xdg.enable = true;
   xsession.enable = true;
