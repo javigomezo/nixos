@@ -20,8 +20,6 @@
     sshuttle
   ];
 
-  #programs.zsh.history.path = lib.mkForce "/vagrant/projects/.zsh_history";
-
   programs.git = {
     enable = true;
     userName = lib.mkForce "Javier Gomez Ortiz";
