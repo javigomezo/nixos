@@ -20,7 +20,7 @@
     sshuttle
   ];
 
-  programs.zsh.history.path = lib.mkForce "/vagrant/projects/.zsh_history";
+  #programs.zsh.history.path = lib.mkForce "/vagrant/projects/.zsh_history";
 
   programs.git = {
     enable = true;
