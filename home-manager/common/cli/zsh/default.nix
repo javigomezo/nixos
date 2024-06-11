@@ -11,11 +11,12 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
-    completionInit = "
-      zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+    completionInit = ''
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z} r:|=* l:|=* r:|=*'
+      zstyle ':completion:*' list-colors "''${(s.:.)LS_COLORS}"
       autoload -U compinit
       compinit
-    ";
+    '';
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";
@@ -44,6 +45,10 @@
   programs = {
     bat = {
       enable = true;
+    };
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
