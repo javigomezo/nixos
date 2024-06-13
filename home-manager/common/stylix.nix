@@ -18,8 +18,9 @@
       default = false;
     };
   };
-  config = lib.mkIf config.my.stylix.enable {
+  config = {
     stylix = {
+      enable = config.my.stylix.enable;
       image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       cursor = lib.mkIf config.my.stylix.desktop {
