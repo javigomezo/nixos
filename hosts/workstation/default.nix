@@ -83,7 +83,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
-    inputs.agenix.packages.x86_64-linux.default
     pkgs.sbctl
     pkgs.lxqt.lxqt-policykit
     pkgs.git

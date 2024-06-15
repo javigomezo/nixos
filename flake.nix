@@ -29,8 +29,8 @@
       url = "github:NixOS/nixos-hardware";
     };
 
-    agenix = {
-      url = "github:ryantm/agenix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -106,7 +106,6 @@
         };
         modules = [
           ./hosts/workstation
-          ./secrets
         ];
       };
       y520 = nixpkgs.lib.nixosSystem {
@@ -116,7 +115,6 @@
         };
         modules = [
           ./hosts/y520
-          ./secrets
         ];
       };
       pi3b = nixpkgs.lib.nixosSystem {
@@ -127,7 +125,6 @@
         };
         modules = [
           ./hosts/pi3b
-          ./secrets
         ];
       };
     };

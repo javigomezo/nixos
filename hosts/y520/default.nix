@@ -22,13 +22,6 @@
     ../optional/steam.nix
   ];
 
-  age = {
-    identityPaths = ["/persist/etc/ssh/ssh_host_ed25519_key"];
-    secrets.wifi = {
-      file = ../../secrets/wifi.age;
-    };
-  };
-
   my = {
     disko = {
       enable = true;
@@ -71,11 +64,7 @@
   };
 
   networking = {
-    wireless.environmentFile = config.age.secrets.wifi.path;
-    wireless.networks = {
-      "@SSID@".psk = "@PSK@";
-    };
-    hostName = "y520"; # Define your hostname.
+    hostName = "y520";
     enableIPv6 = true;
     interfaces = {
       wlp3s0 = {
@@ -140,7 +129,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
-    inputs.agenix.packages.x86_64-linux.default
     pkgs.brightnessctl
     pkgs.intel-gpu-tools
     pkgs.sbctl

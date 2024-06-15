@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    inputs.agenix.nixosModules.age
+    inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
     ./disko
@@ -16,6 +16,7 @@
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
+    ./sops.nix
     ./tailscale.nix
     ../../users/javier
     ../../services/openssh
