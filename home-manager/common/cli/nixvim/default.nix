@@ -14,5 +14,8 @@
       shiftwidth = 2;
     };
     globals.mapleader = " ";
+    extraConfigVim = ''
+      set undofile
+    '';
   };
 }
