@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./starship
-    #./nixvim
+    ./nixvim
     ./tmux
     ./zsh
   ];
