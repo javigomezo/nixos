@@ -13,7 +13,6 @@
       ./hypridle
       ./hyprland
       ./hyprlock
-      ./hyprpaper
       ./kitty
       ./mako
       ./waybar

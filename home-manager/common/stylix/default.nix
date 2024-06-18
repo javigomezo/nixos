@@ -21,7 +21,7 @@
   config = {
     stylix = {
       enable = config.my.stylix.enable;
-      image = ../desktop/wayland/hyprpaper/wallpapers/${vars.wallpaper};
+      image = ./wallpapers/${vars.wallpaper};
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
       cursor = lib.mkIf config.my.stylix.desktop {
         package = pkgs.bibata-cursors;

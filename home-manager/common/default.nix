@@ -4,7 +4,7 @@
     ./cli
     ./git.nix
     ./neovim.nix
-    ./stylix.nix
+    ./stylix
     ../../hosts/common/nixpkgs.nix
   ];
 

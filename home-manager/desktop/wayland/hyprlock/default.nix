@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  vars,
   ...
 }: let
   mainMonitor =
@@ -20,7 +19,7 @@ in {
       background = [
         {
           monitor = mainMonitor;
-          path = "${config.home.homeDirectory}/.config/hypr/wallpapers/${vars.wallpaper}";
+          path = "${config.stylix.image}";
           blur_passes = 2;
           noise = 0.0117;
           contrast = 0.8916;
