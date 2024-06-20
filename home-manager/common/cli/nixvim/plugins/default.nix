@@ -4,6 +4,7 @@
     # ./bufferline.nix
     ./cmp.nix
     #./codeium.nix
+    ./comment.nix
     ./conform-nvim.nix
     ./dressing.nix
     ./flash.nix
@@ -17,5 +18,6 @@
     ./staline.nix
     ./supermaven.nix
     ./telescope.nix
+    ./treesitter
   ];
 }
