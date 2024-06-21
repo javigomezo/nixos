@@ -15,9 +15,11 @@
   };
 
   home.packages = with pkgs; [
+    apacheHttpd
     kubectl
     k9s
     sshuttle
+    google-cloud-sdk
   ];
 
   programs.git = {
