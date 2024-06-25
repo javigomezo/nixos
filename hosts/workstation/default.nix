@@ -73,7 +73,6 @@
     #Make sure opengl is enabled
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
@@ -111,6 +110,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
+    blueman.enable = true;
     btrfs.autoScrub.enable = true;
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
