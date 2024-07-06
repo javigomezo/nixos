@@ -59,7 +59,7 @@
         pseudotile = false;
         preserve_split = true;
       };
-      master.new_is_master = true;
+      #master.new_is_master = true;
       monitor = map (
         m: let
           resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
