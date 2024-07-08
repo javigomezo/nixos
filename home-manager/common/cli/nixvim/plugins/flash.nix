@@ -2,12 +2,14 @@
   programs.nixvim.plugins.flash = {
     enable = true;
     #search.mode = "fuzzy";
-    jump.autojump = true;
-    label = {
-      uppercase = false;
-      rainbow = {
-        enabled = false;
-        shade = 5;
+    settings = {
+      jump.autojump = true;
+      label = {
+        uppercase = false;
+        rainbow = {
+          enabled = false;
+          shade = 5;
+        };
       };
     };
   };
