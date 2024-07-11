@@ -27,6 +27,7 @@
       inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
     ]
     ++ (with pkgs; [
+      bambu-studio
       ffmpeg
       gamescope
       grimblast
