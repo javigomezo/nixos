@@ -3,6 +3,7 @@
     ./common
   ];
 
+  my.stylix.desktop = false;
   xdg.enable = true;
 
   # You can update home Manager without changing this value. See
