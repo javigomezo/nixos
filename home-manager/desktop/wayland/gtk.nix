@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   qt.enable = true;
-  qt.platformTheme.name = "gtk";
   gtk = {
     enable = true;
     iconTheme = {
