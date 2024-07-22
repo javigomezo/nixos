@@ -13,7 +13,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ./quietboot.nix
     ./power-management.nix
     ./usbguard.nix
     ../common

@@ -31,6 +31,7 @@
       ffmpeg
       gamescope
       grimblast
+      gparted
       input-leap
       killall
       localsend
