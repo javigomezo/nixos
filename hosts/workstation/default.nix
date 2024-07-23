@@ -67,7 +67,7 @@
       nvidiaSettings = true;
       nvidiaPersistenced = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     #Make sure opengl is enabled
     opengl = {
