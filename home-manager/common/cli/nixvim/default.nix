@@ -6,6 +6,7 @@
   ];
   programs.nixvim = {
     enable = true;
+    defaultEditor = true;
     vimAlias = true;
     colorschemes.nord.enable = true;
     opts = {

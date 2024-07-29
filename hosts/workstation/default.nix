@@ -14,6 +14,8 @@
     ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
+    ../../services/network/traefik
+    #../../services/network/traefik_docker.nix
   ];
 
   boot = {
@@ -28,6 +30,8 @@
       enable = false;
       pkiBundle = "/etc/secureboot";
     };
+    kernel.sysctl."net.core.rmem_max" = 7500000;
+    kernel.sysctl."net.core.wmem_max" = 7500000;
     blacklistedKernelModules = ["nouveau"];
     supportedFilesystems = ["ntfs"];
     binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi

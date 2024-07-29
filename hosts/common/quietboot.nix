@@ -1,9 +1,9 @@
-{
+{pkgs, ...}: {
   boot = {
     plymouth = {
       enable = true;
-      # theme = "spinner-monochrome";
-      # themePackages = [pkgs.plymouth-spinner-monochrome];
+      theme = "circle_flow";
+      themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = ["circle_flow"];})];
     };
     loader.timeout = 0;
     consoleLogLevel = 0;
