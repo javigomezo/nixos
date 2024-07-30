@@ -7,7 +7,7 @@
         22
       ];
       allowedUDPPorts = [
-        41641
+        41641 # Tailscale
       ];
     };
   };
