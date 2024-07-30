@@ -1,5 +1,5 @@
 {
-  dockerVolumes = "/home/javier/docker-services";
+  dockerVolumes = "/opt/docker";
   timeZone = "Europe/Madrid";
   wallpaper = "space.png";
 }

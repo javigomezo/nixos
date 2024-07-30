@@ -1,10 +1,4 @@
 {config, ...}: {
-  sops.secrets = {
-    fqdn = {
-      sopsFile = ../../../hosts/common/secrets.yaml;
-    };
-  };
-
   sops.templates."dynamic_config.yaml" = {
     owner = "traefik";
     path = "/var/lib/traefik/dynamic_config.yaml";

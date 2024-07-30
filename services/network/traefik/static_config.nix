@@ -1,16 +1,4 @@
 {config, ...}: {
-  sops.secrets = {
-    fqdn = {
-      sopsFile = ../../../hosts/common/secrets.yaml;
-    };
-    cloudflare_email = {
-      sopsFile = ../../../hosts/common/secrets.yaml;
-    };
-    cloudflare_api_key = {
-      sopsFile = ../../../hosts/common/secrets.yaml;
-    };
-  };
-
   sops.templates."static_config.yaml" = {
     owner = "traefik";
     path = "/var/lib/traefik/static_config.yaml";

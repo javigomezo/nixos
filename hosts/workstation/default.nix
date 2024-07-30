@@ -10,12 +10,13 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
+    ./secrets.nix
     ../common
     ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
-    ../../services/network/traefik
-    #../../services/network/traefik_docker.nix
+    #../../services/network/traefik
+    #../../services/media/tautulli.nix
   ];
 
   boot = {
