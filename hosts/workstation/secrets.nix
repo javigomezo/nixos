@@ -2,10 +2,10 @@
   sops = {
     defaultSopsFile = ./secrets.yaml;
     defaultSopsFormat = "yaml";
-    secrets = {
-      fqdn = {};
-      cloudflare_email = {};
-      cloudflare_api_key = {};
-    };
+    # secrets = {
+    #   fqdn = {};
+    #   "traefik/cloudflare_email" = {};
+    #   "traefik/cloudflare_api_key" = {};
+    # };
   };
 }

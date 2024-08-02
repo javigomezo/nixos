@@ -8,6 +8,16 @@
           traefik:
             rule: "Host(`traefik.${config.sops.placeholder.fqdn}`)"
             service: "api@internal"
+          adguardhome:
+            rule: "Host(`adguard.${config.sops.placeholder.fqdn}`)"
+            service: "adguardhome"
+            middlewares:
+              - chain-oauth
+        services:
+          adguardhome:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:3000"
         middlewares:
           ratelimit:
             rateLimit:

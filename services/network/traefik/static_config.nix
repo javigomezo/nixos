@@ -44,7 +44,7 @@
       certificatesResolvers:
         letsencrypt:
           acme:
-            email: ${config.sops.placeholder.cloudflare_email}
+            email: ${config.sops.placeholder."traefik/cloudflare_email"}
             storage: /var/lib/traefik/acme.json
             keyType: EC384
             dnsChallenge:

@@ -16,7 +16,7 @@
     ../optional/pipewire.nix
     ../optional/steam.nix
     #../../services/network/traefik
-    #../../services/media/tautulli.nix
+    #../../services/network/adguardhome.nix
   ];
 
   boot = {
@@ -74,9 +74,9 @@
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
     #Make sure opengl is enabled
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
     keyboard.qmk.enable = true;
