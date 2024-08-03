@@ -15,5 +15,7 @@
         then ["/persist/etc/ssh/ssh_host_ed25519_key"]
         else ["/etc/ssh/ssh_host_ed25519_key"]
       );
+    defaultSopsFile = ../${config.networking.hostName}/secrets.yaml;
+    defaultSopsFormat = "yaml";
   };
 }

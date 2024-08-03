@@ -1,6 +1,6 @@
 {
   imports = [
-    ./adguard_config.nix
+    ./configuration.nix
   ];
   services.adguardhome = {
     enable = true;

@@ -5,6 +5,14 @@
     ./environment_file.nix
   ];
 
+  sops = {
+    secrets = {
+      fqdn = {};
+      "traefik/cloudflare_email" = {};
+      "traefik/cloudflare_api_key" = {};
+    };
+  };
+
   virtualisation.podman.enable = true;
   systemd.services.traefik = {
     serviceConfig.EnvironmentFile = [config.sops.templates."traefik.env".path];

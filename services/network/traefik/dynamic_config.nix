@@ -8,12 +8,21 @@
           traefik:
             rule: "Host(`traefik.${config.sops.placeholder.fqdn}`)"
             service: "api@internal"
+          authelia:
+            rule: "Host(`authelia.${config.sops.placeholder.fqdn}`)"
+            service: "authelia"
+            middlewares:
+            - chain-no-oauth
           adguardhome:
             rule: "Host(`adguard.${config.sops.placeholder.fqdn}`)"
             service: "adguardhome"
             middlewares:
               - chain-oauth
         services:
+          authelia:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:9091"
           adguardhome:
             loadBalancer:
               servers:

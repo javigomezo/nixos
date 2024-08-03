@@ -1,9 +1,9 @@
 {
   imports = [
-    ./adguardhome.nix
-    ./authelia.nix
+    ./adguardhome
+    ./authelia
     ./cf-ddns.nix
-    ./traefik.nix
+    ./traefik
     ./wireguard.nix
   ];
 }
