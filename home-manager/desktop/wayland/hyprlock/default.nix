@@ -31,22 +31,53 @@ in {
       input-field = [
         {
           monitor = mainMonitor;
-          size = "200, 50";
-          position = "0, -20";
+          size = "200, 60";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          position = "0, -290";
+          halign = "center";
+          valign = "center";
+          fade_on_empty = false;
           outer_color = "rgb(46, 52, 64)";
           inner_color = "rgb(216, 222, 233)";
           font_color = "rgb(46, 52, 64)";
-          placeholder_text = "<i>Contraseña...</i>";
+          hide_input = false;
+          placeholder_text = ''<i><span>Hola, $USER</span></i>'';
         }
       ];
       label = [
         {
-          text = "$TIME";
-          font_size = 58;
-          position = "0, 80";
+          text = ''cmd[update:1000] echo -e "$(date +"%H")"'';
+          font_size = 180;
+          position = "0, 300";
           halign = "center";
           valign = "center";
-          color = "rgb(216, 222, 233)";
+          color = "rgba(235, 203, 139, 0.82)";
+        }
+        {
+          text = ''cmd[update:1000] echo -e "$(date +"%M")"'';
+          font_size = 180;
+          position = "0, 75";
+          halign = "center";
+          valign = "center";
+          color = "rgb(216, 222, 233, 0.82)";
+        }
+        {
+          text = ''cmd[update:1000] echo "<span color='##d8dee9'>$(date '+%A, ')</span><span color='##ebcb8b'>$(date '+%d %B')</span>"'';
+          font_size = 30;
+          position = "0, -80";
+          halign = "center";
+          valign = "center";
+        }
+        {
+          text = "";
+          color = "rgb(216, 222, 233, 0.82)";
+          font_size = 50;
+          position = "0, -180";
+          halign = "center";
+          valign = "center";
         }
       ];
     };
