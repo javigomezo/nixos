@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.luasnip = {
     enable = true;
-    extraConfig = {
+    settings = {
       enable_autosnippets = true;
     };
     fromVscode = [
