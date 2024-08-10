@@ -78,14 +78,14 @@
       enable32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
-    keyboard.qmk.enable = true;
+
+    # keyboard.qmk.enable = true;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
     pkgs.sbctl
-    pkgs.lxqt.lxqt-policykit
     pkgs.git
   ];
 

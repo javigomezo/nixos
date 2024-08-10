@@ -8,9 +8,7 @@
     settings = {
       exec-once = [
         "${lib.getExe config.programs.hyprlock.package}"
-        "${lib.getExe pkgs.lxqt.lxqt-policykit}"
-        #"hyprlock"
-        #"lxqt-policykit-agent"
+        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
     };
   };

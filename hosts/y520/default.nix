@@ -130,7 +130,6 @@
     pkgs.intel-gpu-tools
     pkgs.sbctl
     pkgs.tpm2-tss
-    pkgs.lxqt.lxqt-policykit
   ];
 
   programs = {

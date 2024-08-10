@@ -22,6 +22,9 @@
       "float, title:^(Picture-in-Picture)$"
       "size 800 600, title:^(Control de volumen)$"
       "float, title:^(Authentication Required)$"
+      "float, polkit-kde-authentication-agent-1"
+      "center,polkit-kde-authentication-agent-1"
+      "size 500 500, polkit-kde-authentication-agent-1"
     ];
     windowrulev2 = [
       "animation popin, class:^(thunar)$"
