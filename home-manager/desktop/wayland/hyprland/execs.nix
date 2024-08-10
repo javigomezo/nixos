@@ -1,10 +1,16 @@
 {
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   wayland.windowManager.hyprland.settings = {
     settings = {
       exec-once = [
-        "hyprlock"
-        "lxqt-policykit-agent"
-        "hyprpaper"
+        "${lib.getExe config.programs.hyprlock.package}"
+        "${lib.getExe pkgs.lxqt.lxqt-policykit}"
+        #"hyprlock"
+        #"lxqt-policykit-agent"
       ];
     };
   };

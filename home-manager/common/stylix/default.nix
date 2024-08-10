@@ -39,8 +39,8 @@
         };
         sizes = {
           terminal = 12;
-          desktop = 10;
-          popups = 10;
+          desktop = 12;
+          popups = 12;
         };
       };
       opacity = lib.mkIf config.my.stylix.desktop {
