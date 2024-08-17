@@ -37,6 +37,7 @@
       localsend
       mpv
       multiviewer-for-f1
+      obsidian
       pavucontrol
       polkit-kde-agent
       protonup-qt

@@ -9,6 +9,9 @@ in {
   # home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
   programs.firefox = {
     enable = true;
+    policies.SecurityDevices = {
+      "OpenSC PKCS11" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+    };
     package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
         CaptivePortal = false;

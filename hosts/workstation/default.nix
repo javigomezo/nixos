@@ -88,6 +88,7 @@
   environment.systemPackages = [
     pkgs.sbctl
     pkgs.git
+    pkgs.opensc
   ];
 
   programs = {
@@ -117,6 +118,7 @@
     btrfs.autoScrub.enable = true;
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
+    pcscd.enable = true; # For smartcards
     tumbler.enable = true; # Thumbnail support for images
     dbus.enable = true;
   };
