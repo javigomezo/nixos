@@ -14,6 +14,7 @@
     ../optional/display_manager.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
+    ../optional/retroarch.nix
     #../../services/network/traefik
     #../../services/network/authelia
   ];
