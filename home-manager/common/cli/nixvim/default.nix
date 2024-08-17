@@ -13,6 +13,9 @@
       number = true;
       relativenumber = true;
       shiftwidth = 2;
+      laststatus = 2;
+      showtabline = 2;
+      termguicolors = true;
     };
     globals.mapleader = " ";
     extraConfigVim = ''

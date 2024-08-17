@@ -13,7 +13,11 @@
       })
     ];
     extraConfigLua = ''
-        require("stabline").setup({style = "bubble"})
+        require("stabline").setup(
+          {
+            bg = "#434c5e",
+          }
+        )
         require("staline").setup({
         sections = {
             left = {

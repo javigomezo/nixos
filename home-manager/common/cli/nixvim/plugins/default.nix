@@ -15,6 +15,7 @@
     ./mini.nix
     ./noice.nix
     ./notify.nix
+    ./oil.nix
     ./staline.nix
     ./supermaven.nix
     ./telescope.nix
