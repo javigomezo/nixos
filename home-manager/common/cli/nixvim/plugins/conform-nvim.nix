@@ -6,16 +6,18 @@
   ];
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
-    formatOnSave = {
-      timeoutMs = 500;
-      lspFallback = true;
-    };
-    formattersByFt = {
-      lua = ["stylua"];
-      nix = ["alejandra"];
-      python = ["isort" "black"];
-      javascript = [["prettierd" "prettier"]];
-      "_" = ["trim_whitespace"];
+    settings = {
+      format_on_save = {
+        timeoutMs = 500;
+        lspFallback = true;
+      };
+      formatters_by_ft = {
+        lua = ["stylua"];
+        nix = ["alejandra"];
+        python = ["isort" "black"];
+        javascript = [["prettierd" "prettier"]];
+        "_" = ["trim_whitespace"];
+      };
     };
   };
 }
