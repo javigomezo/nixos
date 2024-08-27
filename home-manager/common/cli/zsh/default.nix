@@ -24,11 +24,11 @@
       cd = "z";
       df = "duf";
       ls = "eza --color=always --icons --group-directories-first";
+      l = "ls";
       la = "ls -a";
       li = "ls -a | grep -i";
-      ll = "ls -lh";
+      ll = "ls -l";
       lla = "ls -lah";
-      l = "ls -l";
       #cat = "bat";
       k = "kubectl";
       kubechange = "kubectl config use-context ";
