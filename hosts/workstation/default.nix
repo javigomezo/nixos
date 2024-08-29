@@ -24,7 +24,7 @@
     kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
     loader = {
       systemd-boot.enable = lib.mkForce true;
-      systemd-boot.configurationLimit = 3;
+      systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = true;
     };
     lanzaboote = {

@@ -43,7 +43,7 @@
     };
     loader = {
       systemd-boot.enable = lib.mkForce false;
-      systemd-boot.configurationLimit = 3;
+      systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = true;
     };
     lanzaboote = {

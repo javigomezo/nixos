@@ -27,7 +27,7 @@
       variables = ["--all"];
     };
     settings = {
-      render.explicit_sync = false;
+      render.explicit_sync = true;
       input = {
         kb_layout = "es";
         kb_options = "caps:super";
