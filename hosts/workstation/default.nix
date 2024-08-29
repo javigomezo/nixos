@@ -67,11 +67,11 @@
     bluetooth.enable = true;
     nvidia = {
       modesetting.enable = true;
-      #open = true; # If true breaks hyprland so...
+      open = false; # If true breaks hyprland so...
       nvidiaSettings = true;
       nvidiaPersistenced = true;
       powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
     #Make sure opengl is enabled
     graphics = {
@@ -121,6 +121,7 @@
     pcscd.enable = true; # For smartcards
     tumbler.enable = true; # Thumbnail support for images
     dbus.enable = true;
+    xserver.videoDrivers = ["nvidia"];
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
