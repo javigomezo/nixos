@@ -32,34 +32,10 @@
       enable = true;
       machine-id = "0838f4c362294859ab2a451784b12b61\n";
     };
-  };
-
-  boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    supportedFilesystems = ["btrfs" "ntfs"];
-    initrd = {
-      verbose = false;
-      systemd.enable = true;
+    boot = {
+      loader.timeout = 0;
+      secureboot.enable = true;
     };
-    loader = {
-      systemd-boot.enable = lib.mkForce false;
-      systemd-boot.configurationLimit = 10;
-      efi.canTouchEfiVariables = true;
-    };
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
-
-    blacklistedKernelModules = [
-      "nouveau"
-      "ideapad_laptop"
-    ];
-    initrd.availableKernelModules = [
-      "aesni_intel"
-      "cryptd"
-    ];
-    binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
   };
 
   networking = {

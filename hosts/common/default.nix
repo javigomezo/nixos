@@ -16,7 +16,7 @@
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
-    ./quietboot.nix
+    ./boot_config.nix
     ./sops.nix
     ./tailscale.nix
     ../../users/javier

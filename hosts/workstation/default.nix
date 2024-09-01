@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   config,
   pkgs,
   ...
@@ -18,25 +17,6 @@
     #../../services/network/traefik
     #../../services/network/authelia
   ];
-
-  boot = {
-    loader.timeout = lib.mkForce 10;
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-    loader = {
-      systemd-boot.enable = lib.mkForce true;
-      systemd-boot.configurationLimit = 10;
-      efi.canTouchEfiVariables = true;
-    };
-    lanzaboote = {
-      enable = false;
-      pkiBundle = "/etc/secureboot";
-    };
-    kernel.sysctl."net.core.rmem_max" = 7500000;
-    kernel.sysctl."net.core.wmem_max" = 7500000;
-    blacklistedKernelModules = ["nouveau"];
-    supportedFilesystems = ["ntfs"];
-    binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
-  };
 
   networking = {
     hostName = "workstation"; # Define your hostname.
