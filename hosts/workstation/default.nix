@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   pkgs,
   ...
 }: {
@@ -14,6 +13,7 @@
     ../optional/pipewire.nix
     ../optional/steam.nix
     ../optional/retroarch.nix
+    ../optional/nvidia.nix
     #../../services/network/traefik
     #../../services/network/authelia
   ];
@@ -45,22 +45,11 @@
 
   hardware = {
     bluetooth.enable = true;
-    nvidia = {
-      modesetting.enable = true;
-      open = false; # If true breaks hyprland so...
-      nvidiaSettings = true;
-      nvidiaPersistenced = true;
-      powerManagement.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-    };
-    #Make sure opengl is enabled
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
     };
-
-    # keyboard.qmk.enable = true;
   };
 
   # List packages installed in system profile. To search, run:

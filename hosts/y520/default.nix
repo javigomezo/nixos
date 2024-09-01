@@ -17,6 +17,7 @@
     ./usbguard.nix
     ../common
     ../optional/display_manager.nix
+    ../optional/nvidia.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
   ];
@@ -36,6 +37,7 @@
       loader.timeout = 0;
       secureboot.enable = true;
     };
+    nvidia.prime.enable = true;
   };
 
   networking = {
@@ -70,23 +72,6 @@
       enable = true;
       powerOnBoot = true;
     };
-    nvidia = {
-      modesetting.enable = true;
-      #open = true; # Only for newer cards
-      nvidiaSettings = true;
-      nvidiaPersistenced = true;
-      powerManagement.enable = true;
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
-        nvidiaBusId = "PCI:1:0:0";
-        intelBusId = "PCI:0:2:0";
-      };
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
-    #Make sure opengl is enabled
     graphics = {
       enable = true;
       enable32Bit = true;
