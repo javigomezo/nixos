@@ -3,6 +3,7 @@
     (retroarch.override {
       cores = with libretro; [
         beetle-psx-hw
+        mgba
       ];
     })
   ];

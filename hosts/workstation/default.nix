@@ -1,12 +1,14 @@
 {
   inputs,
   pkgs,
+  vars,
   ...
 }: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.stylix.nixosModules.stylix
     ./hardware-configuration.nix
     ../common
     ../optional/display_manager.nix
@@ -59,6 +61,7 @@
   ];
 
   programs = {
+    hyprland.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
@@ -70,11 +73,7 @@
   xdg.portal = {
     enable = true;
     configPackages = [
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
-    ];
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -91,6 +90,11 @@
     xserver.videoDrivers = ["nvidia"];
   };
 
+  stylix = {
+    enable = true;
+    image = ../../home-manager/common/stylix/wallpapers/${vars.wallpaper};
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+  };
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Fixes system immediately waking up from suspend (related to Gigabyte motherbouards)
@@ -101,11 +105,6 @@
   security = {
     polkit.enable = true;
     pam.services.hyprlock = {};
-    pam.services.swaylock = {
-      text = ''
-        auth include login
-      '';
-    };
   };
 
   # This value determines the NixOS release from which the default

@@ -31,6 +31,7 @@
         "SUPER,L,exec,hyprlock"
         "SUPER,M,exec,wlogout"
         "SUPERSHIFT,M,exit"
+        "SUPER,O,exec,obsidian"
         "SUPER,P,exec,tv.plex.PlexDesktop"
         #"SUPER,R,exec,rofi -show drun"
         "SUPER,R,exec,${wofi} -S drun"

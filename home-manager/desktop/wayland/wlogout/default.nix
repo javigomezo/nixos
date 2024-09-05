@@ -31,7 +31,7 @@
       }
       {
         label = "lock";
-        action = "swaylock";
+        action = "hyprlock";
         text = "Bloquear";
         height = 0.95;
       }

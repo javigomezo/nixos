@@ -43,9 +43,6 @@
       protonup-qt
       qimgv
       qmk
-      #rofi-wayland
-      #rofi-wayland-unwrapped
-      swaylock-effects
       wl-clipboard
       xarchiver
       xfce.thunar
