@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  config,
   pkgs,
   ...
 }: {
@@ -20,6 +19,7 @@
     ../optional/nvidia.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
+    ../optional/stylix.nix
   ];
 
   my = {
