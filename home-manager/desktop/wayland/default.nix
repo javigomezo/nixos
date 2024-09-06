@@ -50,6 +50,7 @@
     ]);
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
+    NIXPKGS_ALLOW_UNFREE = 1;
     QT_QPA_PLATFORM = "wayland";
     LIBSEAT_BACKEND = "logind";
     FLAKE = "${config.home.homeDirectory}/nixos";

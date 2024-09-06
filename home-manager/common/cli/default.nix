@@ -7,7 +7,7 @@
   ];
 
   home.packages = with pkgs; [
-    #compsize
+    compsize
     dig
     duf
     eza
