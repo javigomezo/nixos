@@ -12,9 +12,11 @@
     ./lsp.nix
     ./lint.nix
     ./luasnip.nix
+    ./markview.nix
     ./mini.nix
     ./noice.nix
     ./notify.nix
+    ./obsidian.nix
     ./oil.nix
     ./staline.nix
     ./supermaven.nix

@@ -16,6 +16,7 @@
       laststatus = 2;
       showtabline = 2;
       termguicolors = true;
+      conceallevel = 1;
     };
     globals.mapleader = " ";
     extraConfigVim = ''
