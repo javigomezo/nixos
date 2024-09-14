@@ -123,11 +123,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1726310666,
-        "narHash": "sha256-j0WLJd3iF1IkINpDsir+JElEQZVFkZ4PnJllhjNS8Lw=",
+        "lastModified": 1726314617,
+        "narHash": "sha256-SYgBn/1SiEFA4lZKDo1xIeoXqWzaOnwvGTu7rMtECFY=",
         "owner": "javigomezo",
         "repo": "bibata-modern-classic-hyprcursor",
-        "rev": "8c8963e802ceda03adc048ad2ed5704e901f955a",
+        "rev": "1ba54ea22e42c84451c5f3f0f4d301fd2a15aeb0",
         "type": "github"
       },
       "original": {
