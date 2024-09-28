@@ -3,11 +3,13 @@ keys:
     - &javier_workstation age1x7zl9utv6zahvpx0cyngw79jl5fe8ln25hfnanj6ahekkwntj9ssf6zsvf
     - &javier_y520 age17qmazv60ulezln4erluanraccpxuxav4jskhlddykz0zz633gdjsrhgg57
     - &javier_nuc8i3beh age1yhh0gkec34pjn3x492udmddsmmq7lxxue53xmpcmhf978uz4te3q3drm4c
+    - &javier_pi3b age1qhnkhu5700r2swlpduuqdh564hmq9ujusvlp826yhwgru6snuyyq4ycrpw
 
   - &hosts:
     - &workstation age152d6nyrnnkdqvc4uxyk5709dl6jq7tjqy0ehehzs6z6ze6frud7qt598x7
     - &y520 age1kj996vel78gnqaul4t2f7983d6urwns7pnet3uzc9s97qghz046qzrtuzg
     - &nuc8i3beh age1hdmmx7sg6vv5qhfgftxz2dkz469j9lkxf378zqyaxmmer96pgqpqdspdsr
+    - &pi3b age1d0cu889zhdw6gcnphur4h2h02pk29xhuj3pd2kyzxv8cznqzyesschwwm5
 
 creation_rules:
   - path_regex: hosts/workstation/secrets.ya?ml$
@@ -27,10 +29,18 @@ creation_rules:
       - *javier_nuc8i3beh
       - *javier_workstation
       - *javier_y520
+  - path_regex: hosts/pi3b/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *pi3b
+      - *javier_pi3b
+      - *javier_workstation
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
     - age:
       - *workstation
       - *y520
+      - *pi3b
       - *javier_workstation
       - *javier_y520
+      - *javier_pi3b

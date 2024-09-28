@@ -3,14 +3,10 @@
   vars,
   ...
 }: {
-  # age.identityPaths = ["/home/javier/.ssh/id_ed25519"];
-  age.secrets.keepalived = {
-    file = ../../secrets/keepalived.age;
-  };
-
+  sops.secrets."keepalived.env" = {};
   services.keepalived = {
     enable = true;
-    secretFile = config.age.secrets.keepalived.path;
+    secretFile = config.sops.secrets."keepalived.env".path;
     vrrpInstances.VI = {
       state = "${vars.keepalivedState}";
       interface = "${vars.mainInterface}";

@@ -5,23 +5,45 @@
   ...
 }: {
   imports = [
-    inputs.agenix.nixosModules.age
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+    inputs.sops-nix.nixosModules.sops
+    inputs.nixos-hardware.nixosModules.raspberry-pi-3
+    inputs.impermanence.nixosModules.impermanence
     ./hardware-configuration.nix
     ./firewall.nix
     ./gpio.nix
+    ../common/impermanence
+    ../common/sops.nix
     ../common/locale.nix
     ../common/nix.nix
     ../../users/javier
     ../../services/openssh
     ../../services/keepalived
-    ../../services/adguardhome
-    ../../services/tvheadend
+    ../../services/network/adguardhome
+    #../../services/tvheadend
   ];
-  age = {
-    identityPaths = ["/home/javier/.ssh/id_ed25519"];
-    secrets.wifi = {
-      file = ../../secrets/wifi.age;
+
+  my = {
+    impermanence = {
+      enable = false;
+    };
+  };
+
+  sops = {
+    secrets = {
+      home_ssid = {};
+      home_psk = {};
+    };
+    templates."networks.conf" = {
+      owner = "root";
+      group = "root";
+      mode = "0400";
+      path = "/etc/wpa_supplicant.conf";
+      content = ''
+        network={
+          ssid="${config.sops.placeholder.home_ssid}"
+          psk="${config.sops.placeholder.home_psk}"
+        }
+      '';
     };
   };
 
@@ -32,51 +54,50 @@
       # Enables the generation of /boot/extlinux/extlinux.conf
       generic-extlinux-compatible.enable = true;
     };
-    initrd.kernelModules = ["vc4" "bcm2835_dma" "i2c_bcm2835"];
-    kernelModules = ["bcm2835-v4l2" "xhci_pci" "usbhid" "usb_storage"];
-    # kernelPackages = pkgs.linuxPackages_rpi4;
+    kernelModules = ["spi_bcm2835" "spidev"];
   };
 
   hardware = {
     enableRedistributableFirmware = true;
-    firmware = [pkgs.wireless-regdb];
-    raspberry-pi."4".i2c1.enable = true;
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
     deviceTree = {
       enable = true;
-      filter = "*-rpi-*.dtb";
+      filter = "*rpi*.dtb";
       overlays = [
+        {
+          name = "rpi-tv";
+          dtboFile = "${pkgs.device-tree_rpi.overlays}/rpi-tv.dtbo";
+        }
         {
           name = "spi0-0cs.dtbo";
           dtboFile = "${pkgs.device-tree_rpi.overlays}/spi0-0cs.dtbo";
         }
         {
-          name = "rpi-tv.dtbo";
-          dtboFile = "${pkgs.device-tree_rpi.overlays}/rpi-tv.dtbo";
+          name = "ssd1306-spi.dtbo";
+          dtboFile = "${pkgs.device-tree_rpi.overlays}/ssd1306-spi.dtbo";
         }
       ];
     };
   };
+
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
       options = ["noatime"];
     };
-    #"/firmware" = {
-    #  device = "/dev/disk/by-label/FIRMWARE";
-    #  fsType = "vfat";
-    #};
+    "/firmware" = {
+      device = "/dev/disk/by-label/FIRMWARE";
+      fsType = "vfat";
+    };
   };
 
   # Add wireless
 
   # set up wireless static IP address
   networking = {
-    wireless.enable = true;
-    wireless.environmentFile = config.age.secrets.wifi.path;
-    wireless.networks = {
-      "@SSID@".psk = "@PSK@";
+    wireless = {
+      enable = true;
+      allowAuxiliaryImperativeNetworks = true;
     };
     hostName = "pi3b";
     enableIPv6 = true;
@@ -99,13 +120,6 @@
       "9.9.9.9"
       "149.112.112.112"
     ];
-
-    firewall = {
-      enable = true;
-      allowPing = true;
-      allowedTCPPorts = [22];
-      allowedUDPPorts = [];
-    };
   };
 
   hardware.bluetooth.enable = false;
@@ -119,5 +133,10 @@
     tmux
   ];
 
+  users.groups.spi = {};
+  services.udev.extraRules = ''
+    KERNEL=="gpiochip0*", GROUP="wheel", MODE="0660"
+    SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
+  '';
   system.stateVersion = "24.05"; # Don't change this
 }
