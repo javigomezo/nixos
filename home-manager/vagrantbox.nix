@@ -17,6 +17,7 @@
   home.packages = with pkgs; [
     apacheHttpd
     kubectl
+    kubernetes-helm
     k9s
     sshuttle
     google-cloud-sdk
