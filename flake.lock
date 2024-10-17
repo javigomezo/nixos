@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729010169,
-        "narHash": "sha256-AjgIlXcreagCs6ltT8mzI1UYEiYgfhlwe4Tl3taxQSU=",
+        "lastModified": 1729099656,
+        "narHash": "sha256-VftVIg7UXTy1bq+tzi1aVYOWl7PQ35IpjW88yMYjjpc=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "9ab6ae4e632016caac1c7e82e15b12b8c672ed76",
+        "rev": "d7d57edb72e54891fa67a6f058a46b2bb405663b",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1729029507,
-        "narHash": "sha256-WDbJ0TOyuOg9TFpzykuYnhYUGvTHBIVQiYDlr3M0/0I=",
+        "lastModified": 1729051404,
+        "narHash": "sha256-FXWAhZbxQ/twHdgKUMGto28qBuxWLju5HIFH44ERzq8=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "46320f7c4fae7759d11ced3f1ba118663d66bcc1",
+        "rev": "7122959edcf173a13b728291176b1c9799fd1b55",
         "type": "gitlab"
       },
       "original": {
@@ -593,11 +593,11 @@
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1727649413,
-        "narHash": "sha256-FA53of86DjFdeQzRDVtvgWF9o52rWK70VHGx0Y8fElQ=",
+        "lastModified": 1729068498,
+        "narHash": "sha256-C2sGRJl1EmBq0nO98TNd4cbUy20ABSgnHWXLIJQWRFA=",
         "owner": "nix-community",
         "repo": "impermanence",
-        "rev": "d0b38e550039a72aff896ee65b0918e975e6d48e",
+        "rev": "e337457502571b23e449bf42153d7faa10c0a562",
         "type": "github"
       },
       "original": {
@@ -748,11 +748,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1729015933,
-        "narHash": "sha256-raKxsI2SGe/vF2PvzFatd/Sl9eVUCuCUUVg7cINFVbQ=",
+        "lastModified": 1729093974,
+        "narHash": "sha256-gQ0Zb0YN5+wqzq5v8vh0ssWZgyYzoiiT7La6WWOFiXM=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "429f2e8d1aa61181c0ec72bdafe022fbb6a092d6",
+        "rev": "717e7060fafa2c3822a64e3f5bbfd4895577fdbf",
         "type": "github"
       },
       "original": {
@@ -793,11 +793,11 @@
         "nixpkgs-stable": "nixpkgs-stable_2"
       },
       "locked": {
-        "lastModified": 1728778939,
-        "narHash": "sha256-WybK5E3hpGxtCYtBwpRj1E9JoiVxe+8kX83snTNaFHE=",
+        "lastModified": 1729104314,
+        "narHash": "sha256-pZRZsq5oCdJt3upZIU4aslS9XwFJ+/nVtALHIciX/BI=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "ff68f91754be6f3427e4986d7949e6273659be1d",
+        "rev": "3c3e88f0f544d6bb54329832616af7eb971b6be6",
         "type": "github"
       },
       "original": {
