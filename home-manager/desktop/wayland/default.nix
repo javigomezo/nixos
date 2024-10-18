@@ -39,6 +39,7 @@
       multiviewer-for-f1
       obsidian
       pavucontrol
+      plexamp
       polkit-kde-agent
       protonup-qt
       qimgv

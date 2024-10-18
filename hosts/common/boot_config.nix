@@ -30,12 +30,14 @@
 
   config = {
     boot = {
-      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+      #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+      kernelPackages = pkgs.linuxPackages_6_10;
       supportedFilesystems = ["btrfs" "ntfs"];
       loader = {
         timeout = config.my.boot.loader.timeout;
         systemd-boot.enable = lib.mkForce (!config.my.boot.secureboot.enable);
         systemd-boot.configurationLimit = 10;
+        systemd-boot.consoleMode = "max";
         efi.canTouchEfiVariables = true;
       };
       lanzaboote = {
