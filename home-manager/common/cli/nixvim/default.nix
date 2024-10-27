@@ -8,7 +8,6 @@
     enable = true;
     defaultEditor = true;
     vimAlias = true;
-    colorschemes.nord.enable = true;
     opts = {
       number = true;
       relativenumber = true;
