@@ -27,6 +27,7 @@
       "size 500 500, polkit-kde-authentication-agent-1"
     ];
     windowrulev2 = [
+      "workspace 5,class:^(obsidian)$"
       "animation popin, class:^(thunar)$"
       "opacity 0.82 0.82, class:^(thunar)$"
     ];

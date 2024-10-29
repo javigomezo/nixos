@@ -30,8 +30,8 @@
 
   config = {
     boot = {
-      #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
-      kernelPackages = pkgs.linuxPackages_6_10;
+      kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+      #kernelPackages = pkgs.linuxPackages_6_10;
       supportedFilesystems = ["btrfs" "ntfs"];
       loader = {
         timeout = config.my.boot.loader.timeout;
@@ -64,6 +64,11 @@
           "vt.global_cursor_default=0"
           "mem_sleep_default=deep"
           "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+
+          # TODO: remove after https://github.com/NVIDIA/open-gpu-kernel-modules/pull/692
+          # and similar are merged and build in nixpkgs-unstable.
+          # WARNING: this disables tty output and thus hides boot logs.
+          "initcall_blacklist=simpledrm_platform_driver_init"
         ]
         ++ lib.optionals config.my.boot.nvidia.enable ["nvidia.NVreg_DynamicPowerManagement=0"];
       kernel.sysctl."net.core.rmem_max" = 7500000;
