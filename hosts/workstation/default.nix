@@ -31,7 +31,10 @@
       ];
       useDHCP = false;
     };
-    nameservers = ["10.0.0.200" "10.0.0.2"];
+    nameservers = [
+      "10.0.0.200"
+      "10.0.0.2"
+    ];
     # Enable networking
     networkmanager.enable = true;
   };
@@ -40,14 +43,22 @@
     "/mnt/Downloads" = {
       device = "/dev/disk/by-partuuid/ca8d8d5f-01";
       fsType = "ntfs3";
-      options = ["rw" "uid=1000" "x-systemd.automount" "noauto"];
+      options = [
+        "rw"
+        "uid=1000"
+        "x-systemd.automount"
+        "noauto"
+      ];
     };
   };
 
   hardware = {
     bluetooth.enable = true;
     graphics = {
-      extraPackages = with pkgs; [vaapiVdpau nvidia-vaapi-driver];
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        nvidia-vaapi-driver
+      ];
     };
   };
 
