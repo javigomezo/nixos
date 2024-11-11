@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ../common
     ../optional/display_manager.nix
+    ../optional/docker.nix
     ../optional/pipewire.nix
     ../optional/steam.nix
     ../optional/stylix.nix

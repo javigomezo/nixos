@@ -14,6 +14,7 @@
   };
   config = {
     hardware = {
+      nvidia-container-toolkit.enable = true;
       nvidia = {
         modesetting.enable = true;
         open = false; # If true breaks hyprland so...
