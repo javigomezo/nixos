@@ -49,6 +49,7 @@
 
       targets = {
         hyprlock.enable = false;
+        kitty.enable = false;
         rofi.enable = true;
         #vim.enable = true;
         waybar.enable = false;
