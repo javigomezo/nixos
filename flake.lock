@@ -171,11 +171,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1731605845,
-        "narHash": "sha256-45T0+qKd6ibWF1zm+jRK+mfjsF0KddKM6kg2dY5SqNQ=",
+        "lastModified": 1731643390,
+        "narHash": "sha256-ckIrZY5i+b7UrxolO54pSRO9dKW7GnMYQ1uQLeWEBsU=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "1b2571b6593aa77a15e5e97e708a3d9ea12ac773",
+        "rev": "f0fa120121e9ea5c16c7b2c578fbebe37fbcab55",
         "type": "gitlab"
       },
       "original": {
@@ -776,11 +776,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1731571290,
-        "narHash": "sha256-osvW1d7YxBs5UDRN/RLFqVtWegArqhvonL9odVpWMuc=",
+        "lastModified": 1731707185,
+        "narHash": "sha256-IfA3x0eL4Be/7hvdvGSnT8fgiXz7GL3PtjGw3BH68gM=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "24fe0dd2478643fcd4dd57c9570b4614fac80144",
+        "rev": "be455f7f2714ce3479ae5bb662a03bd450f45793",
         "type": "github"
       },
       "original": {
@@ -970,11 +970,11 @@
         "tinted-tmux": "tinted-tmux"
       },
       "locked": {
-        "lastModified": 1731577695,
-        "narHash": "sha256-ohxX2gG7zDWIA3slEbiSyAVSiO98clCoL+CmiEiYwVU=",
+        "lastModified": 1731657386,
+        "narHash": "sha256-Mm/JL8tFUS1SOmmZDPcswExUxzw0VpHcEyZI1h58CGA=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "e0a278871b63b1800ccdda568861b5324dd93797",
+        "rev": "5ab1207b2fdeb5a022f2dd7cccf6be760f1b150f",
         "type": "github"
       },
       "original": {
