@@ -8,7 +8,9 @@
         passes = 2;
         ignore_opacity = 1;
       };
-      drop_shadow = false;
+      shadow = {
+        enabled = true;
+      };
     };
   };
 }
