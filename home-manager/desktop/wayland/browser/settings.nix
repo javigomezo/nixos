@@ -60,7 +60,7 @@
   "browser.search.suggest.enabled" = false;
 
   # Disable drm warning
-  "browser.eme.ui.enabled" = false;
+  "browser.eme.ui.enabled" = true;
   # Disable privacy-preserving attribution introduced in Firefox 128
   "dom.private-attribution.submission.enabled" = false;
 }
