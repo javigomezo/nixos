@@ -19,7 +19,7 @@
     kubectl
     kubernetes-helm
     k9s
-    sshuttle
+    # sshuttle
     google-cloud-sdk
   ];
 
