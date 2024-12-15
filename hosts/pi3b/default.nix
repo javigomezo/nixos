@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   inputs,
@@ -6,21 +7,30 @@
 }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
-    inputs.nixos-hardware.nixosModules.raspberry-pi-3
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
     inputs.impermanence.nixosModules.impermanence
-    ./hardware-configuration.nix
     ./firewall.nix
-    ./gpio.nix
+    ./hardware-configuration.nix
+    ./rpi-tv.nix
     ../common/impermanence
     ../common/sops.nix
     ../common/locale.nix
     ../common/nix.nix
-    ../../users/javier
     ../../services/openssh
     ../../services/keepalived
     ../../services/network/adguardhome
-    #../../services/tvheadend
+    ../../services/tvheadend
+    ../../users/javier
   ];
+
+  # nixpkgs = {
+  #   overlays = [
+  #     (final: super: {
+  #       makeModulesClosure = x:
+  #         super.makeModulesClosure (x // {allowMissing = true;});
+  #     })
+  #   ];
+  # };
 
   my = {
     impermanence = {
@@ -47,35 +57,14 @@
     };
   };
 
+  # system.build.sdImage.compressImage = false;
   boot = {
+    supportedFilesystems.zfs = lib.mkForce false;
     loader = {
       # NixOS wants to enable GRUB by default
       grub.enable = false;
       # Enables the generation of /boot/extlinux/extlinux.conf
       generic-extlinux-compatible.enable = true;
-    };
-    kernelModules = ["spi_bcm2835" "spidev"];
-  };
-
-  hardware = {
-    enableRedistributableFirmware = true;
-    deviceTree = {
-      enable = true;
-      filter = "*rpi*.dtb";
-      overlays = [
-        {
-          name = "rpi-tv";
-          dtboFile = "${pkgs.device-tree_rpi.overlays}/rpi-tv.dtbo";
-        }
-        {
-          name = "spi0-0cs.dtbo";
-          dtboFile = "${pkgs.device-tree_rpi.overlays}/spi0-0cs.dtbo";
-        }
-        {
-          name = "ssd1306-spi.dtbo";
-          dtboFile = "${pkgs.device-tree_rpi.overlays}/ssd1306-spi.dtbo";
-        }
-      ];
     };
   };
 
@@ -92,7 +81,6 @@
   };
 
   # Add wireless
-
   # set up wireless static IP address
   networking = {
     wireless = {
@@ -134,9 +122,13 @@
   ];
 
   users.groups.spi = {};
+  users.groups.gpio = {};
+
   services.udev.extraRules = ''
-    KERNEL=="gpiochip0*", GROUP="wheel", MODE="0660"
     SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
+    SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio",MODE="0660"
+    SUBSYSTEM=="gpio", KERNEL=="gpiochip*", GROUP="gpio",MODE="0660", ACTION=="add", RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio  /sys/class/gpio/export /sys/class/gpio/unexport ; chmod 220 /sys/class/gpio/export /sys/class/gpio/unexport'"
+    SUBSYSTEM=="gpio", KERNEL=="gpio*", ACTION=="add",RUN+="${pkgs.bash}/bin/bash -c 'chown root:gpio /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value ; chmod 660 /sys%p/active_low /sys%p/direction /sys%p/edge /sys%p/value'"
   '';
   system.stateVersion = "24.05"; # Don't change this
 }

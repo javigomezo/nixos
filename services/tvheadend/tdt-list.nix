@@ -1,0 +1,67 @@
+{
+  sops.templates."tdt-channels" = {
+    content = ''
+      [CHANNEL]
+      	DELIVERY_SYSTEM = DVBT
+      	FREQUENCY = 506000000
+      	BANDWIDTH_HZ = 8000000
+      	CODE_RATE_HP = 2/3
+      	CODE_RATE_LP = NONE
+      	MODULATION = QAM/64
+      	TRANSMISSION_MODE = 8K
+      	GUARD_INTERVAL = 1/4
+      	HIERARCHY = NONE
+      	INVERSION = AUTO
+
+      [CHANNEL]
+      	DELIVERY_SYSTEM = DVBT
+      	FREQUENCY = 538000000
+      	BANDWIDTH_HZ = 8000000
+      	CODE_RATE_HP = 2/3
+      	CODE_RATE_LP = NONE
+      	MODULATION = QAM/64
+      	TRANSMISSION_MODE = 8K
+      	GUARD_INTERVAL = 1/4
+      	HIERARCHY = NONE
+      	INVERSION = AUTO
+
+      [CHANNEL]
+      	DELIVERY_SYSTEM = DVBT
+      	FREQUENCY = 562000000
+      	BANDWIDTH_HZ = 8000000
+      	CODE_RATE_HP = 2/3
+      	CODE_RATE_LP = NONE
+      	MODULATION = QAM/64
+      	TRANSMISSION_MODE = 8K
+      	GUARD_INTERVAL = 1/4
+      	HIERARCHY = NONE
+      	INVERSION = AUTO
+
+      [CHANNEL]
+      	DELIVERY_SYSTEM = DVBT2
+      	FREQUENCY = 578000000
+      	BANDWIDTH_HZ = 8000000
+      	CODE_RATE_HP = 2/3
+      	CODE_RATE_LP = NONE
+      	MODULATION = QAM/256
+      	TRANSMISSION_MODE = 8K
+      	GUARD_INTERVAL = 1/8
+      	HIERARCHY = NONE
+      	INVERSION = AUTO
+
+      [CHANNEL]
+      	DELIVERY_SYSTEM = DVBT
+      	FREQUENCY = 626000000
+      	BANDWIDTH_HZ = 8000000
+      	CODE_RATE_HP = 2/3
+      	CODE_RATE_LP = NONE
+      	MODULATION = QAM/64
+      	TRANSMISSION_MODE = 8K
+      	GUARD_INTERVAL = 1/4
+      	HIERARCHY = NONE
+      	INVERSION = AUTO
+    '';
+    owner = "javier";
+    mode = "0644";
+  };
+}

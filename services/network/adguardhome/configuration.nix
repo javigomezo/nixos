@@ -5,9 +5,14 @@
     "adguard/whitelisted_domains" = {};
     fqdn = {};
   };
-  #${map (x: "- ${x}") config.sops.placeholder."adguard/whitelisted_domains"}
   sops.templates."adguard_config.yaml" = {
     content = ''
+      http:
+        pprof:
+          port: 6060
+          enabled: false
+        address: 0.0.0.0:3000
+        session_ttl: 720h
       users:
         - name: ${config.sops.placeholder."adguard/username"}
           password: ${config.sops.placeholder."adguard/password"}
@@ -180,7 +185,7 @@
           id: 1707470070
       whitelist_filters: []
       user_rules:
-      ${config.sops.placeholder."adguard/whitelisted_domains"}
+        ${config.sops.placeholder."adguard/whitelisted_domains"}
       dhcp:
         enabled: false
         interface_name: eth0
@@ -210,6 +215,7 @@
           enabled: false
           bing: true
           duckduckgo: true
+          ecosia: true
           google: true
           pixabay: true
           yandex: true
@@ -222,6 +228,8 @@
             answer: 10.0.0.2
           - domain: wireguard2.${config.sops.placeholder.fqdn}
             answer: remote.${config.sops.placeholder.fqdn}
+        safe_fs_patterns:
+          - /var/lib/AdguardHome/data/userfilters/*
         safebrowsing_cache_size: 1048576
         safesearch_cache_size: 1048576
         parental_cache_size: 1048576
@@ -253,10 +261,9 @@
         group: ""
         user: ""
         rlimit_nofile: 0
-      schema_version: 28
+      schema_version: 29
     '';
     owner = "javier";
-    path = "/var/lib/AdGuardHome/AdGuardHome.yaml";
     mode = "0644";
   };
 }

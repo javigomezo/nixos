@@ -1,9 +1,15 @@
-{vars, ...}: let
+{
+  config,
+  vars,
+  ...
+}: let
   directories = [
     "${vars.dockerVolumes}/tvheadend/data/config"
-    # "${vars.dockerVolumes}/tvheadend/lists"
   ];
 in {
+  imports = [
+    ./tdt-list.nix
+  ];
   systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
   virtualisation.oci-containers = {
     containers = {
@@ -15,7 +21,7 @@ in {
         ];
         volumes = [
           "${vars.dockerVolumes}/tvheadend/data/config:/config"
-          # "${vars.dockerVolumes}/tvheadend/data/lists:/usr/share/tvheadend/data/dvb-scan/dvb-t:ro"
+          "${config.sops.templates.tdt-channels.path}:/usr/share/tvheadend/data/dvb-scan/dvb-t/es-Santander:ro"
         ];
         environment = {
           TZ = vars.timeZone;
@@ -24,7 +30,7 @@ in {
           UMASK = "002";
         };
         extraOptions = [
-          "--device=/dev/gpiomem:/dev/dvb"
+          "--device=/dev/dvb:/dev/dvb"
         ];
       };
     };
