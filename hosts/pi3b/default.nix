@@ -114,6 +114,7 @@
 
   console.enable = false;
   programs.zsh.enable = true;
+  programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
