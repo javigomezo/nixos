@@ -16,6 +16,7 @@
     ../common/sops.nix
     ../common/locale.nix
     ../common/nix.nix
+    ../common/tailscale.nix
     ../../services/openssh
     ../../services/keepalived
     ../../services/network/adguardhome
