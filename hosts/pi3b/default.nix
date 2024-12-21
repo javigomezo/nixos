@@ -112,6 +112,7 @@
   };
 
   hardware.bluetooth.enable = false;
+  hardware.raspberry-pi."4".tv-hat.enable = true;
 
   console.enable = false;
   programs.zsh.enable = true;

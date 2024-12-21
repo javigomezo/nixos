@@ -55,5 +55,6 @@
     QT_QPA_PLATFORM = "wayland";
     LIBSEAT_BACKEND = "logind";
     FLAKE = "${config.home.homeDirectory}/nixos";
+    NIXOS_OZONE_WL = 1;
   };
 }

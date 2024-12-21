@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.my.nvidia = {
@@ -13,6 +14,9 @@
     };
   };
   config = {
+    environment.systemPackages = with pkgs; [
+      egl-wayland
+    ];
     hardware = {
       nvidia-container-toolkit.enable = true;
       nvidia = {
