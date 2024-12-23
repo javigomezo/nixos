@@ -11,7 +11,6 @@
     inputs.impermanence.nixosModules.impermanence
     ./firewall.nix
     ./hardware-configuration.nix
-    ./rpi-tv.nix
     ../common/impermanence
     ../common/sops.nix
     ../common/locale.nix
