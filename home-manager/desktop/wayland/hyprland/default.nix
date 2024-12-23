@@ -30,7 +30,7 @@
       render.explicit_sync = true;
       cursor = {
         no_hardware_cursors = false;
-        allow_dumb_copy = true;
+        #allow_dumb_copy = true;
       };
       input = {
         kb_layout = "es";
