@@ -2,7 +2,6 @@
   containerName = "tautulli";
   directories = [
     "${vars.dockerVolumes}/${containerName}/data/config"
-    "${vars.dockerVolumes}/qbittorrent/data/downloads/"
   ];
 in {
   systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
@@ -13,7 +12,7 @@ in {
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
-          #"${vars.dockerVolumes}/plex/data/library/Library/Application Support/Plex Media Server/Logs:/logs:ro"
+          "${vars.dockerVolumes}/plex/data/library/Library/Application Support/Plex Media Server/Logs:/logs:ro"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {

@@ -13,7 +13,7 @@ in {
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
-          "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"
+          "${vars.dockerVolumes}/${containerName}/data/downloads:/downloads"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {

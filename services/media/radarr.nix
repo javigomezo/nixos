@@ -27,7 +27,7 @@ in {
           "traefik.enable" = "true";
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "7878";
-          "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
         };
       };
     };
