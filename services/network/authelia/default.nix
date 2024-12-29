@@ -19,6 +19,10 @@
       "authelia/encryption_key" = {
         owner = "authelia-main";
       };
+      "authelia/hmac_secret" = {};
+      "authelia/certificate_chain" = {};
+      "authelia/private_key" = {};
+      "authelia/immich_client_secret" = {};
     };
   };
 
