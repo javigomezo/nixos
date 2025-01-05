@@ -1,5 +1,6 @@
 {
   imports = [
+    ./audiobookshelf.nix
     ./overseerr.nix
     ./plex.nix
     ./prowlarr.nix

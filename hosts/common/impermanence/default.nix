@@ -27,21 +27,47 @@
     # configure impermanence
     environment.persistence."/persist" = {
       hideMounts = true;
-      directories = [
-        "/etc/secureboot"
-        "/var/lib/bluetooth"
-        "/var/lib/nixos"
-        "/var/lib/flatpak"
-        "/var/lib/systemd/coredump"
-        "/var/lib/systemd/backlight"
-        "/etc/NetworkManager/system-connections"
-        {
-          directory = "/var/lib/colord";
-          user = "colord";
-          group = "colord";
-          mode = "u=rwx,g=rx,o=";
-        }
-      ];
+      directories =
+        [
+          "/etc/secureboot"
+          "/etc/NetworkManager/system-connections"
+          "/var/lib/bluetooth"
+          "/var/lib/btrfs"
+          "/var/lib/containers"
+          "/var/lib/flatpak"
+          "/var/lib/nixos"
+          "/var/lib/systemd/coredump"
+          "/var/lib/systemd/backlight"
+          "/var/lib/tailscale"
+          "/var/lib/private"
+          {
+            directory = "/var/lib/colord";
+            user = "colord";
+            group = "colord";
+            mode = "u=rwx,g=rx,o=";
+          }
+        ]
+        ++ lib.mkIf (config.networking.hostName == "nuc8i3beh") [
+          "/var/lib/AdGuardHome"
+          {
+            directory = "/var/lib/audiobookshelf";
+            user = "audiobookshelf";
+            group = "audiobookshelf";
+            mode = "u=rwx,g=rx,o=";
+          }
+          {
+            directory = "/var/lib/authelia-main";
+            user = "authelia-main";
+            group = "authelia-main";
+            mode = "u=rwx,g=rx,o=";
+          }
+          {
+            directory = "/var/lib/traefik";
+            user = "traefik";
+            group = "traefik";
+            mode = "u=rwx,g=rx,o=";
+          }
+        ];
       files = [];
     };
 

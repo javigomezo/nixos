@@ -18,6 +18,11 @@
             service: "adguardhome"
             middlewares:
               - chain-oauth
+          audiobookshelf:
+            rule: "Host(`audiobookshelf.${config.sops.placeholder.fqdn}`)"
+            service: "audiobookshelf"
+            middlewares:
+              - chain-no-oauth
         services:
           authelia:
             loadBalancer:
@@ -27,6 +32,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:3000"
+          audiobookshelf:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:8000"
         middlewares:
           ratelimit:
             rateLimit:
