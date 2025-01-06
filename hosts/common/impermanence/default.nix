@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  vars,
   ...
 }: {
   options.my.impermanence = {
@@ -49,6 +50,12 @@
         ]
         ++ lib.mkIf (config.networking.hostName == "nuc8i3beh") [
           "/var/lib/AdGuardHome"
+          {
+            directory = "${vars.dockerVolumes}";
+            user = "javier";
+            group = "javier";
+            mode = "u=rwx,g=rwx,o=";
+          }
           {
             directory = "/var/lib/audiobookshelf";
             user = "audiobookshelf";

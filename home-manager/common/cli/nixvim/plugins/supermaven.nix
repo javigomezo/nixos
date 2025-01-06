@@ -3,12 +3,12 @@
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
         pname = "supermaven-nvim.nvim";
-        version = "24-06";
+        version = "25-01";
         src = pkgs.fetchFromGitHub {
           owner = "supermaven-inc";
           repo = "supermaven-nvim";
-          rev = "ef3bd1a6b6f722857f2f88d929dd4ac875655611";
-          hash = "sha256-mlVo/ZKDZUjOfXwaLhpi45B4zxtnwa40GEIaa1E+sy0=";
+          rev = "07d20fce48a5629686aefb0a7cd4b25e33947d50";
+          hash = "";
         };
       })
     ];
