@@ -92,7 +92,6 @@
   ];
 
   programs = {
-    hyprland.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
