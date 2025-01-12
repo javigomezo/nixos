@@ -40,7 +40,8 @@
       obsidian
       pavucontrol
       plexamp
-      polkit-kde-agent
+      # polkit-kde-agent
+      hyprpolkitagent
       protonup-qt
       qimgv
       qmk

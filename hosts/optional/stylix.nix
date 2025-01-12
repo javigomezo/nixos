@@ -10,7 +10,7 @@
   config = {
     stylix = {
       enable = true;
-      image = ./wallpapers/${vars.wallpaper};
+      image = ../../home-manager/common/stylix/wallpapers/${vars.wallpaper};
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     };
   };

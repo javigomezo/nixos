@@ -72,7 +72,16 @@
   ];
 
   programs = {
+    regreet.enable = true;
+    # uwsm = {
+    #   enable = true;
+    #   #waylandCompositors.hyprland = {
+    #   #  binPath = "/run/current-system/sw/bin/Hyprland";
+    #   #  prettyName = "Hyprland";
+    #   #};
+    # };
     hyprland.enable = true;
+    hyprland.withUWSM = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [

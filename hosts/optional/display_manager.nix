@@ -1,19 +1,44 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services = {
     xserver = {
       enable = true;
       videoDrivers = ["nvidia"];
     };
-    displayManager = {
-      sessionPackages = [pkgs.hyprland];
-      sddm = {
-        enable = true;
-        wayland.enable = true;
-      };
-      autoLogin = {
-        enable = true;
+    greetd = {
+      enable = true;
+      # vt = 2;
+      settings.initial_session = {
         user = "javier";
+        command = "uwsm start hyprland-uwsm.desktop";
+      };
+      settings.default_session = {
+        command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd ${lib.getExe pkgs.zsh}"; # Shell only by default
       };
     };
+    # displayManager = {
+    #   sessionPackages = [pkgs.hyprland];
+    #   #defaultSession = "hyprland-uwsm";
+    #   sddm = {
+    #     enable = true;
+    #     wayland.enable = true;
+    #   };
+    #   autoLogin = {
+    #     enable = true;
+    #     user = "javier";
+    #   };
+    # };
   };
+  environment.systemPackages = [
+    (pkgs.writeShellApplication {
+      name = "launch-hyprland";
+      text = ''
+        systemctl --user stop graphical-session.target
+        uwsm start hyprland-uwsm.desktop
+      '';
+    })
+  ];
 }

@@ -19,7 +19,7 @@
       #hidpi = true;
     };
     systemd = {
-      enable = true;
+      enable = false;
       extraCommands = lib.mkBefore [
         "systemctl --user stop graphical-session.target"
         "systemctl --user start hyprland-session.target"
