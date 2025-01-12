@@ -78,12 +78,4 @@
       ) (lib.filter (m: m.enabled != null) config.monitors);
     };
   };
-  home.sessionVariables = {
-    HYPRCURSOR_THEME = "bibata-modern-classic-hyprcursor";
-    HYPRCURSOR_SIZE = 24;
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    WLR_NO_HARDWARE_CURSORS = 1;
-  };
 }

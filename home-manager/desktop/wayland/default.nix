@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   pkgs,
   outputs,
   ...
@@ -15,6 +14,7 @@
       ./hyprlock
       ./kitty
       ./mako
+      ./uwsm
       ./waybar
       ./wezterm
       ./wofi.nix
@@ -50,12 +50,4 @@
       xfce.thunar
       xwayland
     ]);
-  home.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = 1;
-    NIXPKGS_ALLOW_UNFREE = 1;
-    QT_QPA_PLATFORM = "wayland";
-    LIBSEAT_BACKEND = "logind";
-    FLAKE = "${config.home.homeDirectory}/nixos";
-    NIXOS_OZONE_WL = 1;
-  };
 }

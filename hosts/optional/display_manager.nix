@@ -20,12 +20,7 @@
       vt = 7;
       settings.initial_session = {
         user = "javier";
-        #command = "uwsm start hyprland-uwsm.desktop";
-        command = ''
-          if uwsm check may-start; then
-            exec uwsm start hyprland-uwsm.desktop
-          fi
-        '';
+        command = "uwsm start hyprland-uwsm.desktop";
       };
       settings.default_session = {
         command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd ${lib.getExe pkgs.zsh}"; # Shell only by default

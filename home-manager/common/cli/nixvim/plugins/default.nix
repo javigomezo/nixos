@@ -19,7 +19,7 @@
     ./obsidian.nix
     ./oil.nix
     ./staline.nix
-    ./supermaven.nix
+    # ./supermaven.nix
     ./telescope.nix
     ./treesitter
   ];

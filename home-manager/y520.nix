@@ -30,10 +30,6 @@
       x = 1920;
     }
   ];
-  home.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
