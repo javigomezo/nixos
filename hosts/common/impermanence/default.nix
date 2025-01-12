@@ -28,7 +28,7 @@
     # configure impermanence
     environment.persistence."/persist" = {
       hideMounts = true;
-      directories =
+      directories = lib.mkMerge [
         [
           "/etc/secureboot"
           "/etc/NetworkManager/system-connections"
@@ -48,7 +48,7 @@
             mode = "u=rwx,g=rx,o=";
           }
         ]
-        ++ lib.mkIf (config.networking.hostName == "nuc8i3beh") [
+        (lib.mkIf (config.networking.hostName == "nuc8i3beh") [
           "/var/lib/AdGuardHome"
           {
             directory = "${vars.dockerVolumes}";
@@ -74,7 +74,8 @@
             group = "traefik";
             mode = "u=rwx,g=rx,o=";
           }
-        ];
+        ])
+      ];
       files = [];
     };
 
