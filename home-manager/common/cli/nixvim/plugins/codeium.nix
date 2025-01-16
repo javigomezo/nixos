@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.codeium-nvim = {
+  programs.nixvim.plugins.codeium-vim = {
     enable = true;
   };
 }
