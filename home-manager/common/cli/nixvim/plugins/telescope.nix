@@ -1,7 +1,10 @@
 {
   programs.nixvim.plugins.telescope = {
     enable = true;
-    lazyLoad.settings.cmd = "Telescope";
+    lazyLoad = {
+      enable = true;
+      settings.cmd = "Telescope";
+    };
     extensions = {
       fzf-native.enable = true;
     };
