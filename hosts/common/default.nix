@@ -1,12 +1,14 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
+    ./boot_config.nix
     ./disko
     ./firewall.nix
     ./fonts.nix
@@ -16,7 +18,7 @@
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
-    ./boot_config.nix
+    ./rclone.nix
     ./sops.nix
     ./tailscale.nix
     ../../users/javier
@@ -43,6 +45,10 @@
     dates = "01:59"; # Because Nothing Good Happens After 2 A.M.
     persistent = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    rclone
+  ];
 
   systemd = {
     targets.network-online.wantedBy = lib.mkForce []; # Normally ["multi-user.target"]
