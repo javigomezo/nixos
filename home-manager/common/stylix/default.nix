@@ -50,7 +50,6 @@
       targets = {
         hyprlock.enable = false;
         rofi.enable = true;
-        #vim.enable = true;
         waybar.enable = false;
       };
       polarity = "dark";
