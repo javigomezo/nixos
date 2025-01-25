@@ -4,6 +4,7 @@
   inputs = {
     # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
 
     disko = {
       url = "github:nix-community/disko";
@@ -73,11 +74,22 @@
   outputs = {
     self,
     nixpkgs,
+    home-manager,
+    systems,
     ...
   } @ inputs: let
     inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
     supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    pkgsFor = lib.genAttrs (import systems) (
+      system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          config.allowUnfreePredicate = _: true;
+        }
+    );
   in {
     checks = forAllSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
@@ -98,16 +110,16 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     homeManagerModules = import ./modules/home-manager;
     nixosConfigurations = {
-      workstation = nixpkgs.lib.nixosSystem {
+      workstation = lib.nixosSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
           vars = import ./hosts/workstation/vars.nix;
         };
         modules = [
           ./hosts/workstation
         ];
       };
-      y520 = nixpkgs.lib.nixosSystem {
+      y520 = lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           vars = import ./hosts/y520/vars.nix;
@@ -116,7 +128,7 @@
           ./hosts/y520
         ];
       };
-      pi3b = nixpkgs.lib.nixosSystem {
+      pi3b = lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
           inherit inputs;
@@ -131,8 +143,8 @@
     # home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "javier@workstation" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      "javier@workstation" = lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
           vars = import ./hosts/workstation/vars.nix;
@@ -141,8 +153,8 @@
           ./home-manager/workstation.nix
         ];
       };
-      "javier@y520" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      "javier@y520" = lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
           vars = import ./hosts/y520/vars.nix;
@@ -151,8 +163,8 @@
           ./home-manager/y520.nix
         ];
       };
-      "vagrant@vagrantbox" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      "vagrant@vagrantbox" = lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
           vars = import ./hosts/y520/vars.nix;
@@ -161,10 +173,10 @@
           ./home-manager/vagrantbox.nix
         ];
       };
-      "javier@pi3b" = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-linux;
+      "javier@pi3b" = lib.homeManagerConfiguration {
+        pkgs = pkgsFor.aarch64-linux;
         extraSpecialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
           vars = import ./hosts/pi3b/vars.nix;
         };
         modules = [

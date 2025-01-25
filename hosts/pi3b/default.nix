@@ -23,15 +23,6 @@
     ../../users/javier
   ];
 
-  # nixpkgs = {
-  #   overlays = [
-  #     (final: super: {
-  #       makeModulesClosure = x:
-  #         super.makeModulesClosure (x // {allowMissing = true;});
-  #     })
-  #   ];
-  # };
-
   my = {
     impermanence = {
       enable = false;

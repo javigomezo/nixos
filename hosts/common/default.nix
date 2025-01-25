@@ -1,5 +1,6 @@
 {
   inputs,
+  outputs,
   lib,
   pkgs,
   ...
@@ -8,6 +9,7 @@
     inputs.sops-nix.nixosModules.sops
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
+    inputs.home-manager.nixosModules.home-manager
     ./boot_config.nix
     ./disko
     ./firewall.nix
@@ -32,6 +34,11 @@
       enable = true;
       libraries = [];
     };
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    extraSpecialArgs = {inherit inputs outputs;};
   };
 
   system.autoUpgrade = {
