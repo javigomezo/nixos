@@ -3,7 +3,7 @@
     ./alpha.nix
     # ./bufferline.nix
     ./cmp.nix
-    # ./codeium.nix
+    ./codeium.nix
     ./comment.nix
     ./conform-nvim.nix
     ./dressing.nix

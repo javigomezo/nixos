@@ -54,7 +54,8 @@
     };
 
     "/home/javier" = {
-      device = "/dev/disk/by-uuid/29793c48-c1d1-4e91-9671-8450734d6dfa";
+      device = "/dev/disk/by-uuid/3115c818-af16-4ce8-b839-32409fb8bfd0";
+      # device = "/dev/nvme1n1p2";
       fsType = "btrfs";
       options = ["compress-force=zstd"];
     };

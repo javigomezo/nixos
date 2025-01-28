@@ -17,6 +17,9 @@
       termguicolors = true;
       conceallevel = 1;
     };
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
     globals.mapleader = " ";
     extraConfigVim = ''
       set undofile

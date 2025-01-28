@@ -25,7 +25,6 @@
     stow
     tmux
     unzip
-    vim
     zip
   ];
 }

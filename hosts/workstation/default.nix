@@ -20,6 +20,7 @@
     #../../services/network/authelia
   ];
 
+  my.boot.secureboot.enable = true;
   networking = {
     hostName = "workstation"; # Define your hostname.
     enableIPv6 = true;

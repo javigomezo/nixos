@@ -42,7 +42,7 @@
       };
       lanzaboote = {
         enable = config.my.boot.secureboot.enable;
-        pkiBundle = "/etc/secureboot";
+        pkiBundle = "/var/lib/sbctl";
       };
       plymouth = {
         enable = true;
