@@ -9,7 +9,7 @@
   sops = {
     gnupg.sshKeyPaths = [];
     age.sshKeyPaths =
-      []
+      ["/home/javier/.ssh/id_ed25519"]
       ++ (
         if config.my.impermanence.enable
         then ["/persist/etc/ssh/ssh_host_ed25519_key"]
