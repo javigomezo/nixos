@@ -30,7 +30,7 @@
       hideMounts = true;
       directories = lib.mkMerge [
         [
-          "/etc/secureboot"
+          "/var/lib/sbctl"
           "/etc/NetworkManager/system-connections"
           "/var/lib/bluetooth"
           "/var/lib/btrfs"
