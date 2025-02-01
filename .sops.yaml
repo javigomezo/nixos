@@ -22,6 +22,7 @@ creation_rules:
     - age:
       - *y520
       - *javier_y520
+      - *javier_workstation
   - path_regex: hosts/nuc8i3beh/secrets.ya?ml$
     key_groups:
     - age:

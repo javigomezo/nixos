@@ -38,29 +38,31 @@
     };
   };
 
+  systemd.tmpfiles.rules = ["d /var/lib/rclone/cache 0775 root root - -"];
   fileSystems."/mnt/rclone" = {
     device = "drive_crypt:/";
     fsType = "rclone";
     depends = ["/home/javier"];
     options = [
       "noauto"
+      "nodev"
       "nofail"
       "x-systemd.automount"
       "allow_other"
-      "args2env"
       "allow_non_empty"
-      "dir_cache_time=5000h"
+      "args2env"
+      "config=/home/javier/.config/rclone/rclone.conf"
+      "cache-dir=/var/lib/rclone/cache/"
+      "dir-cache-time=5000h"
       "user_agent=nucapi"
       "poll_interval=10s"
       "umask=002"
-      "cache_dir=/var/lib/rclone/cache/"
-      "vfs_cache_mode=full"
-      "vfs_cache_max_size=8G"
-      "vfs_fast_fingerprint"
-      "vfs_cache_max_age=5000h"
+      "vfs-cache-mode=full"
+      "vfs-fast-fingerprint"
+      "vfs-cache-max-size=8G"
+      "vfs-cache-max-age=5000h"
       "tpslimit=12"
       "tpslimit_burst=0"
-      "config=/home/javier/.config/rclone/rclone.conf"
     ];
   };
 }
