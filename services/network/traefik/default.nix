@@ -13,10 +13,10 @@
     };
   };
 
-  virtualisation.podman.enable = true;
   systemd.services.traefik = {
     serviceConfig.EnvironmentFile = [config.sops.templates."traefik.env".path];
   };
+
   services.traefik = {
     enable = true;
     group = "podman";
