@@ -4,7 +4,7 @@
   inputs = {
     # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default-linux";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     disko = {
       url = "github:nix-community/disko";
@@ -75,14 +75,12 @@
     self,
     nixpkgs,
     home-manager,
-    systems,
     ...
   } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
-    supportedSystems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
-    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    pkgsFor = lib.genAttrs (import systems) (
+    linuxSystems = ["x86_64-linux" "aarch64-linux"];
+    pkgsFor = lib.genAttrs linuxSystems (
       system:
         import nixpkgs {
           inherit system;
@@ -91,7 +89,7 @@
         }
     );
   in {
-    checks = forAllSystems (system: {
+    checks = pkgsFor (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
@@ -100,7 +98,7 @@
         };
       };
     });
-    devShells = forAllSystems (system: {
+    devShells = pkgsFor (system: {
       default = nixpkgs.legacyPackages.${system}.mkShell {
         inherit (self.checks.${system}.pre-commit-check) shellHook;
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
@@ -109,6 +107,7 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     homeManagerModules = import ./modules/home-manager;
+    overlays = import ./overlays {inherit inputs outputs;};
     nixosConfigurations = {
       workstation = lib.nixosSystem {
         specialArgs = {
@@ -121,7 +120,7 @@
       };
       y520 = lib.nixosSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
           vars = import ./hosts/y520/vars.nix;
         };
         modules = [
@@ -129,9 +128,9 @@
         ];
       };
       pi3b = lib.nixosSystem {
-        system = "aarch64-linux";
+        # system = "aarch64-linux";
         specialArgs = {
-          inherit inputs;
+          inherit inputs outputs;
           vars = import ./hosts/pi3b/vars.nix;
         };
         modules = [

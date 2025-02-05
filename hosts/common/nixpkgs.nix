@@ -1,5 +1,8 @@
-{
+{outputs, ...}: {
   nixpkgs = {
+    overlays = [
+      outputs.overlays.stable-packages
+    ];
     # overlays = [
     #   (final: prev: {
     #     cliphist = prev.cliphist.overrideAttrs (_old: {

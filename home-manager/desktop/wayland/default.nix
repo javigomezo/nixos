@@ -34,6 +34,7 @@
       gparted
       input-leap
       killall
+      koodo-reader
       localsend
       mpv
       multiviewer-for-f1
