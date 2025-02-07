@@ -128,7 +128,6 @@
         ];
       };
       pi3b = lib.nixosSystem {
-        # system = "aarch64-linux";
         specialArgs = {
           inherit inputs outputs;
           vars = import ./hosts/pi3b/vars.nix;
