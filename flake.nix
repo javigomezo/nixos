@@ -60,11 +60,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # firefox-cascade-theme = {
-    #   url = "github:andreasgrafen/cascade";
-    #   flake = false;
-    # };
-
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,7 +84,7 @@
         }
     );
   in {
-    checks = pkgsFor (system: {
+    checks = lib.genAttrs linuxSystems (system: {
       pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
         src = ./.;
         hooks = {
@@ -98,7 +93,7 @@
         };
       };
     });
-    devShells = pkgsFor (system: {
+    devShells = lib.genAttrs linuxSystems (system: {
       default = nixpkgs.legacyPackages.${system}.mkShell {
         inherit (self.checks.${system}.pre-commit-check) shellHook;
         buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
@@ -125,6 +120,15 @@
         };
         modules = [
           ./hosts/y520
+        ];
+      };
+      nuc8i3beh = lib.nixosSystem {
+        specialArgs = {
+          inherit inputs outputs;
+          vars = import ./hosts/nuc8i3beh/vars.nix;
+        };
+        modules = [
+          ./hosts/nuc8i3beh
         ];
       };
       pi3b = lib.nixosSystem {
@@ -159,6 +163,16 @@
         };
         modules = [
           ./home-manager/y520.nix
+        ];
+      };
+      "javier@nuc8i3beh" = lib.homeManagerConfiguration {
+        pkgs = pkgsFor.x86_64-linux;
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          vars = import ./hosts/nuc8i3beh/vars.nix;
+        };
+        modules = [
+          ./home-manager/nuc8i3beh.nix
         ];
       };
       "vagrant@vagrantbox" = lib.homeManagerConfiguration {

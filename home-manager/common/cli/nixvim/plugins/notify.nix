@@ -1,8 +1,10 @@
 {
   programs.nixvim.plugins.notify = {
     enable = true;
-    fps = 60;
-    render = "minimal";
+    settings = {
+      fps = 60;
+      render = "minimal";
+    };
   };
   programs.nixvim.keymaps = [
     {

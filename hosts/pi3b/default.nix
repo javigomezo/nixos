@@ -15,6 +15,7 @@
     ../common/sops.nix
     ../common/locale.nix
     ../common/nix.nix
+    ../common/nixpkgs.nix
     ../common/tailscale.nix
     ../../services/openssh
     ../../services/keepalived
