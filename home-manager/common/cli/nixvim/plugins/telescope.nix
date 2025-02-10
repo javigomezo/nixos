@@ -1,10 +1,7 @@
 {
   programs.nixvim.plugins.telescope = {
     enable = true;
-    lazyLoad = {
-      enable = true;
-      settings.cmd = "Telescope";
-    };
+    lazyLoad.settings.cmd = "Telescope";
     extensions = {
       fzf-native.enable = true;
     };
@@ -22,10 +19,7 @@
         mappings = {
           i = {
             "<esc>" = {
-              __raw = ''
-                function(...)
-                  return require("telescope.actions").close(...)
-                end'';
+              __raw = "require('telescope.actions').close";
             };
           };
         };

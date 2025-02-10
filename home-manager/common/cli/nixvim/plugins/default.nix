@@ -1,6 +1,7 @@
 {
   imports = [
     ./alpha.nix
+    ./autopairs.nix
     # ./bufferline.nix
     ./cmp.nix
     ./codeium.nix

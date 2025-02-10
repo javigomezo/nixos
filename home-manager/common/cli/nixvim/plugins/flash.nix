@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.flash = {
     enable = true;
+    lazyLoad.settings.event = "BufEnter";
     #search.mode = "fuzzy";
     settings = {
       jump.autojump = true;

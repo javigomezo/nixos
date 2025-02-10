@@ -7,6 +7,7 @@
 
   programs.nixvim.plugins.lint = {
     enable = true;
+    lazyLoad.settings.event = ["BufEnter" "DeferredUIEnter"];
     lintersByFt = {
       json = ["jsonlint"];
       dockerfile = ["hadolint"];
