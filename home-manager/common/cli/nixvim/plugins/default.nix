@@ -3,6 +3,7 @@
     ./alpha.nix
     ./autopairs.nix
     # ./bufferline.nix
+    ./blink-cmp.nix
     ./cmp.nix
     ./codeium.nix
     ./comment.nix

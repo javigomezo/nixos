@@ -3,6 +3,7 @@
     web-devicons.enable = true;
     mini = {
       enable = true;
+      # lazyLoad.settings.event = "DeferredUIEnter";
       modules = {
         indentscope = {
           symbol = "│";

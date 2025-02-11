@@ -49,6 +49,10 @@
 
       targets = {
         hyprlock.enable = false;
+        nixvim.transparentBackground = {
+          main = true;
+          signColumn = true;
+        };
         rofi.enable = true;
         waybar.enable = false;
       };

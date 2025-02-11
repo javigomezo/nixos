@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.nixvim.plugins.luasnip = {
     enable = true;
+    lazyLoad.settings.event = "InsertEnter";
     settings = {
       enable_autosnippets = true;
     };

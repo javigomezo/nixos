@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     inputs.stylix.homeManagerModules.stylix
     ./cli
@@ -13,6 +17,12 @@
   };
 
   programs.home-manager.enable = true;
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.stable-packages
+    ];
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

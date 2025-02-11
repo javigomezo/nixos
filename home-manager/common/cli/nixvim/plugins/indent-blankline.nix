@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.indent-blankline = {
     enable = true;
+    lazyLoad.settings.event = ["BufReadPost" "BufWritePost" "BufNewFile"];
     settings = {
       indent = {
         char = "│";

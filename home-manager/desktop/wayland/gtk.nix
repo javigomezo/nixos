@@ -8,7 +8,7 @@
       #   schemeVariants = ["nord"];
       # };
       name = "kora";
-      package = pkgs.kora-icon-theme;
+      package = pkgs.stable.kora-icon-theme;
     };
   };
 }

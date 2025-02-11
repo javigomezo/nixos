@@ -7,13 +7,13 @@
 
   programs.nixvim.plugins.lint = {
     enable = true;
-    lazyLoad.settings.event = ["BufEnter" "DeferredUIEnter"];
+    lazyLoad.settings.event = ["DeferredUIEnter"];
     lintersByFt = {
       json = ["jsonlint"];
       dockerfile = ["hadolint"];
       python = ["flake8"];
       nix = ["nix"];
     };
-    autoCmd.event = ["BufEnter" "BufWritePost" "InsertLeave"];
+    # autoCmd.event = ["BufEnter" "BufWritePost" "InsertLeave"];
   };
 }

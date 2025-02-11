@@ -5,7 +5,16 @@
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;
-      settings.indent.enable = true;
+      lazyLoad.settings.event = [
+        "BufNewFile"
+        "BufReadPost"
+        "BufWritePost"
+        "DeferredUIEnter"
+      ];
+      settings = {
+        indent.enable = true;
+        highlight.enable = true;
+      };
       folding = false;
       nixvimInjections = true;
     };

@@ -1,7 +1,8 @@
 {
   programs.nixvim.plugins.lsp = {
     enable = true;
-    # lazyLoad.settings.event = "BufEnter";
+    inlayHints = true;
+    lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
     servers = {
       lua_ls.enable = true;
       pyright.enable = true;
