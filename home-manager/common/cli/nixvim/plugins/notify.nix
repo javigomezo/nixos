@@ -1,9 +1,11 @@
 {
   programs.nixvim.plugins.notify = {
     enable = true;
+    lazyLoad.settings.event = "DeferredUIEnter";
     settings = {
       fps = 60;
       render = "minimal";
+      background_colour = "#2e3440";
     };
   };
   programs.nixvim.keymaps = [

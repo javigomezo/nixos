@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.oil = {
-    enable = true;
+    enable = false;
     lazyLoad.settings.cmd = "Oil";
   };
 }

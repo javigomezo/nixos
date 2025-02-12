@@ -1,6 +1,9 @@
 {
   programs.nixvim.plugins = {
-    web-devicons.enable = true;
+    web-devicons = {
+      enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
+    };
     mini = {
       enable = true;
       # lazyLoad.settings.event = "DeferredUIEnter";

@@ -1,10 +1,10 @@
 {
   programs.nixvim.plugins = {
-    # cmp-nvim-lsp.enable = true;
-    # cmp-buffer.enable = true;
-    # cmp-path.enable = true;
-    # cmp_luasnip.enable = true;
-    # cmp-cmdline.enable = false;
+    cmp-nvim-lsp.enable = false;
+    cmp-buffer.enable = false;
+    cmp-path.enable = false;
+    cmp_luasnip.enable = false;
+    cmp-cmdline.enable = false;
     cmp = {
       enable = false;
       #autoEnableSources = true;
