@@ -1,7 +1,4 @@
 {
-  imports = [
-    ./ts-context-commentstring.nix
-  ];
   programs.nixvim.plugins = {
     treesitter = {
       enable = true;
