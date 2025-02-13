@@ -27,7 +27,7 @@
       inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
     ]
     ++ (with pkgs; [
-      # bambu-studio
+      bambu-studio
       ffmpeg
       gamescope
       grimblast
@@ -41,7 +41,6 @@
       obsidian
       pavucontrol
       plexamp
-      # polkit-kde-agent
       hyprpolkitagent
       protonup-qt
       qimgv
