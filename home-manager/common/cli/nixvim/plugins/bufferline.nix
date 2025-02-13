@@ -1,11 +1,11 @@
 {
   programs.nixvim.plugins.bufferline = {
     enable = true;
-    lazyLoad.settings.event = "BufEnter";
+    lazyLoad.settings.event = "DeferredUIEnter";
   };
   programs.nixvim.plugins.lualine = {
     enable = true;
-    lazyLoad.settings.event = "DeferredUIEnter";
+    lazyLoad.settings.event = "BufEnter";
     settings = {
       icons_enabled = true;
       options = {

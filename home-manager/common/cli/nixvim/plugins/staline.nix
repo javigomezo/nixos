@@ -22,12 +22,12 @@
         sections = {
             left = {
                 ' ', 'right_sep', '-mode', 'left_sep', ' ',
-                'right_sep', '-file_name', 'left_sep', ' ',
                 'right_sep', '-branch', 'left_sep', ' ',
             },
-            mid  = {'lsp'},
+            mid  = {
+                'right_sep', '-file_name', 'left_sep', ' ',
+            },
             right= {
-                'right_sep', '-cool_symbol', 'left_sep', ' ',
                 'right_sep', '- ', '-lsp_name', '- ', 'left_sep', ' ',
                 'right_sep', '-line_column', 'left_sep', ' ',
             }

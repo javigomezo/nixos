@@ -3,7 +3,7 @@
     ./alpha.nix
     ./autopairs.nix
     ./blink-cmp.nix
-    ./bufferline.nix
+    # ./bufferline.nix
     ./codeium.nix
     ./comment.nix
     ./conform-nvim.nix
@@ -20,7 +20,7 @@
     ./notify.nix
     # ./obsidian.nix
     # ./oil.nix
-    # ./staline.nix
+    ./staline.nix
     # ./supermaven.nix
     ./telescope.nix
     ./treesitter
