@@ -29,6 +29,7 @@
       li = "ls -a | grep -i";
       ll = "ls -l";
       lla = "ls -lah";
+      mkdir = "mkdir -p";
       #cat = "bat";
       k = "kubectl";
       kubechange = "kubectl config use-context ";
