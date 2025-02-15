@@ -99,7 +99,7 @@
   services = {
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
-    #dbus.enable = true;
+    dbus.enable = true;
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
