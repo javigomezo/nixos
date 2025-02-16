@@ -51,7 +51,7 @@
           truenas:
             loadBalancer:
               servers:
-              - url: "http://127.0.0.1:80"
+              - url: "http://11.0.0.1:80"
           audiobookshelf:
             loadBalancer:
               servers:
