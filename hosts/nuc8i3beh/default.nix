@@ -152,6 +152,12 @@
     "net.ipv6.conf.all.forwarding" = true;
   };
 
+  services.undervolt = {
+    enable = true;
+    coreOffset = -30;
+    gpuOffset = -30;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
