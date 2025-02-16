@@ -2,8 +2,8 @@
   imports = [
     ./adguardhome
     ./authelia
-    ./cf-ddns.nix
+    ./cloudflare-dyndns.nix
     ./traefik
-    ./wireguard.nix
+    # ./wireguard.nix
   ];
 }

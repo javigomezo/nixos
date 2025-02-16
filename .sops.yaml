@@ -41,7 +41,9 @@ creation_rules:
     - age:
       - *workstation
       - *y520
+      - *nuc8i3beh
       - *pi3b
       - *javier_workstation
       - *javier_y520
+      - *javier_nuc8i3beh
       - *javier_pi3b

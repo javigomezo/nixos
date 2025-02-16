@@ -11,7 +11,7 @@
       state = "${vars.keepalivedState}";
       interface = "${vars.mainInterface}";
       virtualRouterId = 55;
-      priority = 100;
+      priority = vars.keepalivedPriority;
       unicastSrcIp = "${vars.keepalivedSrcIp}";
       unicastPeers = ["${vars.keepalivedDstIp}"];
       virtualIps = [{addr = "10.0.0.200/24";}];

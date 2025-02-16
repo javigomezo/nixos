@@ -23,7 +23,7 @@
       theme: dark
       dns:
         bind_hosts:
-          - 0.0.0.0
+          - 10.0.0.200
         port: 53
         anonymize_client_ip: true
         ratelimit: 0

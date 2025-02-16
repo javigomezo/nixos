@@ -14,7 +14,7 @@ in {
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
           "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"
-          "/mnt/media/tvshows:/data/tvshows"
+          "/mnt/TVShows:/data/tvshows"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {

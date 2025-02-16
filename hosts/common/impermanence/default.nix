@@ -50,7 +50,13 @@
           }
         ]
         (lib.mkIf (config.networking.hostName == "nuc8i3beh") [
-          "/var/lib/AdGuardHome"
+          "/run/keepalived"
+          {
+            directory = "/media/music";
+            user = "javier";
+            group = "javier";
+            mode = "u=rwx,g=rwx,o=";
+          }
           {
             directory = "${vars.dockerVolumes}";
             user = "javier";

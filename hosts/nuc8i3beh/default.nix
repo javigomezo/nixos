@@ -9,8 +9,9 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
+    ./containers.nix
     ../common
-    # ./secrets.nix
+    ../../services/keepalived
     # ./power-management.nix
     ../optional/stylix.nix
   ];
@@ -20,7 +21,7 @@
     disko = {
       enable = true;
       encryption = false;
-      device = "/dev/disk/by-id/nvme-Samsung_SSD_960_EVO_250GB_S3ESNX0JB10293D";
+      device = "/dev/disk/by-id/nvme-nvme.c0a9-323130324534453441333533-435431303030503253534438-00000001";
     };
     impermanence = {
       enable = true;
@@ -28,18 +29,19 @@
     };
     nas-mounts = {
       qbittorrent-mount.enable = false;
-      nas-ip = "11.0.0.1";
+      nas-address = "11.0.0.1";
+      seagate-mount = {
+        device = "/dev/disk/by-uuid/6dfd6638-e78b-4913-8bd9-60940e152bfe";
+        fsType = "ext4";
+        options = ["x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
+      };
     };
-    # stylix.enable = false;
-  };
-
-  boot = {
-    supportedFilesystems = lib.mkForce ["btrfs"];
   };
 
   networking = {
     hostName = "nuc8i3beh";
     enableIPv6 = true;
+    dhcpcd.enable = false;
     interfaces = {
       eno1 = {
         useDHCP = lib.mkForce false;
@@ -50,7 +52,7 @@
           }
         ];
       };
-      enx68da73abae92 = {
+      enp58s0u1 = {
         useDHCP = lib.mkForce false;
         ipv4.addresses = [
           {
@@ -65,6 +67,11 @@
       address = "10.0.0.1";
       interface = "eno1";
     };
+    firewall = {
+      allowedTCPPorts = [2049];
+      # trustedInterfaces = ["enp58s0u1"];
+    };
+
     nameservers = ["9.9.9.11" "149.112.112.11"];
     # Enable networking
     networkmanager.enable = lib.mkForce false;
@@ -79,20 +86,39 @@
 
   virtualisation = {
     oci-containers.backend = "podman";
+    # docker = {
+    #   autoPrune.enable = true;
+    #   storageDriver = "btrfs";
+    # };
     podman = {
       enable = true;
+      dockerSocket.enable = true;
       dockerCompat = true;
       autoPrune.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+  services.thermald.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = [
-    pkgs.intel-gpu-tools
-    pkgs.tpm2-tss
+  environment.systemPackages = with pkgs; [
+    intel-gpu-tools
+    tpm2-tss
+    powertop
+    ethtool
+    networkd-dispatcher
+    sbctl
   ];
+
+  fileSystems."/mnt/Qbittorrent" = {
+    device = "/opt/docker-services/qbittorrent/data/downloads";
+    options = ["bind"];
+  };
 
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
@@ -100,11 +126,31 @@
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
     dbus.enable = true;
+    rpcbind.enable = true;
+    nfs.server = {
+      enable = true;
+      exports = ''
+        /mnt             10.0.0.0/24(rw,fsid=0,no_subtree_check)
+        /mnt/Qbittorrent 10.0.0.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check)
+        /mnt/Seagate 10.0.0.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check)
+      '';
+      hostName = "10.0.0.2";
+    };
   };
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@nixos"
-  ];
+  systemd.services."tailscale-optimization" = {
+    wantedBy = ["multi-user.target"];
+    after = ["graphical.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${lib.getExe pkgs.ethtool} -K eno1 rx-udp-gro-forwarding on rx-gro-list off";
+    };
+  };
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = true;
+    "net.ipv6.conf.all.forwarding" = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

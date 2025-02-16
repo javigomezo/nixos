@@ -55,7 +55,7 @@
                 - 1.0.0.1:53
       providers:
         docker:
-          endpoint: unix:///var/run/podman/podman.sock
+          endpoint: unix:///run/podman/podman.sock
           exposedByDefault: false
           defaultRule: "Host(`{{ normalize .Name }}.${config.sops.placeholder.fqdn}`)"
         file:

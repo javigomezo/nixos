@@ -10,6 +10,7 @@ in {
     containers = {
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:latest";
+        networks = ["bridge"];
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
@@ -30,6 +31,13 @@ in {
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
         };
       };
+    };
+  };
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        50000
+      ];
     };
   };
 }

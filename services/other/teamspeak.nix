@@ -8,7 +8,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "lscr.io/linuxserver/${containerName}:latest";
+        image = "${containerName}:latest";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/:/var/ts3server"

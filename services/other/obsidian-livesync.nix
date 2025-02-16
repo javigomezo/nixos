@@ -44,7 +44,8 @@ in {
           "traefik.enable" = "true";
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "5984";
-          "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          #"traefik.http.routers.${containerName}.middlewares" = "chain-obsidian@file";
+          "traefik.http.routers.${containerName}.middlewares" = "obsidiancors@docker";
           # Adhoc middlewares
           "traefik.http.middlewares.obsidiancors.headers.accesscontrolallowmethods" = "GET,PUT,POST,HEAD,DELETE";
           "traefik.http.middlewares.obsidiancors.headers.accesscontrolallowheaders" = "accept,authorization,content-type,origin,referer";

@@ -8,7 +8,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "lscr.io/linuxserver/${containerName}:alpine";
+        image = "ghcr.io/esphome/${containerName}:latest";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"

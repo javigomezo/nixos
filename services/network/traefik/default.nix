@@ -24,4 +24,18 @@
     staticConfigFile = config.sops.templates."static_config.yaml".path;
     dynamicConfigFile = config.sops.templates."dynamic_config.yaml".path;
   };
+
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      allowedUDPPorts = [
+        443
+        9987 # teamspeak
+        5683 # HA
+      ];
+    };
+  };
 }

@@ -9,12 +9,13 @@ in {
     containers = {
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:latest";
+        networks = ["bridge"];
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/library:/config"
-          #"/mnt/media/tvshows:/data/tvshows"
-          #"/mnt/media/movies:/data/tvshows"
-          #"/media/music:/data/music"
+          "/mnt/TVShows:/data/tvshows"
+          "/mnt/Movies:/data/movies"
+          "/media/music:/data/music"
           "/dev/shm:/transcoding"
           "/etc/localtime:/etc/localtime:ro"
         ];

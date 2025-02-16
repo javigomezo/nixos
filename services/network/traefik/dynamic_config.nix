@@ -8,6 +8,8 @@
           traefik:
             rule: "Host(`traefik.${config.sops.placeholder.fqdn}`)"
             service: "api@internal"
+            middlewares:
+            - chain-oauth
           authelia:
             rule: "Host(`authelia.${config.sops.placeholder.fqdn}`)"
             service: "authelia"
@@ -16,6 +18,16 @@
           adguardhome:
             rule: "Host(`adguard.${config.sops.placeholder.fqdn}`)"
             service: "adguardhome"
+            middlewares:
+              - chain-oauth
+          scrutiny:
+            rule: "Host(`scrutiny.${config.sops.placeholder.fqdn}`)"
+            service: "scrutiny"
+            middlewares:
+              - chain-oauth
+          truenas:
+            rule: "Host(`truenas.${config.sops.placeholder.fqdn}`)"
+            service: "truenas"
             middlewares:
               - chain-oauth
           audiobookshelf:
@@ -32,6 +44,14 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:3000"
+          scrutiny:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:8080"
+          truenas:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:80"
           audiobookshelf:
             loadBalancer:
               servers:

@@ -30,14 +30,14 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "lscr.io/linuxserver/${containerName}:alpine";
+        image = "${containerName}:alpine";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/data:/var/lib/influxdb2"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environmentFiles = [
-          config.sops.templates."immich.env".path
+          config.sops.templates."influxdb.env".path
         ];
         environment = {
           TZ = vars.timeZone;

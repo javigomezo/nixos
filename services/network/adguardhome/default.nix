@@ -18,4 +18,5 @@
       cp ${config.sops.templates."adguard_config.yaml".path} /var/lib/AdGuardHome/AdGuardHome.yaml
     '';
   };
+  networking.firewall.allowedUDPPorts = [53];
 }
