@@ -32,4 +32,8 @@ in {
       };
     };
   };
+
+  systemd.services.podman-radarr = {
+    after = ["multi-user.target"];
+  };
 }

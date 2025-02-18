@@ -37,4 +37,8 @@ in {
       };
     };
   };
+
+  systemd.services.podman-plex = {
+    after = ["multi-user.target"];
+  };
 }

@@ -15,12 +15,13 @@
     gdu
     git
     gnumake
+    htop
     nitch
     nixd
-    htop
     outils
     (python3.withPackages (ps: with ps; [requests]))
     pyright
+    restic
     ripgrep
     stow
     tmux

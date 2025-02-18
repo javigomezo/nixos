@@ -32,4 +32,8 @@ in {
       };
     };
   };
+
+  systemd.services.podman-sonarr = {
+    after = ["multi-user.target"];
+  };
 }
