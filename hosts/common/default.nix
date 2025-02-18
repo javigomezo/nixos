@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  config,
   lib,
   pkgs,
   ...
@@ -44,7 +45,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "github:javigomezo/nixos";
+    flake = "github:javigomezo/nixos#${config.networking.hostName}";
     allowReboot = true;
     rebootWindow = {
       lower = "05:00";

@@ -10,6 +10,7 @@
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
     ./containers.nix
+    ./backups.nix
     ../common
     ../../services/keepalived
     # ./power-management.nix
@@ -38,6 +39,7 @@
     };
   };
 
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
   networking = {
     hostName = "nuc8i3beh";
     enableIPv6 = true;
@@ -104,6 +106,7 @@
     powertop.enable = true;
   };
   services.thermald.enable = true;
+  services.upower.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
