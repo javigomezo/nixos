@@ -47,7 +47,7 @@
             # "git"
             # "lazydev"
             "lsp"
-            #"path"
+            "path"
             # "ripgrep"
             "snippets"
           ];
