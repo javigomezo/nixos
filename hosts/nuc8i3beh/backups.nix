@@ -13,6 +13,8 @@
     };
   };
 
+  # Based on https://github.com/CodeWitchBella/nixos/blob/main/modules/backup-restic.nix
+  # by CodeWitchBella
   services.restic.backups."${config.networking.hostName}" = {
     initialize = true;
     paths = ["/persist"];
