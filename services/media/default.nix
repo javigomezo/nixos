@@ -7,6 +7,7 @@
     ./qbittorrent.nix
     ./radarr.nix
     ./sonarr.nix
+    ./suggestarr.nix
     ./tautulli.nix
   ];
 }

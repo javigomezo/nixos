@@ -15,7 +15,8 @@ in {
           "${vars.dockerVolumes}/${containerName}/data/library:/config"
           "/mnt/TVShows:/data/tvshows"
           "/mnt/Movies:/data/movies"
-          "/media/music:/data/music"
+          #"/media/music:/data/music"
+          "/mnt/rclone/media/music:/data/music"
           "/dev/shm:/transcoding"
           "/etc/localtime:/etc/localtime:ro"
         ];
