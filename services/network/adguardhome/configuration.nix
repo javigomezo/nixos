@@ -1,8 +1,17 @@
 {config, ...}: {
   sops.secrets = {
-    "adguard/username" = {};
-    "adguard/password" = {};
-    "adguard/whitelisted_domains" = {};
+    "adguard/username" = {
+      sopsFile = ../../../hosts/common/secrets.yaml;
+      format = "yaml";
+    };
+    "adguard/password" = {
+      sopsFile = ../../../hosts/common/secrets.yaml;
+      format = "yaml";
+    };
+    "adguard/whitelisted_domains" = {
+      sopsFile = ../../../hosts/common/secrets.yaml;
+      format = "yaml";
+    };
     fqdn = {};
   };
   sops.templates."adguard_config.yaml" = {
