@@ -88,17 +88,6 @@
     };
   };
 
-  virtualisation = {
-    oci-containers.backend = "podman";
-    podman = {
-      enable = true;
-      dockerSocket.enable = true;
-      dockerCompat = true;
-      autoPrune.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
