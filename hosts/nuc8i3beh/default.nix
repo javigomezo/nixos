@@ -13,7 +13,6 @@
     ./backups.nix
     ../common
     ../../services/keepalived
-    # ./power-management.nix
     ../optional/stylix.nix
   ];
 
@@ -36,6 +35,10 @@
         fsType = "ext4";
         options = ["x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
       };
+    };
+    powerManagement.undervolt = {
+      coreOffset = -35;
+      gpuOffset = -35;
     };
   };
 
@@ -71,7 +74,6 @@
     };
     firewall = {
       allowedTCPPorts = [2049];
-      # trustedInterfaces = ["enp58s0u1"];
     };
 
     nameservers = ["9.9.9.11" "149.112.112.11"];
@@ -88,10 +90,6 @@
 
   virtualisation = {
     oci-containers.backend = "podman";
-    # docker = {
-    #   autoPrune.enable = true;
-    #   storageDriver = "btrfs";
-    # };
     podman = {
       enable = true;
       dockerSocket.enable = true;
@@ -101,12 +99,6 @@
     };
   };
 
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
-  services.thermald.enable = true;
-  services.upower.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -114,7 +106,6 @@
     tpm2-tss
     powertop
     ethtool
-    networkd-dispatcher
     sbctl
   ];
 
@@ -153,12 +144,6 @@
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = true;
     "net.ipv6.conf.all.forwarding" = true;
-  };
-
-  services.undervolt = {
-    enable = true;
-    coreOffset = -30;
-    gpuOffset = -30;
   };
 
   # This value determines the NixOS release from which the default

@@ -21,6 +21,7 @@
     ./nh.nix
     ./nix.nix
     ./nixpkgs.nix
+    ./power-management.nix
     ./rclone.nix
     ./sops.nix
     ./tailscale.nix

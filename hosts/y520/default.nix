@@ -12,7 +12,6 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
-    ./power-management.nix
     ./usbguard.nix
     ../common
     ../optional/display_manager.nix
@@ -38,6 +37,9 @@
       secureboot.enable = true;
     };
     nvidia.prime.enable = true;
+    power-management = {
+      isLaptop = true;
+    };
   };
 
   networking = {
