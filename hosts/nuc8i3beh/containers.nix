@@ -4,7 +4,6 @@
     ../../services/home
     ../../services/media
     ../../services/other
-    ../../services/keepalived
   ];
 
   virtualisation = {
