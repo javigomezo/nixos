@@ -50,7 +50,6 @@
           }
         ]
         (lib.mkIf (config.networking.hostName == "nuc8i3beh") [
-          "/run/keepalived"
           {
             directory = "/media/music";
             user = "javier";
