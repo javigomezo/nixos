@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   options.my.powerManagement = {
@@ -33,6 +34,9 @@
     };
   };
   config = {
+    environment.systemPackages = lib.mkIf config.my.powerManagement.enable [
+      pkgs.powertop
+    ];
     powerManagement = {
       enable = true;
       powertop.enable = config.my.powerManagement.enable;

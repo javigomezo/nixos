@@ -22,6 +22,8 @@
 
   my.boot.secureboot.enable = true;
   my.nas-mounts.qbittorrent-mount.enable = true;
+  my.powerManagement.undervolt.enable = false;
+  my.powerManagement.enable = false;
   networking = {
     hostName = "workstation"; # Define your hostname.
     enableIPv6 = true;

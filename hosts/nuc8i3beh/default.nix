@@ -105,7 +105,6 @@
     intel-gpu-tools
     tpm2-tss
     powertop
-    ethtool
     sbctl
   ];
 
@@ -117,6 +116,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
+    tailscale.useRoutingFeatures = lib.mkForce "both";
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
     dbus.enable = true;
@@ -130,20 +130,6 @@
       '';
       hostName = "10.0.0.2";
     };
-  };
-
-  systemd.services."tailscale-optimization" = {
-    wantedBy = ["multi-user.target"];
-    after = ["graphical.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${lib.getExe pkgs.ethtool} -K eno1 rx-udp-gro-forwarding on rx-gro-list off";
-    };
-  };
-
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_forward" = true;
-    "net.ipv6.conf.all.forwarding" = true;
   };
 
   # This value determines the NixOS release from which the default
