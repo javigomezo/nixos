@@ -44,12 +44,7 @@
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
 
-  hardware = {
-    bluetooth = {
-      enable = false;
-      powerOnBoot = false;
-    };
-  };
+  hardware.bluetooth.powerOnBoot = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
