@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }: {
@@ -12,6 +11,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
+    ./networking.nix
     ./usbguard.nix
     ../common
     ../optional/display_manager.nix
@@ -40,29 +40,6 @@
     power-management = {
       isLaptop = true;
     };
-  };
-
-  networking = {
-    hostName = "y520";
-    enableIPv6 = true;
-    interfaces = {
-      wlp3s0 = {
-        useDHCP = lib.mkForce false;
-        ipv4.addresses = [
-          {
-            address = "10.0.0.16";
-            prefixLength = 24;
-          }
-        ];
-      };
-    };
-    defaultGateway = {
-      address = "10.0.0.1";
-      interface = "wlp3s0";
-    };
-    nameservers = ["10.0.0.200" "10.0.0.3"];
-    # Enable networking
-    networkmanager.enable = true;
   };
 
   nixpkgs.config.packageOverrides = pkgs: {

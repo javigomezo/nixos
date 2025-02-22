@@ -8,6 +8,7 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
+    ./networking.nix
     ../common
     ../optional/display_manager.nix
     ../optional/docker.nix
@@ -16,32 +17,15 @@
     ../optional/stylix.nix
     ../optional/retroarch.nix
     ../optional/nvidia.nix
-    #../../services/network/traefik
-    #../../services/network/authelia
   ];
 
-  my.boot.secureboot.enable = true;
-  my.nas-mounts.qbittorrent-mount.enable = true;
-  my.powerManagement.undervolt.enable = false;
-  my.powerManagement.enable = false;
-  networking = {
-    hostName = "workstation"; # Define your hostname.
-    enableIPv6 = true;
-    interfaces.wlo1 = {
-      ipv4.addresses = [
-        {
-          address = "10.0.0.10";
-          prefixLength = 24;
-        }
-      ];
-      useDHCP = false;
+  my = {
+    boot.secureboot.enable = true;
+    nas-mounts.qbittorrent-mount.enable = true;
+    powerManagement = {
+      undervolt.enable = false;
+      enable = false;
     };
-    nameservers = [
-      "10.0.0.200"
-      "10.0.0.2"
-    ];
-    # Enable networking
-    networkmanager.enable = true;
   };
 
   fileSystems = {
