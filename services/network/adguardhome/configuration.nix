@@ -62,7 +62,7 @@
         trusted_proxies:
           - 127.0.0.0/8
           - ::1/128
-        cache_size: 4194304
+        cache_size: 33554432
         cache_ttl_min: 0
         cache_ttl_max: 0
         cache_optimistic: true
@@ -189,10 +189,18 @@
           name: oisd big
           id: 1695041581
         - enabled: true
-          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_48.txt
-          name: HaGeZi's Pro Blocklist
+          url: https://raw.githubusercontent.com/hagezi/dns-blocklists/main/hosts/ultimate-compressed.txt
+          name: HaGeZi's Ultimate Blocklist
           id: 1707470070
-      whitelist_filters: []
+        - enabled: true
+          url: https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
+          name: HaGeZi's Pro Thread Intelligence Feeds
+          id: 1707470073
+      whitelist_filters:
+        - enabled: true
+          url: https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/whitelist-referral.txt
+          name: HaGeZi's Referral
+          id: 1707470075
       user_rules:
         ${config.sops.placeholder."adguard/whitelisted_domains"}
       dhcp:
