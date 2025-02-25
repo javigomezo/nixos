@@ -34,7 +34,7 @@
         bind_hosts:
           - 10.0.0.200
         port: 53
-        anonymize_client_ip: true
+        anonymize_client_ip: false
         ratelimit: 0
         ratelimit_subnet_len_ipv4: 24
         ratelimit_subnet_len_ipv6: 56
