@@ -41,11 +41,10 @@
         ratelimit_whitelist: []
         refuse_any: true
         upstream_dns:
-          - '#quic://dns-unfiltered.adguard.com:784'
-          - '#quic://dot-de.blahdns.com:784'
           - quic://dns-unfiltered.adguard.com
-          - tls://dns-unfiltered.adguard.com
           - h3://unfiltered.adguard-dns.com/dns-query
+          - '#quic://dot-de.blahdns.com:784'
+          - '#tls://dns-unfiltered.adguard.com'
         upstream_dns_file: ""
         bootstrap_dns:
           - 9.9.9.11:53
