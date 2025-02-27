@@ -20,7 +20,7 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.stable-packages
+      outputs.overlays.custom-packages
     ];
   };
 

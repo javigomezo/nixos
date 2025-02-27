@@ -5,6 +5,7 @@
     # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-mine.url = "github:javigomezo/nixpkgs";
 
     disko = {
       url = "github:nix-community/disko";

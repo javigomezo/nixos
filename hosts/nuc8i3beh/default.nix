@@ -37,7 +37,7 @@
       };
     };
     powerManagement.undervolt = {
-      coreOffset = -35;
+      coreOffset = -50;
       gpuOffset = -35;
     };
   };

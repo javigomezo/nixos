@@ -37,7 +37,7 @@
       koodo-reader
       localsend
       mpv
-      multiviewer-for-f1
+      mine.multiviewer-for-f1
       obsidian
       pavucontrol
       plexamp
