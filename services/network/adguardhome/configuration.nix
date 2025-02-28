@@ -43,12 +43,16 @@
         upstream_dns:
           - quic://dns-unfiltered.adguard.com
           - h3://unfiltered.adguard-dns.com/dns-query
+          - quic://dns0.eu
+          - h3://dns0.eu
           - '#quic://dot-de.blahdns.com:784'
           - '#tls://dns-unfiltered.adguard.com'
         upstream_dns_file: ""
         bootstrap_dns:
-          - 9.9.9.11:53
-          - 149.112.112.11:53
+          - 193.110.81.0
+          - 185.253.5.0
+          # - 9.9.9.11:53
+          # - 149.112.112.11:53
         fallback_dns: []
         upstream_mode: parallel
         fastest_timeout: 1s
@@ -128,61 +132,9 @@
           name: dbloisd
           id: 1592133471
         - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_9_Spanish/filter.txt
-          name: AdGuard Spanish/Portuguese filter
-          id: 1593412790
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_14_Annoyances/filter.txt
-          name: AdGuard Annoyances filter
-          id: 1593412791
-        - enabled: true
           url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_3_Spyware/filter.txt
           name: AdGuard Tracking Protection filter
           id: 1593412792
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_2_Base/filter.txt
-          name: AdGuard Base filter
-          id: 1593412793
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_11_Mobile/filter.txt
-          name: AdGuard Mobile Ads filter
-          id: 1593412794
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/antiadblock.txt
-          name: 999_Antiadblock
-          id: 1605509964
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/adservers.txt
-          name: 999_AdServers
-          id: 1605509965
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/general_extensions.txt
-          name: 999_GeneralExtensions
-          id: 1605509968
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/general_url.txt
-          name: 999_BannerNames
-          id: 1605509969
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/replace.txt
-          name: 999_Replace
-          id: 1605509970
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/specific.txt
-          name: 999_SpecificRules
-          id: 1605509971
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpanishFilter/sections/allowlist.txt
-          name: 999_Whitelist
-          id: 1605509972
-        - enabled: true
-          url: https://raw.githubusercontent.com/d3ward/toolz/master/src/d3host.txt
-          name: d3ward
-          id: 1683892150
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_10_Useful/filter.txt
-          name: AdGuard Filter unblocking search
-          id: 1687096354
         - enabled: true
           url: https://big.oisd.nl/
           name: oisd big

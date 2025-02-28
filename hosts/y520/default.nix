@@ -37,7 +37,7 @@
       secureboot.enable = true;
     };
     nvidia.prime.enable = true;
-    power-management = {
+    powerManagement = {
       isLaptop = true;
     };
   };
