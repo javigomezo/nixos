@@ -18,6 +18,7 @@
       export XDG_SESSION_DESKTOP=Hyprland
       export WLR_NO_HARDWARE_CURSORS=1
       export MOZ_ENABLE_WAYLAND=1
+      export MOZ_USA_XINPUT2=1
       export NIXPKGS_ALLOW_UNFREE=1
       export QT_QPA_PLATFORM="wayland;xcb"
       export LIBSEAT_BACKEND="logind"
