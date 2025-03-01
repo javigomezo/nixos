@@ -31,6 +31,17 @@
   config = {
     boot = {
       kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+      kernelModules = ["tcp_bbr"];
+      kernel = {
+        sysctl = {
+          "net.ipv4.tcp_congestion_control" = "bbr";
+          "net.core.default_qdisc" = "fq";
+          "net.core.wmem_max" = 1073741824; # 1 GiB
+          "net.core.rmem_max" = 1073741824; # 1 GiB
+          "net.ipv4.tcp_rmem" = "4096 87380 1073741824"; # 1 GiB max
+          "net.ipv4.tcp_wmem" = "4096 87380 1073741824"; # 1 GiB max
+        };
+      };
       #kernelPackages = pkgs.linuxPackages_6_10;
       supportedFilesystems = ["btrfs" "ntfs"];
       loader = {
@@ -71,8 +82,6 @@
           "initcall_blacklist=simpledrm_platform_driver_init"
         ]
         ++ lib.optionals config.my.boot.nvidia.enable ["nvidia.NVreg_DynamicPowerManagement=0"];
-      kernel.sysctl."net.core.rmem_max" = 7500000;
-      kernel.sysctl."net.core.wmem_max" = 7500000;
       binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
       blacklistedKernelModules = [
         "nouveau"
