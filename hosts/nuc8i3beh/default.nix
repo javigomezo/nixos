@@ -36,10 +36,6 @@
         options = ["x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
       };
     };
-    powerManagement.undervolt = {
-      coreOffset = -50;
-      gpuOffset = -35;
-    };
   };
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
