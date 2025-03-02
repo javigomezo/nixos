@@ -36,7 +36,7 @@
         #"SUPER,R,exec,rofi -show drun"
         "SUPER,R,exec,uwsm app -- ${wofi} -S drun"
         "SUPER,S,exec,uwsm app -- grimblast --cursor --freeze --notify copysave screen"
-        "SUPERSHIFT,S,exec,uwsm app -- grimblast --cursor --freeze --notify copy area"
+        "SUPERSHIFT,S,exec,uwsm app -- grimblast --freeze --notify copy area"
         "SUPER,T,exec,uwsm app -- thunar"
         ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
         "SUPERSHIFT,V,togglefloating"
