@@ -9,5 +9,6 @@
     ./sonarr.nix
     ./suggestarr.nix
     ./tautulli.nix
+    ./threadfin.nix
   ];
 }
