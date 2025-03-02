@@ -2,7 +2,7 @@
 
 # How to Install
 ```bash
-  nix run github:nix-community/nixos-anywhere -- --copy-host-key --no-reboot --flake github:javigomezo/nixos#y520 root@<target_host>
+  nix run github:nix-community/nixos-anywhere -- --copy-host-key --phases kexec,disko,install --flake github:javigomezo/nixos#y520 root@<target_host>
 ```
 ## Before reboot
 As impermanence is active it's needed to copy the host keys to the right path. SSH again into the host and:
@@ -15,7 +15,7 @@ cp /etc/ssh/ssh_host_* /mnt/@/persist/etc/ssh/
 
 # Post Install
 
-At the time of writing this there is no declarative way of configuring flatpaks (at least not an official one). So here are some needed steps to have everything working.
+Enable secureboot and FDE with TPM2 unlock
 
 ## FDE + TPM2 Unlock
 
@@ -32,6 +32,8 @@ systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+7 /dev/mapper/crypted
 ```
 
 ## Add flathub repo and install Plex and Flatseal
+At the time of writing this there is no declarative way of configuring flatpaks (at least not an official one). So here are some needed steps to have everything working.
+
 ```bash
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo && \
 flatpak install flathub tv.plex.PlexDesktop && \
