@@ -3,6 +3,7 @@
     nodePackages.jsonlint
     python311Packages.flake8
     hadolint
+    tflint
   ];
 
   programs.nixvim.plugins.lint = {
@@ -13,6 +14,7 @@
       dockerfile = ["hadolint"];
       python = ["flake8"];
       nix = ["nix"];
+      terraform = ["tflint"];
     };
     # autoCmd.event = ["BufEnter" "BufWritePost" "InsertLeave"];
   };
