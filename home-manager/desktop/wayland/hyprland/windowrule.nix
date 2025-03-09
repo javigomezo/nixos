@@ -30,6 +30,7 @@
       "workspace 5,class:^(obsidian)$"
       "animation popin, class:^(thunar)$"
       "opacity 0.82 0.82, class:^(thunar)$"
+      "opacity 0.92 0.92, class:^(obsidian)$"
     ];
   };
 }

@@ -28,6 +28,7 @@
       export __GLX_VENDOR_LIBRARY_NAME=nvidia
       export LIBVA_DRIVER_NAME=${vars.libva_driver}
       export __GL_VRR_ALLOWED=0
+      export ELECTRON_OZONE_PLATFORM_HINT=auto
     '';
   };
 }
