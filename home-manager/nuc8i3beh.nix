@@ -7,7 +7,7 @@
   xdg.enable = true;
   services.podman.autoUpdate = {
     enable = true;
-    onCalendar = "* 55 * * *";
+    onCalendar = "5 55 * * *";
   };
 
   # You can update home Manager without changing this value. See
