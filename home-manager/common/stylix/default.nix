@@ -48,6 +48,10 @@
       };
 
       targets = {
+        firefox = {
+          profileNames = ["deault"];
+          colorTheme.enable = true;
+        };
         hyprlock.enable = false;
         nixvim.transparentBackground = {
           main = true;

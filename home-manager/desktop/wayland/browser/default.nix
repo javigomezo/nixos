@@ -77,12 +77,14 @@ in {
         (import ./browser-features.nix)
       ];
 
-      extensions.packages = with inputs.firefox-addons.packages."x86_64-linux"; [
-        bitwarden
-        ublock-origin
-        enhanced-h264ify
-        theme-nord-polar-night
-      ];
+      extensions = {
+        packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+          bitwarden
+          ublock-origin
+          enhanced-h264ify
+        ];
+        force = true;
+      };
     };
   };
 }
