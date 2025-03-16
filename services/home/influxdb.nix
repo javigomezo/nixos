@@ -31,6 +31,7 @@ in {
     containers = {
       ${containerName} = {
         image = "${containerName}:alpine";
+        pull = "always";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/data:/var/lib/influxdb2"

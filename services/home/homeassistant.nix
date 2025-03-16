@@ -30,6 +30,7 @@ in {
     containers = {
       ha_mariadb = {
         image = "lscr.io/linuxserver/mariadb:latest";
+        pull = "always";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
@@ -50,6 +51,7 @@ in {
       };
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:latest";
+        pull = "always";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"

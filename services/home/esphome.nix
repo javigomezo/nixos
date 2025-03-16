@@ -9,6 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "ghcr.io/esphome/${containerName}:latest";
+        pull = "always";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
