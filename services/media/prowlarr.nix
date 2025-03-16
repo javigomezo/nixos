@@ -9,6 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:nightly";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"

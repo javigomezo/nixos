@@ -4,7 +4,8 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "redis:6.2-alpine@sha256:905c4ee67b8e0aa955331960d2aa745781e6bd89afc44a8584bfd13bc890f0ae";
+        image = "redis:6.2-alpine";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "/etc/localtime:/etc/localtime:ro"

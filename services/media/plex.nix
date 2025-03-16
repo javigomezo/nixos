@@ -9,7 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:latest";
-        pull = "always";
+        pull = "newer";
         networks = ["bridge"];
         autoStart = true;
         volumes = [

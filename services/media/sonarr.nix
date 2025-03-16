@@ -10,6 +10,7 @@ in {
     containers = {
       ${containerName} = {
         image = "lscr.io/linuxserver/${containerName}:latest";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"

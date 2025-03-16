@@ -9,6 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "ghcr.io/immich-app/${containerName}:release-openvino";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/immich/ml/data/cache:/cache"

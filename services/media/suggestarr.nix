@@ -9,6 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "docker.io/ciuse99/${containerName}:latest";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/app/config/config_files"

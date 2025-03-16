@@ -25,6 +25,7 @@ in {
     containers = {
       ${containerName} = {
         image = "couchdb:latest";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/:/opt/couchdb/data/"

@@ -13,6 +13,7 @@ in {
     containers = {
       "${containerName}" = {
         image = "ghcr.io/immich-app/${containerName}-server:release";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/immich/server/data/upload:/usr/src/app/upload"

@@ -10,6 +10,7 @@ in {
     containers = {
       ${containerName} = {
         image = "fyb3roptik/${containerName}:latest";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/home/threadfin/conf"

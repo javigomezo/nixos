@@ -9,6 +9,7 @@ in {
     containers = {
       ${containerName} = {
         image = "${containerName}:latest";
+        pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/:/var/ts3server"
