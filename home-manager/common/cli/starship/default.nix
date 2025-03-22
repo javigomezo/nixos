@@ -2,7 +2,6 @@
   programs.starship = {
     enable = true;
     settings = {
-      palette = "nord";
       add_newline = true;
       format = ''
         $directory$git_branch$fill$kubernetes$python$hostname
