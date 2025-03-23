@@ -35,6 +35,11 @@
             service: "audiobookshelf"
             middlewares:
               - chain-no-oauth
+          glance:
+            rule: "Host(`glance.${config.sops.placeholder.fqdn}`)"
+            service: "glance"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -56,6 +61,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:8000"
+          glance:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:3333"
         middlewares:
           ratelimit:
             rateLimit:
