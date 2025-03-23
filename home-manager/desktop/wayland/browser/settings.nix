@@ -3,6 +3,7 @@
   # Disable firefox intro tabs on the first start
   # Disable the first run tabs with advertisements for the latest firefox features.
   "browser.startup.homepage_override.mstone" = "ignore";
+  "browser.startup.homepage" = "http://nuc8i3beh:3333";
   # Disable new tab page intro
   # Disable the intro to the newtab page on the first run
   "browser.newtabpage.introShown" = false;
@@ -11,6 +12,7 @@
   # Pocket Reading List
   # No details
   "extensions.pocket.enabled" = false;
+
   "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
   # Disable Sponsored Top Sites
   # Firefox 83 introduced sponsored top sites
