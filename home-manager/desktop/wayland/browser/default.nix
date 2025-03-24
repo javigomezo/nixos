@@ -54,7 +54,7 @@ in {
               }
             ];
           };
-          "YouTube" = {
+          "youtube" = {
             description = "Seach videos in YouTube";
             icon = "https://www.youtube.com/s/desktop/fc8159e8/img/favicon_32x32.png";
             updateInterval = 24 * 60 * 60 * 1000;
