@@ -2,48 +2,50 @@
   lib,
   config,
   ...
-}: {
+}: let
+  ytSecretsCount = 7;
+  twSecretsCount = 6;
+  rdtSecretsCount = 6;
+  generateSecrets = prefix: count:
+    builtins.listToAttrs (map
+      (
+        i: {
+          name = "glance/${prefix}_${toString i}";
+          value = {};
+        }
+      ) (builtins.genList (x: x + 1) count));
+
+  generatePlaceholders = prefix: count:
+    builtins.concatStringsSep "\n" (map
+      (
+        i: "${lib.toUpper prefix}_${toString i} = ${config.sops.placeholder."glance/${prefix}_${toString i}"}"
+      ) (builtins.genList (x: x + 1) count));
+
+  generateChannelList = prefix: count:
+    map (i: "\${${prefix}_${toString i}}") (builtins.genList (x: x + 1) count);
+
+  generateRedditWidgets = count:
+    map (i: {
+      type = "reddit";
+      subreddit = "\${RDT_${toString i}}";
+      show-thumbnails = true;
+    }) (builtins.genList (x: x + 1) count);
+
+  twSecrets = generateSecrets "tw" twSecretsCount;
+  ytSecrets = generateSecrets "yt" ytSecretsCount;
+  rdtSecrets = generateSecrets "rdt" rdtSecretsCount;
+
+  twPlaceholders = generatePlaceholders "tw" twSecretsCount;
+  ytPlaceholders = generatePlaceholders "yt" ytSecretsCount;
+  rdtPlaceholders = generatePlaceholders "rdt" rdtSecretsCount;
+in {
   sops = {
-    secrets = {
-      "glance/tw_1" = {};
-      "glance/tw_2" = {};
-      "glance/tw_3" = {};
-      "glance/tw_4" = {};
-      "glance/tw_5" = {};
-      "glance/tw_6" = {};
-      "glance/yt_1" = {};
-      "glance/yt_2" = {};
-      "glance/yt_3" = {};
-      "glance/yt_4" = {};
-      "glance/yt_5" = {};
-      "glance/yt_6" = {};
-      "glance/rdt_1" = {};
-      "glance/rdt_2" = {};
-      "glance/rdt_3" = {};
-      "glance/rdt_4" = {};
-      "glance/rdt_5" = {};
-      "glance/rdt_6" = {};
-    };
+    secrets = twSecrets // ytSecrets // rdtSecrets;
     templates."glance.env" = {
       content = ''
-        TW_1 = ${config.sops.placeholder."glance/tw_1"}
-        TW_2 = ${config.sops.placeholder."glance/tw_2"}
-        TW_3 = ${config.sops.placeholder."glance/tw_3"}
-        TW_4 = ${config.sops.placeholder."glance/tw_4"}
-        TW_5 = ${config.sops.placeholder."glance/tw_5"}
-        TW_6 = ${config.sops.placeholder."glance/tw_6"}
-        YT_1 = ${config.sops.placeholder."glance/yt_1"}
-        YT_2 = ${config.sops.placeholder."glance/yt_2"}
-        YT_3 = ${config.sops.placeholder."glance/yt_3"}
-        YT_4 = ${config.sops.placeholder."glance/yt_4"}
-        YT_5 = ${config.sops.placeholder."glance/yt_5"}
-        YT_6 = ${config.sops.placeholder."glance/yt_6"}
-        RDT_1 = ${config.sops.placeholder."glance/rdt_1"}
-        RDT_2 = ${config.sops.placeholder."glance/rdt_2"}
-        RDT_3 = ${config.sops.placeholder."glance/rdt_3"}
-        RDT_4 = ${config.sops.placeholder."glance/rdt_4"}
-        RDT_5 = ${config.sops.placeholder."glance/rdt_5"}
-        RDT_6 = ${config.sops.placeholder."glance/rdt_6"}
+        ${twPlaceholders}
+        ${ytPlaceholders}
+        ${rdtPlaceholders}
       '';
     };
   };
@@ -75,14 +77,7 @@
                 {
                   type = "twitch-channels";
                   sort-by = "live";
-                  channels = [
-                    "\${TW_1}"
-                    "\${TW_2}"
-                    "\${TW_3}"
-                    "\${TW_4}"
-                    "\${TW_5}"
-                    "\${TW_6}"
-                  ];
+                  channels = generateChannelList "TW" twSecretsCount;
                 }
               ];
             }
@@ -96,49 +91,11 @@
                 }
                 {
                   type = "group";
-                  widgets = [
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_1}";
-                      show-thumbnails = true;
-                    }
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_2}";
-                      show-thumbnails = true;
-                    }
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_3}";
-                      show-thumbnails = true;
-                    }
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_4}";
-                      show-thumbnails = true;
-                    }
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_5}";
-                      show-thumbnails = true;
-                    }
-                    {
-                      type = "reddit";
-                      subreddit = "\${RDT_6}";
-                      show-thumbnails = true;
-                    }
-                  ];
+                  widgets = generateRedditWidgets rdtSecretsCount;
                 }
                 {
                   type = "videos";
-                  channels = [
-                    "\${YT_1}"
-                    "\${YT_2}"
-                    "\${YT_3}"
-                    "\${YT_4}"
-                    "\${YT_5}"
-                    "\${YT_6}"
-                  ];
+                  channels = generateChannelList "YT" ytSecretsCount;
                 }
               ];
             }
