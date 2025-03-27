@@ -26,6 +26,8 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "5055";
           "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          "glance.name" = "Overseerr";
+          "glance.parent" = "arr";
         };
       };
     };

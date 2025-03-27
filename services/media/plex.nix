@@ -35,6 +35,9 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "32400";
           "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          "glance.name" = "Plex";
+          "glance.icon" = "si:plex";
+          "glance.id" = "plex";
         };
       };
     };

@@ -27,6 +27,8 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "8181";
           "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          "glance.name" = "Tautulli";
+          "glance.parent" = "plex";
         };
       };
     };

@@ -12,7 +12,7 @@ in {
         pull = "newer";
         autoStart = true;
         volumes = [
-          "${vars.dockerVolumes}/${containerName}/data/config:/config"
+          "${vars.dockerVolumes}/${containerName}/data/config:/var/lib/grafana"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {
@@ -26,6 +26,9 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "3000";
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
+          "glance.name" = "Grafana";
+          "glance.icon" = "si:grafana";
+          "glance.id" = "grafana";
         };
       };
     };

@@ -27,6 +27,9 @@ in {
           "traefik.udp.routers.${containerName}.entrypoints" = "${containerName}";
           "traefik.udp.routers.${containerName}.service" = "${containerName}";
           "traefik.udp.services.${containerName}.loadbalancer.server.port" = "9987";
+          "glance.name" = "TeamSpeak";
+          "glance.icon" = "si:teamspeak";
+          "glance.id" = "teamspeak";
         };
       };
     };

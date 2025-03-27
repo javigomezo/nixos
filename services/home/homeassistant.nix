@@ -47,6 +47,8 @@ in {
         };
         labels = {
           "traefik.enable" = "false";
+          "glance.name" = "MariaDB";
+          "glance.parent" = "homeassistant";
         };
       };
       ${containerName} = {
@@ -76,6 +78,9 @@ in {
           "traefik.udp.routers.${containerName}.entrypoints" = "${containerName}";
           "traefik.udp.routers.${containerName}.service" = "${containerName}";
           "traefik.udp.services.${containerName}.loadbalancer.server.port" = "5683";
+          "glance.name" = "HomeAssistant";
+          "glance.icon" = "si:homeassistant";
+          "glance.id" = "homeassistant";
         };
       };
     };

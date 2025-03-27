@@ -51,6 +51,8 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "8086";
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
+          "glance.name" = "InfluxDB";
+          "glance.parent" = "homeassistant";
         };
       };
     };

@@ -54,6 +54,9 @@ in {
           "traefik.http.middlewares.obsidiancors.headers.accesscontrolmaxage" = "3600";
           "traefik.http.middlewares.obsidiancors.headers.addvaryheader" = "true";
           "traefik.http.middlewares.obsidiancors.headers.accessControlAllowCredentials" = "true";
+          "glance.name" = "Obsidian LiveSync";
+          "glance.icon" = "si:obsidian";
+          "glance.id" = "obsidian";
         };
       };
     };

@@ -27,6 +27,9 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "6052";
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
+          "glance.name" = "ESPHome";
+          "glance.icon" = "si:esphome";
+          "glance.id" = "esphome";
         };
       };
     };

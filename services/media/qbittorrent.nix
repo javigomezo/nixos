@@ -30,6 +30,9 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "8080";
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
+          "glance.name" = "Qbittorrent";
+          "glance.icon" = "si:qbittorrent";
+          "glance.id" = "qbittorrent";
         };
       };
     };

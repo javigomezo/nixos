@@ -26,6 +26,8 @@ in {
         };
         labels = {
           "traefik.enable" = "false";
+          "glance.parent" = "immich";
+          "glance.name" = "Machine Learning";
         };
       };
     };

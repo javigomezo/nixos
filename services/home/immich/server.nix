@@ -38,6 +38,9 @@ in {
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "2283";
           "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
+          "glance.name" = "Immich";
+          "glance.icon" = "si:immich";
+          "glance.id" = "immich";
         };
       };
     };
