@@ -49,7 +49,7 @@
     flake = "github:javigomezo/nixos#${config.networking.hostName}";
     allowReboot = true;
     rebootWindow = {
-      lower = "02:00";
+      lower = "01:00";
       upper = "05:00";
     };
     dates = "01:59"; # Because Nothing Good Happens After 2 A.M.
