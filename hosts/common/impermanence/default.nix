@@ -80,6 +80,12 @@
             group = "traefik";
             mode = "u=rwx,g=rx,o=";
           }
+          {
+            directory = "/var/lib/loki";
+            user = "loki";
+            group = "loki";
+            mode = "u=rwx,g=rx,o=";
+          }
         ])
       ];
       files = [];

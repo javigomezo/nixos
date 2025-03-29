@@ -1,10 +1,7 @@
 {vars, ...}: let
   containerName = "grafana";
-  directories = [
-    "${vars.dockerVolumes}/${containerName}/data/config"
-  ];
 in {
-  systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
+  # systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {

@@ -1,10 +1,11 @@
 {
   imports = [
-    ./influxdb.nix
+    ./esphome.nix
     ./glance.nix
     ./grafana.nix
     ./homeassistant.nix
-    ./esphome.nix
     ./immich
+    ./influxdb.nix
+    ./loki.nix
   ];
 }
