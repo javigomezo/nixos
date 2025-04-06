@@ -21,7 +21,9 @@
   nixpkgs = {
     overlays = [
       outputs.overlays.custom-packages
+      inputs.nur.overlays.default
     ];
+    config.allowUnfree = true;
   };
 
   # Nicely reload system units when changing configs
