@@ -18,6 +18,22 @@
           silent = true;
         };
       }
+      {
+        mode = ["v"];
+        action = ":m '>+1<CR>gv=gv";
+        key = "J";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = ["v"];
+        action = ":m '<-2<CR>gv=gv";
+        key = "K";
+        options = {
+          silent = true;
+        };
+      }
     ];
   };
 }
