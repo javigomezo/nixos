@@ -24,5 +24,19 @@
     extraConfigVim = ''
       set undofile
     '';
+    autoCmd = [
+      {
+        event = "TextYankPost";
+        group = "YankHighlight";
+        callback = {
+          __raw = "function() vim.highlight.on_yank() end";
+        };
+      }
+    ];
+    autoGroups = {
+      "YankHighlight" = {
+        clear = true;
+      };
+    };
   };
 }

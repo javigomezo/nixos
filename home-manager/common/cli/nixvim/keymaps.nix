@@ -12,6 +12,14 @@
       }
       {
         mode = ["n"];
+        action = "<cmd>nohlsearch<CR>";
+        key = "<Esc>";
+        options = {
+          silent = true;
+        };
+      }
+      {
+        mode = ["n"];
         action = ":bprevious<CR>";
         key = "<S-h>";
         options = {
