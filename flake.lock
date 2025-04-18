@@ -677,11 +677,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1744944622,
-        "narHash": "sha256-1Z/axBqaVyZskOuNAZ2HJrE9oo5D2oh3u0JRzuHWGto=",
+        "lastModified": 1744975069,
+        "narHash": "sha256-bUxa8L/jK1PlmTJZV3bPcjEY6RzF/5awgpwJd4jSVUk=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "0ae4252e287d1f451a49db8435c9885251011981",
+        "rev": "06bec0ce4c0e46579ae1436c2812428d6f8cee36",
         "type": "github"
       },
       "original": {
@@ -792,11 +792,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717422403,
-        "narHash": "sha256-YAK+zbXcp2xt2EM0bgQlgGUSEBbIwGtuYoIwzem5pJE=",
+        "lastModified": 1744985010,
+        "narHash": "sha256-kSnxrp9FC5lH20tglwGZVH/Jj5mSRn0Izzef4wiE8tE=",
         "ref": "main",
-        "rev": "0181cf49cc05b1df174a065f8a57457f25255bb1",
-        "revCount": 12,
+        "rev": "f08144243ac68bedf06b8f377aaff36ffb0cfbe1",
+        "revCount": 16,
         "type": "git",
         "url": "ssh://git@github.com/javigomezo/private-fonts.git"
       },

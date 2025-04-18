@@ -8,6 +8,7 @@
     text = ''
       export HYPRCURSOR_THEME="bibata-modern-classic-hyprcursor"
       export HYPRCURSOR_SIZE=24
+      export AQ_DRM_DEVICES="/dev/dri/card0:/dev/dri/card1"
     '';
   };
   home.file."${config.home.homeDirectory}/.config/uwsm/env" = {
