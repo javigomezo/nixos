@@ -130,7 +130,6 @@ in {
   };
   systemd.services.glance = {
     serviceConfig.EnvironmentFile = [config.sops.templates."glance.env".path];
-    serviceConfig.ProcSubset = lib.mkForce "all";
     serviceConfig.Group = "podman";
   };
 }
