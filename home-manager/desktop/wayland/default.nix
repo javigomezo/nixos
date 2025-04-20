@@ -32,7 +32,7 @@
       gamescope
       grimblast
       gparted
-      input-leap
+      # input-leap
       killall
       koodo-reader
       localsend

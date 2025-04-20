@@ -72,7 +72,10 @@
           position = "${toString m.x}x${toString m.y}";
         in "${m.name},${
           if m.enabled
-          then "${resolution},${position},1"
+          then
+            if m.auto
+            then "auto, right, 1"
+            else "${resolution},${position},1"
           else "disable"
         }"
       ) (lib.filter (m: m.enabled != null) config.monitors);

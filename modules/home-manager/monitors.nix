@@ -40,6 +40,10 @@ in {
           type = types.bool;
           default = true;
         };
+        auto = mkOption {
+          type = types.bool;
+          default = false;
+        };
         workspace = mkOption {
           type = types.nullOr types.str;
           default = null;
