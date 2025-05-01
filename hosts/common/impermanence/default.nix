@@ -86,6 +86,12 @@
             group = "loki";
             mode = "u=rwx,g=rx,o=";
           }
+          {
+            directory = "/var/lib/paperless";
+            user = "paperless";
+            group = "paperless";
+            mode = "u=rwx,g=rx,o=";
+          }
         ])
       ];
       files = [];

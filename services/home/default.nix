@@ -7,5 +7,6 @@
     ./immich
     ./influxdb.nix
     ./loki.nix
+    ./paperless.nix
   ];
 }

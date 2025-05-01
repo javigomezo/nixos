@@ -40,6 +40,11 @@
             service: "glance"
             middlewares:
               - chain-oauth
+          paperless:
+            rule: "Host(`paperless.${config.sops.placeholder.fqdn}`)"
+            service: "paperless"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -65,6 +70,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:3333"
+          paperless:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:${toString config.services.paperless.port}"
         middlewares:
           ratelimit:
             rateLimit:
