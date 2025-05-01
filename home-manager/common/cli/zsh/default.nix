@@ -36,7 +36,7 @@
       kubecontext = "kubectl config get-contexts";
       nvidia-smi = "watch -n 1 nvidia-smi";
     };
-    initExtra = ''
+    initContent = ''
       if [[ $- == *i* ]]; then
         clear;nitch;
       fi
@@ -56,6 +56,10 @@
       enableZshIntegration = true;
     };
     zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    carapace = {
       enable = true;
       enableZshIntegration = true;
     };

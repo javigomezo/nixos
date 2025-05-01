@@ -44,7 +44,7 @@
             rule: "Host(`paperless.${config.sops.placeholder.fqdn}`)"
             service: "paperless"
             middlewares:
-              - chain-oauth
+              - chain-no-oauth
         services:
           authelia:
             loadBalancer:
