@@ -91,10 +91,8 @@
       KillMode = "control-group";
       PrivateMounts = true;
       ExecStart = lib.mkBefore [
-        ''
-          ${lib.getExe pkgs.umount} -l /persist
-          ${lib.getExe pkgs.mount} -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
-        ''
+        "${lib.getExe pkgs.umount} -l /persist"
+        "${lib.getExe pkgs.mount} -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist"
       ];
     };
   };
