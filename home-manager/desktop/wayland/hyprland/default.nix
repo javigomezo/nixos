@@ -74,7 +74,7 @@
           if m.enabled
           then
             if m.auto
-            then "auto, right, 1"
+            then " preferred, auto-right, 1"
             else "${resolution},${position},1"
           else "disable"
         }"
