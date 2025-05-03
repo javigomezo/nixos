@@ -56,13 +56,6 @@ in {
         host = "0.0.0.0";
         port = 3333;
       };
-      theme = {
-        background-color = "229 19 23";
-        contrast-multiplier = 1.2;
-        primary-color = "222 74 74";
-        positive-color = "96 44 68";
-        negative-color = "359 68 71";
-      };
       pages = [
         {
           name = "Inicio";
