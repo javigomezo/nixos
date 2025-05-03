@@ -28,6 +28,7 @@ in {
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJvEayrTyaS9XyCb9bo7XCdmIqZrumLrAPOH8h7UEYm javier@nuc"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPzu6WsnLgOJ4Oos1vf/+Fmwp714q/T4N+Qok93br0sK javier@nixos"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPoNfSHGFcHCJMtPXJrPBY7um8IWJsmLhMmPD2iW32IX javier@y520"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGe7egmSTNKA5Qgdfv3jGRJoVHKobJUBC2n8CYbhchGu javier@t14"
       ];
       packages = [pkgs.home-manager];
     };
