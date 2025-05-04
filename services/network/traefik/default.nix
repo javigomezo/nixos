@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./static_config.nix
     ./dynamic_config.nix
@@ -38,4 +42,13 @@
       ];
     };
   };
+
+  environment.persistence."/persist".directories = lib.mkAfter [
+    {
+      directory = "/var/lib/traefik";
+      user = "traefik";
+      group = "traefik";
+      mode = "u=rwx,g=rx,o=";
+    }
+  ];
 }

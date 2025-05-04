@@ -62,36 +62,6 @@
             group = "javier";
             mode = "u=rwx,g=rwx,o=";
           }
-          {
-            directory = "/var/lib/audiobookshelf";
-            user = "audiobookshelf";
-            group = "audiobookshelf";
-            mode = "u=rwx,g=rx,o=";
-          }
-          {
-            directory = "/var/lib/authelia-main";
-            user = "authelia-main";
-            group = "authelia-main";
-            mode = "u=rwx,g=rx,o=";
-          }
-          {
-            directory = "/var/lib/traefik";
-            user = "traefik";
-            group = "traefik";
-            mode = "u=rwx,g=rx,o=";
-          }
-          {
-            directory = "/var/lib/loki";
-            user = "loki";
-            group = "loki";
-            mode = "u=rwx,g=rx,o=";
-          }
-          {
-            directory = "/var/lib/paperless";
-            user = "paperless";
-            group = "paperless";
-            mode = "u=rwx,g=rx,o=";
-          }
         ])
       ];
       files = [];

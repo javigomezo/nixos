@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   sops = {
     secrets = {
       "paperless/password" = {
@@ -29,4 +33,13 @@
       };
     };
   };
+
+  environment.persistence."/persist".directories = lib.mkAfter [
+    {
+      directory = "/var/lib/paperless";
+      user = "paperless";
+      group = "paperless";
+      mode = "u=rwx,g=rx,o=";
+    }
+  ];
 }

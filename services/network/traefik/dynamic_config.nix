@@ -45,6 +45,11 @@
             service: "paperless"
             middlewares:
               - chain-no-oauth
+          plex:
+            rule: "Host(`plex.${config.sops.placeholder.fqdn}`)"
+            service: "plex"
+            middlewares:
+              - chain-no-oauth
         services:
           authelia:
             loadBalancer:
@@ -74,6 +79,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:${toString config.services.paperless.port}"
+          plex:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:32400"
         middlewares:
           ratelimit:
             rateLimit:

@@ -2,7 +2,8 @@
   imports = [
     ./audiobookshelf.nix
     ./overseerr.nix
-    ./plex.nix
+    # ./plex.nix
+    ./plex_nix.nix
     ./prowlarr.nix
     ./qbittorrent.nix
     ./radarr.nix

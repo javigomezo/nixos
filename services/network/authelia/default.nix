@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./configuration.nix
     ./user_database.nix
@@ -37,4 +41,12 @@
       config.sops.templates."authelia_configuration.yaml".path
     ];
   };
+  environment.persistence."/persist".directories = lib.mkAfter [
+    {
+      directory = "/var/lib/authelia-main";
+      user = "authelia-main";
+      group = "authelia-main";
+      mode = "u=rwx,g=rx,o=";
+    }
+  ];
 }

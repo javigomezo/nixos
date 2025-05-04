@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   networking.firewall.interfaces.podman0.allowedTCPPorts = [3100 3031 12345];
   environment.etc."alloy/config.alloy" = {
     source = ./config.alloy;
@@ -75,4 +75,12 @@
       };
     };
   };
+  environment.persistence."/persist".directories = lib.mkAfter [
+    {
+      directory = "/var/lib/loki";
+      user = "loki";
+      group = "loki";
+      mode = "u=rwx,g=rx,o=";
+    }
+  ];
 }
