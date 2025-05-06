@@ -1,5 +1,4 @@
 {
-  lib,
   config,
   pkgs,
   ...
@@ -66,7 +65,7 @@
       # Mount snapshot backup
       mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
 
-      touch /persist/var/lib/test12345
+      # touch /persist/var/lib/test12345
     '';
     backupCleanupCommand = ''
       btrfs subvolume delete /persist/@backup-snapshot
@@ -90,10 +89,10 @@
     serviceConfig = {
       KillMode = "control-group";
       PrivateMounts = true;
-      ExecStart = lib.mkBefore [
-        "${lib.getExe pkgs.umount} -l /persist"
-        "${lib.getExe pkgs.mount} -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist"
-      ];
+      # ExecStart = lib.mkBefore [
+      #   "${lib.getExe pkgs.umount} -l /persist"
+      #   "${lib.getExe pkgs.mount} -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist"
+      # ];
     };
   };
 }

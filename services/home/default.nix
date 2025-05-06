@@ -1,5 +1,6 @@
 {
   imports = [
+    ./bambustudio.nix
     ./esphome.nix
     ./glance.nix
     ./grafana.nix

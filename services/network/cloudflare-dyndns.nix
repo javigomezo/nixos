@@ -4,9 +4,7 @@
       "cloudflare/dns_api_key" = {};
     };
     templates."apiToken.env" = {
-      content = ''
-        ${config.sops.placeholder."cloudflare/dns_api_key"}
-      '';
+      content = ''${config.sops.placeholder."cloudflare/dns_api_key"}'';
     };
     templates."domainName.env".content = ''
       CLOUDFLARE_DOMAINS="${config.sops.placeholder.fqdn}"
