@@ -4,7 +4,7 @@
     ./autopairs.nix
     ./blink-cmp.nix
     # ./bufferline.nix
-    # ./codeium.nix
+    ./codeium.nix
     ./comment.nix
     ./conform-nvim.nix
     ./dressing.nix

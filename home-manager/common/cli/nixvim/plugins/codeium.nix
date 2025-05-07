@@ -1,5 +1,5 @@
 {
-  programs.nixvim.plugins.codeium-vim = {
+  programs.nixvim.plugins.windsurf-vim = {
     enable = true;
   };
 }
