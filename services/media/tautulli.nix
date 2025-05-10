@@ -13,7 +13,7 @@ in {
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
-          "${vars.dockerVolumes}/plex/data/library/Library/Application Support/Plex Media Server/Logs:/logs:ro"
+          "/var/lib/plex/Plex Media Server/Logs:/logs:ro"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {
