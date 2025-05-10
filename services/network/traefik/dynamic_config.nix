@@ -50,6 +50,11 @@
             service: "plex"
             middlewares:
               - chain-no-oauth
+          tautulli:
+            rule: "Host(`tautulli.${config.sops.placeholder.fqdn}`)"
+            service: "tautulli"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -83,6 +88,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:32400"
+          tautulli:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:${toString config.services.tautulli.port}"
         middlewares:
           ratelimit:
             rateLimit:
