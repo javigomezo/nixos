@@ -31,7 +31,7 @@
         "SUPER,L,exec,uwsm app -- hyprlock"
         "SUPER,M,exec,uwsm app -- wlogout"
         "SUPERSHIFT,M,exit"
-        "SUPER,O,exec,uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform"
+        "SUPER,O,exec,uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj"
         #"SUPER,P,exec,uwsm app -- tv.plex.PlexDesktop"
         "SUPER,P,exec,uwsm app -- plex-desktop"
         #"SUPER,R,exec,rofi -show drun"
