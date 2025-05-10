@@ -21,7 +21,6 @@
         nix = ["alejandra"];
         python = ["isort" "black"];
         javascript = [["prettierd" "prettier"]];
-        terraform = ["terraform_fmt"];
         "_" = ["trim_whitespace"];
       };
     };

@@ -24,5 +24,6 @@
     # ./supermaven.nix
     ./telescope.nix
     ./treesitter
+    ./tiny-inline-diagnostic.nix
   ];
 }

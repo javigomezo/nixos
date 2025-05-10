@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     nodePackages.jsonlint
-    python311Packages.flake8
     hadolint
     tflint
   ];
@@ -12,9 +11,8 @@
     lintersByFt = {
       json = ["jsonlint"];
       dockerfile = ["hadolint"];
-      python = ["flake8"];
+      python = ["ruff"];
       nix = ["nix"];
-      terraform = ["tflint"];
     };
     # autoCmd.event = ["BufEnter" "BufWritePost" "InsertLeave"];
   };
