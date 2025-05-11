@@ -33,7 +33,7 @@
         "SUPERSHIFT,M,exit"
         "SUPER,O,exec,uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj"
         #"SUPER,P,exec,uwsm app -- tv.plex.PlexDesktop"
-        "SUPER,P,exec,uwsm app -- plex-desktop"
+        "SUPER,P,exec,QT_QPA_PLATFORM=xcb uwsm app -- plex-desktop"
         #"SUPER,R,exec,rofi -show drun"
         "SUPER,R,exec,uwsm app -- ${wofi} -S drun"
         "SUPER,S,exec,uwsm app -- grimblast --cursor --freeze --notify copysave screen"
