@@ -603,47 +603,50 @@
       "locked": {
         "lastModified": 1747179050,
         "narHash": "sha256-qhFMmDkeJX9KJwr5H32f1r7Prs7XbQWtO0h3V0a0rFY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
+        "ref": "nixos-unstable",
         "rev": "adaa24fbf46737f3f1b5497bf64bae750f82942e",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       },
       "original": {
-        "owner": "NixOS",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       }
     },
     "nixpkgs-mine": {
       "locked": {
         "lastModified": 1745398845,
         "narHash": "sha256-tVp3Kj75pf75suURAIEXKFsL3w1mVdXAWyDoCRv9bqc=",
-        "owner": "javigomezo",
-        "repo": "nixpkgs",
+        "ref": "refs/heads/master",
         "rev": "3ad04437789488bc40d509f1fe0e9937d6d69f9f",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/javigomezo/nixpkgs"
       },
       "original": {
-        "owner": "javigomezo",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/javigomezo/nixpkgs"
       }
     },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1746957726,
         "narHash": "sha256-k9ut1LSfHCr0AW82ttEQzXVCqmyWVA5+SHJkS5ID/Jo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
+        "ref": "nixos-24.11",
         "rev": "a39ed32a651fdee6842ec930761e31d1f242cb94",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       },
       "original": {
-        "owner": "NixOS",
         "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/NixOS/nixpkgs"
       }
     },
     "nixvim": {

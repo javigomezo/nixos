@@ -3,9 +3,11 @@
 
   inputs = {
     # Official NixOS package source, using nixos-unstable branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-mine.url = "github:javigomezo/nixpkgs";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
+    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-24.11";
+    #nixpkgs-mine.url = "github:javigomezo/nixpkgs";
+    nixpkgs-mine.url = "git+https://github.com/javigomezo/nixpkgs?shallow=1";
 
     disko = {
       url = "github:nix-community/disko";
