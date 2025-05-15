@@ -2,7 +2,7 @@
   programs.nixvim.plugins = {
     blink-cmp = {
       enable = true;
-      # lazyLoad.settings.event = "InsertEnter";
+      lazyLoad.settings.event = "VimEnter";
       settings = {
         appearance = {
           kind_icons = {
