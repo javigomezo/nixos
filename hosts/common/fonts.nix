@@ -7,7 +7,7 @@
     packages = [
       inputs.private-fonts.packages.x86_64-linux.ComicCodeLigatures
       pkgs.noto-fonts-emoji
-      pkgs.atkinson-hyperlegible
+      pkgs.atkinson-hyperlegible-next
       pkgs.nerd-fonts.symbols-only
     ];
     fontDir.enable = true;
