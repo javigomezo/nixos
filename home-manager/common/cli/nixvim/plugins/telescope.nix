@@ -12,7 +12,7 @@
       "<leader>b" = "buffers";
       "<leader>fh" = "help_tags";
       "<leader>fd" = "diagnostics";
-      "<leader>r" = "oldfiles";
+      "<leader>fr" = "oldfiles";
     };
     settings = {
       defaults = {

@@ -5,6 +5,14 @@
     isort
     terraform
   ];
+  programs.ruff = {
+    enable = true;
+    settings = {
+      line-length = 88;
+      lint.preview = true;
+      format.preview = true;
+    };
+  };
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
     lazyLoad.settings = {
@@ -19,7 +27,8 @@
       formatters_by_ft = {
         lua = ["stylua"];
         nix = ["alejandra"];
-        python = ["isort" "black"];
+        #python = ["isort" "black"];
+        python = ["ruff_fix" "ruff_organize_imports"];
         javascript = [["prettierd" "prettier"]];
         "_" = ["trim_whitespace"];
       };
