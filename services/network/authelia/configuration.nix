@@ -154,7 +154,7 @@
               public: false
               authorization_policy: two_factor
               consent_mode: pre-configured
-              token_endpoint_auth_method: "client_secret_basic"
+              token_endpoint_auth_method: "client_secret_post"
               pre_configured_consent_duration: 1w
               scopes:
                 - openid
