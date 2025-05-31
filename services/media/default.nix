@@ -1,6 +1,7 @@
 {
   imports = [
     ./audiobookshelf.nix
+    ./deemix.nix
     ./overseerr.nix
     # ./plex.nix
     ./plex_nix.nix
