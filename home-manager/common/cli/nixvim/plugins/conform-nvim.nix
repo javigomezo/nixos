@@ -1,10 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     alejandra
-    black
-    isort
-    terraform
   ];
+
   programs.ruff = {
     enable = true;
     settings = {

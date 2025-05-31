@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
     ./cli
     ./git.nix
     ./neovim.nix
