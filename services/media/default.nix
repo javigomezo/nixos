@@ -9,6 +9,7 @@
     ./qbittorrent.nix
     ./radarr.nix
     ./sonarr.nix
+    ./slskd.nix
     ./suggestarr.nix
     ./tautulli.nix
     ./threadfin.nix
