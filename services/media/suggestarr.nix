@@ -33,7 +33,7 @@ in {
     };
   };
 
-  systemd.services.podman-sonarr = {
+  systemd.services.podman-suggestarr = {
     after = ["multi-user.target"];
   };
 }

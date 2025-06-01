@@ -1,5 +1,5 @@
 {vars, ...}: let
-  containerName = "deemix";
+  containerName = "lidarr";
   directories = [
     "${vars.dockerVolumes}/${containerName}/data/config"
     "${vars.dockerVolumes}/qbittorrent/data/downloads/"
@@ -9,12 +9,13 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "ghcr.io/bambanah/${containerName}:latest";
+        image = "lscr.io/linuxserver/${containerName}:develop";
         pull = "newer";
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
           "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"
+          "/mnt/rclone/media/music:/music"
           "/etc/localtime:/etc/localtime:ro"
         ];
         environment = {
@@ -26,15 +27,16 @@ in {
         labels = {
           "traefik.enable" = "true";
           "traefik.http.routers.${containerName}.service" = "${containerName}";
-          "traefik.http.services.${containerName}.loadbalancer.server.port" = "6595";
+          "traefik.http.services.${containerName}.loadbalancer.server.port" = "8686";
           "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
-          "glance.name" = "Deemix";
+          "glance.name" = "Lidarr";
+          "glance.parent" = "arr";
         };
       };
     };
   };
 
-  systemd.services.podman-sonarr = {
+  systemd.services.podman-lidarr = {
     after = ["multi-user.target"];
   };
 }

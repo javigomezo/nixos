@@ -47,6 +47,8 @@
       "noauto"
       "nodev"
       "nofail"
+      "uid=1000"
+      "gid=1000"
       "x-systemd.automount"
       "allow_other"
       "allow_non_empty"
