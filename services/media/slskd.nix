@@ -1,49 +1,39 @@
-{
-  lib,
-  config,
-  ...
-}: {
-  sops = {
-    secrets = {
-      "soulseek/user" = {
-        owner = "slskd";
-      };
-      "soulseek/password" = {
-        owner = "slskd";
-      };
-      "soulseek/api_key" = {
-        owner = "slskd";
-      };
-    };
-    templates."soulseek.env" = {
-      content = ''
-        SLSKD_SLSK_USERNAME=${config.sops.placeholder."soulseek/user"}
-        SLSKD_SLSK_PASSWORD=${config.sops.placeholder."soulseek/password"}
-        SLSKD_USERNAME=${config.sops.placeholder."soulseek/user"}
-        SLSKD_PASSWORD=${config.sops.placeholder."soulseek/password"}
-        SLSKD_API_KEY=${config.sops.placeholder."soulseek/password"}
-      '';
-      owner = "slskd";
-    };
-  };
-  networking.firewall.interfaces.podman0.allowedTCPPorts = lib.mkAfter [5030];
-  services.slskd = {
-    enable = true;
-    domain = "";
-    environmentFile = config.sops.templates."soulseek.env".path;
-    settings = {
-      shares.directories = [
-        "/mnt/Qbittorrent/music"
-      ];
-    };
-    # openFirewall = false;
-  };
-  environment.persistence."/persist".directories = lib.mkAfter [
-    {
-      directory = "/var/lib/slskd";
-      user = "javier";
-      group = "slskd";
-      mode = "u=rwx,g=rx,o=";
-    }
+{vars, ...}: let
+  containerName = "slskd";
+  directories = [
+    "${vars.dockerVolumes}/${containerName}/data/config"
+    "${vars.dockerVolumes}/qbittorrent/data/downloads/"
   ];
+in {
+  systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
+  virtualisation.oci-containers = {
+    containers = {
+      ${containerName} = {
+        image = "${containerName}:latest";
+        pull = "newer";
+        autoStart = true;
+        user = "1000:1000";
+        volumes = [
+          "${vars.dockerVolumes}/${containerName}/data/config:/app"
+          "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"
+          "/etc/localtime:/etc/localtime:ro"
+        ];
+        environment = {
+          TZ = vars.timeZone;
+          PUID = "1000";
+          GUID = "1000";
+          UMASK = "002";
+          SLSKD_REMOTE_CONFIGURATION = "true";
+        };
+        labels = {
+          "traefik.enable" = "true";
+          "traefik.http.routers.${containerName}.service" = "${containerName}";
+          "traefik.http.services.${containerName}.loadbalancer.server.port" = "5030";
+          "traefik.http.routers.${containerName}.middlewares" = "chain-oauth@file";
+          # "glance.name" = "Sonarr";
+          # "glance.parent" = "arr";
+        };
+      };
+    };
+  };
 }

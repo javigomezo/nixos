@@ -9,7 +9,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "lscr.io/linuxserver/${containerName}:develop";
+        image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
         pull = "newer";
         autoStart = true;
         volumes = [

@@ -8,7 +8,6 @@
     ./lidarr.nix
     ./radarr.nix
     ./sonarr.nix
-    ./soularr.nix
     ./slskd.nix
     ./suggestarr.nix
     ./tautulli.nix
