@@ -1,6 +1,6 @@
 {
   imports = [
-    ./alpha.nix
+    # ./alpha.nix
     ./autopairs.nix
     ./blink-cmp.nix
     # ./bufferline.nix
@@ -17,9 +17,10 @@
     #./markview.nix
     ./mini.nix
     ./noice.nix
-    ./notify.nix
+    # ./notify.nix
     # ./obsidian.nix
     # ./oil.nix
+    ./snacks.nix
     ./staline.nix
     # ./supermaven.nix
     ./telescope.nix
