@@ -40,7 +40,8 @@
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
 
-  hardware.bluetooth.powerOnBoot = false;
+  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

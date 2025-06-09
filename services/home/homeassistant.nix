@@ -58,6 +58,7 @@ in {
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
           "/etc/localtime:/etc/localtime:ro"
+          "/run/dbus:/run/dbus:ro"
         ];
         # environmentFiles = [
         #   config.sops.templates."ha_mariadb.env".path
