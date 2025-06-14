@@ -55,6 +55,11 @@
             service: "tautulli"
             middlewares:
               - chain-oauth
+          esphome:
+            rule: "Host(`esphome.${config.sops.placeholder.fqdn}`)"
+            service: "esphome"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -92,6 +97,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:${toString config.services.tautulli.port}"
+          esphome:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:${toString config.services.esphome.port}"
         middlewares:
           ratelimit:
             rateLimit:
