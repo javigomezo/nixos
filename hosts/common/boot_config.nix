@@ -85,7 +85,7 @@
       binfmt.emulatedSystems = ["aarch64-linux"]; # Emulate aarch64 for rpi
       blacklistedKernelModules = [
         "nouveau"
-        "ideapad_laptop"
+        # "ideapad_laptop"
       ];
     };
   };
