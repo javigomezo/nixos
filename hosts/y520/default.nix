@@ -99,16 +99,20 @@
     dbus.enable = true;
   };
 
-  systemd.services.NetworkManager-wait-online.enable = false;
-  systemd.services.systemd-udev-settle.enable = false;
+  systemd = {
+    services = {
+      NetworkManager-wait-online.enable = false;
+      systemd-udev-settle.enable = false;
 
-  systemd.services.unblock-bluetooth = {
-    path = with pkgs; [
-      util-linux
-    ];
-    wantedBy = ["multi-user.target"];
-    script = "rfkill unblock bluetooth";
-    serviceConfig.Type = "oneshot";
+      unblock-bluetooth = {
+        path = with pkgs; [
+          util-linux
+        ];
+        wantedBy = ["multi-user.target"];
+        script = "rfkill unblock bluetooth";
+        serviceConfig.Type = "oneshot";
+      };
+    };
   };
 
   security = {
