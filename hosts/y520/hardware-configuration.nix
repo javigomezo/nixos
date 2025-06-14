@@ -15,6 +15,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["tcp_bbr"];
   boot.extraModulePackages = [];
+  boot.kernelParams = lib.mkAfter ["psmouse.synaptics_intertouch=1"];
 
   # swapDevices = [];
 
