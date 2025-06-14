@@ -96,6 +96,9 @@
           format-alt = "{icon} {time}";
           format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
+        temperature = {
+          thermal-zone = 1;
+        };
         tray = {
           spacing = 15;
         };
