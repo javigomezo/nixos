@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  vars,
   ...
 }: {
   programs.waybar = {
@@ -97,7 +98,7 @@
           format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
         };
         temperature = {
-          thermal-zone = 1;
+          thermal-zone = vars.thermal_zone;
         };
         tray = {
           spacing = 15;

@@ -27,6 +27,26 @@
         };
       }
       {
+        mode = ["n"];
+        action = "<C-u>zz";
+        key = "<C-u>";
+      }
+      {
+        mode = ["n"];
+        action = "<C-d>zz";
+        key = "<C-d>";
+      }
+      {
+        mode = ["n"];
+        action = "Nzzzv";
+        key = "N";
+      }
+      {
+        mode = ["n"];
+        action = "nzzzv";
+        key = "n";
+      }
+      {
         mode = ["v"];
         action = ":m '>+1<CR>gv=gv";
         key = "J";
