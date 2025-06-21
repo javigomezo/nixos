@@ -29,7 +29,7 @@
       gpuOffset = lib.mkOption {
         description = "Undervolt gpu offset";
         type = lib.types.int;
-        default = -50;
+        default = -55;
       };
     };
   };
