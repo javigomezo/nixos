@@ -18,7 +18,7 @@
     ./mini.nix
     ./noice.nix
     # ./notify.nix
-    # ./obsidian.nix
+    ./obsidian.nix
     # ./oil.nix
     ./snacks.nix
     ./staline.nix

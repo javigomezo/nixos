@@ -1,6 +1,6 @@
 {
   programs.nixvim.plugins.obsidian = {
-    enable = false;
+    enable = true;
     lazyLoad.settings.ft = "markdown";
     settings = {
       workspaces = [
