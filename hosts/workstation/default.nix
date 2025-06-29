@@ -22,6 +22,7 @@
   my = {
     boot.secureboot.enable = true;
     nas-mounts.qbittorrent-mount.enable = true;
+    nas-mounts.media-mount.enable = false;
     powerManagement = {
       undervolt.enable = false;
       enable = false;

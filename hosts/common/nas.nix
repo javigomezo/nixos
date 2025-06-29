@@ -14,11 +14,16 @@
       type = lib.types.bool;
       default = true;
     };
+    media-mount.enable = lib.mkEnableOption {
+      description = "Enables mounting of qbittorrent share";
+      type = lib.types.bool;
+      default = true;
+    };
     seagate-mount = {
       device = lib.mkOption {
         description = "Seagate device path";
         type = lib.types.str;
-        default = "10.0.0.2:/Seagate";
+        default = "nuc8i3beh:/Seagate";
       };
       fsType = lib.mkOption {
         description = "Seagate filesystem type";
@@ -41,7 +46,7 @@
   config = lib.mkIf config.my.nas-mounts.enable {
     fileSystems = {
       "/mnt/Qbittorrent" = lib.mkIf config.my.nas-mounts.qbittorrent-mount.enable {
-        device = "10.0.0.2:/Qbittorrent";
+        device = "nuc8i3beh:/Qbittorrent";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
       };
@@ -52,13 +57,13 @@
         options = config.my.nas-mounts.seagate-mount.options;
       };
 
-      "/mnt/TVShows" = {
+      "/mnt/TVShows" = lib.mkIf config.my.nas-mounts.media-mount.enable {
         device = "${config.my.nas-mounts.nas-address}:/mnt/main_storage/tvshows";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
       };
 
-      "/mnt/Movies" = {
+      "/mnt/Movies" = lib.mkIf config.my.nas-mounts.media-mount.enable {
         device = "${config.my.nas-mounts.nas-address}:/mnt/main_storage/movies";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];

@@ -68,11 +68,11 @@
     nfs.server = {
       enable = true;
       exports = ''
-        /mnt             10.0.0.0/24(rw,fsid=0,no_subtree_check)
-        /mnt/Qbittorrent 10.0.0.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check)
-        /mnt/Seagate 10.0.0.0/24(rw,nohide,insecure,no_root_squash,no_subtree_check)
+        /mnt             *(rw,fsid=0,no_subtree_check)
+        /mnt/Qbittorrent *(rw,nohide,insecure,no_root_squash,no_subtree_check)
+        /mnt/Seagate *(rw,nohide,insecure,no_root_squash,no_subtree_check)
       '';
-      hostName = "10.0.0.2";
+      # hostName = "10.0.0.2";
     };
   };
 

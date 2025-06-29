@@ -4,6 +4,7 @@
   # Disable the first run tabs with advertisements for the latest firefox features.
   "browser.startup.homepage_override.mstone" = "ignore";
   "browser.startup.homepage" = "http://nuc8i3beh:3333";
+  "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
   # Disable new tab page intro
   # Disable the intro to the newtab page on the first run
   "browser.newtabpage.introShown" = false;
