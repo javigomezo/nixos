@@ -37,6 +37,7 @@
       secureboot.enable = true;
     };
     nas-mounts.qbittorrent-mount.enable = true;
+    nas-mounts.media-mount.enable = false;
     nvidia.prime.enable = true;
     powerManagement = {
       isLaptop = true;
