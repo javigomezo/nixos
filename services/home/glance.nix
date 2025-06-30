@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  ytSecretsCount = 7;
+  ytSecretsCount = 8;
   twSecretsCount = 6;
   rdtSecretsCount = 6;
   generateSecrets = prefix: count:

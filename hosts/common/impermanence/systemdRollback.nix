@@ -22,6 +22,7 @@ in {
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
     script = ''
+      modprobe nvme
       mkdir /btrfs_tmp
 
       # Mount the btrfs root to /btrfs_tmp

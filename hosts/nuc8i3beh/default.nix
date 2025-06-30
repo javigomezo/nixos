@@ -29,6 +29,7 @@
     };
     nas-mounts = {
       qbittorrent-mount.enable = false;
+      media-mount.enable = true;
       nas-address = "11.0.0.1";
       seagate-mount = {
         device = "/dev/disk/by-uuid/6dfd6638-e78b-4913-8bd9-60940e152bfe";
