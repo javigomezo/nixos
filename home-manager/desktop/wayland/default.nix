@@ -32,6 +32,7 @@
       gamescope
       grimblast
       gparted
+      hyprpolkitagent
       # input-leap
       killall
       koodo-reader
@@ -43,10 +44,10 @@
       pavucontrol
       plex-desktop
       plexamp
-      hyprpolkitagent
       protonup-qt
       qimgv
       qmk
+      teamspeak_client
       wl-clipboard
       xarchiver
       xfce.thunar
