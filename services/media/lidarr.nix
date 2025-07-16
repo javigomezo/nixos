@@ -10,7 +10,7 @@ in {
     containers = {
       ${containerName} = {
         # image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
-        image = "blampe/lidarr:lidarr-plugins-2.13.0.4661";
+        image = "blampe/lidarr:lidarr-plugins-2.13.1.4676";
         pull = "newer";
         autoStart = true;
         volumes = [
