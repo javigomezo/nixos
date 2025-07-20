@@ -9,7 +9,7 @@
     {
       directory = "/var/lib/tautulli";
       user = "plexpy";
-      group = "tautulli";
+      group = "plex";
       mode = "u=rwx,g=rx,o=";
     }
   ];

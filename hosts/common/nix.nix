@@ -14,6 +14,7 @@
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     settings = {
+      download-buffer-size = 524288000;
       trusted-users = ["javier"];
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
