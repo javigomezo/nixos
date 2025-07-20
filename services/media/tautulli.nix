@@ -4,6 +4,7 @@
     enable = true;
     group = "plex";
     dataDir = "/var/lib/tautulli";
+    configFile = "/var/lib/tautulli/config.ini";
   };
   environment.persistence."/persist".directories = lib.mkAfter [
     {
