@@ -17,7 +17,6 @@
     };
     greetd = {
       enable = true;
-      vt = 7;
       settings.initial_session = {
         user = "javier";
         command = "uwsm start hyprland-uwsm.desktop";
