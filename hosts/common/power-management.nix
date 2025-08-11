@@ -24,7 +24,7 @@
       coreOffset = lib.mkOption {
         description = "Undervolt core offset";
         type = lib.types.int;
-        default = -80;
+        default = -75;
       };
       gpuOffset = lib.mkOption {
         description = "Undervolt gpu offset";
