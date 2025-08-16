@@ -22,7 +22,7 @@
         command = "uwsm start hyprland-uwsm.desktop";
       };
       settings.default_session = {
-        command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd ${lib.getExe pkgs.zsh}"; # Shell only by default
+        command = "${lib.getExe pkgs.tuigreet} --time --cmd ${lib.getExe pkgs.zsh}"; # Shell only by default
       };
     };
     # displayManager = {
