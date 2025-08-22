@@ -50,6 +50,11 @@
             service: "plex"
             middlewares:
               - chain-no-oauth
+          jellyfin:
+            rule: "Host(`jellyfin.${config.sops.placeholder.fqdn}`)"
+            service: "jellyfin"
+            middlewares:
+              - chain-no-oauth
           tautulli:
             rule: "Host(`tautulli.${config.sops.placeholder.fqdn}`)"
             service: "tautulli"
@@ -93,6 +98,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:32400"
+          jellyfin:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:8096"
           tautulli:
             loadBalancer:
               servers:

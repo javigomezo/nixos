@@ -3,6 +3,7 @@
     ./audiobookshelf.nix
     ./overseerr.nix
     ./plex.nix
+    ./jellyfin.nix
     ./prowlarr.nix
     ./qbittorrent.nix
     ./lidarr.nix
