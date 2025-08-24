@@ -2,19 +2,25 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "btrfs" "usbhid" "uas" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["tcp_bbr"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd = {
+      availableKernelModules = ["xhci_pci" "nvme" "btrfs" "usbhid" "uas" "sd_mod"];
+      kernelModules = [];
+    };
+    kernelPackages = lib.mkForce pkgs.linuxPackages;
+    kernelParams = lib.mkAfter ["i915.enable_guc=2"];
+    kernelModules = ["tcp_bbr"];
+    extraModulePackages = [];
+  };
 
   # swapDevices = [];
 
@@ -27,5 +33,5 @@
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = true;
 }

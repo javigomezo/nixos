@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.intel-nuc-8i7beh
+    # inputs.nixos-hardware.nixosModules.intel-nuc-8i7beh
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
     ./hardware-configuration.nix
@@ -39,10 +39,22 @@
     };
   };
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+  boot = {
+  };
 
-  hardware.bluetooth.powerOnBoot = true;
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.powerOnBoot = true;
+    bluetooth.enable = true;
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver # For Broadwell (2014) or newer processors. LIBVA_DRIVER_NAME=iHD
+        libva-vdpau-driver # Previously vaapiVdpau
+        intel-compute-runtime-legacy1
+        intel-ocl # OpenCL support
+      ];
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -61,6 +73,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
+    thermald.enable = true;
     tailscale.useRoutingFeatures = lib.mkForce "both";
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
