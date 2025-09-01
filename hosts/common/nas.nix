@@ -46,7 +46,8 @@
   config = lib.mkIf config.my.nas-mounts.enable {
     fileSystems = {
       "/mnt/Qbittorrent" = lib.mkIf config.my.nas-mounts.qbittorrent-mount.enable {
-        device = "nuc8i3beh:/Qbittorrent";
+        #device = "nuc8i3beh:/Qbittorrent";
+        device = "10.0.0.2:/Qbittorrent";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
       };

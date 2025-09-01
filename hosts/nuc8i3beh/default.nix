@@ -39,9 +39,6 @@
     };
   };
 
-  boot = {
-  };
-
   hardware = {
     bluetooth.powerOnBoot = true;
     bluetooth.enable = true;
