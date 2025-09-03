@@ -30,7 +30,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "${containerName}:alpine";
+        image = "${containerName}:latest";
         pull = "newer";
         autoStart = true;
         volumes = [

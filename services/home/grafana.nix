@@ -5,7 +5,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "grafana/${containerName}:latest";
+        image = "grafana/${containerName}:main";
         pull = "newer";
         autoStart = true;
         volumes = [
