@@ -17,6 +17,7 @@
     ../optional/stylix.nix
     ../optional/retroarch.nix
     ../optional/nvidia.nix
+    ./mx-master.nix
   ];
 
   my = {
@@ -49,6 +50,10 @@
         vaapiVdpau
         nvidia-vaapi-driver
       ];
+    };
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
     };
   };
 

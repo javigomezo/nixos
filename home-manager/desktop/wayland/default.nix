@@ -47,7 +47,7 @@
       protonup-qt
       qimgv
       qmk
-      teamspeak_client
+      teamspeak6-client
       wl-clipboard
       xarchiver
       xfce.thunar

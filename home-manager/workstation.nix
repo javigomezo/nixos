@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./common
     ./desktop/wayland
@@ -24,6 +24,9 @@
       refreshRate = 60;
       x = 0;
     }
+  ];
+  home.packages = with pkgs; [
+    solaar
   ];
   # home.sessionVariables = {
   #   LIBVA_DRIVER_NAME = "nvidia";

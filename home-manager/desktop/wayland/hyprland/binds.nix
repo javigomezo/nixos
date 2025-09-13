@@ -46,8 +46,10 @@
         "SUPER,mouse_up,workspace,e-1"
         ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
-        ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 5%+"
-        ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
+        ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
+        ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%-"
+        #",KEY_VOLUMEUP,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
+        #",KEY_VOLUMEDOWN,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
         ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_SINK@ toggle"
         ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_SOURCE@ toggle"
       ]
