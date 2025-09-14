@@ -44,11 +44,11 @@
           middle_button_emulation = true;
         };
       };
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 4;
-        workspace_swipe_invert = false;
-      };
+      gesture = [
+        "3, left, workspace, e-1"
+        "3, right, workspace, e+1"
+      ];
+
       misc = {
         allow_session_lock_restore = true;
         disable_hyprland_logo = true;
