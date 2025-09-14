@@ -44,9 +44,11 @@
           middle_button_emulation = true;
         };
       };
+      gestures = {
+        workspace_swipe_invert = false;
+      };
       gesture = [
-        "3, left, workspace, e-1"
-        "3, right, workspace, e+1"
+        "4, horizontal, workspace"
       ];
 
       misc = {
