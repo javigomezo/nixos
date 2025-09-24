@@ -50,6 +50,18 @@
     };
   };
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:javigomezo/nixos#${config.networking.hostName}";
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
+    dates = "weekly";
+    persistent = true;
+  };
+
   # system.build.sdImage.compressImage = false;
   boot = {
     supportedFilesystems.zfs = lib.mkForce false;
