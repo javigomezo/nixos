@@ -4,7 +4,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "redis:6.2-alpine";
+        image = "docker.io/valkey/valkey:8-bookworm";
         pull = "newer";
         autoStart = true;
         volumes = [
