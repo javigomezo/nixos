@@ -4,13 +4,14 @@
     ./overseerr.nix
     ./plex.nix
     ./jellyfin.nix
+    ./jellyseerr.nix
     ./prowlarr.nix
     ./qbittorrent.nix
     ./lidarr.nix
     ./radarr.nix
     ./sonarr.nix
     ./slskd.nix
-    ./suggestarr.nix
+    # ./suggestarr.nix
     ./tautulli.nix
     ./threadfin.nix
   ];

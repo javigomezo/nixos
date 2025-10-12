@@ -12,6 +12,9 @@ in {
         image = "lscr.io/linuxserver/${containerName}:latest";
         pull = "newer";
         autoStart = true;
+        ports = [
+          "127.0.0.1:7878:7878"
+        ];
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
           "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"

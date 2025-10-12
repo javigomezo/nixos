@@ -55,6 +55,11 @@
             service: "jellyfin"
             middlewares:
               - chain-no-oauth
+          seerr:
+            rule: "Host(`seerr.${config.sops.placeholder.fqdn}`)"
+            service: "seerr"
+            middlewares:
+              - chain-no-oauth
           tautulli:
             rule: "Host(`tautulli.${config.sops.placeholder.fqdn}`)"
             service: "tautulli"
@@ -102,6 +107,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:8096"
+          seerr:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:${toString config.services.jellyseerr.port}"
           tautulli:
             loadBalancer:
               servers:
