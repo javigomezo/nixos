@@ -55,6 +55,10 @@ in {
         image = "lscr.io/linuxserver/${containerName}:latest";
         pull = "newer";
         autoStart = true;
+        capabilities = {
+          NET_ADMIN = true;
+          NET_RAW = true;
+        };
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
           "/etc/localtime:/etc/localtime:ro"

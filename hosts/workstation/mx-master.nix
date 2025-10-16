@@ -8,7 +8,7 @@
   environment.etc."logid.cfg" = {
     text = ''
       devices: ({
-        name: "MX Master 3S";
+        name: "MX Master 4 for Business";
 
       thumbwheel:
       {
