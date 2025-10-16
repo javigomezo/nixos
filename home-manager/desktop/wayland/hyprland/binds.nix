@@ -42,8 +42,10 @@
         ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
         "SUPERSHIFT,V,togglefloating"
         "SUPER,W,exec,systemctl --user restart waybar.service"
-        "SUPER,mouse_down,workspace,e+1"
         "SUPER,mouse_up,workspace,e-1"
+        "SUPER,mouse_down,workspace,e+1"
+        "SUPER, right,workspace,e+1"
+        "SUPER, left,workspace,e-1"
         ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
         ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
         ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"

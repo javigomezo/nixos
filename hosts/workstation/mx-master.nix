@@ -39,62 +39,62 @@
               };
           };
       };
-        // buttons: (
-        //   // Gesture button (hold and move)
-        //   {
-        //     cid: 0xc3;
-        //     action = {
-        //       type: "Gestures";
-        //       gestures: (
-        //         {
-        //           direction: "None";
-        //           mode: "OnRelease";
-        //           action = {
-        //             type: "Keypress";
-        //             keys: [ "KEY_LEFTMETA" ]; // open activities overview
-        //           }
-        //         },
+        buttons: (
+          // Gesture button (hold and move)
+          {
+            cid: 0x1a0;
+            action = {
+              type: "Gestures";
+              gestures: (
+                {
+                  direction: "None";
+                  mode: "OnRelease";
+                  action = {
+                    type: "Keypress";
+                    keys: [ "KEY_LEFTMETA", "KEY_R" ]; // open wofi
+                  }
+                },
 
-        //         {
-        //           direction: "Right";
-        //           mode: "OnRelease";
-        //           action = {
-        //             type: "Keypress";
-        //             keys: [ "KEY_LEFTALT", "KEY_2" ]; // move to virtual desktop 2
-        //           }
-        //         },
+                {
+                  direction: "Right";
+                  mode: "OnRelease";
+                  action = {
+                    type: "Keypress";
+                    keys: [ "KEY_LEFTMETA", "KEY_RIGHT" ]; // move to next virtual workspace
+                  }
+                },
 
-        //         {
-        //           direction: "Left";
-        //           mode: "OnRelease";
-        //           action = {
-        //             type: "Keypress";
-        //             keys: [ "KEY_LEFTALT", "KEY_1" ]; // move to virtual desktop 1
-        //           }
-        //         },
+                {
+                  direction: "Left";
+                  mode: "OnRelease";
+                  action = {
+                    type: "Keypress";
+                    keys: [ "KEY_LEFTMETA", "KEY_LEFT" ]; // move to previous virtual workspace
+                  }
+                },
 
-        //         {
-        //           direction: "Up";
-        //           mode: "onRelease";
-        //           action = {
-        //             type: "Keypress";
-        //             keys: [ "KEY_LEFTMETA", "KEY_UP" ]; // maximize window
-        //           }
-        //         },
+                {
+                  direction: "Up";
+                  mode: "onRelease";
+                  action = {
+                    type: "Keypress";
+                    keys: [ "KEY_LEFTMETA", "KEY_SPACE" ]; // Maximise/minimise window
+                  }
+                },
 
-        //         {
-        //           direction: "Down";
-        //           mode: "OnRelease";
-        //           action = {
-        //             type: "Keypress";
-        //             keys: [ "KEY_LEFTMETA", "KEY_DOWN" ]; // minimize window
-        //           }
-        //         }
-        //       );
-        //     };
-        //   },
+                {
+                  direction: "Down";
+                  mode: "OnRelease";
+                  action = {
+                    type: "Keypress";
+                    keys: [ "KEY_LEFTMETA", "KEY_C" ]; // Close window
+                  }
+                }
+              );
+            };
+          },
 
-        // );
+        );
       });
     '';
   };
