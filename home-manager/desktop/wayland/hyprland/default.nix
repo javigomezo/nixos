@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  vars,
   ...
 }: {
   imports = [
@@ -63,6 +64,10 @@
       };
       debug.damage_tracking = 2;
       dwindle = {
+        split_width_multiplier =
+          if vars.hostname == "workstation"
+          then 1.5
+          else 1;
         pseudotile = false;
         preserve_split = true;
       };
