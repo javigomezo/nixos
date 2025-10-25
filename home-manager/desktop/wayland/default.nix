@@ -33,6 +33,7 @@
       grimblast
       gparted
       hyprpolkitagent
+      hmcl
       # input-leap
       killall
       koodo-reader

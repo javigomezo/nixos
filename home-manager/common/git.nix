@@ -1,9 +1,11 @@
 {
   programs.git = {
     enable = true;
-    userName = "javigomezo";
-    userEmail = "mail@javigomezo.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "javigomezo";
+        email = "mail@javigomezo.com";
+      };
       init.defaultBranch = "main";
     };
   };

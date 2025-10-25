@@ -25,9 +25,11 @@
 
   programs.git = {
     enable = true;
-    userName = lib.mkForce "Javier Gomez Ortiz";
-    userEmail = lib.mkForce "javier.gomez@eviden.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = lib.mkForce "Javier Gomez Ortiz";
+        email = lib.mkForce "javier.gomez@eviden.com";
+      };
       init.defaultBranch = "main";
     };
   };

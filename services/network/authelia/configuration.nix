@@ -28,7 +28,8 @@
         timeout: 60s
         display_name: Authelia
         attestation_conveyance_preference: indirect
-        user_verification: preferred
+        selection_criteria:
+          user_verification: preferred
 
       duo_api:
         disable: true
@@ -152,35 +153,27 @@
               client_name: Immich OIDC
               client_secret: ${config.sops.placeholder."authelia/immich_client_secret"}
               public: false
+              require_pkce: false
+              pkce_challenge_method: ""
               authorization_policy: two_factor
-              consent_mode: pre-configured
-              token_endpoint_auth_method: "client_secret_post"
-              pre_configured_consent_duration: 1w
+              # consent_mode: pre-configured
+              # token_endpoint_auth_method: "client_secret_post"
+              # pre_configured_consent_duration: 1w
               scopes:
                 - openid
-                - groups
-                - email
                 - profile
-                - offline_access
+                - email
               redirect_uris:
-                - https://authelia.${config.sops.placeholder.fqdn}/
-                - https://authelia.${config.sops.placeholder.fqdn}/oauth2/callback
-                - https://immich.${config.sops.placeholder.fqdn}/oauth2/callback
                 - https://immich.${config.sops.placeholder.fqdn}/auth/login
                 - https://immich.${config.sops.placeholder.fqdn}/user-settings
-                - https://immich.${config.sops.placeholder.fqdn}
-                - app.immich:/ # required for immich < v1.113.0
-                - app.immich:///oauth-callback # required since immich v1.113.0
-                - https://immich.${config.sops.placeholder.fqdn}/api/oauth/mobile-redirect
-              grant_types:
-                - refresh_token
-                - authorization_code
+                - app.immich:///oauth-callback
               response_types:
                 - code
-              response_modes:
-                - form_post
-                - query
-                - fragment
+              grant_types:
+                - authorization_code
+              access_token_signed_response_alg: "none"
+              userinfo_signed_response_alg: "none"
+              token_endpoint_auth_method: "client_secret_post"
     '';
   };
 }
