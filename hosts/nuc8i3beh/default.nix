@@ -56,6 +56,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    bluez
     intel-gpu-tools
     tpm2-tss
     powertop
