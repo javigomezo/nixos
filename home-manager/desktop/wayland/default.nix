@@ -28,6 +28,7 @@
     ]
     ++ (with pkgs; [
       # bambu-studio
+      discord
       ffmpeg
       gamescope
       grimblast

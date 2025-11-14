@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    nodePackages.jsonlint
+    # nodePackages.jsonlint
     hadolint
     tflint
   ];
@@ -10,7 +10,7 @@
     # lazyLoad.settings.event = ["DeferredUIEnter"];
     lazyLoad.settings.event = ["BufReadPre" "BufNewFile"];
     lintersByFt = {
-      json = ["jsonlint"];
+      # json = ["jsonlint"];
       dockerfile = ["hadolint"];
       python = ["ruff"];
       nix = ["nix"];

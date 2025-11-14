@@ -24,6 +24,7 @@
         "SUPER,Return,exec,uwsm app -- kitty"
         "SUPER,space,fullscreen"
         "SUPER,C,killactive"
+        "SUPER,D,exec,uwsm app -- discord"
         "SUPER,F,exec,uwsm app -- firefox"
         "SUPERSHIFT,F,exec,TZ=UTC uwsm app -- firefox --private-window"
         "SUPER,G,exec,uwsm app -- ${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"

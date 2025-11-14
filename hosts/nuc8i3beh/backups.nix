@@ -23,23 +23,23 @@
   # by CodeWitchBella
   services.restic.backups."${config.networking.hostName}" = {
     initialize = true;
-    # package = pkgs.writeShellApplication {
-    #   name = "restic";
-    #   text = ''
-    #     set -euxo pipefail
+    package = pkgs.writeShellApplication {
+      name = "restic";
+      text = ''
+        set -euxo pipefail
 
-    #     # PrivateMounts are not shared across ExecStartPre and ExecStart,
-    #     # so we have to mount the snapshot again when doing a backup.
-    #     # Any other operation (e.g. restore) must operate on the real /persistent,
-    #     # so the snapshot is not mounted for those.
-    #     if [[ "$1" == "backup" ]]; then
-    #       umount /persist -l
-    #       mount -t btrfs -o subvol=persist/@backup-snapshot ${config.fileSystems."/".device} /persist
-    #     fi
+        # PrivateMounts are not shared across ExecStartPre and ExecStart,
+        # so we have to mount the snapshot again when doing a backup.
+        # Any other operation (e.g. restore) must operate on the real /persistent,
+        # so the snapshot is not mounted for those.
+        if [[ "$1" == "backup" ]]; then
+          umount /persist -l
+          mount -t btrfs -o subvol=persist/@backup-snapshot ${config.fileSystems."/".device} /persist
+        fi
 
-    #     ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
-    #   '';
-    # };
+        ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
+      '';
+    };
     paths = ["/persist"];
     exclude = [
       "/persist/@backup-snapshot"
