@@ -21,8 +21,17 @@
   # };
   # Based on https://github.com/CodeWitchBella/nixos/blob/main/modules/backup-restic.nix
   # by CodeWitchBella
+  security.wrappers.restic = {
+    source = "${pkgs.restic}/bin/restic";
+    owner = "javier";
+    group = "javier";
+    permissions = "u=rwx,g=,o=";
+    capabilities = "cap_dac_read_search=+ep";
+  };
+
   services.restic.backups."${config.networking.hostName}" = {
     initialize = true;
+    user = "root";
     package = pkgs.writeShellApplication {
       name = "restic";
       text = ''
@@ -30,14 +39,15 @@
 
         # PrivateMounts are not shared across ExecStartPre and ExecStart,
         # so we have to mount the snapshot again when doing a backup.
-        # Any other operation (e.g. restore) must operate on the real /persistent,
+        # Any other operation (e.g. restore) must operate on the real /persist,
         # so the snapshot is not mounted for those.
         if [[ "$1" == "backup" ]]; then
           umount /persist -l
-          mount -t btrfs -o subvol=persist/@backup-snapshot ${config.fileSystems."/".device} /persist
+          mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
         fi
 
         ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
+        #${pkgs.restic}/bin/restic "$@"
       '';
     };
     paths = ["/persist"];
@@ -50,25 +60,21 @@
     backupPrepareCommand = ''
       set -euxo pipefail
 
-      # Clean old snapshot if any
-      if btrfs subvolume delete /persist/@backup-snapshot; then
-        echo "WARNING: previous run did not cleanly finish, removing old snapshot"
-      fi
+      btrfs subvolume delete /persist/@backup-snapshot || true
 
       # Create new snapshot
-      # btrfs subvolume snapshot -r /persist /persist/@backup-snapshot
       btrfs subvolume snapshot /persist /persist/@backup-snapshot
-
 
       # Unmount /persist
       umount -l /persist
       # Mount snapshot backup
       mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
 
-      # touch /persist/var/lib/test12345
+      docker exec -t immich-postgres pg_dumpall --clean --if-exists --username=immich | gzip > "/persist/opt/docker-services/immich/postgres/dump.sql.gz"
     '';
     backupCleanupCommand = ''
-      btrfs subvolume delete /persist/@backup-snapshot
+      set -euxo pipefail
+      btrfs subvolume delete /persist/@backup-snapshot || true
     '';
     rcloneConfigFile = config.sops.templates."rclone.conf".path;
     repository = "rclone:drive_crypt:/restic/${config.networking.hostName}";
@@ -83,16 +89,14 @@
   systemd.services."restic-backups-${config.networking.hostName}" = {
     path = with pkgs; [
       btrfs-progs
-      umount
+      docker
+      gzip
       mount
+      umount
     ];
     serviceConfig = {
-      KillMode = "control-group";
+      # KillMode = "control-group";
       PrivateMounts = true;
-      # ExecStart = lib.mkBefore [
-      #   "${lib.getExe pkgs.umount} -l /persist"
-      #   "${lib.getExe pkgs.mount} -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist"
-      # ];
     };
   };
 }
