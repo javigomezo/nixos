@@ -13,14 +13,6 @@
     };
   };
 
-  # security.wrappers.restic = {
-  #   source = "${pkgs.restic}/bin/restic";
-  #   capabilities = "cap_dac_read_search=+ep";
-  #   owner = "javier";
-  #   group = "javier";
-  # };
-  # Based on https://github.com/CodeWitchBella/nixos/blob/main/modules/backup-restic.nix
-  # by CodeWitchBella
   security.wrappers.restic = {
     source = "${pkgs.restic}/bin/restic";
     owner = "javier";
@@ -47,7 +39,6 @@
         fi
 
         ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
-        #${pkgs.restic}/bin/restic "$@"
       '';
     };
     paths = ["/persist"];
@@ -70,6 +61,7 @@
       # Mount snapshot backup
       mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
 
+      # Backup immich postgres
       docker exec -t immich-postgres pg_dumpall --clean --if-exists --username=immich | gzip > "/persist/opt/docker-services/immich/postgres/dump.sql.gz"
     '';
     backupCleanupCommand = ''
