@@ -15,8 +15,9 @@
         exclusive = true;
         passthrough = false;
         gtk-layer-shell = true;
-        modules-left = ["clock" "custom/weather" "hyprland/workspaces"];
-        modules-center = ["hyprland/window"];
+        modules-left = ["hyprland/workspaces" "custom/weather"];
+        # modules-center = ["hyprland/window"];
+        modules-center = ["clock"];
         modules-right = ["pulseaudio" "backlight" "network" "battery" "temperature" "tray"];
         clock = {
           interval = 1;
@@ -47,19 +48,19 @@
           format = "{icon}";
           format-icons = {
             default = "";
-            focused = "";
+            # focused = "";
             urgent = "";
           };
         };
 
-        "hyprland/window" = {
-          format = " {}";
-          separate-outputs = true;
-        };
+        # "hyprland/window" = {
+        #   format = " {}";
+        #   separate-outputs = true;
+        # };
         pulseaudio = {
-          format = "{icon}  {volume}%  {format_source}";
-          format-bluetooth = "{volume}% {icon}  {format_source}";
-          format-bluetooth-muted = " {icon}  {format_source}";
+          format = "{icon} {volume}%";
+          format-bluetooth = "{volume}% {icon} ";
+          format-bluetooth-muted = " {icon} ";
           format-muted = " {format_source}";
           format-source = " {volume}%";
           format-source-muted = "";
@@ -79,7 +80,7 @@
           format-icons = ["" "" "" "" "" "" "" "" ""];
         };
         network = {
-          format-wifi = " {essid} ({signalStrength}%)";
+          format-wifi = " {essid}";
           format-ethernet = "󰈀 {ipaddr}/{cidr}";
           tooltip-format = "󰈀 {ifname} via {gwaddr}";
           format-linked = "󰈂 {ifname} (No IP)";

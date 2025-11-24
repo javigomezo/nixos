@@ -69,14 +69,16 @@ tooltip {
 
 #clock {
     color: #eceff4;
-    border-radius: 10px 0px 0px 10px;
+    /*border-radius: 10px 0px 0px 10px;*/
+    border-radius: 10px;
     margin-left: 5px;
 }
 
 #custom-weather {
-    border-radius: 0px 10px 10px 0px;
+    /*border-radius: 0px 10px 10px 0px;*/
+    border-radius: 10px;
     border-right: 0px;
-    margin-left: 0px;
+    margin-left: 5px;
 }
 
 #custom-updates {
