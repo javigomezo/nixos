@@ -30,7 +30,7 @@
         "custom/weather" = {
           tooltip = true;
           format = "{}";
-          restart-interval = 30;
+          restart-interval = 300;
           exec = "${config.home.homeDirectory}/.config/waybar/scripts/waybar-wttr.py";
           return-type = "json";
         };
@@ -48,7 +48,7 @@
           format = "{icon}";
           format-icons = {
             default = "";
-            # focused = "";
+            active = "";
             urgent = "";
           };
         };
