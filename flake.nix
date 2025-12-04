@@ -5,7 +5,7 @@
     # Official NixOS package source, using nixos-unstable branch here
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.05";
+    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.11";
     #nixpkgs-mine.url = "github:javigomezo/nixpkgs";
     nixpkgs-mine.url = "git+https://github.com/javigomezo/nixpkgs?shallow=1";
 
