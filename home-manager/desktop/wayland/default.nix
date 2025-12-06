@@ -50,6 +50,7 @@
       qimgv
       qmk
       teamspeak6-client
+      unrar
       wl-clipboard
       xarchiver
       xfce.thunar
