@@ -38,6 +38,7 @@
       # input-leap
       killall
       koodo-reader
+      libfido2
       localsend
       mpv
       # mine.multiviewer-for-f1

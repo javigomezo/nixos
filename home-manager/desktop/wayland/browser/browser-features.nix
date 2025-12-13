@@ -61,6 +61,7 @@
   # informations to google together with an unique id called wrkey
   # (http://electroholiker.de/?p=1594).
   "browser.cache.disk.enable" = false;
+  "browser.cache.memory.enable" = true;
   "browser.contentblocking.category" = "strict";
   "browser.safebrowsing.enabled" = false;
   "browser.safebrowsing.downloads.remote.url" = "";

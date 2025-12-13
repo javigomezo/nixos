@@ -14,6 +14,9 @@
   # No details
   "extensions.pocket.enabled" = false;
 
+  "browser.ml.enabled" = false;
+  "browser.ml.chat.enabled" = false;
+
   "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
   # Disable Sponsored Top Sites
   # Firefox 83 introduced sponsored top sites
