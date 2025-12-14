@@ -27,7 +27,7 @@
     #environmentFiles = [config.sops.templates."traefik.env".path];
     staticConfigFile = config.sops.templates."static_config.yaml".path;
     dynamicConfigFile = config.sops.templates."dynamic_config.yaml".path;
-    after = ["multi-user.target"];
+    after = ["podman.socket" "multi-user.target"];
   };
 
   networking = {
