@@ -19,6 +19,7 @@
 
   systemd.services.traefik = {
     serviceConfig.EnvironmentFile = [config.sops.templates."traefik.env".path];
+    after = ["podman.socket" "multi-user.target"];
   };
 
   services.traefik = {
@@ -27,7 +28,6 @@
     #environmentFiles = [config.sops.templates."traefik.env".path];
     staticConfigFile = config.sops.templates."static_config.yaml".path;
     dynamicConfigFile = config.sops.templates."dynamic_config.yaml".path;
-    after = ["podman.socket" "multi-user.target"];
   };
 
   networking = {
