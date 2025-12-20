@@ -17,6 +17,17 @@
   "browser.ml.enabled" = false;
   "browser.ml.chat.enabled" = false;
 
+  "browser.ml.chat.menu" = false;
+  "browser.ml.chat.page" = false;
+  "browser.ml.chat.page.footerBadge" = false;
+  "browser.ml.chat.page.menuBadge" = false;
+  "browser.ml.linkPreview.enabled" = false;
+  "browser.ml.pageAssist.enabled" = false;
+  "browser.tabs.groups.smart.enabled" = false;
+  "browser.tabs.groups.smart.userEnabled" = false;
+  "extensions.ml.enabled" = false;
+  "browser.search.visualSearch.featureGate" = false;
+
   "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
   # Disable Sponsored Top Sites
   # Firefox 83 introduced sponsored top sites
