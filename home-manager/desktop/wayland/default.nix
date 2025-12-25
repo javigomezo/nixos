@@ -24,7 +24,7 @@
 
   home.packages =
     [
-      inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.system}.default
+      inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ (with pkgs; [
       # bambu-studio

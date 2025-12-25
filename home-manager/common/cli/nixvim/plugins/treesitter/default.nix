@@ -12,7 +12,7 @@
         indent.enable = true;
         highlight.enable = true;
       };
-      folding = false;
+      folding.enable = false;
       nixvimInjections = true;
     };
     treesitter-context = {
