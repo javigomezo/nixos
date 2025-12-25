@@ -5,7 +5,7 @@
 }: {
   # networking.firewall.interfaces.podman0.allowedTCPPorts = lib.mkAfter [32400];
   services.jellyfin = {
-    enable = true;
+    enable = false;
     openFirewall = false;
     # accelerationDevices = ["/dev/dri/renderD128"];
     cacheDir = "/var/lib/jellyfin/cache";
