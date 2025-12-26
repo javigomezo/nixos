@@ -84,8 +84,10 @@
         /mnt/Qbittorrent *(rw,nohide,insecure,no_root_squash,no_subtree_check)
         /mnt/Seagate *(rw,nohide,insecure,no_root_squash,no_subtree_check)
       '';
-      # hostName = "10.0.0.2";
     };
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
+    '';
   };
 
   # This value determines the NixOS release from which the default

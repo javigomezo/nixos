@@ -15,7 +15,7 @@ in {
         autoStart = true;
         volumes = [
           "${vars.dockerVolumes}/${containerName}/data/config:/config"
-          "${vars.dockerVolumes}/qbittorrent/data/downloads:/downloads"
+          "/var/lib/slskd/downloads:/var/lib/slskd/downloads"
           "/mnt/rclone/media/music:/music"
           "/etc/localtime:/etc/localtime:ro"
         ];

@@ -10,7 +10,7 @@
     ./lidarr.nix
     ./radarr.nix
     ./sonarr.nix
-    ./slskd.nix
+    ./slskd-nix.nix
     # ./suggestarr.nix
     ./tautulli.nix
     ./threadfin.nix

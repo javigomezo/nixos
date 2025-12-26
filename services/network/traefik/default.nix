@@ -19,7 +19,8 @@
 
   systemd.services.traefik = {
     serviceConfig.EnvironmentFile = [config.sops.templates."traefik.env".path];
-    after = ["podman.socket" "podman-sonarr.service" "multi-user.target"]; # TODO: check why containers are not detected after traefik starts
+    after = ["multi-user.target"];
+    # after = ["podman.socket" "podman-sonarr.service" "multi-user.target"]; # TODO: check why containers are not detected after traefik starts
   };
 
   services.traefik = {
