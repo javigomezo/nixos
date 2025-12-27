@@ -18,6 +18,7 @@
                SLSKD_USERNAME=${config.sops.placeholder."soulseek/user"}
                SLSKD_PASSWORD=${config.sops.placeholder."soulseek/password"}
                SLSKD_API_KEY=${config.sops.placeholder."soulseek/api_key"}
+               SLSKD_FILE_PERMISSION_MODE=0666
       '';
     };
   };
