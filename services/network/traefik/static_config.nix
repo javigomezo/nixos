@@ -37,10 +37,10 @@
           address: ":9987/udp"
           udp:
             timeout: 10
-        homeassistant:
-          address: ":5683/udp"
-          udp:
-            timeout: 10
+        # homeassistant:
+        #   address: ":5683/udp"
+        #   udp:
+        #     timeout: 10
       certificatesResolvers:
         letsencrypt:
           acme:

@@ -70,6 +70,11 @@
             service: "esphome"
             middlewares:
               - chain-oauth
+          homeassistant:
+            rule: "Host(`homeassistant.${config.sops.placeholder.fqdn}`)"
+            service: "homeassistant"
+            middlewares:
+              - chain-no-oauth
         services:
           authelia:
             loadBalancer:
@@ -119,6 +124,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:${toString config.services.esphome.port}"
+          homeassistant:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:8123"
         middlewares:
           ratelimit:
             rateLimit:

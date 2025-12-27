@@ -88,6 +88,22 @@
     udev.extraRules = ''
       ACTION=="add", SUBSYSTEM=="pci", DRIVER=="pcieport", ATTR{power/wakeup}="disabled"
     '';
+
+    avahi = {
+      enable = true;
+      ipv4 = false;
+      ipv6 = true;
+      nssmdns4 = false;
+      nssmdns6 = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+      allowInterfaces = [
+        "eno1"
+        "podman0"
+      ];
+    };
   };
 
   # This value determines the NixOS release from which the default

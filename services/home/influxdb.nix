@@ -37,6 +37,9 @@ in {
           "${vars.dockerVolumes}/${containerName}/data/data:/var/lib/influxdb2"
           "/etc/localtime:/etc/localtime:ro"
         ];
+        ports = [
+          "127.0.0.1:8087:8086"
+        ];
         environmentFiles = [
           config.sops.templates."influxdb.env".path
         ];

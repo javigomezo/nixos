@@ -39,6 +39,9 @@ in {
         environmentFiles = [
           config.sops.templates."ha_mariadb.env".path
         ];
+        ports = [
+          "127.0.0.1:3306:3306"
+        ];
         environment = {
           TZ = vars.timeZone;
           PUID = "1000";
@@ -74,8 +77,11 @@ in {
           UMASK = "002";
           DOCKER_MODS = "linuxserver/mods/homeassistant-hacs";
         };
+        extraOptions = [
+          "--network=host"
+        ];
         labels = {
-          "traefik.enable" = "true";
+          "traefik.enable" = "false";
           "traefik.http.routers.${containerName}.service" = "${containerName}";
           "traefik.http.services.${containerName}.loadbalancer.server.port" = "8123";
           "traefik.http.routers.${containerName}.middlewares" = "chain-no-oauth@file";
