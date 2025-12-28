@@ -1,6 +1,7 @@
 {lib, ...}: {
   networking = {
     hostName = "nuc8i3beh";
+    useNetworkd = true;
     enableIPv6 = true;
     dhcpcd.enable = false;
     interfaces = {
@@ -26,6 +27,10 @@
     };
     defaultGateway = {
       address = "10.0.0.1";
+      interface = "eno1";
+    };
+    defaultGateway6 = {
+      address = "fe80::1";
       interface = "eno1";
     };
     firewall = {
