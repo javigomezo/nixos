@@ -56,6 +56,13 @@
     persistent = true;
   };
 
+  services = {
+    dbus = {
+      enable = true;
+      implementation = "broker";
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     rclone
   ];

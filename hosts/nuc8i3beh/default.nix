@@ -75,7 +75,6 @@
     tailscale.useRoutingFeatures = lib.mkForce "both";
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
-    dbus.enable = true;
     rpcbind.enable = true;
     nfs.server = {
       enable = true;

@@ -97,7 +97,6 @@
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
     tumbler.enable = true; # Thumbnail support for images
-    dbus.enable = true;
   };
 
   systemd = {
