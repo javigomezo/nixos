@@ -149,6 +149,29 @@
               - 'https://immich.${config.sops.placeholder.fqdn}'
             allowed_origins_from_client_redirect_uris: false
           clients:
+            - client_id: audiobookshelf
+              client_name: audiobookshelf
+              client_secret: ${config.sops.placeholder."authelia/immich_client_secret"}
+              public: false
+              authorization_policy: two_factor
+              require_pkce: true
+              pkce_challenge_method: S256
+              redirect_uris:
+                - https://audiobookshelf.${config.sops.placeholder.fqdn}/auth/openid/callback
+                - https://audiobookshelf.${config.sops.placeholder.fqdn}/auth/openid/mobile-redirect
+                - audiobookshelf://oauth
+              scopes:
+                - openid
+                - profile
+                - groups
+                - email
+              response_types:
+                - code
+              grant_types:
+                - authorization_code
+              access_token_signed_response_alg: none
+              userinfo_signed_response_alg: none
+              # token_endpoint_auth_method: client_secret_basic
             - client_id: immich
               client_name: Immich OIDC
               client_secret: ${config.sops.placeholder."authelia/immich_client_secret"}
