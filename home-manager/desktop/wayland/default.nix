@@ -37,7 +37,7 @@
       hmcl
       # input-leap
       killall
-      koodo-reader
+      stable.koodo-reader
       libfido2
       localsend
       mpv
@@ -49,12 +49,12 @@
       plexamp
       protonup-qt
       qimgv
-      qmk
+      stable.qmk
       teamspeak6-client
       unrar
       wl-clipboard
       xarchiver
-      xfce.thunar
+      thunar
       xwayland
     ]);
 }
