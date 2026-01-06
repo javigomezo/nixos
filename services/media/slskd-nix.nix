@@ -36,6 +36,8 @@
     };
   };
 
+  systemd.services.slskd.serviceConfig.UMask = lib.mkForce "000";
+
   environment.persistence."/persist".directories = lib.mkAfter [
     {
       directory = "/var/lib/slskd";
@@ -43,12 +45,12 @@
       group = "slskd";
       mode = "u=rwx,g=rwx,o=rwx";
     }
-    {
-      directory = "/var/lib/slskd/downloads";
-      user = "slskd";
-      group = "slskd";
-      mode = "u=rwx,g=rwx,o=rwx";
-    }
+    # {
+    #   directory = "/var/lib/slskd/downloads";
+    #   user = "slskd";
+    #   group = "slskd";
+    #   mode = "u=rwx,g=rwx,o=rwx";
+    # }
     {
       directory = "/var/lib/slskd/incomplete";
       user = "slskd";

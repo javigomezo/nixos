@@ -75,6 +75,11 @@
             service: "homeassistant"
             middlewares:
               - chain-no-oauth
+          slskd:
+            rule: "Host(`slskd.${config.sops.placeholder.fqdn}`)"
+            service: "slskd"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -128,6 +133,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:8123"
+          slskd:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:5030"
         middlewares:
           ratelimit:
             rateLimit:
