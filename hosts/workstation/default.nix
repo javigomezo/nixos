@@ -59,14 +59,14 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = [
-    pkgs.sbctl
-    pkgs.git
-    pkgs.opensc
+  environment.systemPackages = with pkgs; [
+    sbctl
+    git
+    opensc
+    android-tools
   ];
 
   programs = {
-    adb.enable = true;
     dconf.enable = true;
     xfconf.enable = true; # To save thunar changes
     thunar.plugins = with pkgs.xfce; [
