@@ -80,6 +80,11 @@
             service: "slskd"
             middlewares:
               - chain-oauth
+          syncthing:
+            rule: "Host(`syncthing.${config.sops.placeholder.fqdn}`)"
+            service: "syncthing"
+            middlewares:
+              - chain-oauth
         services:
           authelia:
             loadBalancer:
@@ -137,6 +142,10 @@
             loadBalancer:
               servers:
               - url: "http://127.0.0.1:5030"
+          syncthing:
+            loadBalancer:
+              servers:
+              - url: "http://127.0.0.1:8384"
         middlewares:
           ratelimit:
             rateLimit:

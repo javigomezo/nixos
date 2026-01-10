@@ -7,6 +7,7 @@
     ./homeassistant.nix
     ./immich
     ./influxdb.nix
+    ./koshelf.nix
     ./loki.nix
     ./paperless.nix
   ];

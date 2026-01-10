@@ -13,6 +13,7 @@
     ./game_mode.nix
   ];
 
+  services.hyprpaper.settings.splash = false;
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {
