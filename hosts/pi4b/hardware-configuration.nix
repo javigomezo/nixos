@@ -13,9 +13,11 @@
 
   swapDevices = [];
 
-  networking.useDHCP = lib.mkDefault false;
+  # networking.useDHCP = lib.mkDefault false;
 
   powerManagement.cpuFreqGovernor = "ondemand";
+  hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

@@ -134,13 +134,13 @@
           ./hosts/nuc8i3beh
         ];
       };
-      pi3b = lib.nixosSystem {
+      pi4b = lib.nixosSystem {
         specialArgs = {
           inherit inputs outputs;
-          vars = import ./hosts/pi3b/vars.nix;
+          vars = import ./hosts/pi4b/vars.nix;
         };
         modules = [
-          ./hosts/pi3b
+          ./hosts/pi4b
         ];
       };
     };
@@ -188,14 +188,14 @@
           ./home-manager/vagrantbox.nix
         ];
       };
-      "javier@pi3b" = lib.homeManagerConfiguration {
+      "javier@pi4b" = lib.homeManagerConfiguration {
         pkgs = pkgsFor.aarch64-linux;
         extraSpecialArgs = {
           inherit inputs outputs;
-          vars = import ./hosts/pi3b/vars.nix;
+          vars = import ./hosts/pi4b/vars.nix;
         };
         modules = [
-          ./home-manager/pi3b.nix
+          ./home-manager/pi4b.nix
         ];
       };
     };

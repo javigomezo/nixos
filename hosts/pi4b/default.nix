@@ -31,25 +31,6 @@
     };
   };
 
-  sops = {
-    secrets = {
-      home_ssid = {};
-      home_psk = {};
-    };
-    templates."networks.conf" = {
-      owner = "root";
-      group = "root";
-      mode = "0400";
-      path = "/etc/wpa_supplicant.conf";
-      content = ''
-        network={
-          ssid="${config.sops.placeholder.home_ssid}"
-          psk="${config.sops.placeholder.home_psk}"
-        }
-      '';
-    };
-  };
-
   system.autoUpgrade = {
     enable = true;
     flake = "github:javigomezo/nixos#${config.networking.hostName}";
@@ -64,6 +45,7 @@
 
   # system.build.sdImage.compressImage = false;
   boot = {
+    initrd.allowMissingModules = true;
     supportedFilesystems.zfs = lib.mkForce false;
     loader = {
       # NixOS wants to enable GRUB by default
@@ -71,6 +53,8 @@
       # Enables the generation of /boot/extlinux/extlinux.conf
       generic-extlinux-compatible.enable = true;
     };
+    kernelParams = lib.mkAfter ["brcmfmac.roamoff=1" "brcmfmac.feature_disable=0x282000"];
+    kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
   };
 
   fileSystems = {
@@ -102,6 +86,7 @@
   users.groups.gpio = {};
 
   services = {
+    getty.autologinUser = "javier";
     tailscale.useRoutingFeatures = lib.mkForce "both";
     udev.extraRules = ''
       SUBSYSTEM=="spidev", KERNEL=="spidev0.0", GROUP="spi", MODE="0660"
