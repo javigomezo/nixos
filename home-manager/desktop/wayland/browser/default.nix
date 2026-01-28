@@ -5,6 +5,7 @@
 }: let
   merge = lib.foldr (a: b: a // b) {};
 in {
+  imports = [./zen];
   # home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
   programs.firefox = {
     enable = true;
