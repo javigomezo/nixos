@@ -12,6 +12,8 @@
       sopsFile = ../../../hosts/common/secrets.yaml;
       format = "yaml";
     };
+    "adguard/tailscale_ip" = {};
+    "adguard/main_ip" = {};
     fqdn = {};
   };
   sops.templates."adguard_config.yaml" = {
@@ -32,7 +34,8 @@
       theme: dark
       dns:
         bind_hosts:
-          - 10.0.0.200
+          - ${config.sops.placeholder."adguard/main_ip"}
+          - ${config.sops.placeholder."adguard/tailscale_ip"}
         port: 53
         anonymize_client_ip: false
         ratelimit: 0
