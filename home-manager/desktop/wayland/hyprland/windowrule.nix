@@ -27,13 +27,7 @@
       "match:class ^(thunar)$, animation popin"
       "match:class ^(thunar)$, opacity 0.82 0.82"
       "match:class ^(obsidian)$, opacity 0.92 0.92"
-    ];
-    windowrulev2 = [
-      "noborder, float:1"
-      #   "workspace 5,class:^(obsidian)$"
-      #   "animation popin, class:^(thunar)$"
-      #   "opacity 0.82 0.82, class:^(thunar)$"
-      #   "opacity 0.92 0.92, class:^(obsidian)$"
+      "match:float 1, border_size 0"
     ];
   };
 }
