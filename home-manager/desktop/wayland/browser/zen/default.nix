@@ -7,7 +7,7 @@
   extension = shortId: guid: {
     name = guid;
     value = {
-      install_url = "https://addons.mozilla.org/en-US/firefox/downloads/latest/${shortId}/latest.xpi";
+      install_url = "https://addons.mozilla.org/es-ES/firefox/downloads/latest/${shortId}/latest.xpi";
       installation_mode = "normal_installed";
     };
   };
@@ -20,10 +20,10 @@
   };
 
   extensions = [
-    (extension "ublock-origin" "ublock")
-    (extension "bitwarden-password-manager" "bitwarden")
-    (extension "tampermonkey" "tampermonkey")
-    (extension "enhanced-h264ify" "enhanced-h264ify")
+    (extension "ublock-origin" "uBlock0@raymondhill.net")
+    (extension "bitwarden-password-manager" "{446900e4-71c2-419f-a6a7-df9c091e268b}")
+    (extension "tampermonkey" "firefox@tampermonkey.net")
+    (extension "enhanced-h264ify" "{9a41dee2-b924-4161-a971-7fb35c053a4a}")
   ];
 in {
   home.packages = [

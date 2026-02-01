@@ -1,4 +1,5 @@
 {
+  services.resolved.enable = true;
   networking = {
     hostName = "workstation"; # Define your hostname.
     enableIPv6 = true;
