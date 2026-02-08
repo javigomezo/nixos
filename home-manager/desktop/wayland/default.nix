@@ -13,9 +13,10 @@
       ./hyprland
       ./hyprlock
       ./kitty
-      ./mako
+      # ./mako
+      ./noctalia
       ./uwsm
-      ./waybar
+      # ./waybar
       ./wezterm
       ./wofi.nix
       ./wlogout
@@ -47,7 +48,7 @@
       pavucontrol
       plex-desktop
       plexamp
-      protonup-qt
+      protonvpn-gui
       qimgv
       stable.qmk
       teamspeak6-client

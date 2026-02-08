@@ -29,5 +29,10 @@
       "match:class ^(obsidian)$, opacity 0.92 0.92"
       "match:float 1, border_size 0"
     ];
+    layerrule = [
+      "match:namespace noctalia-background-.*$, ignore_alpha 0.5"
+      "match:namespace noctalia-background-.*$, blur on"
+      "match:namespace noctalia-background-.*$, blur_popups on"
+    ];
   };
 }
