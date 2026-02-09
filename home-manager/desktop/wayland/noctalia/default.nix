@@ -44,6 +44,8 @@
       ui = {
         fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
         fontDefaultScale = 1.1;
+        panelsAttachedToBar = false;
+        settingsPanelMode = "centered";
       };
       location = {
         name = "Santander";
