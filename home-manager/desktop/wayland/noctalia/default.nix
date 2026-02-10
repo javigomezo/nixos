@@ -20,6 +20,10 @@
           left = [
             {
               id = "Workspace";
+              labelMode = "none";
+              emptyColor = "none";
+              focusedColor = "tertiary";
+              occupiedColor = "none";
               # labelMode = "none";
             }
           ];
@@ -35,6 +39,12 @@
             {
               id = "Network";
               displayMode = "alwaysShow";
+            }
+            {id = "Bluetooth";}
+            {
+              id = "Battery";
+              showPowerProfiles = true;
+              showNoctaliaPerformance = true;
             }
             {id = "ControlCenter";}
             {id = "Tray";}

@@ -46,6 +46,13 @@
           middle_button_emulation = true;
         };
       };
+
+      workspace =
+        builtins.genList (
+          i: "${toString (i + 1)}, persistent:true"
+        )
+        5;
+
       gestures = {
         workspace_swipe_invert = false;
       };
