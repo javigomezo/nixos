@@ -92,7 +92,6 @@
     flatpak.enable = true;
     gvfs.enable = true; # Thunar Mount, trash etc
     pcscd.enable = true; # For smartcards
-    power-profiles-daemon.enable = true;
     tumbler.enable = true; # Thumbnail support for images
     xserver.videoDrivers = ["nvidia"];
   };
