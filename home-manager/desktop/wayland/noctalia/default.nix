@@ -1,11 +1,29 @@
 {
   lib,
   inputs,
+  config,
   ...
 }: {
   imports = [
     inputs.noctalia.homeModules.default
   ];
+
+  systemd.user.services.noctalia-shell = {
+    Unit = {
+      Description = "Noctalia Shell Service";
+      PartOf = ["graphical-session.target"];
+      Requisite = ["graphical-session.target"];
+      After = ["graphical-session.target"];
+    };
+    Service = {
+      ExecStart = "${lib.getExe config.programs.noctalia-shell.package}";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+  };
 
   programs.noctalia-shell = {
     enable = true;

@@ -42,8 +42,8 @@
       libfido2
       localsend
       mpv
-      # mine.multiviewer-for-f1
-      multiviewer-for-f1
+      mine.multiviewer-for-f1
+      # multiviewer-for-f1
       obsidian
       pavucontrol
       plex-desktop
