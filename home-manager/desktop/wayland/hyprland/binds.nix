@@ -10,9 +10,6 @@
       "SUPER,mouse:273,resizewindow"
     ];
     bind = let
-      cliphist = lib.getExe config.services.cliphist.package;
-      wofi = lib.getExe config.programs.wofi.package;
-      # workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
       workspaces = builtins.genList (i: "${toString (i + 1)}") 9;
 
       directions = {
@@ -43,7 +40,8 @@
         "SUPER,S,exec,uwsm app -- grimblast --cursor --freeze --notify copysave screen"
         "SUPERSHIFT,S,exec,uwsm app -- grimblast --freeze --notify copy area"
         "SUPER,T,exec,uwsm app -- thunar"
-        ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+        "SUPER,V,exec,uwsm app -- noctalia-shell ipc call launcher clipboard"
+        # ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
         "SUPERSHIFT,V,togglefloating"
         "SUPER,W,exec,systemctl --user restart waybar.service"
         "SUPER,mouse_up,workspace,e-1"

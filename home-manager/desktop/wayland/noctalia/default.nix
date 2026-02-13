@@ -69,6 +69,12 @@
           ];
         };
       };
+      appLauncher = {
+        enableClipboardHistory = true;
+        autoPasteClipboard = true;
+        enableClipPreview = true;
+        clipboardWrapText = true;
+      };
       ui = {
         fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
         fontDefaultScale = 1.1;

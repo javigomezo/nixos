@@ -53,6 +53,7 @@
       stable.qmk
       teamspeak6-client
       unrar
+      wtype
       wl-clipboard
       xarchiver
       thunar
