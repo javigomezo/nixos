@@ -27,8 +27,7 @@
     enable = true;
     group = "podman";
     #environmentFiles = [config.sops.templates."traefik.env".path];
-    staticConfigFile = config.sops.templates."static_config.yaml".path;
-    dynamicConfigFile = config.sops.templates."dynamic_config.yaml".path;
+    static.file = config.sops.templates."static_config.yaml".path;
   };
 
   networking = {
