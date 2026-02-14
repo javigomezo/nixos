@@ -18,8 +18,8 @@
       ./uwsm
       # ./waybar
       ./wezterm
-      ./wofi.nix
-      ./wlogout
+      # ./wofi.nix
+      # ./wlogout
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
 

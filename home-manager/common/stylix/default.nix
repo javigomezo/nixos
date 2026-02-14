@@ -57,8 +57,8 @@
           main = true;
           signColumn = true;
         };
-        rofi.enable = true;
-        waybar.enable = false;
+        # rofi.enable = true;
+        # waybar.enable = false;
       };
       polarity = "dark";
     };

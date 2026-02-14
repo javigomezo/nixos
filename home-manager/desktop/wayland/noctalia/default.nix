@@ -75,6 +75,10 @@
         enableClipPreview = true;
         clipboardWrapText = true;
       };
+      sessionMenu = {
+        enableCountdown = false;
+        largeButtonsLayout = "grid";
+      };
       ui = {
         fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
         fontDefaultScale = 1.1;

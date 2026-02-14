@@ -29,7 +29,7 @@
         "SUPER,G,exec,uwsm app -- ${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"
         "SUPER,J,togglesplit"
         "SUPER,L,exec,uwsm app -- hyprlock"
-        "SUPER,M,exec,uwsm app -- wlogout"
+        "SUPER,M,exec,uwsm app -- noctalia-shell ipc call sessionMenu toggle"
         "SUPERSHIFT,M,exit"
         "SUPER,O,exec,uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj"
         #"SUPER,P,exec,uwsm app -- tv.plex.PlexDesktop"
