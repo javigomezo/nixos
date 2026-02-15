@@ -44,7 +44,7 @@
 
     services = {
       thermald.enable = true;
-      tuned.enable = true;
+      power-profiles-daemon.enable = true;
       upower.enable = true;
       undervolt = {
         enable = config.my.powerManagement.undervolt.enable;
