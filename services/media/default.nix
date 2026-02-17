@@ -11,6 +11,7 @@
     ./radarr.nix
     ./sonarr.nix
     ./slskd-nix.nix
+    ./soulsync.nix
     # ./suggestarr.nix
     ./tautulli.nix
     ./threadfin.nix
