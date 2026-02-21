@@ -19,15 +19,77 @@
 
   systemd.services.traefik = {
     serviceConfig.EnvironmentFile = [config.sops.templates."traefik.env".path];
-    # after = ["multi-user.target"];
     after = ["podman.socket" "podman-sonarr.service" "multi-user.target"]; # TODO: check why containers are not detected after traefik starts
   };
 
   services.traefik = {
     enable = true;
     group = "podman";
-    #environmentFiles = [config.sops.templates."traefik.env".path];
-    static.file = config.sops.templates."static_config.yaml".path;
+    staticConfigOptions = {
+      global = {
+        checkNewVersion = false;
+        sendAnonymousUsage = false;
+      };
+      api = {
+        insecure = false;
+        dashboard = true;
+      };
+      log = {
+        level = "INFO";
+        compress = true;
+      };
+      entrypoints = {
+        web = {
+          address = ":80";
+          asDefault = true;
+          http.redirections.entryPoint = {
+            to = "websecure";
+            permanent = true;
+            scheme = "https";
+          };
+        };
+        websecure = {
+          address = ":443";
+          asDefault = true;
+          http3.advertisedPort = 443;
+          http.tls = {
+            certResolver = "letsencrypt";
+            domains = [
+              {
+                main = "$DOMAIN";
+                sans = ["*.$DOMAIN"];
+              }
+            ];
+          };
+        };
+        teamspeak = {
+          address = ":9987/udp";
+          udp.timeout = 10;
+        };
+      };
+      certificatesResolvers = {
+        letsencrypt.acme = {
+          email = "$CLOUDFLARE_EMAIL";
+          storage = "${config.services.traefik.dataDir}/acme.json";
+          keyType = "EC384";
+          dnsChallenge = {
+            provider = "cloudflare";
+            delayBeforeCheck = "90s";
+            resolvers = ["1.1.1.1:53" "1.0.0.1:53"];
+          };
+        };
+      };
+      providers = {
+        docker = {
+          endpoint = "unix:///run/podman/podman.sock";
+          allowEmptyServices = true;
+          exposedByDefault = false;
+          defaultRule = "Host(`{{ normalize .Name }}.{{ env \"DOMAIN\" }}`)";
+        };
+      };
+    };
+    environmentFiles = [config.sops.templates."traefik.env".path];
+    dynamicConfigFile = "${config.services.traefik.dataDir}/dynamic_config.yaml";
   };
 
   networking = {

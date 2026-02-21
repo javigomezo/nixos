@@ -5,7 +5,6 @@
     "${vars.dockerVolumes}/${containerName}/data/logs"
     "${vars.dockerVolumes}/${containerName}/data/staging"
     "${vars.dockerVolumes}/${containerName}/data/data"
-    "${vars.dockerVolumes}/qbittorrent/data/downloads/"
   ];
 in {
   systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
