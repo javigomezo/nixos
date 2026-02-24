@@ -19,7 +19,7 @@
     ../common/nixpkgs.nix
     ../common/tailscale.nix
     ../../services/openssh
-    ../../services/network/keepalived.nix
+    # ../../services/network/keepalived.nix
     ../../services/network/adguardhome
     ../../services/tvheadend
     ../../users/javier

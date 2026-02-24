@@ -3,7 +3,7 @@
     ./adguardhome
     ./authelia
     ./cloudflare-dyndns.nix
-    ./keepalived.nix
+    # ./keepalived.nix
     ./syncthing.nix
     ./traefik
     # ./wireguard.nix

@@ -34,8 +34,8 @@
       theme: dark
       dns:
         bind_hosts:
-          - ${config.sops.placeholder."adguard/main_ip"}
-          - ${config.sops.placeholder."adguard/tailscale_ip"}
+          - '${config.sops.placeholder."adguard/main_ip"}'
+          - '${config.sops.placeholder."adguard/tailscale_ip"}'
         port: 53
         anonymize_client_ip: false
         ratelimit: 0

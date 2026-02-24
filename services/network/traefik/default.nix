@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./static_config.nix
+    # ./static_config.nix
     ./dynamic_config.nix
     ./environment_file.nix
   ];
