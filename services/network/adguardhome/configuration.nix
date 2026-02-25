@@ -52,8 +52,8 @@
           - '#tls://dns-unfiltered.adguard.com'
         upstream_dns_file: ""
         bootstrap_dns:
-          - 193.110.81.0
-          - 185.253.5.0
+          - 9.9.9.9
+          - 149.112.112.112
           # - 9.9.9.11:53
           # - 149.112.112.11:53
         fallback_dns: []
