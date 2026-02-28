@@ -1,5 +1,4 @@
 {
-  services.resolved.enable = true;
   networking = {
     hostName = "workstation"; # Define your hostname.
     enableIPv6 = true;
@@ -13,8 +12,8 @@
       useDHCP = false;
     };
     nameservers = [
-      "10.0.0.200"
       "10.0.0.2"
+      "10.0.0.3"
     ];
     # Enable networking
     networkmanager.enable = true;
