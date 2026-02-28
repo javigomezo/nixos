@@ -81,7 +81,9 @@
       };
       ui = {
         fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
+        fontFixed = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
         fontDefaultScale = 1.1;
+        fontFixedScale = 1.1;
         panelsAttachedToBar = false;
         settingsPanelMode = "centered";
       };
