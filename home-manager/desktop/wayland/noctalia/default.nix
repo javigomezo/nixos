@@ -41,7 +41,7 @@
               labelMode = "none";
               emptyColor = "none";
               focusedColor = "tertiary";
-              occupiedColor = "none";
+              occupiedColor = "primary";
               # labelMode = "none";
             }
           ];
