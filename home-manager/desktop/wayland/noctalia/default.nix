@@ -3,7 +3,9 @@
   inputs,
   config,
   ...
-}: {
+}: let
+  powerOptions = ["lock" "suspend" "reboot" "rebootToUefi" "logout" "shutdown" "hibernate"];
+in {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -78,6 +80,12 @@
       sessionMenu = {
         enableCountdown = false;
         largeButtonsLayout = "grid";
+        powerOptions =
+          map (i: {
+            action = i;
+            enabled = i != "hibernate";
+          })
+          powerOptions;
       };
       ui = {
         fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
