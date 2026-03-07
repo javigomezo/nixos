@@ -13,10 +13,10 @@
       workspaces = builtins.genList (i: "${toString (i + 1)}") 9;
 
       directions = {
-        left = "l";
-        right = "r";
-        up = "u";
-        down = "d";
+        h = "l";
+        l = "r";
+        k = "u";
+        j = "d";
       };
     in
       [
@@ -27,7 +27,7 @@
         "SUPER,F,exec,uwsm app -- firefox"
         "SUPERSHIFT,F,exec,TZ=UTC uwsm app -- firefox --private-window"
         "SUPER,G,exec,uwsm app -- ${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"
-        "SUPER,J,togglesplit"
+        "SUPER,J,layoutmsg,togglesplit"
         "SUPER,L,exec,uwsm app -- hyprlock"
         "SUPER,M,exec,uwsm app -- noctalia-shell ipc call sessionMenu toggle"
         "SUPERSHIFT,M,exit"
@@ -71,7 +71,7 @@
       ++
       # Move focus
       (lib.mapAttrsToList (
-          key: direction: "SUPER,${key},movefocus,${direction}"
+          key: direction: "ALT,${key},movefocus,${direction}"
         )
         directions);
   };

@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  vars,
   ...
 }: {
   imports = [
@@ -71,11 +70,12 @@
         vrr = 1;
       };
       debug.damage_tracking = 2;
+      scrolling = {
+        fullscreen_on_one_column = true;
+        column_width = 0.9;
+        direction = "right";
+      };
       dwindle = {
-        split_width_multiplier =
-          if vars.hostname == "workstation"
-          then 1.5
-          else 1;
         pseudotile = false;
         preserve_split = true;
       };
