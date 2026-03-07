@@ -47,7 +47,7 @@
       obsidian
       pavucontrol
       plex-desktop
-      plexamp
+      # plexamp
       protonvpn-gui
       qimgv
       stable.qmk

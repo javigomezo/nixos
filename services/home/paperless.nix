@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   sops = {
@@ -19,6 +20,7 @@
 
   services.paperless = {
     enable = true;
+    package = pkgs.stable.paperless-ngx;
     passwordFile = config.sops.secrets."paperless/password".path;
     environmentFile = config.sops.templates."paperless.env".path;
     settings = {

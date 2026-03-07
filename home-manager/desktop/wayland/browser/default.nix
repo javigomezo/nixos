@@ -82,6 +82,7 @@ in {
           bitwarden
           ublock-origin
           enhanced-h264ify
+          sponsorblock
         ];
         force = true;
       };
