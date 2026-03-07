@@ -40,7 +40,7 @@
       killall
       stable.koodo-reader
       libfido2
-      localsend
+      # localsend
       mpv
       mine.multiviewer-for-f1
       # multiviewer-for-f1
