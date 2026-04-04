@@ -48,7 +48,7 @@
       pavucontrol
       plex-desktop
       # plexamp
-      protonvpn-gui
+      proton-vpn
       qimgv
       stable.qmk
       teamspeak6-client
