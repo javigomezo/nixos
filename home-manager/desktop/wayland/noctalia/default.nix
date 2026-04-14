@@ -66,8 +66,11 @@ in {
               showPowerProfiles = true;
               showNoctaliaPerformance = true;
             }
+            {
+              id = "Tray";
+              drawerEnabled = false;
+            }
             {id = "ControlCenter";}
-            {id = "Tray";}
           ];
         };
       };
