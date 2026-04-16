@@ -21,12 +21,12 @@
       "match:title wlogout, fullscreen on"
       "match:class ^(mpv), idle_inhibit focus"
       "match:class ^(Firefox), idle_inhibit fullscreen"
-      "match:class ^(obsidian)$, idle_inhibit focus"
       "match:title ^(Control de volumen)$, size 800 600"
-      "match:class ^(obsidian)$, workspace 5"
+      "match:initial_title ^(Obsidian)$, idle_inhibit focus"
+      "match:initial_title ^(Obsidian)$, workspace 5"
+      "match:initial_title ^(Obsidian)$, opacity 0.92 0.92"
       "match:class ^(thunar)$, animation popin"
       "match:class ^(thunar)$, opacity 0.82 0.82"
-      "match:class ^(obsidian)$, opacity 0.92 0.92"
       "match:float 1, border_size 0"
     ];
     layerrule = [

@@ -48,7 +48,13 @@
 
       workspace =
         builtins.genList (
-          i: "${toString (i + 1)}, persistent:true"
+          i: let
+            ws = i + 1;
+            baseConfig = "${toString ws}, persistent:true";
+          in
+            if ws == 4
+            then "${baseConfig}, layout:scrolling"
+            else baseConfig
         )
         5;
 
