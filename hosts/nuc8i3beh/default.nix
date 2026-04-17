@@ -65,6 +65,7 @@
 
   fileSystems."/mnt/Qbittorrent" = {
     device = "/opt/docker-services/qbittorrent/data/downloads";
+    fsType = "btrfs";
     options = ["bind"];
   };
 

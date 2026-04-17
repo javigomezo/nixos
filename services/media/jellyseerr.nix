@@ -3,8 +3,8 @@
   lib,
   ...
 }: {
-  networking.firewall.interfaces.podman0.allowedTCPPorts = lib.mkAfter [config.services.jellyseerr.port];
-  services.jellyseerr = {
+  networking.firewall.interfaces.podman0.allowedTCPPorts = lib.mkAfter [config.services.seerr.port];
+  services.seerr = {
     enable = true;
     openFirewall = false;
   };
