@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -9,6 +10,7 @@ in {
   # home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     policies.SecurityDevices = {
       "OpenSC PKCS11" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
     };
