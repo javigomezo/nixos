@@ -43,7 +43,7 @@
         "SUPER,V,exec,uwsm app -- noctalia-shell ipc call launcher clipboard"
         # ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
         "SUPERSHIFT,V,togglefloating"
-        "SUPER,W,exec,systemctl --user restart waybar.service"
+        "SUPER,W,exec,systemctl --user restart noctalia-shell.service"
         "SUPER,mouse_up,workspace,e-1"
         "SUPER,mouse_down,workspace,e+1"
         "SUPER, right,workspace,e+1"
