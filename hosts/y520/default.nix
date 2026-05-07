@@ -91,7 +91,7 @@
   # List services that you want to enable:
   # Tell Xorg to use the nvidia driver
   services = {
-    blueman.enable = true;
+    blueman.enable = false;
     btrfs.autoScrub.enable = true;
     btrfs.autoScrub.interval = "weekly";
     flatpak.enable = true;
