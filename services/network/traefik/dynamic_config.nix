@@ -125,7 +125,7 @@
           seerr:
             loadBalancer:
               servers:
-              - url: "http://127.0.0.1:${toString config.services.jellyseerr.port}"
+              - url: "http://127.0.0.1:${toString config.services.seerr.port}"
           tautulli:
             loadBalancer:
               servers:

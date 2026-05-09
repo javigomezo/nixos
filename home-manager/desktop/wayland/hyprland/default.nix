@@ -12,7 +12,8 @@
     ./game_mode.nix
   ];
 
-  services.hyprpaper.settings.splash = false;
+  # services.hyprpaper.settings.splash = false;
+  services.hyprpaper.enable = lib.mkForce false;
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland = {

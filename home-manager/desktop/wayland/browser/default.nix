@@ -14,7 +14,7 @@ in {
     policies.SecurityDevices = {
       "OpenSC PKCS11" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
     };
-    package = pkgs.wrapFirefox pkgs.firefox-bin-unwrapped {
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
         CaptivePortal = false;
         DisableFirefoxStudies = true;
