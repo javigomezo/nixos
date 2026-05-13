@@ -11,6 +11,7 @@ in {
           "/var/lib/syncthing/koreader/libros:/books:ro"
           "/var/lib/syncthing/koreader/database:/settings:ro"
           "/etc/localtime:/etc/localtime:ro"
+          "${vars.dockerVolumes}/${containerName}/data/config:/data"
         ];
         environment = {
           TZ = vars.timeZone;
