@@ -41,7 +41,9 @@
       stable.koodo-reader
       libfido2
       # localsend
+      mgba
       mpv
+      nanoboyadvance
       # mine.multiviewer-for-f1
       multiviewer-for-f1
       obsidian
