@@ -73,7 +73,7 @@
         mouse_move_enables_dpms = true;
         enable_swallow = true;
         swallow_regex = "^(kitty)$";
-        vfr = true;
+        # vfr = true;
         vrr = 1;
       };
       debug.damage_tracking = 2;
@@ -83,7 +83,7 @@
         direction = "right";
       };
       dwindle = {
-        pseudotile = false;
+        # pseudotile = false;
         preserve_split = true;
       };
       #master.new_is_master = true;
