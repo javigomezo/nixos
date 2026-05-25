@@ -1,7 +1,7 @@
 {
   imports = [
     ./audiobookshelf.nix
-    ./overseerr.nix
+    # ./overseerr.nix
     ./plex.nix
     ./jellyfin.nix
     ./jellyseerr.nix
