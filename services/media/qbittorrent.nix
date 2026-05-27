@@ -37,7 +37,6 @@ in {
       };
     };
   };
-  systemd.services.podman-qbittorrent.serviceConfig.TimeoutStopSec = "30s";
   networking = {
     firewall = {
       allowedTCPPorts = [
