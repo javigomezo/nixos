@@ -34,7 +34,7 @@
       gamescope
       grimblast
       gparted
-      hyprpolkitagent
+      # hyprpolkitagent
       hmcl
       # input-leap
       killall

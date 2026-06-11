@@ -4,10 +4,9 @@
   inputs = {
     # Official NixOS package source, using nixos-unstable branch here
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-unstable";
-    nixpkgs-stable.url = "git+https://github.com/NixOS/nixpkgs?shallow=1&ref=nixos-25.11";
-    #nixpkgs-mine.url = "github:javigomezo/nixpkgs";
-    nixpkgs-mine.url = "git+https://github.com/javigomezo/nixpkgs?shallow=1";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-mine.url = "github:javigomezo/nixpkgs";
 
     disko = {
       url = "github:nix-community/disko";
@@ -16,6 +15,7 @@
 
     impermanence = {
       url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # home-manager, used for managing user configuration
@@ -31,6 +31,7 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
@@ -40,7 +41,7 @@
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
@@ -75,7 +76,7 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to use the cache
     };
   };
 
@@ -159,7 +160,10 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "javier@workstation" = lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
         extraSpecialArgs = {
           inherit inputs outputs;
           vars = import ./hosts/workstation/vars.nix;

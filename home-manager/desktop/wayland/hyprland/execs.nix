@@ -7,7 +7,7 @@
     settings = {
       exec-once = [
         "${lib.getExe config.programs.hyprlock.package}"
-        "systemctl --user start hyprpolkitagent.service"
+        # "systemctl --user start hyprpolkitagent.service"
         "hyprctl setcursor bibata-modern-classic-hyprcursor 24"
       ];
     };

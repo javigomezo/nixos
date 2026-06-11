@@ -16,6 +16,7 @@
   services.hyprpaper.enable = lib.mkForce false;
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
     xwayland = {
       enable = true;
       #hidpi = true;

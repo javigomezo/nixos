@@ -39,6 +39,7 @@
         "uid=1000"
         "x-systemd.automount"
         "noauto"
+        "x-systemd.device-timeout=5s"
       ];
     };
   };

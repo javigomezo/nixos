@@ -8,6 +8,13 @@
 in {
   imports = [./zen];
   # home.file.".mozilla/firefox/javier/chrome/firefox-cascade-theme".source = inputs.firefox-cascade-theme;
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      {id = "ghmbeldphafepmbegfdlkpapadhbakde";} # Protonpass
+    ];
+    package = pkgs.mine.brave-origin;
+  };
   programs.firefox = {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";

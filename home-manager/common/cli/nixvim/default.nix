@@ -17,8 +17,11 @@
       termguicolors = true;
       conceallevel = 1;
     };
-    nixpkgs.config = {
-      allowUnfree = true;
+    nixpkgs = {
+      source = inputs.nixpkgs;
+      config = {
+        allowUnfree = true;
+      };
     };
     globals.mapleader = " ";
     extraConfigVim = ''

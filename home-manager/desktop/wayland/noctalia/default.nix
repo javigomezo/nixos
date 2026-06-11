@@ -3,76 +3,75 @@
   inputs,
   config,
   ...
-}: let
-  powerOptions = ["lock" "suspend" "reboot" "rebootToUefi" "logout" "shutdown" "hibernate"];
-in {
+}:
+# let
+# powerOptions = ["lock" "suspend" "reboot" "rebootToUefi" "logout" "shutdown" "hibernate"];
+# in
+{
   imports = [
     inputs.noctalia.homeModules.default
   ];
 
-  systemd.user.services.noctalia-shell = {
-    Unit = {
-      Description = "Noctalia Shell Service";
-      PartOf = ["graphical-session.target"];
-      Requisite = ["graphical-session.target"];
-      After = ["graphical-session.target"];
-    };
-    Service = {
-      ExecStart = "${lib.getExe config.programs.noctalia-shell.package}";
-      Restart = "on-failure";
-      RestartSec = 1;
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
-
-  programs.noctalia-shell = {
+  programs.noctalia = {
     enable = true;
+    systemd.enable = true;
     settings = {
-      colorSchemes.predefinedScheme = lib.mkForce "Nord";
-      bar = {
-        backgroundOpacity = lib.mkForce 0;
-        useSeparateOpacity = true;
-        density = "comfortable";
-        floating = true;
-        widgets = {
-          left = [
-            {
-              id = "Workspace";
-              labelMode = "none";
-              emptyColor = "none";
-              focusedColor = "tertiary";
-              occupiedColor = "primary";
-              # labelMode = "none";
-            }
-          ];
-          center = [
-            {id = "Clock";}
-          ];
-          right = [
-            {id = "NotificationHistory";}
-            {
-              id = "Volume";
-              displayMode = "alwaysShow";
-            }
-            {
-              id = "Network";
-              displayMode = "alwaysShow";
-            }
-            {id = "Bluetooth";}
-            {
-              id = "Battery";
-              showPowerProfiles = true;
-              showNoctaliaPerformance = true;
-            }
-            {
-              id = "Tray";
-              drawerEnabled = false;
-            }
-            {id = "ControlCenter";}
-          ];
+      notifications.layer = "overlay";
+      wallpaper.default = {
+        path = config.stylix.image;
+      };
+      theme = {
+        mode = "dark";
+        source = "builtin";
+        builtin = "Nord";
+      };
+      shell = {
+        launch_apps_as_systemd_services = true;
+        font_family = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
+        lang = "es";
+        password_style = "random";
+        polkit_agent = true;
+        settings_show_advanced = true;
+        panel = {
+          open_near_click_control_center = true;
+          session_placement = "centered";
         };
+      };
+
+      control_center.background_opacity = 1;
+      bar.widgets.enabled = false;
+      bar.main = {
+        background_opacity = lib.mkForce 0;
+        capsule = true;
+        contact_shadow = true;
+        margin_edge = 2;
+        margin_ends = 2;
+        padding = 6;
+        start = lib.mkForce ["workspaces"];
+        center = ["group:date_group"];
+        end = ["notifications" "volume" "group:wireless_group" "battery" "tray" "control-center"];
+        capsule_group = [
+          {
+            id = "date_group";
+            fill = "surface_variant";
+            members = ["clock" "weather"];
+          }
+          {
+            id = "wireless_group";
+            fill = "surface_variant";
+            members = ["network" "bluetooth"];
+          }
+        ];
+      };
+      widgets = {
+        #   {
+        #     id = "Battery";
+        #     showPowerProfiles = true;
+        #     showNoctaliaPerformance = true;
+        #   }
+
+        workpspaces.display = "none";
+        clock.format = "{:%H:%M, %a %d %b}";
       };
       appLauncher = {
         enableClipboardHistory = true;
@@ -80,24 +79,16 @@ in {
         enableClipPreview = true;
         clipboardWrapText = true;
       };
-      sessionMenu = {
-        enableCountdown = false;
-        largeButtonsLayout = "grid";
-        powerOptions =
-          map (i: {
-            action = i;
-            enabled = i != "hibernate";
-          })
-          powerOptions;
-      };
-      ui = {
-        fontDefault = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
-        fontFixed = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
-        fontDefaultScale = 1.1;
-        fontFixedScale = 1.1;
-        panelsAttachedToBar = false;
-        settingsPanelMode = "centered";
-      };
+      # sessionMenu = {
+      #   enableCountdown = false;
+      #   largeButtonsLayout = "grid";
+      #   powerOptions =
+      #     map (i: {
+      #       action = i;
+      #       enabled = i != "hibernate";
+      #     })
+      #     powerOptions;
+      # };
       location = {
         name = "Santander";
       };
