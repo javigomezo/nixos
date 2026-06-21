@@ -1,11 +1,3 @@
-# {
-#   config,
-#   lib,
-#   pkgs,
-#   ...
-# }: let
-#   merge = lib.foldr (a: b: a // b) {};
-# in {
 {self, ...}: {
   flake.modules.homeManager.firefox = {
     config,
