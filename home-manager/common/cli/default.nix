@@ -1,10 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  # self,
+  ...
+}: {
   imports = [
     ./starship
-    ./nixvim
+    # ./nixvim
     ./tmux
     ./zsh
+    # self.modules.homeManager.nixvim
   ];
+
+  #  modules = [
+  #    {imports = [self.modules.homeManager.nixvim];}
+  #  ];
 
   home.packages = with pkgs; [
     compsize

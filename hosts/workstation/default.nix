@@ -102,7 +102,7 @@
     DefaultTimeoutStopSec = "10s";
     DefaultDeviceTimeoutSec = "10s";
   };
-  systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
+  # systemd.user.extraConfig = "DefaultTimeoutStopSec=10s";
 
   # Fixes system immediately waking up from suspend (related to Gigabyte motherbouards)
   services.udev.extraRules = ''
