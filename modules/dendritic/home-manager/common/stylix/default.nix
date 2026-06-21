@@ -1,6 +1,5 @@
-{
+{inputs, ...}: {
   flake.modules.homeManager.stylix = {
-    inputs,
     config,
     lib,
     pkgs,
