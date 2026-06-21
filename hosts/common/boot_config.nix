@@ -68,6 +68,7 @@
       kernelParams =
         [
           "quiet"
+          "nowatchdog"
           "loglevel=3"
           "systemd.show_status=auto"
           "udev.log_level=3"

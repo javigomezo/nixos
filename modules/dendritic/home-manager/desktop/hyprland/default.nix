@@ -1,0 +1,108 @@
+{self, ...}: {
+  flake.modules.homeManager.hyprland = {
+    lib,
+    config,
+    ...
+  }: {
+    imports = with self.modules.homeManager; [
+      hyprlandExecs
+      hyprlandBinds
+      hyprlandAnimations
+      hyprlandDecorations
+      hyprlandWindowRule
+      hyprlandGameMode
+    ];
+
+    # services.hyprpaper.settings.splash = false;
+    services.hyprpaper.enable = lib.mkForce false;
+    wayland.windowManager.hyprland = {
+      enable = true;
+      configType = "hyprlang";
+      xwayland = {
+        enable = true;
+        #hidpi = true;
+      };
+      systemd = {
+        enable = false;
+        extraCommands = lib.mkBefore [
+          "systemctl --user stop graphical-session.target"
+          "systemctl --user start hyprland-session.target"
+        ];
+        variables = ["--all"];
+      };
+      settings = {
+        cursor = {
+          no_hardware_cursors = false;
+          #allow_dumb_copy = true;
+        };
+        input = {
+          kb_layout = "es";
+          kb_options = "caps:super";
+          follow_mouse = 1;
+          sensitivity = 0.3;
+          touchpad = {
+            scroll_factor = 0.5;
+            natural_scroll = false;
+            clickfinger_behavior = false;
+            tap-to-click = true;
+            middle_button_emulation = true;
+          };
+        };
+
+        workspace =
+          builtins.genList (
+            i: let
+              ws = i + 1;
+              baseConfig = "${toString ws}, persistent:true";
+            in
+              if ws == 4
+              then "${baseConfig}, layout:scrolling"
+              else baseConfig
+          )
+          5;
+
+        gestures = {
+          workspace_swipe_invert = false;
+        };
+        gesture = [
+          "4, horizontal, workspace"
+        ];
+
+        misc = {
+          allow_session_lock_restore = true;
+          disable_hyprland_logo = true;
+          disable_splash_rendering = true;
+          mouse_move_enables_dpms = true;
+          enable_swallow = true;
+          swallow_regex = "^(kitty)$";
+          # vfr = true;
+          vrr = 1;
+        };
+        debug.damage_tracking = 2;
+        scrolling = {
+          fullscreen_on_one_column = true;
+          column_width = 0.9;
+          direction = "right";
+        };
+        dwindle = {
+          # pseudotile = false;
+          preserve_split = true;
+        };
+        #master.new_is_master = true;
+        monitor = map (
+          m: let
+            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            position = "${toString m.x}x${toString m.y}";
+          in "${m.name},${
+            if m.enabled
+            then
+              if m.auto
+              then " preferred, auto-right, 1"
+              else "${resolution},${position},1"
+            else "disable"
+          }"
+        ) (lib.filter (m: m.enabled != null) config.monitors);
+      };
+    };
+  };
+}

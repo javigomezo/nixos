@@ -3,10 +3,12 @@
 
   inputs = {
     # Official NixOS package source, using nixos-unstable branch here
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-mine.url = "github:javigomezo/nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
 
     disko = {
       url = "github:nix-community/disko";
@@ -76,142 +78,169 @@
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to use the cache
+      # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to allow cache
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     home-manager,
+    flake-parts,
+    import-tree,
     ...
-  } @ inputs: let
-    inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-    linuxSystems = ["x86_64-linux" "aarch64-linux"];
-    pkgsFor = lib.genAttrs linuxSystems (
-      system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          config.allowUnfreePredicate = _: true;
-        }
-    );
-  in {
-    checks = lib.genAttrs linuxSystems (system: {
-      pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-        src = ./.;
-        hooks = {
-          alejandra.enable = true;
-          deadnix.enable = true;
-        };
-      };
-    });
-    devShells = lib.genAttrs linuxSystems (system: {
-      default = nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
-        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-      };
-    });
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    homeManagerModules = import ./modules/home-manager;
-    overlays = import ./overlays {inherit inputs outputs;};
-    nixosConfigurations = {
-      workstation = lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/workstation/vars.nix;
-        };
-        modules = [
-          ./hosts/workstation
-        ];
-      };
-      y520 = lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/y520/vars.nix;
-        };
-        modules = [
-          ./hosts/y520
-        ];
-      };
-      nuc8i3beh = lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/nuc8i3beh/vars.nix;
-        };
-        modules = [
-          ./hosts/nuc8i3beh
-        ];
-      };
-      pi4b = lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/pi4b/vars.nix;
-        };
-        modules = [
-          ./hosts/pi4b
-        ];
-      };
-    };
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      imports = [(import-tree ./modules/dendritic)];
 
-    # home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "javier@workstation" = lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
+      systems = ["x86_64-linux" "aarch64-linux"];
+
+      flake = let
+        inherit (self) outputs;
+        lib = nixpkgs.lib // home-manager.lib;
+        linuxSystems = ["x86_64-linux" "aarch64-linux"];
+        # pkgsFor = lib.genAttrs linuxSystems (
+        #   system:
+        #     import nixpkgs {
+        #       inherit system;
+        #       config.allowUnfree = true;
+        #       config.allowUnfreePredicate = _: true;
+        #     }
+        # );
+      in {
+        checks = lib.genAttrs linuxSystems (system: {
+          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              alejandra.enable = true;
+              deadnix.enable = true;
+            };
+          };
+        });
+
+        devShells = lib.genAttrs linuxSystems (system: {
+          default = nixpkgs.legacyPackages.${system}.mkShell {
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+          };
+        });
+
+        # Legacy, not-yet-dendritic home-manager modules.
+        # homeManagerModules = import ./modules/home-manager;
+
+        # overlays = import ./overlays {inherit inputs outputs;};
+
+        # NixOS configuration entrypoint
+        # Available through 'nixos-rebuild --flake .#your-hostname'
+        nixosConfigurations = {
+          workstation = lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+              vars = import ./hosts/workstation/vars.nix;
+            };
+            modules = [
+              ./hosts/workstation
+            ];
+          };
+
+          y520 = lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+              vars = import ./hosts/y520/vars.nix;
+            };
+            modules = [
+              ./hosts/y520
+            ];
+          };
+
+          nuc8i3beh = lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+              vars = import ./hosts/nuc8i3beh/vars.nix;
+            };
+            modules = [
+              ./hosts/nuc8i3beh
+            ];
+          };
+
+          pi4b = lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+              vars = import ./hosts/pi4b/vars.nix;
+            };
+            modules = [
+              ./hosts/pi4b
+            ];
+          };
         };
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/workstation/vars.nix;
-        };
-        modules = [
-          ./home-manager/workstation.nix
-        ];
-      };
-      "javier@y520" = lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/y520/vars.nix;
-        };
-        modules = [
-          ./home-manager/y520.nix
-        ];
-      };
-      "javier@nuc8i3beh" = lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/nuc8i3beh/vars.nix;
-        };
-        modules = [
-          ./home-manager/nuc8i3beh.nix
-        ];
-      };
-      "vagrant@vagrantbox" = lib.homeManagerConfiguration {
-        pkgs = pkgsFor.x86_64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/y520/vars.nix;
-        };
-        modules = [
-          ./home-manager/vagrantbox.nix
-        ];
-      };
-      "javier@pi4b" = lib.homeManagerConfiguration {
-        pkgs = pkgsFor.aarch64-linux;
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          vars = import ./hosts/pi4b/vars.nix;
-        };
-        modules = [
-          ./home-manager/pi4b.nix
-        ];
+
+        # home-manager configuration entrypoint
+        # Available through 'home-manager --flake .#your-username@your-hostname'
+        #
+        # Hosts that use the dendritic nixvim module (modules/dendrite/nixvim.nix)
+        # get both the upstream nixvim home module and self.modules.homeManager.nixvim.
+        # Remove any leftover nixvim import from the corresponding
+        # ./home-manager/<host>.nix to avoid defining it twice.
+        # homeConfigurations = lib.mkAfter {
+        #   # "javier@workstation" = lib.homeManagerConfiguration {
+        #   #   pkgs = pkgsFor.x86_64-linux;
+        #   #   extraSpecialArgs = {
+        #   #     inherit inputs outputs;
+        #   #     vars = import ./hosts/workstation/vars.nix;
+        #   #   };
+        #   #   modules = [
+        #   #     # inputs.nixvim.homeModules.nixvim
+        #   #     {imports = [self.modules.homeManager.nixvim];}
+        #   #     ./home-manager/workstation.nix
+        #   #   ];
+        #   # };
+
+        #   "javier@y520" = lib.homeManagerConfiguration {
+        #     pkgs = pkgsFor.x86_64-linux;
+        #     extraSpecialArgs = {
+        #       inherit inputs outputs;
+        #       vars = import ./hosts/y520/vars.nix;
+        #     };
+        #     modules = [
+        #       # inputs.nixvim.homeModules.nixvim
+        #       # self.modules.homeManager.nixvim
+        #       ./home-manager/y520.nix
+        #     ];
+        #   };
+
+        #   "javier@nuc8i3beh" = lib.homeManagerConfiguration {
+        #     pkgs = pkgsFor.x86_64-linux;
+        #     extraSpecialArgs = {
+        #       inherit inputs outputs;
+        #       vars = import ./hosts/nuc8i3beh/vars.nix;
+        #     };
+        #     modules = [
+        #       ./home-manager/nuc8i3beh.nix
+        #     ];
+        #   };
+
+        #   "vagrant@vagrantbox" = lib.homeManagerConfiguration {
+        #     pkgs = pkgsFor.x86_64-linux;
+        #     extraSpecialArgs = {
+        #       inherit inputs outputs;
+        #       vars = import ./hosts/y520/vars.nix;
+        #     };
+        #     modules = [
+        #       ./home-manager/vagrantbox.nix
+        #     ];
+        #   };
+
+        #   "javier@pi4b" = lib.homeManagerConfiguration {
+        #     pkgs = pkgsFor.aarch64-linux;
+        #     extraSpecialArgs = {
+        #       inherit inputs outputs;
+        #       vars = import ./hosts/pi4b/vars.nix;
+        #     };
+        #     modules = [
+        #       ./home-manager/pi4b.nix
+        #     ];
+        #   };
+        # };
       };
     };
-  };
 }
