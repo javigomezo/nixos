@@ -8,7 +8,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       ${containerName} = {
-        image = "ghcr.io/immich-app/${containerName}:release-openvino";
+        image = "ghcr.io/immich-app/${containerName}:v3-openvino";
         pull = "newer";
         autoStart = true;
         volumes = [

@@ -12,7 +12,7 @@ in {
   virtualisation.oci-containers = {
     containers = {
       "${containerName}" = {
-        image = "ghcr.io/immich-app/${containerName}-server:release";
+        image = "ghcr.io/immich-app/${containerName}-server:v3";
         pull = "newer";
         autoStart = true;
         volumes = [
