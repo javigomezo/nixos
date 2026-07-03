@@ -25,6 +25,7 @@
         # bambu-studio
         discord
         ffmpeg
+        foliate
         gamescope
         grimblast
         gparted
@@ -32,7 +33,7 @@
         hmcl
         # input-leap
         killall
-        stable.koodo-reader
+        # koodo-reader
         libfido2
         # localsend
         mgba
