@@ -20,11 +20,11 @@
         wallpaper.default = {
           path = config.stylix.image;
         };
-        theme = {
-          mode = "dark";
-          source = "builtin";
-          builtin = "Nord";
-        };
+        # theme = {
+        #   mode = "dark";
+        #   source = "builtin";
+        #   builtin = "Nord";
+        # };
         shell = {
           launch_apps_as_systemd_services = true;
           font_family = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
@@ -70,7 +70,11 @@
           #     showNoctaliaPerformance = true;
           #   }
 
-          workpspaces.display = "none";
+          workpspaces = {
+            display = "none";
+            empty_color = "tertiary";
+            occupied_color = "tertiary";
+          };
           clock.format = "{:%H:%M, %a %d %b}";
         };
         appLauncher = {
