@@ -63,14 +63,14 @@
             }
           ];
         };
-        widgets = {
+        widget = {
           #   {
           #     id = "Battery";
           #     showPowerProfiles = true;
           #     showNoctaliaPerformance = true;
           #   }
 
-          workpspaces = {
+          workspaces = {
             display = "none";
             empty_color = "tertiary";
             occupied_color = "tertiary";
