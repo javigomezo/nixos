@@ -8,10 +8,10 @@
       pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
       modules = [self.modules.homeManager.workstationConfig];
     };
-    # "javier@y520" = inputs.home-manager.lib.homeManagerConfiguration {
-    #   pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-    #   modules = [self.modules.desktop];
-    # };
+    "javier@y520" = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      modules = [self.modules.homeManager.y520Config];
+    };
     # "javier@pi4b" = inputs.home-manager.lib.homeManagerConfiguration {
     #   pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
     #   modules = [

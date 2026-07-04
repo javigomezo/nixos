@@ -99,14 +99,6 @@
         inherit (self) outputs;
         lib = nixpkgs.lib // home-manager.lib;
         linuxSystems = ["x86_64-linux" "aarch64-linux"];
-        # pkgsFor = lib.genAttrs linuxSystems (
-        #   system:
-        #     import nixpkgs {
-        #       inherit system;
-        #       config.allowUnfree = true;
-        #       config.allowUnfreePredicate = _: true;
-        #     }
-        # );
       in {
         checks = lib.genAttrs linuxSystems (system: {
           pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
@@ -125,13 +117,6 @@
           };
         });
 
-        # Legacy, not-yet-dendritic home-manager modules.
-        # homeManagerModules = import ./modules/home-manager;
-
-        # overlays = import ./overlays {inherit inputs outputs;};
-
-        # NixOS configuration entrypoint
-        # Available through 'nixos-rebuild --flake .#your-hostname'
         nixosConfigurations = {
           workstation = lib.nixosSystem {
             specialArgs = {
@@ -173,74 +158,6 @@
             ];
           };
         };
-
-        # home-manager configuration entrypoint
-        # Available through 'home-manager --flake .#your-username@your-hostname'
-        #
-        # Hosts that use the dendritic nixvim module (modules/dendrite/nixvim.nix)
-        # get both the upstream nixvim home module and self.modules.homeManager.nixvim.
-        # Remove any leftover nixvim import from the corresponding
-        # ./home-manager/<host>.nix to avoid defining it twice.
-        # homeConfigurations = lib.mkAfter {
-        #   # "javier@workstation" = lib.homeManagerConfiguration {
-        #   #   pkgs = pkgsFor.x86_64-linux;
-        #   #   extraSpecialArgs = {
-        #   #     inherit inputs outputs;
-        #   #     vars = import ./hosts/workstation/vars.nix;
-        #   #   };
-        #   #   modules = [
-        #   #     # inputs.nixvim.homeModules.nixvim
-        #   #     {imports = [self.modules.homeManager.nixvim];}
-        #   #     ./home-manager/workstation.nix
-        #   #   ];
-        #   # };
-
-        #   "javier@y520" = lib.homeManagerConfiguration {
-        #     pkgs = pkgsFor.x86_64-linux;
-        #     extraSpecialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/y520/vars.nix;
-        #     };
-        #     modules = [
-        #       # inputs.nixvim.homeModules.nixvim
-        #       # self.modules.homeManager.nixvim
-        #       ./home-manager/y520.nix
-        #     ];
-        #   };
-
-        #   "javier@nuc8i3beh" = lib.homeManagerConfiguration {
-        #     pkgs = pkgsFor.x86_64-linux;
-        #     extraSpecialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/nuc8i3beh/vars.nix;
-        #     };
-        #     modules = [
-        #       ./home-manager/nuc8i3beh.nix
-        #     ];
-        #   };
-
-        #   "vagrant@vagrantbox" = lib.homeManagerConfiguration {
-        #     pkgs = pkgsFor.x86_64-linux;
-        #     extraSpecialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/y520/vars.nix;
-        #     };
-        #     modules = [
-        #       ./home-manager/vagrantbox.nix
-        #     ];
-        #   };
-
-        #   "javier@pi4b" = lib.homeManagerConfiguration {
-        #     pkgs = pkgsFor.aarch64-linux;
-        #     extraSpecialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/pi4b/vars.nix;
-        #     };
-        #     modules = [
-        #       ./home-manager/pi4b.nix
-        #     ];
-        #   };
-        # };
       };
     };
 }
