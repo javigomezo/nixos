@@ -194,11 +194,11 @@
         blocking_mode: default
         parental_block_host: family-block.dns.adguard.com
         safebrowsing_block_host: standard-block.dns.adguard.com
-        rewrites:
-          - domain: '*.${config.sops.placeholder.fqdn}'
-            answer: 10.0.0.2
-          - domain: wireguard2.${config.sops.placeholder.fqdn}
-            answer: remote.${config.sops.placeholder.fqdn}
+        # rewrites:
+        #   - domain: '*.${config.sops.placeholder.fqdn}'
+        #     answer: 10.0.0.2
+        #   - domain: wireguard2.${config.sops.placeholder.fqdn}
+        #     answer: remote.${config.sops.placeholder.fqdn}
         safe_fs_patterns:
           - /var/lib/AdguardHome/data/userfilters/*
         safebrowsing_cache_size: 1048576
