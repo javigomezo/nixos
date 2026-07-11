@@ -169,7 +169,7 @@
               stsIncludeSubdomains: true
               stsPreload: true
               forceSTSHeader: true
-              customFrameOptionsValue: "allow-from https:${config.sops.placeholder.fqdn}"
+              customFrameOptionsValue: "allow-from https://${config.sops.placeholder.fqdn}"
               contentTypeNosniff: true
               referrerPolicy: "same-origin"
               permissionsPolicy: "geolocation=(),camera=(),microphone=(),payment=()"
@@ -178,6 +178,7 @@
           authelia:
             forwardAuth:
               address: "http://127.0.0.1:9091/api/verify?rd=https://authelia.${config.sops.placeholder.fqdn}"
+              maxResponseBodySize: 1048576
               trustForwardHeader: true
               authResponseHeaders:
                 - "Remote-User"

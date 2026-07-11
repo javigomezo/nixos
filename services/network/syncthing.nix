@@ -3,7 +3,7 @@
     enable = true;
     openDefaultPorts = true;
     settings = {
-      gui.insecureSkipHostcheck = true;
+      # gui.insecureSkipHostcheck = true;
       devices.kindle = {
         id = "NPNF4EC-ITB4BRE-OMTDQLY-Y426DZE-JLKSBR4-H6A6GMQ-ILYITNT-5CO3TQP";
         name = "kindle";
