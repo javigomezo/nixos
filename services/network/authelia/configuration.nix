@@ -10,7 +10,7 @@
           enable_expvars: false
         disable_healthcheck: true
       log:
-        level: debug
+        level: warn
       telemetry:
         metrics:
           enabled: false
@@ -88,11 +88,6 @@
             policy: two_factor
 
       session:
-        name: authelia_session
-        same_site: lax
-        expiration: 1h
-        inactivity: 5m
-        remember_me: 1M
         cookies:
           - domain: ${config.sops.placeholder.fqdn}
             authelia_url: 'https://authelia.${config.sops.placeholder.fqdn}'
