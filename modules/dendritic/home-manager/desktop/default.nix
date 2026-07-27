@@ -23,6 +23,7 @@
       ]
       ++ (with pkgs; [
         # bambu-studio
+        orca-slicer
         discord
         ffmpeg
         foliate
