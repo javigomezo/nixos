@@ -1,5 +1,9 @@
 {
-  flake.modules.homeManager.zsh = {config, ...}: {
+  flake.modules.homeManager.zsh = {
+    config,
+    lib,
+    ...
+  }: {
     programs.zsh = {
       enable = true;
       dotDir = "${config.xdg.configHome}/zsh";
@@ -18,25 +22,30 @@
         autoload -U compinit
         compinit
       '';
-      shellAliases = {
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
-        cd = "z";
-        df = "duf";
-        ls = "eza --color=always --icons --group-directories-first";
-        l = "ls";
-        la = "ls -a";
-        li = "ls -a | grep -i";
-        ll = "ls -l";
-        lla = "ls -lah";
-        mkdir = "mkdir -p";
-        #cat = "bat";
-        k = "kubectl";
-        kubechange = "kubectl config use-context ";
-        kubecontext = "kubectl config get-contexts";
-        nvidia-smi = "watch -n 1 nvidia-smi";
-      };
+      shellAliases = lib.mkMerge [
+        {
+          ".." = "cd ..";
+          "..." = "cd ../..";
+          "...." = "cd ../../..";
+          cd = "z";
+          df = "duf";
+          ls = "eza --color=always --icons --group-directories-first";
+          l = "ls";
+          la = "ls -a";
+          li = "ls -a | grep -i";
+          ll = "ls -l";
+          lla = "ls -lah";
+          mkdir = "mkdir -p";
+          #cat = "bat";
+          k = "kubectl";
+          kubechange = "kubectl config use-context ";
+          kubecontext = "kubectl config get-contexts";
+          nvidia-smi = "watch -n 1 nvidia-smi";
+        }
+        (lib.mkIf config.programs.kitty.enable {
+          ssh = "kitty +kitten ssh";
+        })
+      ];
       initContent = ''
         if [[ $- == *i* ]]; then
           clear;nitch;

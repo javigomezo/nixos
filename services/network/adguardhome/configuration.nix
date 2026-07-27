@@ -9,7 +9,7 @@
       format = "yaml";
     };
     "adguard/whitelisted_domains" = {
-      sopsFile = ../../../hosts/common/secrets.yaml;
+      sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
       format = "yaml";
     };
     "adguard/tailscale_ip" = {};

@@ -23,17 +23,21 @@
         "match:class ^(mpv), idle_inhibit focus"
         "match:class ^(Firefox), idle_inhibit fullscreen"
         "match:title ^(Control de volumen)$, size 800 600"
-        "match:initial_title ^(Obsidian)$, idle_inhibit focus"
-        "match:initial_title ^(Obsidian)$, workspace 5"
-        "match:initial_title ^(Obsidian)$, opacity 0.92 0.92"
+        "match:initial_title ^((?i)obsidian)$, idle_inhibit focus"
+        "match:initial_title ^((?i)obsidian)$, workspace 5"
+        "match:initial_title ^((?i)obsidian)$, opacity 0.92 0.92"
         "match:class ^(thunar)$, animation popin"
         "match:class ^(thunar)$, opacity 0.82 0.82"
         "match:float 1, border_size 0"
       ];
       layerrule = [
-        "match:namespace noctalia-background-.*$, ignore_alpha 0.5"
-        "match:namespace noctalia-background-.*$, blur on"
-        "match:namespace noctalia-background-.*$, blur_popups on"
+        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, no_anim on"
+        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, blur on"
+        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, blur_popups on"
+        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, ignore_alpha 0.5"
+        # "match:namespace noctalia-background-.*$, ignore_alpha 0.5"
+        # "match:namespace noctalia-background-.*$, blur on"
+        # "match:namespace noctalia-background-.*$, blur_popups on"
       ];
     };
   };

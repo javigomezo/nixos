@@ -45,6 +45,7 @@
         pavucontrol
         plex-desktop
         # plexamp
+        plezy
         proton-vpn
         qimgv
         stable.qmk
@@ -55,6 +56,7 @@
         xarchiver
         thunar
         xwayland
+        z-library-desktop
       ]);
   };
 }

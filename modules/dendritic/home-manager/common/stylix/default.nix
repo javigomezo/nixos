@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   flake.modules.homeManager.stylix = {
     config,
     lib,
@@ -20,7 +24,7 @@
     config = {
       stylix = {
         enable = config.my.stylix.enable;
-        image = ./wallpapers/${config.my.vars.wallpaper};
+        image = self + "/modules/dendritic/wallpapers/${config.my.vars.wallpaper}";
         base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
         cursor = lib.mkIf config.my.stylix.desktop {
           package = pkgs.bibata-cursors;
