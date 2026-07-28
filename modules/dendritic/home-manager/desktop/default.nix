@@ -17,6 +17,7 @@
       firefox
       hyprland
     ];
+    home.pointerCursor.enable = true;
     home.packages =
       [
         inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default

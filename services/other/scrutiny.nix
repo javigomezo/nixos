@@ -1,5 +1,0 @@
-{
-  services.scrutiny = {
-    enable = true;
-  };
-}

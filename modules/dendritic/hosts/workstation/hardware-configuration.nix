@@ -1,16 +1,14 @@
-{
-  inputs,
-  # modulesPath,
-  ...
-}: {
+{inputs, ...}: {
   flake.nixosModules.workstationHardware = {
     config,
     lib,
+    modulesPath,
     ...
   }: {
     imports = [
       inputs.nixos-hardware.nixosModules.common-cpu-amd
       inputs.nixos-hardware.nixosModules.common-pc-ssd
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
     # imports = [

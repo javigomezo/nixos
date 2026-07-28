@@ -1,15 +1,15 @@
 {self, ...}: {
   flake.nixosModules.y520 = {pkgs, ...}: {
-    imports = [
-      self.nixosModules.y520Hardware
-      self.nixosModules.y520Networking
-      self.nixosModules.common
-      self.nixosModules.displayManager
-      self.nixosModules.nvidia
-      self.nixosModules.pipewire
-      self.nixosModules.steam
-      self.nixosModules.stylix
-      self.nixosModules.usbGuard
+    imports = with self.nixosModules; [
+      y520Hardware
+      y520Networking
+      common
+      displayManager
+      nvidia
+      pipewire
+      steam
+      stylix
+      usbGuard
     ];
 
     my = {

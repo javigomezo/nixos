@@ -5,6 +5,7 @@
   flake.nixosModules.y520Hardware = {
     config,
     lib,
+    modulesPath,
     ...
   }: {
     imports = [
@@ -13,6 +14,7 @@
       inputs.nixos-hardware.nixosModules.common-pc-laptop
       inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
       inputs.nixos-hardware.nixosModules.common-pc-laptop-hdd
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
     boot.initrd.availableKernelModules = ["ideapad_laptop" "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "sdhci_pci"];

@@ -1,18 +1,17 @@
 {self, ...}: {
   flake.nixosModules.workstation = {pkgs, ...}: {
-    imports = [
-      self.modules.homeManager.vars
-      self.nixosModules.workstationHardware
-      self.nixosModules.stylix
-      self.nixosModules.mx-master
-      self.nixosModules.workstationNetworking
-      self.nixosModules.displayManager
-      self.nixosModules.nvidia
-      self.nixosModules.docker
-      self.nixosModules.pipewire
-      self.nixosModules.retroarch
-      self.nixosModules.steam
-      self.nixosModules.common
+    imports = with self.nixosModules; [
+      workstationHardware
+      workstationNetworking
+      common
+      stylix
+      mx-master
+      displayManager
+      nvidia
+      docker
+      pipewire
+      retroarch
+      steam
     ];
 
     my = {

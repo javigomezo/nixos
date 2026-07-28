@@ -23,14 +23,14 @@ creation_rules:
       - *y520
       - *javier_y520
       - *javier_workstation
-  - path_regex: hosts/nuc8i3beh/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/nuc8i3beh/_secrets.ya?ml$
     key_groups:
     - age:
       - *nuc8i3beh
       - *javier_nuc8i3beh
       - *javier_workstation
       - *javier_y520
-  - path_regex: hosts/pi4b/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/pi4b/_secrets.ya?ml$
     key_groups:
     - age:
       - *pi4b

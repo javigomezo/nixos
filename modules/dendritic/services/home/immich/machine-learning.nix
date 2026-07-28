@@ -1,0 +1,37 @@
+{
+  flake.nixosModules.immichMachineLearning = {config, ...}: let
+    containerName = "immich-machine-learning";
+    directories = [
+      "${config.my.vars.dockerVolumes}/immich/ml/data/cache"
+    ];
+  in {
+    systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
+    virtualisation.oci-containers = {
+      containers = {
+        ${containerName} = {
+          image = "ghcr.io/immich-app/${containerName}:v3-openvino";
+          pull = "newer";
+          autoStart = true;
+          volumes = [
+            "${config.my.vars.dockerVolumes}/immich/ml/data/cache:/cache"
+            "/etc/localtime:/etc/localtime:ro"
+          ];
+          extraOptions = [
+            "--device=/dev/dri:/dev/dri"
+          ];
+          environment = {
+            TZ = config.my.vars.timeZone;
+            PUID = "1000";
+            GUID = "1000";
+            UMASK = "002";
+          };
+          labels = {
+            "traefik.enable" = "false";
+            "glance.parent" = "immich";
+            "glance.name" = "Machine Learning";
+          };
+        };
+      };
+    };
+  };
+}

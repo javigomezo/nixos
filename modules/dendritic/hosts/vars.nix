@@ -15,6 +15,9 @@
       libva_driver = lib.mkOption {
         type = lib.types.str;
       };
+      mainInterface = lib.mkOption {
+        type = lib.types.str;
+      };
     };
     # wallpaper = "space.png";
     # libva_driver = "nvidia";
