@@ -81,40 +81,5 @@
       # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to allow cache
     };
   };
-
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    flake-parts,
-    import-tree,
-    ...
-  }:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [(import-tree ./modules/dendritic)];
-
-      systems = ["x86_64-linux" "aarch64-linux"];
-
-      flake = let
-        lib = nixpkgs.lib // home-manager.lib;
-        linuxSystems = ["x86_64-linux" "aarch64-linux"];
-      in {
-        checks = lib.genAttrs linuxSystems (system: {
-          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              alejandra.enable = true;
-              deadnix.enable = true;
-            };
-          };
-        });
-
-        devShells = lib.genAttrs linuxSystems (system: {
-          default = nixpkgs.legacyPackages.${system}.mkShell {
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
-            buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-          };
-        });
-      };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules/dendritic);
 }
