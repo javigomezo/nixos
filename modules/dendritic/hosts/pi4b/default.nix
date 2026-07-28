@@ -58,7 +58,7 @@
         generic-extlinux-compatible.enable = true;
       };
       kernelParams = lib.mkAfter ["brcmfmac.roamoff=1" "brcmfmac.feature_disable=0x282000"];
-      kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
+      # kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
     };
 
     fileSystems = {
