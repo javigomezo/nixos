@@ -96,7 +96,6 @@
       systems = ["x86_64-linux" "aarch64-linux"];
 
       flake = let
-        inherit (self) outputs;
         lib = nixpkgs.lib // home-manager.lib;
         linuxSystems = ["x86_64-linux" "aarch64-linux"];
       in {
@@ -116,48 +115,6 @@
             buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
           };
         });
-
-        # nixosConfigurations = {
-        #   workstation = lib.nixosSystem {
-        #     specialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/workstation/vars.nix;
-        #     };
-        #     modules = [
-        #       ./hosts/workstation
-        #     ];
-        #   };
-
-        #   y520 = lib.nixosSystem {
-        #     specialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/y520/vars.nix;
-        #     };
-        #     modules = [
-        #       ./hosts/y520
-        #     ];
-        #   };
-
-        #   nuc8i3beh = lib.nixosSystem {
-        #     specialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/nuc8i3beh/vars.nix;
-        #     };
-        #     modules = [
-        #       ./hosts/nuc8i3beh
-        #     ];
-        #   };
-
-        #   pi4b = lib.nixosSystem {
-        #     specialArgs = {
-        #       inherit inputs outputs;
-        #       vars = import ./hosts/pi4b/vars.nix;
-        #     };
-        #     modules = [
-        #       ./hosts/pi4b
-        #     ];
-        #   };
-        # };
       };
     };
 }
