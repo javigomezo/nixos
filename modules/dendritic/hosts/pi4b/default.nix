@@ -14,6 +14,7 @@
       impermanence
       sops
       locale
+      nh
       nix
       nixpkgs
       tailscale
