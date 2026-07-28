@@ -16,20 +16,8 @@
           default = 10;
         };
       };
-      nvidia = {
-        enable = lib.mkEnableOption {
-          description = "Enables nvidia";
-          type = lib.types.bool;
-          default = true;
-        };
-      };
-      secureboot = {
-        enable = lib.mkEnableOption {
-          description = "Enables secureboot";
-          type = lib.types.bool;
-          default = false;
-        };
-      };
+      nvidia.enable = lib.mkEnableOption "Enables nvidia";
+      secureboot.enable = lib.mkEnableOption "Enables secureboot";
     };
 
     config = {

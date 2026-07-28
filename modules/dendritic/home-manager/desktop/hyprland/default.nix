@@ -101,7 +101,7 @@
               else "${resolution},${position},1"
             else "disable"
           }"
-        ) (lib.filter (m: m.enabled != null) config.monitors);
+        ) (lib.filter (m: m.enabled != null) config.my.monitors);
       };
     };
   };

@@ -7,7 +7,7 @@
     mainMonitor =
       builtins.elemAt (map (
         m: "${m.name}"
-      ) (lib.filter (m: m.primary) config.monitors))
+      ) (lib.filter (m: m.primary) config.my.monitors))
       0;
   in {
     programs.hyprlock = {

@@ -6,13 +6,7 @@
     ...
   }: {
     options.my.nvidia = {
-      prime = {
-        enable = lib.mkEnableOption {
-          description = "Enables nvidia";
-          type = lib.types.bool;
-          default = false;
-        };
-      };
+      prime.enable = lib.mkEnableOption "Enables nvidia";
     };
     config = {
       environment.systemPackages = with pkgs; [

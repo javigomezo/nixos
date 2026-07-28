@@ -39,11 +39,11 @@
       };
     };
 
-    # home-manager = {
-    #   useGlobalPkgs = true;
-    #   useUserPackages = true;
-    #   # extraSpecialArgs = {inherit inputs outputs;};
-    # };
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      # extraSpecialArgs = {inherit inputs outputs;};
+    };
 
     system.autoUpgrade = {
       enable = true;

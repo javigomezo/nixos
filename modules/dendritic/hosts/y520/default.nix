@@ -26,6 +26,7 @@
       boot = {
         loader.timeout = 0;
         secureboot.enable = true;
+        nvidia.enable = true;
       };
       nas-mounts.qbittorrent-mount.enable = true;
       nas-mounts.media-mount.enable = false;

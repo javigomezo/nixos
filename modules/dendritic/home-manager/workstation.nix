@@ -16,19 +16,18 @@
       stylix = {
         desktop = true;
       };
+      monitors = [
+        {
+          enabled = true;
+          primary = true;
+          name = "DP-1";
+          width = 2560;
+          height = 1080;
+          refreshRate = 60;
+          x = 0;
+        }
+      ];
     };
-
-    monitors = [
-      {
-        enabled = true;
-        primary = true;
-        name = "DP-1";
-        width = 2560;
-        height = 1080;
-        refreshRate = 60;
-        x = 0;
-      }
-    ];
     home.packages = with pkgs; [
       solaar
     ];

@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.modules.homeManager.nuc8i3behConfig = {
+  flake.modules.homeManager.nuc8i3behConfiguration = {
     imports = [self.modules.homeManager.cli];
 
     my.stylix.desktop = false;

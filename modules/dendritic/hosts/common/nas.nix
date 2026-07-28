@@ -10,11 +10,7 @@
         type = lib.types.bool;
         default = true;
       };
-      qbittorrent-mount.enable = lib.mkEnableOption {
-        description = "Enables mounting of qbittorrent share";
-        type = lib.types.bool;
-        default = true;
-      };
+      qbittorrent-mount.enable = lib.mkEnableOption "Enables mounting of qbittorrent share";
       media-mount.enable = lib.mkEnableOption {
         description = "Enables mounting of qbittorrent share";
         type = lib.types.bool;

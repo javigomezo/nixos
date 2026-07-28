@@ -6,7 +6,7 @@
   }: let
     inherit (lib) mkOption types;
   in {
-    options.monitors = mkOption {
+    options.my.monitors = mkOption {
       type = types.listOf (types.submodule {
         options = {
           name = mkOption {
@@ -57,8 +57,8 @@
       assertions = [
         {
           assertion =
-            ((lib.length config.monitors) != 0)
-            -> ((lib.length (lib.filter (m: m.primary) config.monitors)) == 1);
+            ((lib.length config.my.monitors) != 0)
+            -> ((lib.length (lib.filter (m: m.primary) config.my.monitors)) == 1);
           message = "Exactly one monitor must be set to primary.";
         }
       ];

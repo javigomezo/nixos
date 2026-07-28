@@ -7,6 +7,7 @@
     ...
   }: {
     imports = with self.nixosModules; [
+      self.modules.homeManager.vars
       pi4bHardware
       pi4bFirewall
       pi4bNetworking

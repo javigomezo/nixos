@@ -13,10 +13,8 @@
     nuc8i3beh = inputs.nixpkgs.lib.nixosSystem {
       modules = [self.nixosModules.nuc8i3beh];
     };
-    # pi4b = inputs.nixpkgs.lib.nixosSystem {
-    #   modules = [
-    #     self.nixosModules.pi4b
-    #   ];
-    # };
+    pi4b = inputs.nixpkgs.lib.nixosSystem {
+      modules = [self.nixosModules.pi4b];
+    };
   };
 }

@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.modules.homeManager.pi4bConfig = {
+  flake.modules.homeManager.pi4bConfiguration = {
     imports = [self.modules.homeManager.cli];
 
     my.stylix.desktop = false;

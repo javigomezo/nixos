@@ -16,6 +16,7 @@
 
     my = {
       boot.secureboot.enable = true;
+      boot.nvidia.enable = true;
       nas-mounts.qbittorrent-mount.enable = true;
       nas-mounts.media-mount.enable = true;
       powerManagement = {
