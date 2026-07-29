@@ -2,15 +2,15 @@
   flake.nixosModules.adguardHomeConfig = {config, ...}: {
     sops.secrets = {
       "adguard/username" = {
-        sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+        sopsFile = self + "/modules/sops/common/_secrets.yaml";
         format = "yaml";
       };
       "adguard/password" = {
-        sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+        sopsFile = self + "/modules/sops/common/_secrets.yaml";
         format = "yaml";
       };
       "adguard/whitelisted_domains" = {
-        sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+        sopsFile = self + "/modules/sops/common/_secrets.yaml";
         format = "yaml";
       };
       "adguard/tailscale_ip" = {};

@@ -13,7 +13,7 @@
     ];
     stylix = {
       enable = true;
-      image = self + "/modules/dendritic/wallpapers/${config.my.vars.wallpaper}";
+      image = self + "/modules/wallpapers/${config.my.vars.wallpaper}";
       base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     };
   };

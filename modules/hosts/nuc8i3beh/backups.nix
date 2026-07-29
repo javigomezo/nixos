@@ -6,7 +6,7 @@
   }: {
     sops = {
       secrets."restic/password" = {
-        sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+        sopsFile = self + "/modules/sops/common/_secrets.yaml";
         format = "yaml";
       };
       templates."restic.password" = {

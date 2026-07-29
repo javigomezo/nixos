@@ -9,7 +9,7 @@
     sops.secrets = {
       javier_password = {
         neededForUsers = true;
-        sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+        sopsFile = self + "/modules/sops/common/_secrets.yaml";
         format = "yaml";
       };
     };

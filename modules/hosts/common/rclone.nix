@@ -10,20 +10,20 @@
     sops = {
       secrets = {
         "rclone/provider" = {
-          sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+          sopsFile = self + "/modules/sops/common/_secrets.yaml";
           format = "yaml";
         };
         "rclone/user" = {
-          sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+          sopsFile = self + "/modules/sops/common/_secrets.yaml";
           format = "yaml";
         };
         "rclone/password" = {};
         "rclone/crypt_password" = {
-          sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+          sopsFile = self + "/modules/sops/common/_secrets.yaml";
           format = "yaml";
         };
         "rclone/crypt_salt" = {
-          sopsFile = self + "/modules/dendritic/sops/common/_secrets.yaml";
+          sopsFile = self + "/modules/sops/common/_secrets.yaml";
           format = "yaml";
         };
       };
