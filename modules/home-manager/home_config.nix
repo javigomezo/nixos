@@ -15,13 +15,13 @@
     "javier@nuc8i3beh" = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
       modules = [
-        self.modules.homeManager.nuc8i3behConfiguration
+        self.modules.homeManager.nuc8i3behConfig
       ];
     };
     "javier@pi4b" = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = inputs.nixpkgs.legacyPackages."aarch64-linux";
       modules = [
-        self.modules.homeManager.pi4bConfiguration
+        self.modules.homeManager.pi4bConfig
       ];
     };
   };
