@@ -3,6 +3,7 @@
     imports = [self.modules.homeManager.cli];
 
     my.stylix.desktop = false;
+    my.vars.wallpaper = "space.png";
     xdg.enable = true;
 
     # You can update home Manager without changing this value. See
