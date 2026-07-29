@@ -1,0 +1,40 @@
+{
+  flake.nixosModules.nvidia = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
+    options.my.nvidia = {
+      prime.enable = lib.mkEnableOption "Enables nvidia";
+    };
+    config = {
+      environment.systemPackages = with pkgs; [
+        egl-wayland
+      ];
+      hardware = {
+        nvidia-container-toolkit.enable = true;
+        nvidia = {
+          modesetting.enable = true;
+          open = false; # If true breaks hyprland so...
+          nvidiaSettings = true;
+          nvidiaPersistenced = true;
+          powerManagement.enable = true;
+          prime = {
+            offload = {
+              enable = config.my.nvidia.prime.enable;
+              enableOffloadCmd = config.my.nvidia.prime.enable;
+            };
+            nvidiaBusId = "PCI:1:0:0";
+            intelBusId = "PCI:0:2:0";
+          };
+          package = lib.mkForce config.boot.kernelPackages.nvidiaPackages.legacy_580;
+        };
+        graphics = {
+          enable = true;
+          enable32Bit = true;
+        };
+      };
+    };
+  };
+}

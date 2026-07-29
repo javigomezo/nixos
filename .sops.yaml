@@ -12,31 +12,31 @@ keys:
     - &pi4b age1d0cu889zhdw6gcnphur4h2h02pk29xhuj3pd2kyzxv8cznqzyesschwwm5
 
 creation_rules:
-  - path_regex: hosts/workstation/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/workstation/_secrets.ya?ml$
     key_groups:
     - age:
       - *workstation
       - *javier_workstation
-  - path_regex: hosts/y520/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/y520/_secrets.ya?ml$
     key_groups:
     - age:
       - *y520
       - *javier_y520
       - *javier_workstation
-  - path_regex: hosts/nuc8i3beh/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/nuc8i3beh/_secrets.ya?ml$
     key_groups:
     - age:
       - *nuc8i3beh
       - *javier_nuc8i3beh
       - *javier_workstation
       - *javier_y520
-  - path_regex: hosts/pi4b/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/pi4b/_secrets.ya?ml$
     key_groups:
     - age:
       - *pi4b
       - *javier_pi4b
       - *javier_workstation
-  - path_regex: hosts/common/secrets.ya?ml$
+  - path_regex: modules/dendritic/sops/common/_secrets.ya?ml$
     key_groups:
     - age:
       - *workstation

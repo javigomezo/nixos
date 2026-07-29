@@ -1,0 +1,21 @@
+{
+  flake.nixosModules.seerr = {
+    config,
+    lib,
+    ...
+  }: {
+    networking.firewall.interfaces.podman0.allowedTCPPorts = lib.mkAfter [config.services.seerr.port];
+    services.seerr = {
+      enable = true;
+      openFirewall = false;
+    };
+    environment.persistence."/persist".directories = lib.mkAfter [
+      {
+        directory = "/var/lib/private/jellyseerr";
+        user = "jellyseerr";
+        group = "jellyseerr";
+        mode = "u=rwx,g=rx,o=rx";
+      }
+    ];
+  };
+}
