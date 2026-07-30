@@ -11,11 +11,7 @@
         default = true;
       };
       qbittorrent-mount.enable = lib.mkEnableOption "Enables mounting of qbittorrent share";
-      media-mount.enable = lib.mkEnableOption {
-        description = "Enables mounting of qbittorrent share";
-        type = lib.types.bool;
-        default = true;
-      };
+      media-mount.enable = lib.mkEnableOption "Enables mounting of NAS share";
       seagate-mount = {
         device = lib.mkOption {
           description = "Seagate device path";

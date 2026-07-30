@@ -1,15 +1,10 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{self, ...}: {
   flake.nixosModules.common = {
     config,
     lib,
     ...
   }: {
     imports = [
-      inputs.home-manager.nixosModules.home-manager
       self.modules.homeManager.vars
       self.nixosModules.bootConfig
       self.nixosModules.disko
@@ -39,11 +34,10 @@
       };
     };
 
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      # extraSpecialArgs = {inherit inputs outputs;};
-    };
+    # home-manager = {
+    #   useGlobalPkgs = true;
+    #   useUserPackages = true;
+    # };
 
     system.autoUpgrade = {
       enable = true;
