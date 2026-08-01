@@ -52,11 +52,14 @@
     };
 
     services = {
+      gnome.gnome-keyring.enable = true;
       dbus = {
         enable = true;
         implementation = "broker";
       };
     };
+    security.pam.services.greetd.enableGnomeKeyring = true;
+    security.pam.services.login.enableGnomeKeyring = true;
 
     systemd = {
       targets.network-online.wantedBy = lib.mkForce []; # Normally ["multi-user.target"]

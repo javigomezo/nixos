@@ -18,6 +18,9 @@
       hyprland
     ];
     home.pointerCursor.enable = true;
+
+    services.gnome-keyring.enable = true;
+
     home.packages =
       [
         inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -36,6 +39,7 @@
         killall
         # koodo-reader
         libfido2
+        libsecret
         # localsend
         mgba
         mpv
@@ -49,6 +53,7 @@
         plezy
         proton-vpn
         qimgv
+        seahorse
         stable.qmk
         teamspeak6-client
         unrar
