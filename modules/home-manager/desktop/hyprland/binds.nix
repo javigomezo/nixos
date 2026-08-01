@@ -3,81 +3,66 @@
     lib,
     config,
     ...
-  }: {
-    wayland.windowManager.hyprland.settings = {
-      bindm = [
-        # Move/resize windows with mainMod + LMB/RMB and dragging
-        "SUPER,mouse:272,movewindow"
-        "SUPER,mouse:273,resizewindow"
-      ];
-      bind = let
-        workspaces = builtins.genList (i: "${toString (i + 1)}") 9;
+  }: let
+    mod = "SUPER";
 
-        directions = {
-          h = "l";
-          l = "r";
-          k = "u";
-          j = "d";
-        };
-      in
-        [
-          "SUPER,Return,exec,uwsm app -- kitty"
-          "SUPER,space,fullscreen"
-          "SUPER,C,killactive"
-          "SUPER,D,exec,uwsm app -- discord"
-          "SUPER,F,exec,uwsm app -- firefox"
-          "SUPERSHIFT,F,exec,TZ=UTC uwsm app -- firefox --private-window"
-          "SUPER,G,exec,uwsm app -- ${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh"
-          "SUPER,J,layoutmsg,togglesplit"
-          "SUPER,L,exec,uwsm app -- hyprlock"
-          "SUPER,M,exec,uwsm app -- noctalia msg panel-toggle session"
-          "SUPERSHIFT,M,exit"
-          "SUPER,O,exec,uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj"
-          #"SUPER,P,exec,uwsm app -- tv.plex.PlexDesktop"
-          "SUPER,P,exec,uwsm app -- plezy"
-          # "SUPER,P,exec,QT_QPA_PLATFORM=xcb uwsm app -- plex-desktop"
-          #"SUPER,R,exec,rofi -show drun"
-          # "SUPER,R,exec,uwsm app -- ${wofi} -S drun"
-          "SUPER,R,exec,uwsm app -- noctalia msg panel-toggle launcher"
-          "SUPER,S,exec,uwsm app -- grimblast --cursor --freeze --notify copysave screen"
-          "SUPERSHIFT,S,exec,uwsm app -- grimblast --freeze --notify copy area"
-          "SUPER,T,exec,uwsm app -- thunar"
-          "SUPER,V,exec,uwsm app -- noctalia msg panel-toggle clipboard"
-          # ''SUPER,V,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
-          "SUPERSHIFT,V,togglefloating"
-          "SUPER,W,exec,systemctl --user restart noctalia.service"
-          "SUPER,mouse_up,workspace,e+1"
-          "SUPER,mouse_down,workspace,e-1"
-          "SUPER, right,workspace,e+1"
-          "SUPER, left,workspace,e-1"
-          ",XF86MonBrightnessUp,exec,brightnessctl set 5%+"
-          ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
-          # ",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
-          ",XF86AudioRaiseVolume,exec,noctalia msg volume-up"
-          ",XF86AudioLowerVolume,exec,noctalia msg volume-down"
-          # ",XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_SINK@ 1%-"
-          #",KEY_VOLUMEUP,exec,wpctl set-volume @DEFAULT_SINK@ 1%+"
-          #",KEY_VOLUMEDOWN,exec,wpctl set-volume @DEFAULT_SINK@ 5%-"
-          ",XF86AudioMute,exec,wpctl set-mute @DEFAULT_SINK@ toggle"
-          ",XF86AudioMicMute,exec,wpctl set-mute @DEFAULT_SOURCE@ toggle"
-        ]
-        ++
-        # Change workspace
-        (map (
-            n: "SUPER,${n},workspace,${n}"
-          )
-          workspaces)
-        # Move window to workspace
-        ++ (map (
-            n: "SUPERSHIFT,${n},movetoworkspace,${n}"
-          )
-          workspaces)
-        ++
-        # Move focus
-        (lib.mapAttrsToList (
-            key: direction: "ALT,${key},movefocus,${direction}"
-          )
-          directions);
+    bind = keys: dispatcher: flags: let
+      flagsArg = lib.optionalString (flags != "") ", ${flags}";
+    in ''hl.bind("${keys}", ${dispatcher}${flagsArg})'';
+
+    exec = cmd: ''hl.dsp.exec_cmd("${cmd}")'';
+
+    workspaces = builtins.genList (i: toString (i + 1)) 9;
+    directions = {
+      h = "l";
+      l = "r";
+      k = "u";
+      j = "d";
     };
+
+    lines =
+      [
+        (bind "${mod} + Return" (exec "uwsm app -- kitty") "")
+        (bind "${mod} + space" ''hl.dsp.window.fullscreen({ action = "toggle" })'' "")
+        (bind "${mod} + C" "hl.dsp.window.close()" "")
+        (bind "${mod} + D" (exec "uwsm app -- discord") "")
+        (bind "${mod} + F" (exec "uwsm app -- firefox") "")
+        (bind "${mod} + SHIFT + F" (exec "TZ=UTC uwsm app -- firefox --private-window") "")
+        (bind "${mod} + G" (exec "uwsm app -- ${config.home.homeDirectory}/.config/hypr/scripts/game_mode.sh") "")
+        (bind "${mod} + J" ''hl.dsp.layout("togglesplit")'' "")
+        (bind "${mod} + L" (exec "uwsm app -- hyprlock") "")
+        (bind "${mod} + M" (exec "uwsm app -- noctalia msg panel-toggle session") "")
+        (bind "${mod} + SHIFT + M" "hl.dsp.exit()" "")
+        (bind "${mod} + O" (exec "uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj") "")
+        (bind "${mod} + P" (exec "uwsm app -- plezy") "")
+        (bind "${mod} + R" (exec "uwsm app -- noctalia msg panel-toggle launcher") "")
+        (bind "${mod} + S" (exec "uwsm app -- grimblast --cursor --freeze --notify copysave screen") "")
+        (bind "${mod} + SHIFT + S" (exec "uwsm app -- grimblast --freeze --notify copy area") "")
+        (bind "${mod} + T" (exec "uwsm app -- thunar") "")
+        (bind "${mod} + V" (exec "uwsm app -- noctalia msg panel-toggle clipboard") "")
+        (bind "${mod} + SHIFT + V" ''hl.dsp.window.float({ action = "toggle" })'' "")
+        (bind "${mod} + W" (exec "systemctl --user restart noctalia.service") "")
+
+        (bind "${mod} + mouse_up" ''hl.dsp.focus({ workspace = "e+1" })'' "")
+        (bind "${mod} + mouse_down" ''hl.dsp.focus({ workspace = "e-1" })'' "")
+        (bind "${mod} + right" ''hl.dsp.focus({ workspace = "e+1" })'' "")
+        (bind "${mod} + left" ''hl.dsp.focus({ workspace = "e-1" })'' "")
+
+        (bind "XF86MonBrightnessUp" (exec "brightnessctl set 5%+") "")
+        (bind "XF86MonBrightnessDown" (exec "brightnessctl set 5%-") "")
+        (bind "XF86AudioRaiseVolume" (exec "noctalia msg volume-up") "")
+        (bind "XF86AudioLowerVolume" (exec "noctalia msg volume-down") "")
+        (bind "XF86AudioMute" (exec "wpctl set-mute @DEFAULT_SINK@ toggle") "")
+        (bind "XF86AudioMicMute" (exec "wpctl set-mute @DEFAULT_SOURCE@ toggle") "")
+
+        # Move/resize windows with mainMod + LMB/RMB dragging (formerly `bindm`)
+        (bind "${mod} + mouse:272" "hl.dsp.window.drag()" "{ mouse = true }")
+        (bind "${mod} + mouse:273" "hl.dsp.window.resize()" "{ mouse = true }")
+      ]
+      ++ map (n: bind "${mod} + ${n}" "hl.dsp.focus({ workspace = ${n} })" "") workspaces
+      ++ map (n: bind "${mod} + SHIFT + ${n}" "hl.dsp.window.move({ workspace = ${n} })" "") workspaces
+      ++ lib.mapAttrsToList (key: direction: bind "ALT + ${key}" ''hl.dsp.focus({ direction = "${direction}" })'' "") directions;
+  in {
+    wayland.windowManager.hyprland.extraConfig = lib.concatStringsSep "\n" lines + "\n";
   };
 }

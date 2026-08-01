@@ -13,15 +13,11 @@
       hyprlandGameMode
     ];
 
-    # services.hyprpaper.settings.splash = false;
     services.hyprpaper.enable = lib.mkForce false;
     wayland.windowManager.hyprland = {
       enable = true;
-      configType = "hyprlang";
-      xwayland = {
-        enable = true;
-        #hidpi = true;
-      };
+      configType = "lua";
+      xwayland.enable = true;
       systemd = {
         enable = false;
         extraCommands = lib.mkBefore [
@@ -31,11 +27,11 @@
         variables = ["--all"];
       };
       settings = {
-        cursor = {
-          no_hardware_cursors = false;
-          #allow_dumb_copy = true;
-        };
-        input = {
+        # cursor = {
+        #   no_hardware_cursors = false;
+        #   #allow_dumb_copy = true;
+        # };
+        config.input = {
           kb_layout = "es";
           kb_options = "caps:super";
           follow_mouse = 1;
@@ -44,63 +40,86 @@
             scroll_factor = 0.5;
             natural_scroll = false;
             clickfinger_behavior = false;
-            tap-to-click = true;
+            tap_to_click = true;
             middle_button_emulation = true;
           };
         };
 
-        workspace =
+        workspace_rule =
           builtins.genList (
             i: let
               ws = i + 1;
-              baseConfig = "${toString ws}, persistent:true";
+              baseConfig = {
+                workspace = toString ws;
+                persistent = true;
+              };
+              scrollingLayout = {
+                workspace = toString ws;
+                persistent = true;
+                layout = "scrolling";
+              };
             in
               if ws == 4
-              then "${baseConfig}, layout:scrolling"
+              then scrollingLayout
               else baseConfig
           )
           5;
 
-        gestures = {
-          workspace_swipe_invert = false;
+        gesture = {
+          fingers = 4;
+          direction = "horizontal";
+          action = "workspace";
         };
-        gesture = [
-          "4, horizontal, workspace"
-        ];
 
-        misc = {
-          allow_session_lock_restore = true;
-          disable_hyprland_logo = true;
-          disable_splash_rendering = true;
-          mouse_move_enables_dpms = true;
-          enable_swallow = true;
-          swallow_regex = "^(kitty)$";
-          # vfr = true;
-          vrr = 1;
-        };
-        debug.damage_tracking = 2;
-        scrolling = {
-          fullscreen_on_one_column = true;
-          column_width = 0.9;
-          direction = "right";
-        };
-        dwindle = {
-          # pseudotile = false;
-          preserve_split = true;
+        config = {
+          gestures = {
+            workspace_swipe_invert = false;
+          };
+
+          misc = {
+            allow_session_lock_restore = true;
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true;
+            mouse_move_enables_dpms = true;
+            enable_swallow = true;
+            swallow_regex = "^(kitty)$";
+            # vfr = true;
+            vrr = 1;
+          };
+          scrolling = {
+            fullscreen_on_one_column = true;
+            column_width = 0.9;
+            direction = "right";
+          };
+          dwindle = {
+            preserve_split = true;
+          };
         };
         #master.new_is_master = true;
         monitor = map (
           m: let
-            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-            position = "${toString m.x}x${toString m.y}";
-          in "${m.name},${
+            monitor_resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            monitor_position = "${toString m.x}x${toString m.y}";
+          in
             if m.enabled
             then
               if m.auto
-              then " preferred, auto-right, 1"
-              else "${resolution},${position},1"
-            else "disable"
-          }"
+              then {
+                output = m.name;
+                mode = "preferred";
+                position = "auto-right";
+                scale = 1;
+              }
+              else {
+                output = m.name;
+                mode = monitor_resolution;
+                position = monitor_position;
+                scale = 1;
+              }
+            else {
+              output = m.name;
+              mode = "disable";
+            }
         ) (lib.filter (m: m.enabled != null) config.my.monitors);
       };
     };

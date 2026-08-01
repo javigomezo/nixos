@@ -1,43 +1,58 @@
 {
-  flake.modules.homeManager.hyprlandWindowRule = {
+  flake.modules.homeManager.hyprlandWindowRule = {...}: let
+    rule = match: effects: {inherit match;} // effects;
+
+    floatClasses = [
+      "^(file_progress)"
+      "^(confirm)"
+      "^(dialog)"
+      "^(download)"
+      "^(notification)"
+      "^(error)"
+      "^(splash)"
+      "^(confirmreset)"
+    ];
+
+    floatTitles = [
+      "Open File"
+      "branchdialog"
+      "file-roller"
+      "^(Media viewer)$"
+      "^(Control de volumen)$"
+      "^(Picture-in-Picture)$"
+      "^(Authentication Required)$"
+    ];
+  in {
     wayland.windowManager.hyprland.settings = {
-      windowrule = [
-        "match:class ^(file_progress), float on"
-        "match:class ^(confirm), float on"
-        "match:class ^(dialog), float on"
-        "match:class ^(download), float on"
-        "match:class ^(notification), float on"
-        "match:class ^(error), float on"
-        "match:class ^(splash), float on"
-        "match:class ^(confirmreset), float on"
-        "match:title Open File, float on"
-        "match:title branchdialog, float on"
-        "match:title file-roller, float on"
-        "match:title wlogout, float on"
-        "match:title ^(Media viewer)$, float on"
-        "match:title ^(Control de volumen)$, float on"
-        "match:title ^(Picture-in-Picture)$, float on"
-        "match:title ^(Authentication Required)$, float on"
-        "match:class ^(wlogout), fullscreen on"
-        "match:title wlogout, fullscreen on"
-        "match:class ^(mpv), idle_inhibit focus"
-        "match:class ^(Firefox), idle_inhibit fullscreen"
-        "match:title ^(Control de volumen)$, size 800 600"
-        "match:initial_title ^((?i)obsidian)$, idle_inhibit focus"
-        "match:initial_title ^((?i)obsidian)$, workspace 5"
-        "match:initial_title ^((?i)obsidian)$, opacity 0.92 0.92"
-        "match:class ^(thunar)$, animation popin"
-        "match:class ^(thunar)$, opacity 0.82 0.82"
-        "match:float 1, border_size 0"
-      ];
-      layerrule = [
-        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, no_anim on"
-        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, blur on"
-        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, blur_popups on"
-        "match:namespace noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$, ignore_alpha 0.5"
-        # "match:namespace noctalia-background-.*$, ignore_alpha 0.5"
-        # "match:namespace noctalia-background-.*$, blur on"
-        # "match:namespace noctalia-background-.*$, blur_popups on"
+      window_rule =
+        (map (c: rule {class = c;} {float = true;}) floatClasses)
+        ++ (map (t: rule {title = t;} {float = true;}) floatTitles)
+        ++ [
+          (rule {class = "^(mpv)";} {idle_inhibit = "focus";})
+          (rule {class = "^(Firefox)";} {idle_inhibit = "fullscreen";})
+          (rule {title = "^(Control de volumen)$";} {size = "800 600";})
+
+          (rule {initial_title = "^((?i)obsidian)$";} {
+            idle_inhibit = "focus";
+            workspace = "5";
+            opacity = "0.92 0.92";
+          })
+
+          (rule {class = "^(thunar)$";} {
+            animation = "popin";
+            opacity = "0.82 0.82";
+          })
+
+          (rule {float = true;} {border_size = 0;})
+        ];
+
+      layer_rule = [
+        (rule {namespace = "noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$";} {
+          no_anim = true;
+          blur = true;
+          blur_popups = true;
+          ignore_alpha = 0.5;
+        })
       ];
     };
   };

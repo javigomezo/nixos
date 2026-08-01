@@ -5,11 +5,15 @@
     ...
   }: {
     wayland.windowManager.hyprland.settings = {
-      settings = {
-        exec-once = [
-          "${lib.getExe config.programs.hyprlock.package}"
-          # "systemctl --user start hyprpolkitagent.service"
-          "hyprctl setcursor bibata-modern-classic-hyprcursor 24"
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              hl.exec_cmd("${lib.getExe config.programs.hyprlock.package}")
+              hl.exec_cmd("hyprctl setcursor bibata-modern-classic-hyprcursor 24")
+            end
+          '')
         ];
       };
     };
