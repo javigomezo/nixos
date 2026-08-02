@@ -40,6 +40,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sls-steam.url = "github:AceSLS/SLSsteam";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";

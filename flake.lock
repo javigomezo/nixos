@@ -524,6 +524,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1783224372,
+        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -551,11 +567,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1785642474,
-        "narHash": "sha256-RU1hfXKCJw+tmHC0x2Xf9EqNJx/nXvJAKyOuGuyW3P8=",
+        "lastModified": 1785674570,
+        "narHash": "sha256-+ptP8BipK9QQkCgWFiLNwWRLrWwJDGOdIAUfM5SWF1k=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "c7abdb8e72b1a80bd6f1d8e096b0a93eeb0b32ff",
+        "rev": "f0ac340a58f03131123a25764e7217f025218bba",
         "type": "github"
       },
       "original": {
@@ -572,11 +588,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785643447,
-        "narHash": "sha256-FKLS3PW1X3dbIVEmJLvlfs0uVcwK7HpeKyS+BynWg6w=",
+        "lastModified": 1785673827,
+        "narHash": "sha256-8083/utB94F1JyFvBfxiSHgrjFwo7jw5rnZEaaeJBt4=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "3b0b0162f2045ea65e783e150c2037f5ae1841e5",
+        "rev": "9f08c7cccbc9505e8149b5410f6a2bed36eb9d96",
         "type": "github"
       },
       "original": {
@@ -693,6 +709,7 @@
         "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks",
         "private-fonts": "private-fonts",
+        "sls-steam": "sls-steam",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "zen-browser": "zen-browser"
@@ -716,6 +733,24 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "sls-steam": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1785594941,
+        "narHash": "sha256-hnbTg0PQYnQx9w/UxVxXRF26srIrSUKVE6rO/uQ/nSo=",
+        "owner": "AceSLS",
+        "repo": "SLSsteam",
+        "rev": "7cf66365ea533d9fa1ee642a451fbff3f65f4200",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AceSLS",
+        "repo": "SLSsteam",
         "type": "github"
       }
     },
@@ -759,11 +794,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1785613910,
-        "narHash": "sha256-W4/A/IblbnvsQNc8hE3+2mFJWF9YjGzVr91cwHeppEQ=",
+        "lastModified": 1785668978,
+        "narHash": "sha256-KlNkHvnTAutW62BFvMAH/jpzmUvVaz9DJn1yda/7GnU=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "930b6d474221a2241dbecc6757b987db2484d9ba",
+        "rev": "3542f21b7a1078b6ae0bcc72b62c9501825c83c8",
         "type": "github"
       },
       "original": {
