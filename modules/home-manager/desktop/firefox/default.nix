@@ -14,7 +14,7 @@
       extensions = [
         {id = "ghmbeldphafepmbegfdlkpapadhbakde";} # Protonpass
       ];
-      package = pkgs.mine.brave-origin;
+      package = pkgs.brave-origin;
     };
     programs.firefox = {
       enable = true;

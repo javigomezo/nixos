@@ -71,7 +71,7 @@
           #   }
 
           workspaces = {
-            display = "none";
+            #display = "none";
             empty_color = "tertiary";
             occupied_color = "tertiary";
           };
