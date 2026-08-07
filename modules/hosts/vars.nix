@@ -12,6 +12,14 @@
       wallpaper = lib.mkOption {
         type = lib.types.str;
       };
+      glVendor = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
+      gbmBackend = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+      };
       libva_driver = lib.mkOption {
         type = lib.types.str;
       };

@@ -12,6 +12,8 @@
       vars = {
         wallpaper = "space.png";
         libva_driver = "nvidia";
+        glVendor = "nvidia";
+        gbmBackend = "nvidia-drm";
       };
       stylix = {
         desktop = true;

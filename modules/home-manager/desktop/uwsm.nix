@@ -1,5 +1,9 @@
 {
-  flake.modules.homeManager.uwsm = {config, ...}: {
+  flake.modules.homeManager.uwsm = {
+    config,
+    lib,
+    ...
+  }: {
     home.file."${config.home.homeDirectory}/.config/uwsm/env-hyprland" = {
       enable = true;
       text = ''
@@ -22,6 +26,8 @@
         export LIBSEAT_BACKEND="logind"
         export FLAKE="${config.home.homeDirectory}/nixos"
         export NIXOS_OZONE_WL=1
+        ${lib.optionalString (config.my.vars.gbmBackend != null) "export GBM_BACKEND=${config.my.vars.gbmBackend}"}
+        ${lib.optionalString (config.my.vars.glVendor != null) "export __GLX_VENDOR_LIBRARY_NAME=${config.my.vars.glVendor}"}
         export GBM_BACKEND=nvidia-drm
         export __GLX_VENDOR_LIBRARY_NAME=nvidia
         export LIBVA_DRIVER_NAME=${config.my.vars.libva_driver}
