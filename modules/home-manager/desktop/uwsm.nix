@@ -28,8 +28,6 @@
         export NIXOS_OZONE_WL=1
         ${lib.optionalString (config.my.vars.gbmBackend != null) "export GBM_BACKEND=${config.my.vars.gbmBackend}"}
         ${lib.optionalString (config.my.vars.glVendor != null) "export __GLX_VENDOR_LIBRARY_NAME=${config.my.vars.glVendor}"}
-        export GBM_BACKEND=nvidia-drm
-        export __GLX_VENDOR_LIBRARY_NAME=nvidia
         export LIBVA_DRIVER_NAME=${config.my.vars.libva_driver}
         export __GL_VRR_ALLOWED=0
         export ELECTRON_OZONE_PLATFORM_HINT=auto
