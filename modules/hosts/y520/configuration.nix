@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.y520 = {pkgs, ...}: {
+  flake.nixosModules.y520 = {
+    pkgs,
+    lib,
+    ...
+  }: {
     imports = with self.nixosModules; [
       y520Hardware
       y520Networking
@@ -45,6 +49,7 @@
       intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
     };
 
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
     hardware = {
       bluetooth = {
         enable = true;
