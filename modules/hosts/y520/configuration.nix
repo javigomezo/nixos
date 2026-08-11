@@ -50,6 +50,10 @@
     };
 
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+    boot.extraModprobeConfig = ''
+      options iwlmvm power_scheme=1
+    '';
+    # options cfg80211 cfg80211_disable_40mhz_24ghz=1
     hardware = {
       bluetooth = {
         enable = true;
