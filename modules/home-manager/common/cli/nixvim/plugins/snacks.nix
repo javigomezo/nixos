@@ -5,6 +5,9 @@
       settings = {
         dashboard = {
           enable = true;
+          settings = {
+            picker.sources.recent.filter.cwd = true;
+          };
           sections = [
             {section = "header";}
             {
