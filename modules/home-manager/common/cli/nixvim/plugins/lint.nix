@@ -3,7 +3,7 @@
     home.packages = with pkgs; [
       # nodePackages.jsonlint
       hadolint
-      tflint
+      #      tflint
     ];
 
     programs.nixvim.plugins.lint = {

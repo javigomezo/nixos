@@ -43,7 +43,7 @@
         # localsend
         mgba
         mpv
-        nanoboyadvance
+        # nanoboyadvance
         # mine.multiviewer-for-f1
         multiviewer-for-f1
         obsidian

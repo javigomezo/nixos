@@ -14,7 +14,7 @@
         })
       ];
       extraConfigLua = ''
-          require("staline").setup(
+          require("stabline").setup(
             {
               bg = "#434c5e",
             }

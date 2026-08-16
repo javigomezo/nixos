@@ -38,10 +38,10 @@
         gnumake
         htop
         nitch
-        nixd
+        # nixd
         outils
         (python3.withPackages (ps: with ps; [requests]))
-        pyright
+        # pyright
         restic
         ripgrep
         stow

@@ -2,6 +2,7 @@
   flake.modules.homeManager.nixvim = {
     programs.nixvim.plugins.telescope = {
       enable = true;
+      # colorscheme.enable_preview = true;
       lazyLoad.settings.cmd = "Telescope";
       extensions = {
         fzf-native.enable = true;
@@ -16,6 +17,9 @@
         "<leader>fr" = "oldfiles";
       };
       settings = {
+        pickers = {
+          find_files.hidden = true;
+        };
         defaults = {
           mappings = {
             i = {
@@ -32,18 +36,5 @@
         };
       };
     };
-
-    programs.nixvim.extraConfigLua = ''
-      local telescope = require('telescope').setup{
-        pickers = {
-          find_files = {
-            hidden = true
-          },
-          colorscheme = {
-            enable_preview = true
-          }
-        }
-      }
-    '';
   };
 }
