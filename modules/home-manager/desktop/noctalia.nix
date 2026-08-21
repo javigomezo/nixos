@@ -23,7 +23,10 @@
           polkit_agent = true;
           settings_show_advanced = true;
           panel = {
+            floating_layer = "top";
+            control_center_placement = "floating";
             open_near_click_control_center = true;
+            session_placement = "floating";
           };
         };
 
@@ -53,6 +56,7 @@
         };
         widget = {
           workspaces = {
+            show_labels = false;
             empty_color = "tertiary";
             occupied_color = "tertiary";
           };
