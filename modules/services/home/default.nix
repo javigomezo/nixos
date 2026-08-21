@@ -2,6 +2,7 @@
   flake.nixosModules.homeServices = {
     imports = with self.nixosModules; [
       bambuStudio
+      bambuddy
       esphome
       glance
       grafana
