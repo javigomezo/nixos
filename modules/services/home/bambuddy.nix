@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.bambuStudio = {config, ...}: let
+  flake.nixosModules.bambuddy = {config, ...}: let
     containerName = "bambuddy";
     directories = [
       "${config.my.vars.dockerVolumes}/${containerName}/data/config"
@@ -10,7 +10,7 @@
     virtualisation.oci-containers = {
       containers = {
         ${containerName} = {
-          image = "lscr.io/linuxserver/${containerName}:latest";
+          image = "ghcr.io/maziggy/${containerName}:latest";
           pull = "newer";
           autoStart = true;
           capabilities = {
