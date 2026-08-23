@@ -32,7 +32,7 @@
           (rule {class = "^(Firefox)";} {idle_inhibit = "fullscreen";})
           (rule {title = "^(Control de volumen)$";} {size = "800 600";})
 
-          (rule {initial_title = "^((?i)obsidian)$";} {
+          (rule {class = "^(md.(?i)obsidian)$";} {
             idle_inhibit = "focus";
             workspace = "5";
             opacity = "0.92 0.92";
