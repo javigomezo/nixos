@@ -81,6 +81,11 @@
       url = "github:noctalia-dev/noctalia";
       # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to allow cache
     };
+    autofirma-nix = {
+      # url = "github:nix-community/autofirma-nix"; # For nixpkgs-unstable
+      url = "github:nix-community/autofirma-nix/develop"; # For NixOS 25.05
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }

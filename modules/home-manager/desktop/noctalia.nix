@@ -63,6 +63,9 @@
           clock.format = "{:%H:%M, %a %d %b}";
         };
         dock.enabled = false;
+        hooks = {
+          session_unlocked = "sudo systemctl restart logid";
+        };
       };
     };
   };

@@ -4,6 +4,9 @@
   ...
 }: {
   flake.nixosConfigurations.workstation = inputs.nixpkgs.lib.nixosSystem {
-    modules = [self.nixosModules.workstation];
+    modules = [
+      inputs.autofirma-nix.nixosModules.default
+      self.nixosModules.workstation
+    ];
   };
 }
