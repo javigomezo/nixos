@@ -55,7 +55,6 @@
       };
       logitech.wireless = {
         enable = true;
-        enableGraphical = true;
       };
     };
 
@@ -77,6 +76,7 @@
       gamemode.enable = true;
       dconf.enable = true;
       xfconf.enable = true; # To save thunar changes
+      solaar.enable = true;
       thunar.plugins = with pkgs.xfce; [
         thunar-archive-plugin
         thunar-volman
