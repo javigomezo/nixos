@@ -25,32 +25,32 @@
     systemd.tmpfiles.rules = map (x: "d ${x} 0775 javier javier - -") directories;
     virtualisation.oci-containers = {
       containers = {
-        ha_mariadb = {
-          image = "lscr.io/linuxserver/mariadb:latest";
-          pull = "newer";
-          autoStart = true;
-          volumes = [
-            "${config.my.vars.dockerVolumes}/${containerName}/data/config:/config"
-            "/etc/localtime:/etc/localtime:ro"
-          ];
-          environmentFiles = [
-            config.sops.templates."ha_mariadb.env".path
-          ];
-          ports = [
-            "127.0.0.1:3306:3306"
-          ];
-          environment = {
-            TZ = config.my.vars.timeZone;
-            PUID = "1000";
-            GUID = "1000";
-            UMASK = "002";
-          };
-          labels = {
-            "traefik.enable" = "false";
-            "glance.name" = "MariaDB";
-            "glance.parent" = "homeassistant";
-          };
-        };
+        # ha_mariadb = {
+        #   image = "lscr.io/linuxserver/mariadb:latest";
+        #   pull = "newer";
+        #   autoStart = true;
+        #   volumes = [
+        #     "${config.my.vars.dockerVolumes}/${containerName}/data/config:/config"
+        #     "/etc/localtime:/etc/localtime:ro"
+        #   ];
+        #   environmentFiles = [
+        #     config.sops.templates."ha_mariadb.env".path
+        #   ];
+        #   ports = [
+        #     "127.0.0.1:3306:3306"
+        #   ];
+        #   environment = {
+        #     TZ = config.my.vars.timeZone;
+        #     PUID = "1000";
+        #     GUID = "1000";
+        #     UMASK = "002";
+        #   };
+        #   labels = {
+        #     "traefik.enable" = "false";
+        #     "glance.name" = "MariaDB";
+        #     "glance.parent" = "homeassistant";
+        #   };
+        # };
         ${containerName} = {
           image = "lscr.io/linuxserver/${containerName}:latest";
           pull = "newer";
