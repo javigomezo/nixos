@@ -13,7 +13,7 @@
       settings = {
         download-buffer-size = 524288000;
         trusted-users = ["javier"];
-        experimental-features = "nix-command flakes";
+        experimental-features = ["nix-command" "flakes"];
         auto-optimise-store = true;
         warn-dirty = false;
         substituters = [
