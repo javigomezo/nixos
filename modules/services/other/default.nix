@@ -4,6 +4,7 @@
       obsidianLiveSync
       scrutiny
       teamSpeak
+      telegramNotify
     ];
   };
 }

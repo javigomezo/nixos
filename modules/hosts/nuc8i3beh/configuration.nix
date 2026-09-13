@@ -34,6 +34,10 @@
           options = ["x-systemd.automount" "noauto" "x-systemd.idle-timeout=60"];
         };
       };
+      telegramNotify = {
+        enable = true;
+        notifyUnits = ["nixos-upgrade.service" "restic-backups-nas.service"];
+      };
       vars = {
         timeZone = "Europe/Madrid";
         wallpaper = "astronaut.png";
