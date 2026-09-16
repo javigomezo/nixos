@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.nixosModules.telegramNotify = {
     config,
     lib,
@@ -18,8 +18,12 @@
     config = lib.mkIf config.my.telegramNotify.enable {
       sops = {
         secrets = {
-          "telegram/bot-token" = {};
-          "telegram/chat-id" = {};
+          "telegram/bot-token" = {
+            sopsFile = self + "/modules/sops/common/_secrets.yaml";
+          };
+          "telegram/chat-id" = {
+            sopsFile = self + "/modules/sops/common/_secrets.yaml";
+          };
         };
         templates."telegram-notify.env".content = ''
           BOT_TOKEN=${config.sops.placeholder."telegram/bot-token"}
@@ -44,7 +48,7 @@
               set -euo pipefail
 
               UNIT="%i"
-              HOST="$(hostname)"
+              HOST="${config.networking.hostName}"
               LOG="$(journalctl -u "$UNIT" -n 20 --no-pager 2>/dev/null || true)"
 
               TEXT="⚠️ *$UNIT* failed on \`$HOST\`
