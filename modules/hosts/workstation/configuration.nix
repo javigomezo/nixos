@@ -12,6 +12,7 @@
       pipewire
       retroarch
       steam
+      syncthing
     ];
 
     my = {
