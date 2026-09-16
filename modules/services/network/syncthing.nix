@@ -11,10 +11,24 @@
       nuc8i3beh.id = "CBFLGFC-VNQUQOT-QB7E6AF-EGZO6QI-TNEGTUM-GGL4KBC-3DQOMIP-HU437AT";
     };
   in {
+    sops.secrets = {
+      "syncthing/cert" = {
+        owner = "syncthing";
+        group = "syncthing";
+        mode = "0600";
+      };
+      "syncthing/key" = {
+        owner = "syncthing";
+        group = "syncthing";
+        mode = "0600";
+      };
+    };
     users.users.syncthing.homeMode = "0770";
     services.syncthing = {
       enable = true;
       openDefaultPorts = true;
+      cert = config.sops.secrets."syncthing/cert".path;
+      key = config.sops.secrets."syncthing/key".path;
       settings = {
         # gui.insecureSkipHostcheck = true;
         devices = lib.filterAttrs (name: value: name != config.networking.hostName) knownDevices;
