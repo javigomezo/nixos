@@ -7,7 +7,7 @@
     devicesList = ["kindle" "workstation" "nuc8i3beh"];
     knownDevices = {
       kindle.id = "NPNF4EC-ITB4BRE-OMTDQLY-Y426DZE-JLKSBR4-H6A6GMQ-ILYITNT-5CO3TQP";
-      workstation.id = "76UWAR6-A2LVU4Y-LMVE4PS-BLAQBX6-AFA24JI-JOQQ5ZG-JC6BQDG-XGEPYQK";
+      workstation.id = "DPZGZSP-YC7TUZG-OTDWHEN-2IGJDHA-KTYXQ54-6E52NIJ-MMJJWPY-NHUHIAU";
       nuc8i3beh.id = "CBFLGFC-VNQUQOT-QB7E6AF-EGZO6QI-TNEGTUM-GGL4KBC-3DQOMIP-HU437AT";
     };
   in {
