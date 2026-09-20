@@ -37,12 +37,14 @@
             enable = true;
             devices = builtins.filter (device: device != config.networking.hostName) devicesList;
             path = "/var/lib/syncthing/koreader/database";
+            ignorePerms = true;
             label = "database";
           };
           libros = {
             enable = true;
             devices = builtins.filter (device: device != config.networking.hostName) devicesList;
             path = "/var/lib/syncthing/koreader/libros";
+            ignorePerms = true;
             label = "libros";
           };
         };

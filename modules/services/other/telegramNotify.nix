@@ -40,6 +40,9 @@
             description = "Send a Telegram notification about a failed unit (%i)";
             after = ["network-online.target"];
             path = [pkgs.curl];
+            environment = {
+              FAILED_UNIT = "%i";
+            };
             serviceConfig = {
               Type = "oneshot";
               EnvironmentFile = config.sops.templates."telegram-notify.env".path;
@@ -47,23 +50,24 @@
             script = ''
               set -euo pipefail
 
-              UNIT="%i"
+              UNIT="$FAILED_UNIT"
               HOST="${config.networking.hostName}"
               LOG="$(journalctl -u "$UNIT" -n 20 --no-pager 2>/dev/null || true)"
 
-              TEXT="⚠️ *$UNIT* failed on \`$HOST\`
-              \`\`\`
-              $LOG
-              \`\`\`"
+              TEXT="⚠️ $UNIT failed on $HOST
 
+              $LOG"
               TEXT="''${TEXT:0:4000}"
 
-              curl -sS --max-time 10 \
+              RESPONSE="$(curl -sS --max-time 10 \
                 -X POST "https://api.telegram.org/bot''${BOT_TOKEN}/sendMessage" \
                 --data-urlencode "chat_id=''${CHAT_ID}" \
-                --data-urlencode "parse_mode=Markdown" \
-                --data-urlencode "text=$TEXT" \
-                -o /dev/null
+                --data-urlencode "text=$TEXT")"
+
+              echo "Telegram API response: $RESPONSE"
+
+              # fail the unit (and show up in journal) if Telegram rejected it
+              echo "$RESPONSE" | grep -q '"ok":true'
             '';
           };
         };
