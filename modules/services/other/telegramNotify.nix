@@ -39,6 +39,7 @@
           "telegram-notify@" = {
             description = "Send a Telegram notification about a failed unit (%i)";
             after = ["network-online.target"];
+            wants = ["network-online.target"];
             path = [pkgs.curl];
             environment = {
               FAILED_UNIT = "%i";
