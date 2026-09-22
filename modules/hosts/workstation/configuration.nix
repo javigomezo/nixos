@@ -74,6 +74,10 @@
         enable = true;
         firefoxIntegration.enable = true;
       };
+      configuradorfnmt = {
+        enable = true;
+        firefoxIntegration.enable = true;
+      };
       gamemode.enable = true;
       dconf.enable = true;
       xfconf.enable = true; # To save thunar changes
