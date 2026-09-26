@@ -36,7 +36,7 @@
       };
       telegramNotify = {
         enable = true;
-        notifyUnits = ["nixos-upgrade.service" "restic-backups-nas.service"];
+        notifyUnits = ["nixos-upgrade" "restic-backups-nas"];
       };
       vars = {
         timeZone = "Europe/Madrid";
