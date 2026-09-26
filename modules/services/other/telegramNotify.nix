@@ -33,7 +33,7 @@
 
       systemd.services =
         (lib.genAttrs config.my.telegramNotify.notifyUnits (unit: {
-          onFailure = ["telegram-notify@${unit}.service"];
+          onFailure = ["telegram-notify@${unit}.service.service"];
         }))
         // {
           "telegram-notify@" = {
