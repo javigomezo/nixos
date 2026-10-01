@@ -10,7 +10,7 @@
       # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
       settings = {
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+        nix-path = ["nixpkgs=${inputs.nixpkgs}"];
         download-buffer-size = 524288000;
         trusted-users = ["javier"];
         experimental-features = ["nix-command" "flakes"];
