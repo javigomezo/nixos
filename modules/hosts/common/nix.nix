@@ -8,9 +8,9 @@
       # This will additionally add your inputs to the system's legacy channels
       # Making legacy nix commands consistent as well, awesome!
       # nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-      nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       settings = {
+        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
         download-buffer-size = 524288000;
         trusted-users = ["javier"];
         experimental-features = ["nix-command" "flakes"];
