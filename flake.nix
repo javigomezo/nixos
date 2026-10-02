@@ -40,7 +40,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sls-steam.url = "github:AceSLS/SLSsteam";
+    # sls-steam.url = "github:AceSLS/SLSsteam";
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -77,10 +77,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to allow cache
-    };
+    # noctalia = {
+    #   url = "github:noctalia-dev/noctalia";
+    #   # inputs.nixpkgs.follows = "nixpkgs"; # Commented out to allow cache
+    # };
     autofirma-nix = {
       # url = "github:nix-community/autofirma-nix"; # For nixpkgs-unstable
       url = "github:nix-community/autofirma-nix/develop"; # For NixOS 25.05

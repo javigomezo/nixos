@@ -17,10 +17,10 @@
       "Open File"
       "branchdialog"
       "file-roller"
-      "^(Media viewer)$"
-      "^(Control de volumen)$"
-      "^(Picture-in-Picture)$"
-      "^(Authentication Required)$"
+      "^(Media viewer)"
+      "^(Control de volumen)"
+      "^(Picture-in-Picture)"
+      "^(Authentication Required)"
     ];
   in {
     wayland.windowManager.hyprland.settings = {
@@ -30,15 +30,15 @@
         ++ [
           (rule {class = "^(mpv)";} {idle_inhibit = "focus";})
           (rule {class = "^(Firefox)";} {idle_inhibit = "fullscreen";})
-          (rule {title = "^(Control de volumen)$";} {size = "800 600";})
+          (rule {title = "^(Control de volumen)";} {size = "800 600";})
 
-          (rule {class = "^(md.(?i)obsidian)$";} {
+          (rule {class = "^(md\.obsidian\.Obsidian)$";} {
             idle_inhibit = "focus";
             workspace = "5";
             opacity = "0.92 0.92";
           })
 
-          (rule {class = "^(thunar)$";} {
+          (rule {class = "^(thunar)";} {
             animation = "popin";
             opacity = "0.82 0.82";
           })
