@@ -31,7 +31,7 @@
       key = config.sops.secrets."syncthing/key".path;
       settings = {
         # gui.insecureSkipHostcheck = true;
-        devices = lib.filterAttrs (name: value: name != config.networking.hostName) knownDevices;
+        devices = lib.filterAttrs (name: _: name != config.networking.hostName) knownDevices;
         folders = {
           koreader_database = {
             enable = true;

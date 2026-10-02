@@ -2,7 +2,7 @@
   flake.nixosModules.paperless = {
     lib,
     config,
-    pkgs,
+    # pkgs,
     ...
   }: {
     sops = {

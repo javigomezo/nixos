@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{
   flake.nixosModules.steam = {pkgs, ...}: {
     #programs.gamescope.enable = true;
     # environment.systemPackages = [inputs.sls-steam.packages.${pkgs.stdenv.hostPlatform.system}.sls-steam];
