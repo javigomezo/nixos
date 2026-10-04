@@ -49,7 +49,7 @@
       intel-vaapi-driver = pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
     };
 
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     boot.extraModprobeConfig = ''
       options iwlmvm power_scheme=1
     '';
