@@ -15,6 +15,9 @@
         wallpaper.default = {
           path = config.stylix.image;
         };
+        audio = {
+          enable_sounds = false;
+        };
         shell = {
           launch_apps_as_systemd_services = true;
           font_family = lib.mkForce "Atkinson Hyperlegible Next SemiBold";
