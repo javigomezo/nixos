@@ -11,10 +11,10 @@
     };
     environment.persistence."/persist".directories = lib.mkAfter [
       {
-        directory = "/var/lib/private/esphome";
+        directory = "/var/lib/esphome";
         user = "esphome";
         group = "esphome";
-        mode = "u=rwx,g=rx,o=";
+        mode = "0755";
       }
     ];
   };
