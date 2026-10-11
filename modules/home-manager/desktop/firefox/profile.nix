@@ -42,6 +42,7 @@
           ublock-origin
           enhanced-h264ify
           sponsorblock
+          proton-pass
         ];
         force = true;
       };
