@@ -26,6 +26,10 @@
         inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
       ]
       ++ (with pkgs; [
+        # Artcraft Suite
+        # deckcraft
+        # gridcraft
+        wordcraft
         # bambu-studio
         discord
         ffmpeg

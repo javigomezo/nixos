@@ -34,7 +34,7 @@
         (bind "${mod} + M" (exec "uwsm app -- noctalia msg panel-toggle session") "")
         (bind "${mod} + SHIFT + M" "hl.dsp.exit()" "")
         (bind "${mod} + O" (exec "uwsm app -- obsidian --ozone-platform=wayland --enable-features=UseOzonePlatform,WaylandLinuxDrmSyncobj") "")
-        (bind "${mod} + P" (exec "uwsm app -- plezy") "")
+        (bind "${mod} + P" (exec "uwsm app -- __EGL_VENDOR_LIBRARY_FILENAMES=/run/opengl-driver/share/glvnd/egl_vendor.d/10_nvidia.json LD_LIBRARY_PATH=/run/opengl-driver/lib plezy") "")
         (bind "${mod} + R" (exec "uwsm app -- noctalia msg panel-toggle launcher") "")
         (bind "${mod} + S" (exec "uwsm app -- grimblast --cursor --freeze --notify copysave screen") "")
         (bind "${mod} + SHIFT + S" (exec "uwsm app -- grimblast --freeze --notify copy area") "")
