@@ -24,10 +24,22 @@
     home.packages =
       [
         inputs.bibata-modern-classic-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+        (pkgs.symlinkJoin {
+          name = "plezy-cage";
+          paths = [pkgs.plezy];
+          postBuild = ''
+            rm $out/bin/plezy
+            cat > $out/bin/plezy <<'EOF'
+            #!${pkgs.runtimeShell}
+            exec ${pkgs.cage}/bin/cage -d -- ${pkgs.plezy}/bin/plezy "$@"
+            EOF
+            chmod +x $out/bin/plezy
+          '';
+        })
       ]
       ++ (with pkgs; [
         # Artcraft Suite
-        # deckcraft
+        deckcraft
         # gridcraft
         wordcraft
         # bambu-studio
@@ -54,7 +66,6 @@
         pavucontrol
         plex-desktop
         # plexamp
-        plezy
         proton-vpn
         qimgv
         seahorse
