@@ -53,10 +53,6 @@
           # themePackages = [(pkgs.adi1090x-plymouth-themes.override {selected_themes = ["circle_flow"];})];
         };
         consoleLogLevel = 0;
-        initrd = {
-          verbose = false;
-          systemd.enable = true;
-        };
         kernelParams =
           [
             "quiet"
