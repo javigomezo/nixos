@@ -40,7 +40,9 @@
       ++ (with pkgs; [
         # Artcraft Suite
         deckcraft
-        # gridcraft
+        gridcraft
+        pdfcraft
+        photocraft
         wordcraft
         # bambu-studio
         discord

@@ -47,12 +47,12 @@
           capsule_group = [
             {
               id = "date_group";
-              fill = "surface_variant";
+              fill = "surface_container";
               members = ["clock" "weather"];
             }
             {
               id = "wireless_group";
-              fill = "surface_variant";
+              fill = "surface_container";
               members = ["network" "bluetooth"];
             }
           ];

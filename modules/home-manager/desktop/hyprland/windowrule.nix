@@ -45,6 +45,7 @@
 
           (rule {float = true;} {border_size = 0;})
           (rule {class = "wlroots";} {fullscreen = true;})
+          (rule {class = "wlroots";} {immediate = true;})
         ];
 
       layer_rule = [
