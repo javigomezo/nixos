@@ -99,18 +99,22 @@
 
       avahi = {
         enable = true;
-        ipv4 = false;
-        ipv6 = true;
         nssmdns4 = false;
         nssmdns6 = true;
-        publish = {
-          enable = true;
-          userServices = true;
+        settings = {
+          server = {
+            use-ipv4 = false;
+            use-ipv6 = true;
+            allow-interfaces = [
+              "eno1"
+              "podman0"
+            ];
+          };
+          publish = {
+            disable-publishing = false;
+            disable-user-service-publishing = false;
+          };
         };
-        allowInterfaces = [
-          "eno1"
-          "podman0"
-        ];
       };
     };
 

@@ -1,5 +1,6 @@
 {self, ...}: {
   flake.nixosModules.backups = {
+    lib,
     config,
     pkgs,
     ...
@@ -16,10 +17,17 @@
 
     security.wrappers.restic = {
       source = "${pkgs.restic}/bin/restic";
-      owner = "javier";
-      group = "javier";
+      owner = "root";
+      group = "root";
       permissions = "u=rwx,g=,o=";
       capabilities = "cap_dac_read_search=+ep";
+    };
+
+    security.wrappers.fusermount = {
+      setuid = true;
+      owner = "root";
+      group = "root";
+      source = "${lib.getBin pkgs.fuse3}/bin/fusermount3";
     };
 
     services.restic.backups."${config.networking.hostName}" = {
@@ -35,8 +43,9 @@
           # Any other operation (e.g. restore) must operate on the real /persist,
           # so the snapshot is not mounted for those.
           if [[ "$1" == "backup" ]]; then
-            umount /persist -l
-            mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
+            mount --bind /persist/@backup-snapshot /persist
+            # umount /persist -l
+            # mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
           fi
 
           ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
@@ -58,12 +67,13 @@
         btrfs subvolume snapshot /persist /persist/@backup-snapshot
 
         # Unmount /persist
-        umount -l /persist
+        # umount -l /persist
         # Mount snapshot backup
-        mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
+        # mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
+        mount --bind /persist/@backup-snapshot /persist
 
         # Backup immich postgres
-        docker exec -t immich-postgres pg_dumpall --clean --if-exists --username=immich | gzip > "/persist/opt/docker-services/immich/postgres/dump.sql.gz"
+        docker exec immich-postgres pg_dumpall --clean --if-exists --username=immich | gzip > "/persist/opt/docker-services/immich/postgres/dump.sql.gz"
       '';
       backupCleanupCommand = ''
         set -euxo pipefail
@@ -72,7 +82,7 @@
       rcloneConfigFile = config.sops.templates."rclone.conf".path;
       repository = "rclone:drive_crypt:/restic/${config.networking.hostName}";
       passwordFile = config.sops.templates."restic.password".path;
-      pruneOpts = ["--keep-daily=7"];
+      pruneOpts = ["--keep-daily=14"];
       timerConfig = {
         OnCalendar = "00:00";
         Persistent = true;
