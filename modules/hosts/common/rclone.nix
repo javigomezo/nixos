@@ -15,6 +15,7 @@
       "x-systemd.requires=network-online.target"
       "x-systemd.after=network-online.target"
       "allow_other"
+      "fast-list"
       # "allow_non_empty"
       "args2env"
       "uid=1000"
@@ -22,9 +23,6 @@
       "umask=002"
       "config=/home/javier/.config/rclone/rclone.conf"
       "user-agent=${config.networking.hostName}"
-
-      "dir-cache-time=1h"
-      "attr-timeout=1m"
 
       "vfs-cache-mode=full"
       "vfs-cache-max-size=32G"
@@ -88,7 +86,7 @@
             remote = drive:/backup
             password = ${config.sops.placeholder."rclone/crypt_password"}
             password2 = ${config.sops.placeholder."rclone/crypt_salt"}
-              
+                  
           [drive_2]
             type = ${config.sops.placeholder."rclone/provider_2"}
             access_token = ${config.sops.placeholder."rclone/access_token"}
@@ -116,6 +114,8 @@
         ++ [
           "vfs-fast-fingerprint"
           "cache-dir=/var/lib/rclone/cache"
+          "dir-cache-time=1h"
+          "attr-timeout=1m"
           "tpslimit=12"
           "tpslimit-burst=20"
         ];
@@ -128,6 +128,8 @@
         mountOptions
         ++ [
           "cache-dir=/var/lib/rclone/cache_2"
+          "dir-cache-time=72h"
+          "attr-timeout=72h"
           "tpslimit=4"
           "tpslimit-burst=8"
           "drime-upload-cutoff=128M"

@@ -20,7 +20,7 @@
       enable = true;
       configPath = "${config.xdg.configHome}/mozilla/firefox";
       policies.SecurityDevices = {
-        "OpenSC PKCS11" = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+        "OpenSC PKCS11" = "/run/current-system/sw/lib/opensc-pkcs11.so";
       };
       package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
         extraPolicies = {
