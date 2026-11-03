@@ -4,25 +4,17 @@
     config,
     pkgs,
     ...
-  }: {
-    sops = {
-      secrets."restic/password" = {
-        sopsFile = self + "/modules/sops/common/_secrets.yaml";
-        format = "yaml";
-      };
-      templates."restic.password" = {
-        content = "${config.sops.placeholder."restic/password"}";
-      };
+  }: let
+    host = config.networking.hostName;
+    snapshot = "/persist/@backup-snapshot";
+    dump = "/persist/opt/docker-services/immich/postgres/dump.sql.gz";
+  in {
+    sops.secrets."restic/password" = {
+      sopsFile = self + "/modules/sops/common/_secrets.yaml";
+      format = "yaml";
     };
 
-    security.wrappers.restic = {
-      source = "${pkgs.restic}/bin/restic";
-      owner = "root";
-      group = "root";
-      permissions = "u=rwx,g=,o=";
-      capabilities = "cap_dac_read_search=+ep";
-    };
-
+    # Needed for `restic mount` as it uses fusermount and not fusermount3
     security.wrappers.fusermount = {
       setuid = true;
       owner = "root";
@@ -30,76 +22,81 @@
       source = "${lib.getBin pkgs.fuse3}/bin/fusermount3";
     };
 
-    services.restic.backups."${config.networking.hostName}" = {
+    services.restic.backups.${host} = {
       initialize = true;
       user = "root";
+
       package = pkgs.writeShellApplication {
         name = "restic";
+        runtimeInputs = [pkgs.util-linux];
         text = ''
-          set -euxo pipefail
-
-          # PrivateMounts are not shared across ExecStartPre and ExecStart,
-          # so we have to mount the snapshot again when doing a backup.
-          # Any other operation (e.g. restore) must operate on the real /persist,
-          # so the snapshot is not mounted for those.
-          if [[ "$1" == "backup" ]]; then
-            mount --bind /persist/@backup-snapshot /persist
-            # umount /persist -l
-            # mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
+          if [[ "''${1:-}" == "backup" ]]; then
+            mount --bind ${snapshot} /persist
           fi
-
-          ${config.security.wrapperDir}/${config.security.wrappers.restic.program} "$@"
+          exec ${pkgs.restic}/bin/restic "$@"
         '';
       };
+
       paths = ["/persist"];
       exclude = [
-        "/persist/@backup-snapshot"
         "/persist/opt/docker-services/qbittorrent/data/downloads"
         "/persist/var/lib/containers"
         "/persist/media"
       ];
+
       backupPrepareCommand = ''
-        set -euxo pipefail
+        set -euo pipefail
+        umask 077
 
-        btrfs subvolume delete /persist/@backup-snapshot || true
+        # Immich postgres dump
+        docker exec immich-postgres pg_dumpall --clean --if-exists --username=immich \
+          | gzip > "${dump}.tmp"
+        mv "${dump}.tmp" "${dump}"
 
-        # Create new snapshot
-        btrfs subvolume snapshot /persist /persist/@backup-snapshot
-
-        # Unmount /persist
-        # umount -l /persist
-        # Mount snapshot backup
-        # mount -t btrfs -o subvol=@/persist/@backup-snapshot /dev/disk/by-partlabel/disk-vda-luks /persist/
-        mount --bind /persist/@backup-snapshot /persist
-
-        # Backup immich postgres
-        docker exec immich-postgres pg_dumpall --clean --if-exists --username=immich | gzip > "/persist/opt/docker-services/immich/postgres/dump.sql.gz"
+        # Fresh read-only snapshot (remove a stale one if a previous run died).
+        if [ -e ${snapshot} ]; then
+          btrfs subvolume delete ${snapshot}
+        fi
+        btrfs subvolume snapshot -r /persist ${snapshot}
       '';
+
       backupCleanupCommand = ''
-        set -euxo pipefail
-        btrfs subvolume delete /persist/@backup-snapshot || true
+        set -euo pipefail
+        if [ -e ${snapshot} ]; then
+          btrfs subvolume delete ${snapshot}
+        fi
       '';
+
       rcloneConfigFile = config.sops.templates."rclone.conf".path;
-      repository = "rclone:drive_crypt:/restic/${config.networking.hostName}";
-      passwordFile = config.sops.templates."restic.password".path;
-      pruneOpts = ["--keep-daily=14"];
+      # Don't leave deleted packs in Drive's trash (they count against quota).
+      rcloneOptions.drive-use-trash = "false";
+      repository = "rclone:drive_crypt:/restic/${host}";
+      passwordFile = config.sops.secrets."restic/password".path;
+
+      pruneOpts = [
+        "--keep-daily=14"
+        "--keep-weekly=8"
+        "--keep-monthly=12"
+        "--keep-yearly=2"
+      ];
+
       timerConfig = {
         OnCalendar = "00:00";
         Persistent = true;
       };
     };
 
-    systemd.services."restic-backups-${config.networking.hostName}" = {
+    systemd.services."restic-backups-${host}" = {
       path = with pkgs; [
         btrfs-progs
         docker
         gzip
-        mount
-        umount
+        util-linux
       ];
       serviceConfig = {
-        # KillMode = "control-group";
         PrivateMounts = true;
+        Nice = 10;
+        IOSchedulingClass = "idle";
       };
     };
   };
