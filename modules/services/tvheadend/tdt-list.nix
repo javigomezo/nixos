@@ -40,7 +40,7 @@
 
         [CHANNEL]
         	DELIVERY_SYSTEM = DVBT2
-        	FREQUENCY = 578000000
+        	FREQUENCY = 626000000
         	BANDWIDTH_HZ = 8000000
         	CODE_RATE_HP = 2/3
         	CODE_RATE_LP = NONE
