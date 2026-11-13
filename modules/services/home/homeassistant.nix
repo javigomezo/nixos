@@ -72,7 +72,7 @@
             PUID = "1000";
             GUID = "1000";
             UMASK = "002";
-            DOCKER_MODS = "linuxserver/mods/homeassistant-hacs";
+            # DOCKER_MODS = "linuxserver/mods/homeassistant-hacs";
           };
           extraOptions = [
             "--network=host"
