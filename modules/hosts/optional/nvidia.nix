@@ -12,6 +12,7 @@
       environment.systemPackages = with pkgs; [
         egl-wayland
       ];
+      boot.initrd.kernelModules = lib.mkAfter ["nvidia" "nvidia_modeset" "nvidia_drm"];
       hardware = {
         nvidia-container-toolkit.enable = true;
         nvidia = {

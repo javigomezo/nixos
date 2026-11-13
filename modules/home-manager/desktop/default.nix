@@ -29,7 +29,7 @@
         # Artcraft Suite
         deckcraft
         gridcraft
-        pdfcraft
+        # pdfcraft
         photocraft
         wordcraft
         # bambu-studio
