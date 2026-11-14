@@ -22,13 +22,12 @@
 
     config = {
       boot = {
-        #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+        kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
         initrd = {
           compressor = "zstd";
           availableKernelModules = ["nvme"];
           kernelModules = ["nvme"];
         };
-        kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
         kernelModules = ["tcp_bbr"];
         kernel = {
           sysctl = {
